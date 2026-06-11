@@ -706,7 +706,7 @@
                                         <div class="form-type">
                                             <div class="label">Ngày đặt</div>
                                             <div class="dateBox" id="DateCome">
-                                                <input id="bookingDateCome" data-value="5/29/2026 5:25:24 PM" />
+                                                <input id="bookingDateCome" data-value="5/29/2026 5:25:24 PM"/>
                                                 <div class="icn icon-time-calendar">
                                                     <img src="images/calendar-icon.webp"
                                                         class="ico-calendar" />

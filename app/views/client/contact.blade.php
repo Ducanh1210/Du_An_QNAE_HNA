@@ -454,7 +454,7 @@
                                                 <div class="dateBox" id="DateCome">
                                                     <input id="bookingDateCome" data-value="5/29/2026 5:25:25 PM" />
                                                     <div class="icn icon-time-calendar">
-                                                        <img src="images/calendar-icon.png"
+                                                        <img src="images/calendar-icon.webp"
                                                             class="ico-calendar" />
                                                     </div>
                                                 </div>

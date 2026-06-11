@@ -2053,6 +2053,7 @@ var BookingManager = {
         //    }
         //}
         me.formatFormBooking();
+        me.bindListTime();
         //bind ddl uudai
         $('#log').val(1);
         $.ajax({
@@ -2209,70 +2210,37 @@ var BookingManager = {
     bindListTime: function () {
         var me = this;
         me.clearForm();
-        let chkFlag = true
-        if ($("#txtResId").val() == "") {
-            $("#chk-res").find(".warning").html("Vui lòng chọn nhà hàng");
-            $("#chk-res").addClass("wrong");
-            chkFlag = false;
+
+        let datePick = $("#DateCome").find("input[name*='_submit']").val();
+        let chkdayNow = 0;
+        if (datePick == moment().format('MM/DD/YYYY')) {
+            chkdayNow = 1;
+        } else {
+            chkdayNow = 2;
         }
-        let resId = $('#txtResId').val();
-        let dateCome = $("#DateCome").find("input[name*='_submit']").val();
-
-        $.ajax({
-            url: apiDomain + "/get-product-home.htm",
-            data:
-            {
-                m: 'get-slot-time',
-                resId: resId,
-                dateCome: dateCome,
-            },
-            crossDomain: true,
-            dataType: 'jsonp',
-            type: "POST",
-            beforeSend: function () {
-            },
-            success: function (rs) {
-                //console.log(rs);
-                if (rs.Success) {
-                    let allSlots = rs.ExtData;
-                    let bookedSlots = rs.Data;
-                    let bookedSlotIds = bookedSlots.map(slot => slot.SlotId);
-                    let ulElement = document.getElementById('select-timeBox');
-                    ulElement.innerHTML = '';
-
-                    allSlots.forEach(slot => {
-                        let isBooked = bookedSlotIds.includes(slot.SlotId);
-                        let liElement = document.createElement('li');
-                        let aElement = document.createElement('a');
-                        aElement.href = "javascript:;";
-                        aElement.setAttribute('data-value', slot.Value);
-                        if (isBooked) {
-                            aElement.classList.add('slt-btn', 'disabled'); // Không thêm 'time-change'
-                            aElement.innerHTML = `${slot.Label} <span>(hết bàn)</span>`;
-                            aElement.style.pointerEvents = 'none'; // Chặn click
-                            aElement.style.opacity = '0.5'; // Cho mờ đi nếu muốn
-                        } else {
-                            aElement.classList.add('slt-btn', 'time-change');
-                            aElement.textContent = slot.Label;
-                        }
-
-                        liElement.appendChild(aElement);
-                        ulElement.appendChild(liElement);
-                    });
-
-                    //console.log('aaaaa');
-
-                    setTimeout(function () {
-                        $('#select-timeBox').find('li:first > a').trigger('click');
-                        //console.log('trigger click');
-                    }, 200);
-
-
-
-                    Ultis.funcTime();
+        
+        let arrOptTime = Ultis.bindTimeDropdownList(chkdayNow, me.option.timeBegin, me.option.timeEnd, me.option.stepTimeOption, me.option.totalMinuteFromNow);
+        
+        $("#select-timeBox").html("");
+        if (arrOptTime.length <= 0) {
+            $("#txtTime").addClass("outtime");
+            $("#boxTime").addClass("outtime-background");
+            $("#txtTime").html("Hết giờ");
+            $("#txtValueTime").val("outtime");
+            $('#boxTime .dropdown-btn').off('click');
+        } else {
+            $("#txtTime").removeClass("outtime");
+            $("#boxTime").removeClass("outtime-background");
+            for (let i = 0; i < arrOptTime.length; i++) {
+                $("#select-timeBox").append(`<li><a href="javascript:;" data-value="${arrOptTime[i]}" class="slt-btn time-change">${arrOptTime[i]}</a></li>`);
+                if (i === 0) {
+                    $("#txtTime").html(arrOptTime[i]);
+                    $("#txtValueTime").val(arrOptTime[i]);
                 }
             }
-        });
+            $("#chk-time").removeClass("wrong");
+            Ultis.funcTime();
+        }
     }
 }
 var RestaurantList = {

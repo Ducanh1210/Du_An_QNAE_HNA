@@ -112,7 +112,7 @@
     <!-- END: Template JS-->
 
     <!-- BEGIN: Core JS-->
-    <script src="Static/min/anhem.js?v=639156723250246866"></script>
+    <script src="Static/min/anhem.js?v=639156723250246866_fixed"></script>
 
     <!-- END: Core JS-->
 

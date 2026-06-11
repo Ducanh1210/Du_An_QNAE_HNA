@@ -114,7 +114,7 @@
     <!-- END: Template JS-->
 
     <!-- BEGIN: Core JS-->
-    <script src="Static/min/anhem.js?v=639156723241637552"></script>
+    <script src="Static/min/anhem.js?v=639156723241637552_fixed"></script>
 
     <!-- END: Core JS-->
 
@@ -708,7 +708,7 @@
                                             <div class="dateBox" id="DateCome">
                                                 <input id="bookingDateCome" data-value="5/29/2026 5:25:24 PM" />
                                                 <div class="icn icon-time-calendar">
-                                                    <img src="images/calendar-icon.png"
+                                                    <img src="images/calendar-icon.webp"
                                                         class="ico-calendar" />
                                                 </div>
                                             </div>

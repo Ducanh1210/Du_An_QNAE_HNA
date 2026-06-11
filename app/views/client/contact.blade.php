@@ -624,7 +624,7 @@
                     justify-content: space-between;
                     align-items: stretch;
                     gap: 40px;
-                    padding: 40px 0;
+                    padding: 40px 40px;
                     max-width: 1500px;
                     width: 100%;
                     margin: 0 auto;
@@ -937,7 +937,7 @@
                         <div class="premium-contact-right">
 
                             <div class="premium-contact-map">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.1009139599587!2d105.8166563758361!3d21.02875158061474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab7be5a6067b%3A0x67645166f284e0c!2zTOG6qHUgQ3VhIMSQ4buTbmcgVOG7sSBEbyAtIDg2IE5n4buNYyBLaMOhbmg!5e0!3m2!1svi!2svn!4v1717945560000!5m2!1svi!2svn" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1867.9163661105024!2d105.92398089866067!3d20.554023677397154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135cfb4c565e2ad%3A0x31d371407a989ab2!2zUXXDoW4gTmjhuq11IEFuaCBFbSBMYW0gSOG6oQ!5e0!3m2!1svi!2s!4v1781164271175!5m2!1svi!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                         </div>
                     </div>

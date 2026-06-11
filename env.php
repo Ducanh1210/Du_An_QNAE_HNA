@@ -4,7 +4,7 @@ const DBCHARSET = "utf8mb4";
 const DBUSER = "root";
 const DBPASS = "";
 const DBHOST = "localhost";
-const BASE_URL = "http://localhost/web_quannhau/MVC/";
+const BASE_URL = "http://localhost//Du_An_QNAE_HNA/";
 function route($url) {
     return BASE_URL.$url;
 }

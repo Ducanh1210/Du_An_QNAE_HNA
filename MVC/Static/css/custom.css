@@ -1,0 +1,2290 @@
+.hidden-swiperbutton {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.hidden-video {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.hid {
+    display: none !important;
+}
+
+.booking-detail .form-type.wrong .warning {
+    display: block;
+}
+
+.booking-detail .form-type.wrong .value {
+    color: #999999;
+}
+
+.booking-detail .form-type.wrong .select-time {
+    color: #F1F1F1;
+}
+
+.outtime {
+    color: #999999 !important;
+}
+
+.outtime-background {
+    background: #F1F1F1 !important;
+}
+
+.booking-detail .form-type.wrong .input-booking,
+.booking-detail .form-type.wrong .select-booking {
+    border: 0.5px solid #FF4A4A;
+}
+
+.btn-book-now-loading {
+    background: var(--colorPrimary);
+    border-radius: 42px;
+    padding: 12px 22px;
+    font-size: 15px;
+    line-height: 19px;
+    font-family: PlusJaS-SemiBold;
+    text-align: center;
+    text-transform: uppercase;
+    transition: .15s ease;
+    color: #ffa827;
+}
+
+.btn-loading {
+    position: relative;
+    cursor: default;
+    color: transparent !important;
+}
+
+.btn-loading:after {
+    content: "";
+    position: absolute;
+    z-index: 99999;
+    top: calc((100% - 16px) / 2);
+    left: calc((100% - 16px) / 2);
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #fff;
+    border-right-color: transparent;
+    border-radius: 50%;
+    -webkit-animation: 0.75s linear infinite spinner-border;
+    animation: 0.75s linear infinite spinner-border;
+}
+
+.branch-web .content-right .branch-box {
+    margin: 0 !important;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.branch-web .content-right .content-tab {
+    padding: 0;
+}
+
+.html2canvas-container {
+    width: 2000px !important;
+    height: 4000px !important;
+}
+
+
+.ico-calendar {
+    width: 16px;
+}
+
+.ico-rightarrow {
+    width: 14px;
+}
+
+.ico-phone {
+    width: 30px;
+}
+
+@media only screen and (min-width: 100px) and (max-width: 800px) {
+    .br-home-cover-footer-mob {
+        display: none;
+    }
+
+    .ico-phone {
+        width: 20px;
+    }
+}
+
+.td-content__wrapper {
+    z-index: 10;
+}
+
+/* fix notice de len menu */
+.td-header.bg-active {
+    top: 0 !important;
+    padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .td-header .header-content {
+        width: calc(100% - 40px);
+        margin: 0 20px;
+    }
+
+    .td-wrapper.active-noti .td-header .header-content {
+        margin-top: 52px;
+    }
+
+    .td-wrapper.active-noti .noti-page {
+        top: 0;
+    }
+
+    .td-wrapper.active-noti .td-header.expanded .list-content-inside {
+        top: 110px;
+    }
+
+    .coso-content .cc-wrapper .ccBox {
+        overflow: hidden;
+        border-radius: 10px;
+    }
+
+    .coso-content .cc-wrapper .ccBox .ccb-right .ccbr-gallery .ccbrg-content .ccbr-thumb i img {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        overflow: hidden;
+    }
+
+    .coso-content .cc-wrapper .ccBox {
+        margin-bottom: 25px;
+    }
+
+    .coso-content .cc-wrapper .ccBox:last-child {
+        margin-bottom: 0px;
+    }
+}
+
+
+.cosoDetail-content .csdc-wrapper .csdc-body .csdcb-toc {
+    max-height: fit-content;
+}
+
+.booking-detail .select-booking .droplist-ct .slt-btn {
+    display: flex;
+    align-items: center;
+}
+
+.booking-detail .select-booking .droplist-ct .slt-btn span {
+    font-size: 9px;
+    margin-left: 5px;
+}
+
+/* Full width responsive banner with correct aspect ratio to prevent cropping */
+body .td-home__coverWeb {
+    margin-top: -20px !important;
+    padding-bottom: 0 !important;
+    /* Remove bottom padding to make slogan flush */
+}
+
+body .td-home__bigText-middle {
+    padding-top: 0 !important;
+    /* Remove top padding of middle wrapper to avoid gaps */
+}
+
+body .td-home__coverWeb .coverBox {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 8001 / 3084 !important;
+}
+
+body .td-home__coverWeb .coverBox-bg {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-image: url('../../images/nf_banner_8.webp') !important;
+    background-size: cover !important;
+    background-position: center top !important;
+    background-repeat: no-repeat !important;
+    z-index: 3 !important;
+}
+
+/* Make parallax layers scale responsive to coverBox height */
+body .td-home__coverWeb .parallax-mouse,
+body #scenePrl {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 4 !important;
+}
+
+body .td-home__coverWeb .parallax-mouse .prl-bg {
+    height: 100% !important;
+}
+
+body .td-home__coverWeb i {
+    height: 100% !important;
+    background-position: center bottom !important;
+}
+
+body .td-home__coverWeb .layer-chef-radio i {
+    background-size: auto 50% !important;
+    background-position: 23% bottom !important;
+    z-index: 5 !important;
+    /* Group 15.png (Chef + Radio) a tiny bit bigger */
+}
+
+body .td-home__coverWeb .layer-muscles-beer i {
+    background-size: auto 58% !important;
+    /* 2.png (Muscles + Beer) a tiny bit bigger */
+    background-position: 60% bottom !important;
+    z-index: 4 !important;
+    /* Shifted slightly to the right */
+}
+
+body .td-home__coverWeb .layer-right-character i {
+    background-size: auto 50% !important;
+    background-position: 77% bottom !important;
+    z-index: 3 !important;
+}
+
+body .td-home__coverWeb .static-layer {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none !important;
+}
+
+@keyframes bounceTungTung {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+body .td-home__coverWeb .layer-center-characters i {
+    background-size: auto 7% !important;
+    background-position: 28% 17% !important;
+    z-index: 7 !important;
+    display: block !important;
+    animation: bounceTungTung 2s infinite ease-in-out !important;
+}
+
+@keyframes fireworkExplode {
+    0% {
+        transform: scale(0.2);
+        opacity: 0;
+    }
+
+    15% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    25% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    80% {
+        transform: scale(1.05);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1.05);
+        opacity: 0;
+    }
+}
+
+body .td-home__coverWeb .layer-firework-left i {
+    background-size: auto 27% !important;
+    background-position: 30.5% 35% !important;
+    transform-origin: 30.5% 35% !important;
+    z-index: 2 !important;
+    display: block !important;
+    animation: fireworkExplode 3s infinite ease-out !important;
+}
+
+body .td-home__coverWeb .layer-firework-right i {
+    background-size: auto 24% !important;
+    background-position: 72.5% 41% !important;
+    transform-origin: 72.5% 41% !important;
+    z-index: 2 !important;
+    display: block !important;
+    animation: fireworkExplode 3.5s infinite ease-out !important;
+    animation-delay: 1s !important;
+}
+
+body .td-home__coverWeb .layer-firework-top-right i {
+    background-size: auto 53% !important;
+    background-position: 100% 10% !important;
+    transform-origin: 100% 10% !important;
+    z-index: 2 !important;
+    display: block !important;
+    animation: fireworkExplode 4s infinite ease-out !important;
+    animation-delay: 2s !important;
+}
+
+body .td-home__coverWeb .layer-bridge-pin i {
+    background-size: auto 8% !important;
+    background-position: 86% 30% !important;
+    z-index: 7 !important;
+    display: block !important;
+    animation: bounceTungTung 2s infinite ease-in-out !important;
+    animation-delay: -1s !important;
+    /* Half duration delay for perfectly alternating bounce */
+}
+
+@media screen and (max-width: 860px) {
+    body .td-home__coverWeb {
+        padding-bottom: 0 !important;
+        margin-top: 50px !important;
+    }
+
+    body .td-home__coverWeb .coverBox {
+        height: auto !important;
+        aspect-ratio: 8001 / 3084 !important;
+    }
+}
+
+/* Slogan Image Container and Responsive Styles - Full screen and flush with banner */
+body .slogan-container {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+body .slogan-img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+}
+
+body .slogan-decor-right-img {
+    position: absolute !important;
+    right: 0 !important;
+    bottom: -5px !important; /* slightly offset to overlap/align perfectly with the bottom curve */
+    width: 35% !important;
+    max-width: 510px !important;
+    height: auto !important;
+    z-index: 5 !important;
+    pointer-events: none !important;
+    /* Prevents blocking clicks/drags */
+}
+
+body .slogan-decor-left-img {
+    position: absolute !important;
+    left: 0 !important;
+    bottom: -5px !important; /* slightly offset to overlap/align perfectly with the bottom curve */
+    width: 35% !important;
+    max-width: 350px !important;
+    height: auto !important;
+    z-index: 5 !important;
+    pointer-events: none !important;
+    /* Prevents blocking clicks/drags */
+}
+
+@media screen and (max-width: 768px) {
+    body .slogan-decor-left-img {
+        width: 25% !important;
+        max-width: 150px !important;
+    }
+}
+
+body .slogan-logo-img {
+    position: absolute !important;
+    left: 49% !important;
+    bottom: 13% !important;
+    /* Raised slightly to stand on the orange curve */
+    transform: translateX(-50%) !important;
+    width: 75% !important;
+    /* Increased size in center */
+    height: auto !important;
+    pointer-events: none !important;
+}
+
+body .slogan-parallax-mouse,
+body #sceneSloganPrl {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 4 !important;
+}
+
+body .slogan-logo-wrap {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Space out the new food section from the slogan banner above it */
+.td-home__wrapper .new-food {
+    margin-top: 80px !important;
+}
+
+.td-home__wrapper .new-food .heading {
+    color: #5e3713 !important;
+}
+
+@media screen and (max-width: 860px) {
+    .td-home__wrapper .new-food {
+        margin-top: 40px !important;
+    }
+}
+
+/* Custom View Menu Button Styles */
+body .td-home__bigText-middle .view-menu {
+    position: relative !important;
+    background-color: transparent !important;
+    color: #5e3713 !important;
+    border: 2.5px solid #5e3713 !important;
+    border-radius: 12px !important;
+    font-family: PlusJaS-Bold, sans-serif !important;
+    font-weight: 800 !important;
+    padding: 18px 45px 18px 45px !important;
+    font-size: 22px !important;
+    line-height: 1 !important;
+    letter-spacing: 1px !important;
+    overflow: visible !important;
+    margin-top: 30px !important;
+    margin-bottom: 25px !important;
+    transition: all 0.3s ease !important;
+}
+
+body .td-home__bigText-middle .view-menu:hover {
+    background-color: #5e3713 !important;
+    color: #ffffff !important;
+    border-color: #5e3713 !important;
+    transform: translateX(-50%) scale(1.03) !important;
+}
+
+/* Mascot on the see menu button */
+.view-menu-mascot {
+    position: absolute !important;
+    bottom: -5px !important;
+    right: -65px !important;
+    height: 135px !important;
+    width: auto !important;
+    z-index: 10 !important;
+    pointer-events: none !important;
+    transform: rotate(0deg) !important;
+    transition: transform 0.3s ease !important;
+}
+
+body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
+    transform: scale(1.05) rotate(3deg) !important;
+}
+
+@media screen and (max-width: 860px) {
+    body .td-home__bigText-middle .view-menu {
+        font-size: 16px !important;
+        padding: 12px 45px 12px 30px !important;
+        border-width: 2px !important;
+        border-radius: 8px !important;
+        margin-top: 15px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .view-menu-mascot {
+        height: 90px !important;
+        right: -40px !important;
+        bottom: -4px !important;
+    }
+}
+
+/* Full Screen Banner */
+.banner-full-screen {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    line-height: 0;
+    margin-top: 0px;
+    margin-bottom: 0 !important;
+}
+
+.banner-fs-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 2%, rgba(0, 0, 0, 0.5) 7%, black 15%);
+    mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 2%, rgba(0, 0, 0, 0.5) 7%, black 15%);
+}
+
+@media (max-width: 768px) {
+    .banner-full-screen {
+        margin-top: 0px;
+        margin-bottom: 0 !important;
+    }
+}
+
+.banner-full-screen .banner-title {
+    position: absolute;
+    top: 7%;
+    left: 8%;
+    color: #5e3713;
+    font-family: PlusJaS-Bold, sans-serif;
+    font-size: 4.8vw;
+    font-weight: 900;
+    line-height: 1.2;
+    z-index: 10;
+    pointer-events: none;
+    margin: 0;
+    letter-spacing: -0.02em;
+    -webkit-text-stroke: 0.03vw #5e3713;
+}
+
+@media (max-width: 1200px) {
+    .banner-full-screen .banner-title {
+        font-size: 5.2vw;
+        left: 6%;
+        top: 6%;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-full-screen .banner-title {
+        font-size: 6vw;
+        left: 5%;
+        top: 5%;
+        -webkit-text-stroke: 0.02vw #5e3713;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-full-screen .banner-title {
+        font-size: 6.5vw;
+        left: 5%;
+        top: 4%;
+        -webkit-text-stroke: 0px;
+    }
+}
+
+/* Banner Quote Box Overlay Styles */
+.banner-full-screen .banner-quote-box {
+    position: absolute;
+    right: 5%;
+    top: 17%;
+    width: 27.7%;
+    z-index: 10;
+    font-family: PlusJaS-SemiBold, sans-serif;
+    color: #5e3713;
+    line-height: 1.4;
+}
+
+.banner-full-screen .banner-quote-box .quote-text {
+    font-family: PlusJaS-SemiBold, sans-serif;
+    font-size: 1.1vw;
+    line-height: 1.45;
+    margin: 0 0 0.8vw 0;
+    padding-bottom: 0.8vw;
+    border-bottom: 0.1vw solid rgba(94, 55, 19, 0.35);
+    font-weight: 700;
+    text-align: justify;
+}
+
+.banner-full-screen .banner-quote-box .quote-author {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vw;
+    text-align: left;
+    margin-top: 0.8vw;
+}
+
+.banner-full-screen .banner-quote-box .quote-author .author-title {
+    font-size: 1.25vw;
+    font-family: PlusJaS-Bold, sans-serif;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.banner-full-screen .banner-quote-box .quote-author .author-name {
+    font-size: 1.05vw;
+    font-family: PlusJaS-SemiBold, sans-serif;
+    opacity: 0.9;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+@media (max-width: 1200px) {
+    .banner-full-screen .banner-quote-box {
+        right: 12%;
+        top: 12%;
+        width: 35%;
+    }
+
+    .banner-full-screen .banner-quote-box .quote-text {
+        font-size: 1.3vw;
+        line-height: 1.4;
+        margin-bottom: 0.7vw;
+        padding-bottom: 0.7vw;
+    }
+
+    .banner-full-screen .banner-quote-box .quote-author .author-title {
+        font-size: 1.5vw;
+    }
+
+    .banner-full-screen .banner-quote-box .quote-author .author-name {
+        font-size: 1.2vw;
+    }
+}
+
+@media (max-width: 860px) {
+    .banner-full-screen .banner-quote-box {
+        right: 8%;
+        top: 10%;
+        width: 41%;
+    }
+
+    .banner-full-screen .banner-quote-box .quote-text {
+        font-size: 1.5vw;
+        line-height: 1.35;
+        margin-bottom: 0.6vw;
+        padding-bottom: 0.6vw;
+    }
+
+    .banner-full-screen .banner-quote-box .quote-author .author-title {
+        font-size: 1.7vw;
+    }
+
+    .banner-full-screen .banner-quote-box .quote-author .author-name {
+        font-size: 1.4vw;
+    }
+}
+
+@media (max-width: 576px) {
+    .banner-full-screen .banner-quote-box {
+        display: none !important;
+    }
+}
+
+/* Marquee Style Customizations */
+.marquee .marquee-item span {
+    color: #5e3713 !important;
+}
+
+/* ========================================
+   Nút "NHẬN NGAY" – style giống view-menu
+   ======================================== */
+.td-home__wrapper .dscBox .get-dsc {
+    display: inline-flex !important;
+    align-self: flex-end !important;
+    /* Căn phải */
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    margin-top: 18px !important;
+    margin-right: 25px !important;
+    /* Thêm margin-right để nhích nút sang trái 1 tí */
+    padding: 10px 24px !important;
+    /* Ngắn lại */
+    background-color: transparent !important;
+    color: #5e3713 !important;
+    border: 1.5px solid #5e3713 !important;
+    border-radius: 10px !important;
+    font-family: PlusJaS-Bold, sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 14px !important;
+    letter-spacing: 1px !important;
+    line-height: 1 !important;
+    transition: background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease !important;
+    text-decoration: none !important;
+}
+
+.td-home__wrapper .dscBox .get-dsc:hover {
+    background-color: #5e3713 !important;
+    color: #ffffff !important;
+    border-color: #5e3713 !important;
+    transform: scale(1.04) !important;
+}
+
+/* Text bên trong */
+.td-home__wrapper .dscBox .get-dsc .txt {
+    color: inherit !important;
+    font-size: inherit !important;
+    font-family: inherit !important;
+    font-weight: inherit !important;
+    padding-top: 0 !important;
+    line-height: 1 !important;
+    transition: color 0.3s ease !important;
+}
+
+/* Bỏ hiệu ứng hover dịch chuyển text của card cũ */
+.td-home__wrapper .dscBox:hover .total-dcs .get-dsc .txt {
+    transform: none !important;
+    -webkit-transform: none !important;
+}
+
+/* Ẩn SVG icon – dùng style nút text thuần */
+.td-home__wrapper .dscBox .get-dsc .icn {
+    display: none !important;
+}
+
+/* Mobile */
+@media (max-width: 800px) {
+    .td-home__wrapper .dscBox .get-dsc {
+        padding: 10px 22px !important;
+        font-size: 13px !important;
+        border-radius: 8px !important;
+    }
+}
+
+/* Mascot bên cạnh nút NHẬN NGAY */
+.td-home__wrapper .dscBox .get-dsc {
+    position: relative !important;
+    overflow: visible !important;
+}
+
+.get-dsc-mascot {
+    position: absolute !important;
+    bottom: -4px !important;
+    right: -30px !important;
+    height: 80px !important;
+    width: auto !important;
+    pointer-events: none !important;
+    transition: transform 0.3s ease !important;
+    z-index: 10 !important;
+}
+
+.td-home__wrapper .dscBox .get-dsc:hover .get-dsc-mascot {
+    transform: scale(1.08) rotate(4deg) !important;
+}
+
+@media (max-width: 800px) {
+    .get-dsc-mascot {
+        height: 60px !important;
+        right: -20px !important;
+    }
+}
+
+/* ========================================
+   Nút "XEM TẤT CẢ" dưới phần Ưu Đãi
+   ======================================== */
+.td-home__wrapper .view-all {
+    border: 2.5px solid #5e3713 !important;
+    color: #5e3713 !important;
+    font-weight: 800 !important;
+    transition: all 0.3s ease !important;
+}
+
+.td-home__wrapper .view-all:hover {
+    background-color: #5e3713 !important;
+    color: #ffffff !important;
+    transform: translateX(-50%) scale(1.03) !important;
+}
+
+/* Override màu nền card Ưu Đãi giống hệt ảnh thiết kế */
+.td-home__wrapper .dscBox .total-dcs {
+    background-color: #f4ebd8 !important;
+    /* Màu beige nhạt của card */
+}
+
+.td-home__wrapper .dscBox .title {
+    color: #2a1607 !important;
+}
+
+.td-home__wrapper .dscBox .sapo {
+    color: #2a1607 !important;
+}
+
+.td-home__wrapper .dscBox {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12) !important;
+    border-radius: 10px !important;
+    background-color: #f4ebd8 !important;
+    margin: 12px !important;
+}
+
+/* Swiper Pagination Dots Customization */
+.td-home__wrapper .swiper-dscHome {
+    padding-bottom: 40px !important;
+}
+
+.td-home__wrapper .swiper-dscHome .swiper-pagination {
+    bottom: 0px !important;
+}
+
+.td-home__wrapper .swiper-dscHome .swiper-pagination-bullet {
+    background-color: #5e3713 !important;
+    opacity: 0.4 !important;
+    width: 10px !important;
+    height: 10px !important;
+}
+
+.td-home__wrapper .swiper-dscHome .swiper-pagination-bullet-active {
+    background-color: #5e3713 !important;
+    opacity: 1 !important;
+}
+
+/* Staff Banner Section */
+.staff-banner-section {
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 0;
+    position: relative;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.staff-banner-bg {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.staff-banner-label {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    z-index: 15;
+    font-family: TiltWarp-Regular, sans-serif;
+    font-size: 4.8vw;
+    font-weight: normal;
+    color: #fdf5e6;
+    letter-spacing: 0.02em;
+}
+
+@media (max-width: 1200px) {
+    .staff-banner-label {
+        font-size: 5.2vw;
+        top: 8%;
+    }
+}
+
+@media (max-width: 768px) {
+    .staff-banner-label {
+        font-size: 6vw;
+        top: 6%;
+    }
+}
+
+@media (max-width: 480px) {
+    .staff-banner-label {
+        font-size: 6.5vw;
+        top: 5%;
+    }
+}
+
+.staff-banner-content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.staff-banner-left {
+    left: 3%;
+    width: 28%;
+}
+
+.staff-banner-right {
+    right: 13%;
+    width: 50%;
+    /* Larger */
+    top: 37%;
+    /* Moved up slightly */
+}
+
+.staff-banner-bottom-right {
+    top: auto;
+    bottom: 5%;
+    right: 2%;
+    transform: none;
+    width: 28%;
+}
+
+.staff-banner-slogan {
+    position: absolute;
+    bottom: 5%;
+    left: 37%;
+    z-index: 15;
+    font-family: PlusJaS-Bold, sans-serif;
+    font-size: 5.2vw;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.15;
+    text-transform: uppercase;
+    width: max-content;
+}
+
+.slogan-line {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.staff-banner-overlay {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.staff-banner-description {
+    position: absolute;
+    top: 95%;
+    left: 8%;
+    font-family: PlusJaS-Regular, sans-serif;
+    font-size: 1.1vw;
+    color: #fdf5e6;
+    line-height: 1.5;
+    text-align: justify;
+    width: 80%;
+}
+
+/* Responsive adjustments for staff banner */
+@media screen and (max-width: 1200px) {
+    .staff-banner-left {
+        width: 28%;
+        left: 4%;
+    }
+
+    .staff-banner-right {
+        width: 28%;
+        right: 4%;
+    }
+
+    .staff-banner-description {
+        font-size: 1.4vw;
+    }
+}
+
+@media screen and (max-width: 860px) {
+    .staff-banner-left {
+        width: 32%;
+        left: 3%;
+    }
+
+    .staff-banner-right {
+        width: 32%;
+        right: 3%;
+    }
+
+    .staff-banner-description {
+        font-size: 1.8vw;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .staff-banner-left {
+        width: 40%;
+        left: 2%;
+    }
+
+    .staff-banner-right {
+        width: 40%;
+        right: 2%;
+    }
+
+    .staff-banner-description {
+        font-size: 2.2vw;
+    }
+}
+
+/* Video Banner Section */
+.video-banner-section {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.video-banner-bg {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    -webkit-mask-image:
+        linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 2%, rgba(0, 0, 0, 0.5) 7%, black 15%),
+        linear-gradient(to top right, transparent 0%, rgba(0, 0, 0, 0.1) 3%, rgba(0, 0, 0, 0.5) 10%, black 22%);
+    mask-image:
+        linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 2%, rgba(0, 0, 0, 0.5) 7%, black 15%),
+        linear-gradient(to top right, transparent 0%, rgba(0, 0, 0, 0.1) 3%, rgba(0, 0, 0, 0.5) 10%, black 22%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+}
+
+.video-banner-content {
+    position: absolute;
+    z-index: 10;
+}
+
+.video-banner-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 33%;
+}
+
+@keyframes floatGentle {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-25px) rotate(-5deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+.video-banner-top-left {
+    top: 5%;
+    left: 5%;
+    width: 10%;
+    /* Guessing a good size for a top-left badge/element */
+    animation: floatGentle 2.5s ease-in-out infinite;
+}
+
+@media screen and (max-width: 768px) {
+    .video-banner-top-left {
+        top: 15%;
+    }
+}
+
+.video-banner-top-right {
+    top: 5%;
+    right: 11.2%;
+    width: 18.6%;
+    /* Guessing a size */
+}
+
+.video-banner-center-right {
+    top: 50%;
+    right: 16%;
+    transform: translateY(-50%);
+    width: 30%;
+    /* Guessing a good size */
+}
+
+.video-banner-overlay {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Speech bubble scroll-reveal animation */
+.scroll-speech-bubble {
+    opacity: 0;
+    transform: scale(0.3) translateY(30px);
+    transform-origin: bottom left;
+    transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+        transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scroll-speech-bubble.active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+.video-banner-speech-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding-top: 10%;
+    padding-bottom: 22%;
+    padding-left: 12%;
+    padding-right: 12%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: PlusJaS-Bold, sans-serif;
+    font-size: 1.95vw;
+    line-height: 1.35;
+    letter-spacing: 1px;
+    color: #5c2a18;
+    z-index: 11;
+    text-shadow: 0.5px 0.5px 0px rgba(92, 42, 24, 0.1);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.3s ease 0.15s, transform 0.3s ease 0.15s;
+}
+
+.scroll-speech-bubble.active .video-banner-speech-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Removed mobile font-size scaling for speech bubble text to match scaled-down container */
+
+/* Removed media queries that scaled up video banner elements on mobile to prevent overlap */
+
+/* =========================================
+   NEW SLANTED FOOTER STYLES
+   ========================================= */
+
+.ph-footer-new {
+    width: 100%;
+    position: relative;
+    background-color: #5e3713;
+    /* Dark brown main */
+    overflow: hidden;
+    display: flex;
+    min-height: 160px;
+    /* Taller */
+    font-family: inherit;
+    border-top: none;
+    /* Removed border */
+}
+
+/* Base Container */
+.ph-fn-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    padding: 30px 40px;
+}
+
+/* Background Wrapper for perfect alignment */
+.ph-fn-bg-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    z-index: 0;
+}
+
+/* Base Slant Transform */
+.ph-fn-slant {
+    position: absolute;
+    top: -20px;
+    bottom: -20px;
+    transform: skewX(-25deg);
+    /* \ slant */
+    z-index: 1;
+}
+
+/* 1. Far left thick yellow block */
+.ph-fn-left-stripe-1 {
+    left: -100px;
+    /* pulled far left to always cover the edge */
+    width: 170px;
+    /* widened so its right edge is where we want it */
+    background-color: #ffa827;
+    /* YELLOW */
+    z-index: 1;
+}
+
+/* 2. Thin yellow line */
+.ph-fn-left-stripe-2 {
+    left: 75px;
+    /* Reduced gap: thick block ends at 70px, line at 75px (5px gap) */
+    width: 4px;
+    background-color: #ffa827;
+    /* YELLOW */
+    z-index: 1;
+}
+
+/* 3. Main cream block (covers everything underneath stripes) */
+.ph-fn-left-accent {
+    left: -3000px;
+    width: calc(3000px + 27% + 12px);
+    /* Extends right up to the first center stripe (at 27%) */
+    background-color: #fdf5e6;
+    z-index: 0;
+    /* stays behind stripes */
+}
+
+/* 4. Center Divider Stripes (1: Orange, 2: Cream, 3: Orange) */
+.ph-fn-center-stripe-1 {
+    left: calc(27% + 12px);
+    width: 5px;
+    background-color: #ffa827;
+    z-index: 3;
+}
+
+.ph-fn-center-stripe-2 {
+    left: calc(27% + 16px);
+    width: 6px;
+    background-color: #fdf5e6;
+    z-index: 2;
+}
+
+.ph-fn-center-stripe-3 {
+    left: calc(27% + 21px);
+    width: 12px;
+    background-color: #ffa827;
+    z-index: 1;
+}
+
+/* 4. Right thin orange line */
+.ph-fn-right-line {
+    right: 75px;
+    /* Symmetrical to left side */
+    width: 4px;
+    background-color: #ffa827;
+    z-index: 1;
+}
+
+/* 5. Right thick orange block */
+.ph-fn-right-accent {
+    right: -100px;
+    /* Symmetrical to left side (-100px and 170px width) */
+    width: 170px;
+    background-color: #ffa827;
+    z-index: 1;
+}
+
+/* Left Content */
+.ph-fn-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    /* space between logo and button */
+    width: 25%;
+    /* slightly increased */
+    padding-left: 30px;
+    /* adjusted to center logo */
+}
+
+/* Adjust button inside footer since it's now stacked */
+.ph-fn-left .ph-fn-btn {
+    margin-top: 5px;
+}
+
+.ph-fn-logo {
+    max-height: 70px;
+    width: auto;
+    object-fit: contain;
+}
+
+.ph-fn-btn {
+    display: inline-block;
+    padding: 10px 25px;
+    border: 2px solid #ffa827;
+    color: #4b2c15;
+    background-color: transparent;
+    font-weight: 700;
+    border-radius: 8px;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.ph-fn-btn:hover {
+    background-color: #ffa827;
+    color: #fff;
+}
+
+/* Middle Content */
+.ph-fn-middle {
+    display: flex;
+    justify-content: flex-start;
+    gap: 80px;
+    flex-grow: 1;
+    padding-left: 100px;
+}
+
+.ph-fn-col-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ph-fn-col-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.ph-fn-col-links a:hover {
+    color: #ffa827;
+}
+
+.ph-fn-col-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: #e0e0e0;
+    font-size: 16px;
+}
+
+.ph-fn-info-item {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.ph-fn-label {
+    display: inline-block;
+    font-weight: normal;
+    min-width: 76px;
+}
+
+.ph-fn-value {
+    color: #ffa827;
+    /* orange to match phone numbers */
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.ph-fn-value.highlight {
+    color: #ffa827;
+    font-weight: normal;
+}
+
+.ph-fn-mt {
+    margin-top: 0px;
+}
+
+/* Socials Content */
+.ph-fn-socials {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding-right: 5%;
+    /* pushes it away from right slant */
+    transform: translateY(-45px);
+    /* Move up slightly as requested */
+}
+
+.ph-fn-social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.ph-fn-social-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.ph-fn-social-icon:hover {
+    background-color: #ffa827;
+    border-color: #ffa827;
+}
+
+/* Responsive Overrides */
+@media screen and (max-width: 1200px) {
+    .ph-fn-middle {
+        padding-left: 50px;
+        gap: 40px;
+    }
+
+    .ph-fn-socials {
+        padding-right: 15%;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .ph-footer-new {
+        min-height: auto;
+    }
+
+    .ph-fn-slant {
+        display: none;
+        /* Hide complex skews on mobile/tablet */
+    }
+
+    .ph-fn-container {
+        flex-direction: column;
+        padding: 30px;
+        gap: 30px;
+    }
+
+    .ph-fn-left {
+        width: 100%;
+        justify-content: space-between;
+        background-color: #fdf5e6;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .ph-fn-middle {
+        width: 100%;
+        padding-left: 0;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .ph-fn-col-links {
+        align-items: center;
+    }
+
+    .ph-fn-col-info {
+        align-items: center;
+    }
+
+    .ph-fn-socials {
+        padding-right: 0;
+        justify-content: center;
+        width: 100%;
+        transform: translateY(0);
+        margin-top: 15px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .ph-fn-left {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+.td-home__tdclub {
+    padding-bottom: 120px !important;
+    /* remove huge empty space at bottom */
+}
+
+.td-home__tdclub .text-club {
+    color: #5e3713 !important;
+    margin-bottom: 0px !important;
+}
+
+.td-home__tdclub .heading,
+.td-home__tdclub .heading.active {
+    color: #ffa827 !important;
+    margin-top: 0.5vw !important;
+}
+
+@media screen and (max-width: 768px) {
+    .td-home__tdclub .heading,
+    .td-home__tdclub .heading.active {
+        font-size: 46px !important;
+        line-height: 1.25 !important;
+    }
+}
+
+.td-home__tdclub .des {
+    color: #5e3713 !important;
+    /* Dark brown */
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+}
+
+@media screen and (max-width: 768px) {
+    .td-home__tdclub .des {
+        font-size: 13px !important;
+        line-height: 1.4 !important;
+    }
+}
+
+.td-home__tdclub .join-club {
+    background-color: #4a2b12 !important;
+    /* Dark brown background */
+    color: #ffffff !important;
+    border: 3px solid #c09d6b !important;
+    /* Tan/gold border */
+    border-radius: 18px !important;
+    font-weight: 600 !important;
+    letter-spacing: 1px;
+    margin-bottom: 0 !important;
+    /* remove bottom margin since marquee is gone */
+}
+
+.td-home__tdclub .join-club:hover {
+    background-color: #ffa827 !important;
+    border-color: #ffa827 !important;
+    color: #fff !important;
+}
+
+.text-club-logo {
+    max-width: 450px;
+    width: 100%;
+    height: auto;
+    display: inline-block;
+    margin-top: 1.5vw;
+}
+
+@media screen and (max-width: 768px) {
+    .text-club-logo {
+        width: 75%;
+        max-width: 300px;
+    }
+}
+
+.td-home__tdclub .pin-icn.big-left {
+    width: 16.5vw !important;
+    left: 8vw !important;
+    top: 43% !important;
+    transform: translateY(-50%) !important;
+}
+
+.td-home__tdclub .pin-icn.sm-right {
+    width: 14.5vw !important;
+    right: 11vw !important;
+    top: 43% !important;
+    transform: translateY(-50%) !important;
+}
+
+.td-home__tdclub .pin-icn.big-left img {
+    animation: floatIconLeft 4s ease-in-out infinite;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.td-home__tdclub .pin-icn.sm-right img {
+    animation: floatIconRight 4s ease-in-out infinite;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@keyframes floatIconLeft {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-36px) rotate(6deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+@keyframes floatIconRight {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(36px) rotate(-7deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+/* Floating Contact Menu (Zalo, FB, TikTok) */
+.floating-contact-menu {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 99999;
+    width: 60px;
+    height: 60px;
+}
+
+.floating-contact-menu .contact-item {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(0, 0) scale(0);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.floating-contact-menu .contact-item svg {
+    width: 26px;
+    height: 26px;
+}
+
+.floating-contact-menu .contact-item.zalo {
+    background-color: #0068ff;
+}
+
+.floating-contact-menu .contact-item.facebook {
+    background-color: #1877f2;
+}
+
+.floating-contact-menu .contact-item.tiktok {
+    background-color: #000000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 0 5px rgba(254, 44, 85, 0.5);
+}
+
+.floating-contact-menu .contact-trigger {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #ffa827;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 168, 39, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.floating-contact-menu .contact-trigger svg {
+    width: 28px;
+    height: 28px;
+    transition: transform 0.4s ease;
+}
+
+/* Active States (Sequential Arc Fan-out on click) */
+.floating-contact-menu.active .contact-item {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Fan out:
+   Zalo: 90deg -> (0, -80px)
+   Facebook: 135deg -> (-56px, -56px)
+   TikTok: 180deg -> (-80px, 0)
+*/
+.floating-contact-menu.active .contact-item.zalo {
+    transform: translate(0, -80px) scale(1);
+    transition-delay: 0.05s;
+}
+
+.floating-contact-menu.active .contact-item.facebook {
+    transform: translate(-56px, -56px) scale(1);
+    transition-delay: 0.12s;
+}
+
+.floating-contact-menu.active .contact-item.tiktok {
+    transform: translate(-80px, 0) scale(1);
+    transition-delay: 0.19s;
+}
+
+.floating-contact-menu .contact-trigger::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #ffa827;
+    opacity: 0.6;
+    z-index: -1;
+    animation: contactPulse 2s infinite;
+}
+
+@keyframes contactPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+}
+
+.floating-contact-menu.active .contact-trigger svg {
+    transform: rotate(360deg);
+}
+
+.floating-contact-menu.active .contact-trigger {
+    background-color: #4a2b12;
+    box-shadow: 0 5px 15px rgba(74, 43, 18, 0.4);
+}
+
+@media screen and (max-width: 768px) {
+    .floating-contact-menu {
+        right: 15px;
+        bottom: 15px;
+        width: 45px;
+        height: 45px;
+    }
+    .floating-contact-menu .contact-trigger {
+        width: 45px;
+        height: 45px;
+    }
+    .floating-contact-menu .contact-trigger svg {
+        width: 20px;
+        height: 20px;
+    }
+    .floating-contact-menu .contact-item {
+        width: 36px;
+        height: 36px;
+        left: 4.5px;
+        top: 4.5px;
+    }
+    .floating-contact-menu .contact-item svg {
+        width: 18px;
+        height: 18px;
+    }
+    .floating-contact-menu.active .contact-item.zalo {
+        transform: translate(0, -60px) scale(1);
+    }
+    .floating-contact-menu.active .contact-item.facebook {
+        transform: translate(-42px, -42px) scale(1);
+    }
+    .floating-contact-menu.active .contact-item.tiktok {
+        transform: translate(-60px, 0) scale(1);
+    }
+}
+
+/* Food card background for Best Seller section */
+.td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu {
+    background-image: url('../../images/card.webp') !important;
+    background-size: 120% 130% !important;
+    /* Scaled up to make the paper background larger */
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 16px 20px 20px 20px !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+    filter: drop-shadow(6px 10px 12px rgba(156, 112, 47, 0.521)) !important;
+    /* Real 3D shadow for the torn paper shape */
+}
+
+/* Ensure child elements do not have solid background colors, and reduce spacing */
+.td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu .thumb {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding-top: 85% !important;
+    /* Larger image area */
+    position: relative !important;
+    overflow: visible !important;
+    /* Allow scaled image to overlap without clipping */
+}
+
+/* Remove default thin border frame overlay */
+.td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu .thumb:before {
+    display: none !important;
+    border: none !important;
+    content: none !important;
+}
+
+.td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu .thumb img {
+    object-fit: contain !important;
+    /* Keep the transparent plate perfectly scaled */
+    filter: drop-shadow(-5px 10px 0px #ffa827) !important;
+    /* Solid (non-blurred) orange shadow */
+    transform: scale(1.55) !important;
+    /* Enlarge the product image significantly */
+    top: -50px !important;
+    /* Shift up slightly */
+    left: 15px !important;
+    /* Shift right slightly */
+}
+
+.td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu .info-box {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    /* Remove top padding to bring it up */
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    transform: translateY(-25px) !important;
+    /* Visually shift the entire text block upwards */
+    position: relative !important;
+    z-index: 2 !important;
+    /* Ensure text stays on top of the image */
+}
+
+/* Remove default card background shadows or styling in main.css if any, and add padding for card shadow breathing room */
+.td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 10px 22px 22px 10px !important;
+    /* Spacing for right and bottom drop shadow */
+    box-sizing: border-box !important;
+}
+
+/* Typography adjustments inside Best Seller food cards */
+.td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu .title-food {
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+    color: #4a2b12 !important;
+    font-family: PlusJaS-Bold, sans-serif !important;
+    margin-bottom: 6px !important;
+    height: 38px !important;
+    /* Fixed height for title to align price block perfectly */
+    overflow: hidden !important;
+    white-space: normal !important;
+    width: 100% !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+}
+
+.td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu .title-food:hover {
+    color: #ffa827 !important;
+}
+
+.td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu .price-food {
+    font-size: 13px !important;
+    color: #9c6c40 !important;
+    font-family: PlusJaS-Bold, sans-serif !important;
+    margin-top: 4px !important;
+}
+
+/* Adjust order button size and padding to fit nicely with smaller text */
+.td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu .add-to-card {
+    padding: 3px 8px !important;
+    gap: 4px !important;
+    border-color: #6f3906 !important;
+    /* Darker border color matching the price */
+    border-radius: 6px !important;
+    /* Make it more square instead of fully rounded */
+}
+
+.td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu .add-to-card .txt {
+    font-size: 11px !important;
+    line-height: 13px !important;
+    color: #4a2b12 !important;
+}
+
+/* Swiper pagination dots color for Best Seller */
+.td-home__wrapper .new-food .swiper-pagination-bullet {
+    background-color: #6f3906 !important;
+    opacity: 0.4 !important;
+}
+
+.td-home__wrapper .new-food .swiper-pagination-bullet-active {
+    background-color: #6f3906 !important;
+    opacity: 1 !important;
+}
+
+/* Redesign Cart Button */
+.cart-btn {
+    background: #3a1c11 !important;
+    /* Dark brown theme */
+    border: 1px solid #e3a436 !important;
+    /* Gold border */
+    border-right: none !important;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12px 0 0 12px !important;
+}
+
+.cart-btn:hover {
+    background: #2a140c !important;
+    border-color: #ffc107 !important;
+}
+
+.cart-btn .total-cart {
+    color: #fdf5e6 !important;
+    /* Cream text */
+}
+
+.cart-btn .total-cart .count {
+    color: #ffc107 !important;
+    /* Gold highlight instead of mint green */
+}
+
+.cart-btn .numb {
+    color: #ffc107 !important;
+}
+
+@media screen and (max-width: 768px) {
+    .cart-btn {
+        background: #3a1c11 !important;
+        border: 1.5px solid #e3a436 !important;
+        border-left: none !important;
+        border-radius: 0 46px 46px 0 !important;
+    }
+}
+
+/* Redesign Popup Menu Cart to match theme */
+.PopUp-menu .price-total .txt,
+.PopUp-menu .price-total .numb,
+.PopUp-menu .price-after,
+.PopUp-menu .note-call a {
+    color: #3a1c11 !important;
+    /* Replaces dark green #1B4E30 */
+}
+
+.PopUp-menu .heading {
+    background: #e3a436 !important;
+    /* Premium gold instead of yellow */
+}
+
+.PopUp-menu .heading .text .txt,
+.PopUp-menu .heading .save-btn .txt,
+.PopUp-menu .remove-btn .txt {
+    color: #3a1c11 !important;
+}
+
+.PopUp-menu .heading .save-btn {
+    border-color: #3a1c11 !important;
+}
+
+.PopUp-menu .heading .text .icn svg path,
+.PopUp-menu .heading .save-btn .icn svg path {
+    fill: #3a1c11 !important;
+}
+
+.PopUp-menu .heading .close-popup svg path {
+    stroke: #3a1c11 !important;
+}
+
+.PopUp-menu .heading .close-popup svg circle {
+    stroke: #3a1c11 !important;
+}
+
+.PopUp-menu .bookingPopup {
+    background: #e3a436 !important;
+    color: #3a1c11 !important;
+}
+
+.PopUp-menu .info-food .name {
+    color: #3a1c11 !important;
+}
+
+.PopUp-menu .remove-food svg path {
+    fill: #999 !important;
+    /* Mute the remove button instead of green */
+}
+
+/* Redesign Booking Form Popup */
+.booking-detail .heading {
+    color: #3a1c11 !important;
+    /* Dark brown instead of dark green */
+}
+
+.booking-detail .label-form {
+    color: #3a1c11 !important;
+}
+
+.booking-detail .label-form:before {
+    background: #e3a436 !important;
+    /* Gold bar instead of orange */
+}
+
+.booking-detail .book-now,
+.booking-detail .btn-book-now-loading {
+    background: #e3a436 !important;
+    color: #3a1c11 !important;
+    font-weight: 700;
+}
+
+.booking-detail .open-popup-close {
+    color: #777 !important;
+}
+
+.booking-detail .input-booking:focus,
+.booking-detail .select-booking:focus,
+.booking-detail .note-book:focus,
+.booking-detail .form-type .number-order {
+    border-color: #e3a436 !important;
+    /* Gold focus instead of green */
+}
+
+.booking-detail .input-booking,
+.booking-detail .select-booking .dropdown-btn .value,
+.booking-detail .note-book {
+    color: #3a1c11 !important;
+}
+
+.booking-detail .select-booking .dropdown-btn .icn svg path {
+    fill: #3a1c11 !important;
+}
+
+.booking-detail .select-booking .droplist-ct {
+    border-color: #e3a436 !important;
+}
+
+.booking-detail .form-type .number-order .minus svg path,
+.booking-detail .form-type .number-order .plus svg path {
+    fill: #3a1c11 !important;
+}
+
+.booking-detail .form-type .number-order .numb {
+    color: #3a1c11 !important;
+}
+
+/* Booking Detail Tabs UI */
+.booking-tabs {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #f1f1f1;
+}
+
+.booking-tab {
+    font-size: 32px;
+    line-height: 110%;
+    font-family: TiltWarp-Regular;
+    letter-spacing: -0.02em;
+    color: #b5b5b5;
+    padding-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.booking-tab.active {
+    color: #3a1c11;
+}
+
+.booking-tab.active:after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #e3a436;
+    border-radius: 4px 4px 0 0;
+}
+
+.booking-tab-content {
+    display: none;
+    animation: tabFadeIn 0.3s ease;
+}
+
+.booking-tab-content.active {
+    display: block;
+}
+
+@keyframes tabFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Resize note-call in popup cart */
+.PopUp-menu .note-call {
+    font-size: 15px !important;
+}
+
+/* Hover effect for cards to shift up slightly */
+.list-food-menu .food-menu,
+.td-home__wrapper .dscBox {
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.list-food-menu .food-menu:hover,
+.td-home__wrapper .dscBox:hover {
+    transform: translateY(-5px) !important;
+}
+
+/* Fix overflow hidden for hover translating cards */
+.swiper-newfood,
+.swiper-dscHome {
+    padding-top: 15px !important;
+    margin-top: -15px !important;
+}
+
+.swiper-newfood {
+    padding-bottom: 50px !important;
+    padding-top: 50px !important;
+}
+
+/* Make add-to-cart button larger without changing text size */
+body .list-food-menu .add-to-card,
+body .list-food-menu .food-menu .funcsBox .add-to-card {
+    padding: 4px 12px !important;
+    min-height: 25px !important;
+    min-width: 60px !important;
+    justify-content: center !important;
+}
+
+/* Kitchen Mascot Overlay */
+.banner-full-screen .kitchen-mascot {
+    position: absolute;
+    bottom: -15px;
+    /* Slight overlap or flush */
+    right: 0%;
+    height: auto;
+    width: 40%;
+    /* Scales with screen width */
+    z-index: 15;
+    pointer-events: none;
+}
+
+/* Video Mascot Overlay */
+.video-banner-section .video-mascot {
+    position: absolute;
+    bottom: -15px;
+    /* Slight overlap or flush */
+    left: 0%;
+    height: auto;
+    width: 35%;
+    /* Scales with screen width */
+    z-index: 15;
+    pointer-events: none;
+}
+
+/* Contact Page Layout Overrides */
+.contact-content.widthCT {
+    width: 1300px;
+    max-width: 100%;
+}
+
+.contact-content .cc-wrapper {
+    align-items: stretch; /* Make both columns equal height */
+    flex-direction: row-reverse; /* Swap positions: form on left, map on right */
+}
+
+.contact-content .cc-wrapper .cc-left {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+.contact-content .cc-wrapper .cc-left .contact-map {
+    width: 100%;
+    flex-grow: 1;
+    min-height: 480px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border: 1px solid #EFEFEF;
+}
+
+.contact-content .cc-wrapper .cc-left .contact-map iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Premium Form Styling */
+.contact-content .cc-wrapper .cc-right .formInput {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.contact-content .cc-wrapper .cc-right .formInput .custom-input {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.contact-content .cc-wrapper .cc-right .formInput .custom-input .input-tab {
+    margin-bottom: 0;
+    position: relative;
+}
+
+.contact-content .cc-wrapper .cc-right .formInput .custom-input #contact-chk-detail {
+    grid-column: span 2;
+}
+
+.contact-content .cc-wrapper .cc-right .formInput .custom-input .input-tab .input-info {
+    height: 48px;
+    padding: 0 16px;
+    border-radius: 8px;
+    border: 1px solid #D2D6DC;
+    background-color: #F9FAFB;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+}
+
+.contact-content .cc-wrapper .cc-right .formInput .custom-input .input-tab .input-info:focus {
+    border-color: #1b4e30;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(27, 78, 48, 0.12);
+}
+
+.contact-content .cc-wrapper .cc-right .formInput .custom-input .input-tab .textarea-comment {
+    height: 140px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 1px solid #D2D6DC;
+    background-color: #F9FAFB;
+    font-size: 14px;
+    line-height: 1.5;
+    transition: all 0.2s ease-in-out;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+}
+
+.contact-content .cc-wrapper .cc-right .formInput .custom-input .input-tab .textarea-comment:focus {
+    border-color: #1b4e30;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(27, 78, 48, 0.12);
+}
+
+.contact-content .cc-wrapper .cc-right .formInput .submit-form .btn-area {
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-family: "PlusJaS-Bold";
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(255, 168, 39, 0.2);
+    transition: all 0.25s ease-in-out;
+}
+
+.contact-content .cc-wrapper .cc-right .formInput .submit-form .btn-area:hover {
+    background: #1b4e30 !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(27, 78, 48, 0.25);
+}
+
+@media screen and (max-width: 768px) {
+    .contact-content.widthCT {
+        width: 100%;
+    }
+    .contact-content .cc-wrapper .cc-left .contact-map {
+        min-height: 350px;
+    }
+    .contact-content .cc-wrapper .cc-right .formInput .custom-input {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .contact-content .cc-wrapper .cc-right .formInput .custom-input #contact-chk-detail {
+        grid-column: span 1;
+    }
+}

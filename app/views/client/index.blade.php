@@ -1042,7 +1042,7 @@
                 
                 <div class="td-home__bigText-middle">
                     <div class="slogan-container">
-                        <img src="images/slogan_799b7527-6818-4fca-9853-7f7e2e990c19.webp" alt="Slogan"
+                        <img src="images/Background.webp" alt="Slogan"
                             class="slogan-img" />
                         <img src="images/slogan_layer_3.webp" alt="Slogan Decor Right" class="slogan-decor-right-img" />
                         <img src="images/slogan_layer_10.webp" alt="Slogan Decor Left" class="slogan-decor-left-img" />

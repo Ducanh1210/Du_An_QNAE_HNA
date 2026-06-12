@@ -1328,6 +1328,7 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
     font-size: 16px;
     font-weight: 500;
     transition: color 0.3s;
+    white-space: nowrap !important;
 }
 
 .ph-fn-col-links a:hover {
@@ -1346,6 +1347,11 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
     display: flex;
     align-items: baseline;
     gap: 6px;
+    white-space: nowrap !important;
+}
+
+.ph-fn-col-info .ph-fn-info-item:last-child {
+    white-space: normal !important;
 }
 
 .ph-fn-label {

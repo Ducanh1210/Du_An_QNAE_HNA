@@ -531,15 +531,13 @@ body {
 }
 
 /* Responsive Mobile Header */
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 920px) {
     .premium-header-wrapper {
         height: 70px;
     }
 
     /* Hide desktop-only elements */
     .ph-nav,
-    .ph-hotline,
-    .ph-slash,
     .ph-stripe-left-1,
     .ph-stripe-left-2,
     .td-header-mobile {
@@ -549,7 +547,7 @@ body {
     /* Dark Side Adjustments */
     .ph-dark-side {
         padding-left: 10px;
-        padding-right: 10px;
+        padding-right: 40px !important;
         /* Less space needed for slant on mobile */
         width: auto;
         /* Let content dictate width */
@@ -617,11 +615,11 @@ body {
 
     /* Light Side Adjustments (Compact for Call/Booking Buttons) */
     .ph-light-side {
-        padding-left: 14px;
-        padding-right: 12px;
+        padding-left: 50px !important;
+        padding-right: 20px !important;
         gap: 0;
-        justify-content: flex-end;
-        /* Align to the right edge */
+        justify-content: center !important;
+        /* Center the mobile actions in the brown background */
     }
 
     /* Hide desktop booking button on mobile */
@@ -640,8 +638,9 @@ body {
         align-items: center;
         gap: 8px;
     }
+}
 
-    .ph-mobile-call-btn {
+.ph-mobile-call-btn {
         width: 36px;
         height: 36px;
         border: 1.5px solid rgba(255, 255, 255, 0.7);
@@ -694,6 +693,7 @@ body {
         font-weight: bold;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+        white-space: nowrap;
     }
 
     .ph-mobile-book-btn:active {
@@ -772,10 +772,24 @@ body {
         color: #FFF;
         font-weight: bold;
     }
+
+/* Hide hotline on small mobile screens */
+@media screen and (max-width: 600px) {
+    .ph-hotline,
+    .ph-slash {
+        display: none !important;
+    }
+}
+
+/* Hide mobile call button on tablets when hotline is visible */
+@media screen and (min-width: 601px) and (max-width: 920px) {
+    .ph-mobile-call-wrapper {
+        display: none !important;
+    }
 }
 
 /* Responsive Desktop (992px - 1300px) - Compress layout to fit smaller laptops/tablets */
-@media screen and (min-width: 861px) and (max-width: 1300px) {
+@media screen and (min-width: 921px) and (max-width: 1300px) {
     .ph-dark-side {
         padding-right: 20px;
     }
@@ -836,10 +850,26 @@ body {
 }
 
 /* Hide hotline on very narrow desktop screens to prevent overlap */
-@media screen and (min-width: 861px) and (max-width: 1100px) {
+@media screen and (min-width: 921px) and (max-width: 1100px) {
 
     .ph-hotline,
     .ph-slash {
+        display: none !important;
+    }
+
+    /* Show mobile call button next to booking button when hotline is hidden */
+    .ph-mobile-actions {
+        display: flex !important;
+        align-items: center;
+        gap: 8px;
+        margin-right: 15px; /* Spacing between phone button and ĐẶT NGAY */
+    }
+
+    .ph-mobile-call-wrapper {
+        display: block !important;
+    }
+
+    .ph-mobile-book-btn {
         display: none !important;
     }
 }
@@ -923,7 +953,7 @@ body {
 }
 
 /* 4. Mobile & iPad Specific Fixes */
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 920px) {
 
     /* Keep Banner Visible & Scaled Properly */
     .td-home__coverWeb {
@@ -994,7 +1024,7 @@ body {
 }
 
 /* Mobile: enable the drawer system */
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 920px) {
     .ph-mobile-drawer-overlay {
         display: block;
         position: fixed;
@@ -1381,5 +1411,80 @@ body {
         border-top: 3px solid #FFA827;
         transform: rotate(-35deg);
         z-index: -1;
+    }
+}
+
+/* Shrink header components on smaller screens to prevent overlap down to 600px */
+@media screen and (max-width: 750px) {
+    .premium-header-wrapper {
+        height: 60px !important;
+    }
+    
+    .ph-logo {
+        height: 28px !important;
+    }
+    
+    .ph-logo-img {
+        height: 24px !important;
+    }
+    
+    .ph-logo-text-top {
+        font-size: 8px !important;
+    }
+    
+    .ph-logo-text-bottom {
+        font-size: 16px !important;
+    }
+    
+    .ph-slash {
+        height: 40px !important;
+        margin: 0 6px !important;
+    }
+    
+    .ph-hotline-icon {
+        width: 28px !important;
+        height: 28px !important;
+    }
+    
+    .ph-hotline-icon svg {
+        width: 14px !important;
+        height: 14px !important;
+    }
+    
+    .ph-hotline-text span {
+        font-size: 10px !important;
+        line-height: 1.2 !important;
+    }
+    
+    .ph-mobile-book-btn {
+        height: 30px !important;
+        padding: 0 8px !important;
+    }
+    
+    .ph-mobile-book-text-inner {
+        font-size: 10px !important;
+    }
+    
+    .ph-mobile-call-btn {
+        width: 30px !important;
+        height: 30px !important;
+    }
+    
+    .ph-mobile-call-icon-inner svg {
+        width: 14px !important;
+        height: 14px !important;
+    }
+}
+
+/* Extra small screens: adjust paddings to give more horizontal room without shrinking elements */
+@media screen and (max-width: 450px) {
+    .ph-dark-side {
+        padding-left: 8px !important;
+        padding-right: 25px !important; /* Push the beige side's slant to the left */
+    }
+    
+    .ph-light-side {
+        padding-left: 38px !important; /* Safe distance from the 25px slant */
+        padding-right: 10px !important; /* Bring buttons closer to the right edge */
     }
 }

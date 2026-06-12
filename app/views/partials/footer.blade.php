@@ -1,6 +1,4 @@
 <div class="ph-footer-new wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
-    <div class="ph-fn-slant ph-fn-left-stripe-1"></div>
-    <div class="ph-fn-slant ph-fn-left-stripe-2"></div>
 
     <div class="ph-fn-bg-wrapper">
         <div class="ph-fn-slant ph-fn-left-accent"></div>
@@ -11,6 +9,8 @@
 
     <div class="ph-fn-container">
         <div class="ph-fn-left">
+            <div class="ph-fn-slant ph-fn-left-stripe-1"></div>
+            <div class="ph-fn-slant ph-fn-left-stripe-2"></div>
             <a href="{{ route('') }}" class="ph-logo" title="Quán Nhậu Anh Em">
                 <img src="{{ BASE_URL }}images/logo1.webp" alt="Quán Nhậu Anh Em" class="ph-logo-img">
                 <div class="ph-logo-text">
@@ -19,6 +19,8 @@
                 </div>
             </a>
             <a href="javascript:;" class="bookingPopup ph-fn-btn">ĐẶT NGAY</a>
+            <div class="ph-fn-slant ph-fn-right-line"></div>
+            <div class="ph-fn-slant ph-fn-right-accent"></div>
         </div>
 
         <div class="ph-fn-middle">
@@ -67,9 +69,6 @@
             </div>
         </div>
     </div>
-
-    <div class="ph-fn-slant ph-fn-right-line"></div>
-    <div class="ph-fn-slant ph-fn-right-accent"></div>
 </div>
 
 <!-- ============================================ -->

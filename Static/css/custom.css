@@ -1524,14 +1524,21 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
 }
 
 /* Under 991px: Stack layout to prevent absolute collisions on narrow screens */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 900px) {
     .ph-footer-new {
         min-height: auto;
         background-color: #5e3713 !important;
     }
 
-    .ph-fn-slant {
-        display: none !important; /* Hide complex skews on mobile/tablet */
+    .ph-fn-bg-wrapper {
+        display: none !important; /* Hide center slanted divider on mobile/tablet */
+    }
+
+    .ph-fn-left-stripe-1,
+    .ph-fn-left-stripe-2,
+    .ph-fn-right-line,
+    .ph-fn-right-accent {
+        z-index: 3 !important; /* Force them to render on top of the cream container */
     }
 
     .ph-fn-container {
@@ -1542,6 +1549,8 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
     }
 
     .ph-fn-left {
+        position: relative !important;
+        overflow: hidden !important;
         width: calc(100% + 40px) !important; /* Stretch to cover container padding */
         margin-left: -20px !important;
         margin-right: -20px !important;
@@ -1573,14 +1582,17 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
 
     .ph-fn-left .ph-logo {
         gap: 10px !important;
+        margin-left: 70px !important;
     }
 
     .ph-fn-left .ph-fn-btn {
         padding: 8px 20px !important;
         font-size: 14px !important;
+        margin-right: 70px !important;
     }
 
     .ph-fn-middle {
+        display: flex !important;
         width: 100% !important;
         padding-left: 0 !important;
         flex-direction: column !important;
@@ -1609,9 +1621,11 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
     }
 
     .ph-fn-info-item {
-        flex-direction: column !important;
+        flex-direction: row !important;
         align-items: center !important;
-        gap: 4px !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        gap: 6px !important;
     }
 
     .ph-fn-label {
@@ -1633,6 +1647,14 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
         justify-content: center !important;
         gap: 15px !important;
         padding: 25px 20px !important;
+    }
+
+    .ph-fn-left .ph-logo {
+        margin-left: 0 !important;
+    }
+
+    .ph-fn-left .ph-fn-btn {
+        margin-right: 0 !important;
     }
 }
 

@@ -996,6 +996,7 @@ body .td-home__coverWeb {
         width: 130% !important;
     }
 }
+}
 
 /* Reopen @media screen and (max-width: 920px) for the rest of mobile styles */
 @media screen and (max-width: 920px) {
@@ -1085,14 +1086,15 @@ body .td-home__coverWeb {
 /* ============================================================== */
 
 /* Desktop: completely hidden */
-.ph-mobile-drawer-overlay {
-    display: none;
+.ph-mobile-drawer-overlay,
+.ph-mobile-drawer {
+    display: none !important;
 }
 
 /* Mobile: enable the drawer system */
 @media screen and (max-width: 920px) {
     .ph-mobile-drawer-overlay {
-        display: block;
+        display: block !important;
         position: fixed;
         top: 0;
         left: 0;
@@ -1123,7 +1125,7 @@ body .td-home__coverWeb {
         box-shadow: 10px 0 40px rgba(0, 0, 0, 0.35);
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         padding: 20px 24px 0 24px;
         /* Removed bottom padding, moved to content */

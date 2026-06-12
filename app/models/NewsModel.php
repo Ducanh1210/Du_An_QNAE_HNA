@@ -65,4 +65,14 @@ class NewsModel extends BaseModel {
         $this->setQuery($sql);
         return $this->loadAllRows();
     }
+
+    public function getForHome() {
+        $sql = "SELECT n.*, c.name as category_name 
+                FROM news n 
+                INNER JOIN categories c ON n.category_id = c.id 
+                WHERE n.is_active = 1 AND c.sort_order = 1 AND c.type = 'news'
+                ORDER BY n.created_at DESC";
+        $this->setQuery($sql);
+        return $this->loadAllRows();
+    }
 }

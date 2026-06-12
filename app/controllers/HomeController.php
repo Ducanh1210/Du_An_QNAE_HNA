@@ -12,8 +12,8 @@ class HomeController extends BaseController
         $productModel = new ProductModel();
         $newsModel = new NewsModel();
 
-        $products = $productModel->getActive();
-        $news = $newsModel->getActive();
+        $products = $productModel->getForHome();
+        $news = $newsModel->getForHome();
 
         $this->render('client.index', compact('products', 'news'));
     }

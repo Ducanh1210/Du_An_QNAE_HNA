@@ -952,20 +952,86 @@ body {
     color: #222222 !important;
 }
 
+body .td-home__coverWeb {
+    margin-top: 54px !important;
+}
+
 /* 4. Mobile & iPad Specific Fixes */
 @media screen and (max-width: 920px) {
 
     /* Keep Banner Visible & Scaled Properly */
-    .td-home__coverWeb {
+    body .td-home__coverWeb {
         display: block !important;
-        padding-bottom: 30px !important;
+        padding-bottom: 0 !important;
         height: auto !important;
+        width: 100% !important;
+        overflow: hidden !important;
+        position: relative !important;
+        margin-top: 54px !important;
     }
 
-    .td-home__coverWeb .coverBox,
-    .td-home__coverWeb i,
-    .td-home__coverWeb .parallax-scrollHoz .prl-bgscrlHoz img {
-        height: 380px !important;
+    body .td-home__coverWeb .coverBox {
+        position: relative !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        height: auto !important;
+        aspect-ratio: 8001 / 3084 !important;
+    }
+
+    /* Flat media queries for different viewport zoom factors */
+@media screen and (max-width: 576px) {
+    body .td-home__coverWeb .coverBox {
+        width: 230% !important;
+    }
+}
+
+@media screen and (min-width: 577px) and (max-width: 768px) {
+    body .td-home__coverWeb .coverBox {
+        width: 170% !important;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 920px) {
+    body .td-home__coverWeb .coverBox {
+        width: 130% !important;
+    }
+}
+
+/* Reopen @media screen and (max-width: 920px) for the rest of mobile styles */
+@media screen and (max-width: 920px) {
+
+    body .td-home__coverWeb .layer-center-characters,
+    body .td-home__coverWeb .layer-bridge-pin {
+        display: none !important;
+    }
+
+    body .td-home__coverWeb i,
+    body .td-home__coverWeb .parallax-scrollHoz .prl-bgscrlHoz img {
+        height: 100% !important;
+    }
+
+    body .td-home__coverWeb .coverBox-bg {
+        background-size: 115% 100% !important;
+        background-position: 75% top !important;
+        animation: swayBg 8s infinite ease-in-out !important;
+    }
+
+    body .td-home__coverWeb .layer-muscles-beer i {
+        background-size: auto 46% !important;
+        background-position: 57% bottom !important;
+        animation: swayMuscles 6s infinite ease-in-out !important;
+    }
+
+    body .td-home__coverWeb .layer-chef-radio i {
+        background-size: auto 36% !important;
+        background-position: 30% bottom !important;
+        animation: swayChef 6s infinite ease-in-out !important;
+    }
+
+    body .td-home__coverWeb .layer-right-character i {
+        background-size: auto 36% !important;
+        background-position: 70% bottom !important;
+        animation: swayRight 6s infinite ease-in-out !important;
     }
 
     .td-home__coverWeb .tvBox {
@@ -1419,6 +1485,10 @@ body {
     .premium-header-wrapper {
         height: 60px !important;
     }
+
+    body .td-home__coverWeb {
+        margin-top: 44px !important;
+    }
     
     .ph-logo {
         height: 28px !important;
@@ -1486,5 +1556,42 @@ body {
     .ph-light-side {
         padding-left: 38px !important; /* Safe distance from the 25px slant */
         padding-right: 10px !important; /* Bring buttons closer to the right edge */
+    }
+}
+
+/* Keyframes for Automatic Parallax Swaying on Mobile */
+@keyframes swayBg {
+    0%, 100% {
+        background-position: 73.5% top;
+    }
+    50% {
+        background-position: 76.5% top;
+    }
+}
+
+@keyframes swayMuscles {
+    0%, 100% {
+        transform: translateX(-4px);
+    }
+    50% {
+        transform: translateX(4px);
+    }
+}
+
+@keyframes swayChef {
+    0%, 100% {
+        transform: translateX(5px);
+    }
+    50% {
+        transform: translateX(-5px);
+    }
+}
+
+@keyframes swayRight {
+    0%, 100% {
+        transform: translateX(6px);
+    }
+    50% {
+        transform: translateX(-6px);
     }
 }

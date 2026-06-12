@@ -12,8 +12,10 @@ class AdminCategoryController extends BaseController {
     }
 
     public function index() {
-        $data = $this->categoryModel->getAll();
-        $this->render('admin.categories.list', compact('data'));
+        $type = $_GET['type'] ?? 'product';
+        $allData = $this->categoryModel->getAll();
+        $data = array_filter($allData, function($item) use ($type) { return $item->type == $type; });
+        $this->render('admin.categories.list', compact('data', 'type'));
     }
 
     public function store() {
@@ -28,9 +30,9 @@ class AdminCategoryController extends BaseController {
 
         $check = $this->categoryModel->create($name, $slug, $type, $sort_order);
         if ($check) {
-            flash('success', 'Thêm danh mục thành công', 'categories');
+            flash('success', 'Thêm danh mục thành công', 'categories?type=' . $type);
         } else {
-            flash('errors', 'Thêm danh mục thất bại', 'categories');
+            flash('errors', 'Thêm danh mục thất bại', 'categories?type=' . $type);
         }
     }
 
@@ -46,15 +48,17 @@ class AdminCategoryController extends BaseController {
 
         $check = $this->categoryModel->update($id, $name, $slug, $type, $sort_order);
         if ($check) {
-            flash('success', 'Cập nhật danh mục thành công', 'categories');
+            flash('success', 'Cập nhật danh mục thành công', 'categories?type=' . $type);
         } else {
-            flash('errors', 'Cập nhật thất bại', 'categories');
+            flash('errors', 'Cập nhật thất bại', 'categories?type=' . $type);
         }
     }
 
     public function delete($id) {
+        $category = $this->categoryModel->getById($id);
+        $type = $category ? $category->type : 'product';
         $this->categoryModel->delete($id);
-        flash('success', 'Xóa danh mục thành công', 'categories');
+        flash('success', 'Xóa danh mục thành công', 'categories?type=' . $type);
     }
 
     private function createSlug($str) {

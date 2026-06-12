@@ -464,6 +464,7 @@ body .td-home__bigText-middle .view-menu {
     font-size: 22px !important;
     line-height: 1 !important;
     letter-spacing: 1px !important;
+    white-space: nowrap !important;
     overflow: visible !important;
     margin-top: 30px !important;
     margin-bottom: 25px !important;

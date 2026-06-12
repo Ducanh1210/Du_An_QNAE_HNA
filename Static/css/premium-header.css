@@ -641,140 +641,141 @@ body {
 }
 
 .ph-mobile-call-btn {
-        width: 36px;
-        height: 36px;
-        border: 1.5px solid rgba(255, 255, 255, 0.7);
-        border-radius: 8px;
-        /* Smooth rounded shape */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: transparent;
-        transition: all 0.2s ease;
-    }
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    /* Smooth rounded shape */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    transition: all 0.2s ease;
+}
 
-    .ph-mobile-call-icon-inner {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        animation: phone-ring-shake 2.5s infinite ease-in-out;
-    }
+.ph-mobile-call-icon-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: phone-ring-shake 2.5s infinite ease-in-out;
+}
 
-    .ph-mobile-call-icon-inner svg {
-        width: 18px;
-        height: 18px;
-        fill: #FFF;
-    }
+.ph-mobile-call-icon-inner svg {
+    width: 18px;
+    height: 18px;
+    fill: #FFF;
+}
 
-    .ph-mobile-call-btn:active {
-        background-color: rgba(255, 255, 255, 0.15);
-        transform: scale(0.95);
-    }
+.ph-mobile-call-btn:active {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: scale(0.95);
+}
 
-    .ph-mobile-book-btn {
-        box-sizing: border-box !important;
-        height: 36px !important;
-        padding: 0 16px !important;
-        border: 1.5px solid #FFA827 !important;
-        border-radius: 8px !important;
-        background-color: transparent !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        text-decoration: none !important;
-        transition: all 0.2s ease !important;
-    }
+.ph-mobile-book-btn {
+    box-sizing: border-box !important;
+    height: 36px !important;
+    padding: 0 16px !important;
+    border: 1.5px solid #FFA827 !important;
+    border-radius: 8px !important;
+    background-color: transparent !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+}
 
-    .ph-mobile-book-text-inner {
-        display: block;
-        color: #FFF;
-        font-family: PlusJaS-Bold, sans-serif;
-        font-size: 12px;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        white-space: nowrap;
-    }
+.ph-mobile-book-text-inner {
+    display: block;
+    color: #FFF;
+    font-family: PlusJaS-Bold, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
 
-    .ph-mobile-book-btn:active {
-        background-color: rgba(255, 168, 39, 0.15);
-        transform: scale(0.95);
-    }
+.ph-mobile-book-btn:active {
+    background-color: rgba(255, 168, 39, 0.15);
+    transform: scale(0.95);
+}
 
-    /* Mobile Call Picker Dropdown System (Clean Straight Modern Layout) */
-    .ph-mobile-call-wrapper {
-        position: relative;
-    }
+/* Mobile Call Picker Dropdown System (Clean Straight Modern Layout) */
+.ph-mobile-call-wrapper {
+    position: relative;
+}
 
-    .ph-mobile-call-btn {
-        outline: none;
-        cursor: pointer;
-    }
+.ph-mobile-call-btn {
+    outline: none;
+    cursor: pointer;
+}
 
-    .ph-call-dropdown {
-        position: absolute;
-        top: 48px;
-        right: 0;
-        /* Align perfectly with call button right edge */
-        background-color: #603813;
-        /* Rich dark brown */
-        border: 1.5px solid #FFA827;
-        /* Orange border */
-        border-radius: 8px;
-        /* Smooth elegant rounding */
-        padding: 4px 0;
-        min-width: 180px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        z-index: 999;
-        display: flex;
-        flex-direction: column;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(10px);
-        /* Smooth straight drop */
-        transform-origin: top right;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+.ph-call-dropdown {
+    position: absolute;
+    top: 48px;
+    right: 0;
+    /* Align perfectly with call button right edge */
+    background-color: #603813;
+    /* Rich dark brown */
+    border: 1.5px solid #FFA827;
+    /* Orange border */
+    border-radius: 8px;
+    /* Smooth elegant rounding */
+    padding: 4px 0;
+    min-width: 180px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    /* Smooth straight drop */
+    transform-origin: top right;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-    .ph-call-dropdown.active {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-    }
+.ph-call-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
 
-    .ph-dropdown-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 16px;
-        color: #fcf5e8;
-        text-decoration: none;
-        font-family: PlusJaS-Bold, sans-serif;
-        font-size: 12px;
-        border-bottom: 1.5px solid rgba(255, 255, 255, 0.08);
-        transition: background-color 0.2s ease;
-    }
+.ph-dropdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    color: #fcf5e8;
+    text-decoration: none;
+    font-family: PlusJaS-Bold, sans-serif;
+    font-size: 12px;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.08);
+    transition: background-color 0.2s ease;
+}
 
-    .ph-dropdown-item:last-child {
-        border-bottom: none;
-    }
+.ph-dropdown-item:last-child {
+    border-bottom: none;
+}
 
-    .ph-dropdown-item:active {
-        background-color: rgba(255, 168, 39, 0.2);
-    }
+.ph-dropdown-item:active {
+    background-color: rgba(255, 168, 39, 0.2);
+}
 
-    .ph-drop-label {
-        color: #FFA827;
-        font-weight: bold;
-    }
+.ph-drop-label {
+    color: #FFA827;
+    font-weight: bold;
+}
 
-    .ph-drop-num {
-        color: #FFF;
-        font-weight: bold;
-    }
+.ph-drop-num {
+    color: #FFF;
+    font-weight: bold;
+}
 
 /* Hide hotline on small mobile screens */
 @media screen and (max-width: 600px) {
+
     .ph-hotline,
     .ph-slash {
         display: none !important;
@@ -862,7 +863,8 @@ body {
         display: flex !important;
         align-items: center;
         gap: 8px;
-        margin-right: 15px; /* Spacing between phone button and ĐẶT NGAY */
+        margin-right: 15px;
+        /* Spacing between phone button and ĐẶT NGAY */
     }
 
     .ph-mobile-call-wrapper {
@@ -934,6 +936,9 @@ body {
     background-color: #222222 !important;
     color: #FFA827 !important;
     border-color: #222222 !important;
+    white-space: nowrap !important;
+    width: max-content !important;
+    display: inline-block !important;
 }
 
 .td-home__bigText-middle .view-menu:hover {
@@ -1022,27 +1027,55 @@ body .slogan-container .slogan-decor-right-img {
 
 
     /* Flat media queries for different viewport zoom factors */
-@media screen and (max-width: 576px) {
-    body .td-home__coverWeb .coverBox {
-        width: 230% !important;
+    @media screen and (max-width: 576px) {
+        body .td-home__coverWeb .coverBox {
+            width: 230% !important;
+        }
+    }
+
+    @media screen and (min-width: 577px) and (max-width: 768px) {
+        body .td-home__coverWeb .coverBox {
+            width: 170% !important;
+        }
+    }
+
+    @media screen and (min-width: 769px) and (max-width: 920px) {
+        body .td-home__coverWeb .coverBox {
+            width: 130% !important;
+        }
     }
 }
 
-@media screen and (min-width: 577px) and (max-width: 768px) {
-    body .td-home__coverWeb .coverBox {
-        width: 170% !important;
-    }
-}
-
-@media screen and (min-width: 769px) and (max-width: 920px) {
-    body .td-home__coverWeb .coverBox {
-        width: 130% !important;
-    }
-}
-}
-
-/* Reopen @media screen and (max-width: 920px) for the rest of mobile styles */
 @media screen and (max-width: 920px) {
+
+    /* Revert to original card styles and fix vertical clipping on mobile without breaking native scroll */
+    body .swiper-newfood {
+        padding-top: 120px !important;
+        margin-top: -60px !important;
+    }
+
+    body .td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu {
+        padding-top: 60px !important;
+        margin-top: -60px !important;
+        padding-bottom: 45px !important;
+        margin-bottom: -45px !important;
+        overflow-y: hidden !important;
+        overflow-x: auto !important;
+    }
+
+    /* Fix vertical scroll on offer cards row on mobile and prevent bottom clipping of shadow/mascot */
+    body .td-home__wrapper .swiper-dscHome .swiper-wrapper {
+        overflow-y: hidden !important;
+        overflow-x: auto !important;
+        padding-bottom: 45px !important;
+        margin-bottom: -45px !important;
+    }
+
+    /* Prevent kitchen mascot from overlapping product cards on mobile */
+    body .banner-full-screen .kitchen-mascot {
+        bottom: 5px !important;
+        width: 35% !important;
+    }
 
     body .td-home__coverWeb .layer-center-characters,
     body .td-home__coverWeb .layer-bridge-pin {
@@ -1534,57 +1567,57 @@ body .slogan-container .slogan-decor-right-img {
     body .td-home__coverWeb {
         margin-top: 44px !important;
     }
-    
+
     .ph-logo {
         height: 28px !important;
     }
-    
+
     .ph-logo-img {
         height: 24px !important;
     }
-    
+
     .ph-logo-text-top {
         font-size: 8px !important;
     }
-    
+
     .ph-logo-text-bottom {
         font-size: 16px !important;
     }
-    
+
     .ph-slash {
         height: 40px !important;
         margin: 0 6px !important;
     }
-    
+
     .ph-hotline-icon {
         width: 28px !important;
         height: 28px !important;
     }
-    
+
     .ph-hotline-icon svg {
         width: 14px !important;
         height: 14px !important;
     }
-    
+
     .ph-hotline-text span {
         font-size: 10px !important;
         line-height: 1.2 !important;
     }
-    
+
     .ph-mobile-book-btn {
         height: 30px !important;
         padding: 0 8px !important;
     }
-    
+
     .ph-mobile-book-text-inner {
         font-size: 10px !important;
     }
-    
+
     .ph-mobile-call-btn {
         width: 30px !important;
         height: 30px !important;
     }
-    
+
     .ph-mobile-call-icon-inner svg {
         width: 14px !important;
         height: 14px !important;
@@ -1595,89 +1628,118 @@ body .slogan-container .slogan-decor-right-img {
 @media screen and (max-width: 450px) {
     .ph-dark-side {
         padding-left: 8px !important;
-        padding-right: 25px !important; /* Push the beige side's slant to the left */
+        padding-right: 25px !important;
+        /* Push the beige side's slant to the left */
     }
-    
+
     .ph-light-side {
-        padding-left: 38px !important; /* Safe distance from the 25px slant */
-        padding-right: 10px !important; /* Bring buttons closer to the right edge */
+        padding-left: 38px !important;
+        /* Safe distance from the 25px slant */
+        padding-right: 10px !important;
+        /* Bring buttons closer to the right edge */
     }
 }
 
 /* Keyframes for Automatic Parallax Swaying on Mobile */
 @keyframes swayBg {
-    0%, 100% {
+
+    0%,
+    100% {
         background-position: 73.5% top;
     }
+
     50% {
         background-position: 76.5% top;
     }
 }
 
 @keyframes swayMuscles {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(-4px);
     }
+
     50% {
         transform: translateX(4px);
     }
 }
 
 @keyframes swayChef {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(5px);
     }
+
     50% {
         transform: translateX(-5px);
     }
 }
 
 @keyframes swayRight {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(6px);
     }
+
     50% {
         transform: translateX(-6px);
     }
 }
 
 @keyframes swaySlogan {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(-50%) translateX(-4px) !important;
     }
+
     50% {
         transform: translateX(-50%) translateX(4px) !important;
     }
 }
 
 @keyframes heavyCarryShake {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(-50%) translate(0, 0) rotate(0deg);
     }
+
     10% {
         transform: translateX(-50%) translate(-0.3px, -0.4px) rotate(-0.1deg);
     }
+
     20% {
         transform: translateX(-50%) translate(0.3px, 0.3px) rotate(0.1deg);
     }
+
     30% {
         transform: translateX(-50%) translate(-0.4px, 0.1px) rotate(-0.15deg);
     }
+
     40% {
         transform: translateX(-50%) translate(0.3px, -0.3px) rotate(0.1deg);
     }
+
     50% {
         transform: translateX(-50%) translate(-0.3px, 0.4px) rotate(-0.1deg);
     }
+
     60% {
         transform: translateX(-50%) translate(0.4px, -0.1px) rotate(0.15deg);
     }
+
     70% {
         transform: translateX(-50%) translate(-0.3px, -0.3px) rotate(-0.1deg);
     }
+
     80% {
         transform: translateX(-50%) translate(0.3px, 0.4px) rotate(0.1deg);
     }
+
     90% {
         transform: translateX(-50%) translate(-0.4px, -0.3px) rotate(-0.15deg);
     }

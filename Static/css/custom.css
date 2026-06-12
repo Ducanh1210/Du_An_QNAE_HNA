@@ -543,15 +543,15 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
     top: 7%;
     left: 8%;
     color: #5e3713;
-    font-family: PlusJaS-Bold, sans-serif;
+    font-family: TiltWarp-Regular, sans-serif;
     font-size: 4.8vw;
-    font-weight: 900;
+    font-weight: normal;
     line-height: 1.2;
     z-index: 10;
     pointer-events: none;
     margin: 0;
-    letter-spacing: -0.02em;
-    -webkit-text-stroke: 0.03vw #5e3713;
+    letter-spacing: 0.04em;
+    -webkit-text-stroke: 0px;
 }
 
 @media (max-width: 1200px) {
@@ -567,7 +567,7 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
         font-size: 6vw;
         left: 5%;
         top: 5%;
-        -webkit-text-stroke: 0.02vw #5e3713;
+        -webkit-text-stroke: 0px;
     }
 }
 
@@ -953,52 +953,61 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
     width: 80%;
 }
 
-/* Responsive adjustments for staff banner */
-@media screen and (max-width: 1200px) {
+
+@media screen and (max-width: 768px) {
+    .staff-banner-section {
+        height: 140vw !important;
+    }
+    .staff-banner-bg {
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        width: 140vw !important;
+        height: 140vw !important;
+        transform: translate(-50%, -50%) rotate(90deg) !important;
+        object-fit: cover !important;
+    }
     .staff-banner-left {
-        width: 28%;
-        left: 4%;
+        width: 90% !important;
+        left: 5% !important;
+        top: 10% !important;
+        transform: none !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 15px !important;
     }
-
+    .staff-banner-left .staff-banner-overlay {
+        width: 48% !important;
+        height: auto !important;
+        flex-shrink: 0 !important;
+    }
     .staff-banner-right {
-        width: 28%;
-        right: 4%;
+        width: 70% !important;
+        left: 6% !important;
+        top: 52% !important;
+        right: auto !important;
+        transform: none !important;
     }
-
     .staff-banner-description {
-        font-size: 1.4vw;
+        position: relative !important;
+        top: 15px !important;
+        left: auto !important;
+        width: 48% !important;
+        font-size: 2.8vw !important;
+        line-height: 1.4 !important;
+        color: #fdf5e6 !important;
+        text-align: justify !important;
     }
-}
-
-@media screen and (max-width: 860px) {
-    .staff-banner-left {
-        width: 32%;
-        left: 3%;
+    .staff-banner-bottom-right {
+        width: 43% !important;
+        right: 5% !important;
+        bottom: 4% !important;
     }
-
-    .staff-banner-right {
-        width: 32%;
-        right: 3%;
-    }
-
-    .staff-banner-description {
-        font-size: 1.8vw;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .staff-banner-left {
-        width: 40%;
-        left: 2%;
-    }
-
-    .staff-banner-right {
-        width: 40%;
-        right: 2%;
-    }
-
-    .staff-banner-description {
-        font-size: 2.2vw;
+    .staff-banner-slogan {
+        left: 7% !important;
+        bottom: 5% !important;
+        font-size: 6.6vw !important;
     }
 }
 
@@ -2001,13 +2010,15 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
 .td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu .thumb img {
     object-fit: contain !important;
     /* Keep the transparent plate perfectly scaled */
+    clip-path: inset(0 4px 0 4px) !important;
+    /* Crop stray pixels at the edge to prevent drop-shadow lines */
     filter: drop-shadow(-5px 10px 0px #ffa827) !important;
     /* Solid (non-blurred) orange shadow */
-    transform: scale(1.55) !important;
+    transform: scale(1.4) !important;
     /* Enlarge the product image significantly */
     top: -50px !important;
     /* Shift up slightly */
-    left: 15px !important;
+    left: 10px !important;
     /* Shift right slightly */
 }
 

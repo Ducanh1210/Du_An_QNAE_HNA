@@ -1524,7 +1524,7 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
 }
 
 /* Under 991px: Stack layout to prevent absolute collisions on narrow screens */
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 767px) {
     .ph-footer-new {
         min-height: auto;
         background-color: #5e3713 !important;

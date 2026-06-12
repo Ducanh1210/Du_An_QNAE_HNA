@@ -1521,28 +1521,6 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
         left: calc(36% + 21px) !important;
     }
 
-    /* Scale down footer logo to fit smaller space */
-    .ph-fn-left .ph-logo-img {
-        height: 32px !important;
-    }
-
-    .ph-fn-left .ph-logo-text-top {
-        font-size: 9px !important;
-    }
-
-    .ph-fn-left .ph-logo-text-bottom {
-        font-size: 16px !important;
-    }
-
-    .ph-fn-left .ph-logo {
-        gap: 8px !important;
-    }
-
-    /* Scale down booking button */
-    .ph-fn-left .ph-fn-btn {
-        padding: 8px 16px !important;
-        font-size: 13px !important;
-    }
 }
 
 /* Under 991px: Stack layout to prevent absolute collisions on narrow screens */

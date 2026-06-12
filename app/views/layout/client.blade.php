@@ -70,11 +70,11 @@
     <link href="{{ BASE_URL }}Static/css/default.css" rel="stylesheet" />
     <link href="{{ BASE_URL }}Static/css/default.date.css" rel="stylesheet" />
     <link href="{{ BASE_URL }}Static/css/main.css?v=639156723241637552" rel="stylesheet" />
-    <link href="{{ BASE_URL }}Static/css/custom.css?v=639156730100000000" rel="stylesheet" />
+    <link href="{{ BASE_URL }}Static/css/custom.css?v=639156730100000019" rel="stylesheet" />
     <link href="{{ BASE_URL }}Static/css/fonts.css" rel="stylesheet" />
     <link href="{{ BASE_URL }}Static/css/fix-notice-mob.css" rel="stylesheet" />
     <link href="{{ BASE_URL }}Static/css/editkhoisw.css" rel="stylesheet" />
-    <link href="{{ BASE_URL }}Static/css/premium-header.css?v=24" rel="stylesheet" />
+    <link href="{{ BASE_URL }}Static/css/premium-header.css?v=37" rel="stylesheet" />
     <!-- END: Core CSS-->
 
     @yield('styles')

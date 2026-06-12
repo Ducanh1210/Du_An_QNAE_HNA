@@ -70,11 +70,11 @@
     <link href="{{ BASE_URL }}Static/css/default.css" rel="stylesheet" />
     <link href="{{ BASE_URL }}Static/css/default.date.css" rel="stylesheet" />
     <link href="{{ BASE_URL }}Static/css/main.css?v=639156723241637552" rel="stylesheet" />
-    <link href="{{ BASE_URL }}Static/css/custom.css?v=639156730100000020" rel="stylesheet" />
+    <link href="{{ BASE_URL }}Static/css/custom.css?v=639156730100000021" rel="stylesheet" />
     <link href="{{ BASE_URL }}Static/css/fonts.css" rel="stylesheet" />
     <link href="{{ BASE_URL }}Static/css/fix-notice-mob.css" rel="stylesheet" />
     <link href="{{ BASE_URL }}Static/css/editkhoisw.css" rel="stylesheet" />
-    <link href="{{ BASE_URL }}Static/css/premium-header.css?v=57" rel="stylesheet" />
+    <link href="{{ BASE_URL }}Static/css/premium-header.css?v=77" rel="stylesheet" />
     <!-- END: Core CSS-->
 
     @yield('styles')
@@ -104,7 +104,7 @@
     <!-- END: Template JS-->
 
     <!-- BEGIN: Core JS-->
-    <script src="{{ BASE_URL }}Static/min/anhem.js?v=639156723241637552_fixed"></script>
+    <script src="{{ BASE_URL }}Static/min/anhem.js?v=639156723241637552_fixed_v3"></script>
     <!-- END: Core JS-->
 
     @yield('schema')

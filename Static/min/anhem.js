@@ -932,10 +932,12 @@ let App = {
             //});
 
             var scenePrl = document.getElementById('scenePrl');
-            var parallaxInstance = new Parallax(scenePrl);
+            if (scenePrl && window.innerWidth > 920) {
+                var parallaxInstance = new Parallax(scenePrl);
+            }
 
             var sceneSloganPrl = document.getElementById('sceneSloganPrl');
-            if (sceneSloganPrl) {
+            if (sceneSloganPrl && window.innerWidth > 920) {
                 var sloganParallaxInstance = new Parallax(sceneSloganPrl);
             }
 
@@ -1113,16 +1115,16 @@ let App = {
                 });
             });
 
-            // Enable Parallax for mobile device tilting
-            var scenePrl = document.getElementById('scenePrl');
-            if (scenePrl) {
-                var parallaxInstance = new Parallax(scenePrl);
-            }
+            // Enable Parallax for mobile device tilting (disabled to rely solely on CSS auto-sway)
+            // var scenePrl = document.getElementById('scenePrl');
+            // if (scenePrl) {
+            //     var parallaxInstance = new Parallax(scenePrl);
+            // }
 
-            var sceneSloganPrl = document.getElementById('sceneSloganPrl');
-            if (sceneSloganPrl) {
-                var sloganParallaxInstance = new Parallax(sceneSloganPrl);
-            }
+            // var sceneSloganPrl = document.getElementById('sceneSloganPrl');
+            // if (sceneSloganPrl) {
+            //     var sloganParallaxInstance = new Parallax(sceneSloganPrl);
+            // }
 
         }
     },

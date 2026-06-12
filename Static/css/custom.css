@@ -411,7 +411,7 @@ body .slogan-logo-img {
     left: 49% !important;
     bottom: 13% !important;
     /* Raised slightly to stand on the orange curve */
-    transform: translateX(-50%) !important;
+    transform: translateX(-50%);
     width: 75% !important;
     /* Increased size in center */
     height: auto !important;

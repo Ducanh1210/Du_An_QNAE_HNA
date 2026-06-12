@@ -198,7 +198,7 @@
  .menu-sidebar {
  width: 230px;
  position: sticky;
- top: 69px;
+ top: 79px;
  background: #fff;
  border-radius: 4px;
  padding: 20px 0;
@@ -472,7 +472,7 @@
  .menu-sidebar {
  width: 100%;
  position: sticky;
- top: 69px;
+ top: 79px;
  padding: 10px 0;
  border-radius: 0;
  background: #fff;
@@ -599,6 +599,18 @@
  .btn-add svg {
  width: 14px;
  height: 14px;
+ }
+ }
+
+ @media (max-width: 920px) {
+ .menu-sidebar {
+ top: 69px !important;
+ }
+ }
+
+ @media (max-width: 750px) {
+ .menu-sidebar {
+ top: 59px !important;
  }
  }
  </style>

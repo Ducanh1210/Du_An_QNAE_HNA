@@ -74,7 +74,7 @@
     <link href="{{ BASE_URL }}Static/css/fonts.css" rel="stylesheet" />
     <link href="{{ BASE_URL }}Static/css/fix-notice-mob.css" rel="stylesheet" />
     <link href="{{ BASE_URL }}Static/css/editkhoisw.css" rel="stylesheet" />
-    <link href="{{ BASE_URL }}Static/css/premium-header.css?v=24" rel="stylesheet" />
+    <link href="{{ BASE_URL }}Static/css/premium-header.css?v=37" rel="stylesheet" />
     <!-- END: Core CSS-->
 
     @yield('styles')

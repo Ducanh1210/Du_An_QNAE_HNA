@@ -70,17 +70,18 @@
  <link href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>Static/css/default.css" rel="stylesheet" />
  <link href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>Static/css/default.date.css" rel="stylesheet" />
  <link href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>Static/css/main.css?v=639156723241637552" rel="stylesheet" />
- <link href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>Static/css/custom.css?v=639156730100000038" rel="stylesheet" />
+ <link href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>Static/css/custom.css?v=639156730100000090_fixed_v5" rel="stylesheet" />
  <link href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>Static/css/fonts.css" rel="stylesheet" />
  <link href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>Static/css/fix-notice-mob.css" rel="stylesheet" />
  <link href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>Static/css/editkhoisw.css" rel="stylesheet" />
- <link href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>Static/css/premium-header.css?v=87" rel="stylesheet" />
+ <link href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>Static/css/premium-header.css?v=89" rel="stylesheet" />
  <!-- END: Core CSS-->
 
  <?php echo $this->yieldContent('styles'); ?>
 
  <!-- BEGIN: Template JS-->
  <script src="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>Static/js/jquery.min.js"></script>
+ <script src="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>Static/js/imagesloaded.pkgd.min.js"></script>
  <script src="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>Static/js/jquery.price_format.min.js"></script>
  <script src="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>Static/js/platform.min.js"></script>
  <script src="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>Static/js/map.js?v=639156723999999999"></script>
@@ -104,7 +105,7 @@
  <!-- END: Template JS-->
 
  <!-- BEGIN: Core JS-->
- <script src="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>Static/min/anhem.js?v=639156723241637552_fixed_v3"></script>
+ <script src="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>Static/min/anhem.js?v=639156723241637552_fixed_v4"></script>
  <!-- END: Core JS-->
 
  <?php echo $this->yieldContent('schema'); ?>
@@ -170,6 +171,57 @@
 
  <!-- Cart Slide-in Popup Partial -->
  <?php echo $this->runChild('partials.cart_popup'); ?>
+
+ <!-- Product Detail Popup -->
+ <div class="PopUp-menu parent-class" id="popup-detail-atc" style="display: none; max-width: 650px; width: 100%; padding: 0; background: #faf6ee; border: 3px solid #603813; box-shadow: 8px 8px 0px #FFA827;">
+ <div class="popup-detail-content" style="position: relative;">
+ <!-- Close Button -->
+ <div class="close-popup" data-fancybox-close style="position: absolute; right: 15px; top: 15px; cursor: pointer; z-index: 10;">
+ <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <circle cx="16" cy="16" r="15.1" fill="white" stroke="#603813" stroke-width="1.8" />
+ <path d="M20.6666 11.3335L11.3333 20.6668" stroke="#603813" stroke-width="1.8" stroke-miterlimit="10" stroke-linecap="square" />
+ <path d="M20.6666 20.6668L11.3333 11.3335" stroke="#603813" stroke-width="1.8" stroke-miterlimit="10" stroke-linecap="square" />
+ </svg>
+ </div>
+
+ <div class="detail-grid" style="display: flex; flex-direction: column;">
+ <!-- Gallery Section -->
+ <div class="galleryBox" style="width: 100%; position: relative; background: #fff; border-bottom: 2px solid #603813; height: 320px; overflow: hidden;">
+ <div class="swiper-gallery swiper-container" style="height: 100%;">
+ <div class="swiper-wrapper" id="lstGalleryPopupDetail">
+ <!-- slides dynamic -->
+ </div>
+ <div class="swiper-pagination" style="bottom: 10px; font-family: PlusJaS-Bold, sans-serif; color: #603813; font-size: 14px;"></div>
+ </div>
+ </div>
+
+ <!-- Info Section -->
+ <div class="info-section" style="padding: 25px; display: flex; flex-direction: column; gap: 15px; text-align: left;">
+ <h2 id="popup-detail-product-name" style="font-family: PlusJaS-Bold, sans-serif; font-size: 24px; color: #603813; margin: 0; text-transform: uppercase;"></h2>
+ 
+ <div id="popup-detail-product-sapo" style="font-family: PlusJaS-Regular, sans-serif; font-size: 14px; color: #7a5028; line-height: 1.6; max-height: 100px; overflow-y: auto;"></div>
+ 
+ <div class="price-and-action" style="display: flex; align-items: center; justify-content: space-between; margin-top: 10px; flex-wrap: wrap; gap: 15px;">
+ <div class="price-box">
+ <span id="popup-detail-product-current-price" style="font-family: PlusJaS-Bold, sans-serif; font-size: 26px; color: #FE2C55;"></span>
+ </div>
+
+ <div class="action-box" style="display: flex; align-items: center; gap: 15px;">
+ <!-- Quantity selector -->
+ <div class="qty-select-wrapper" style="display: flex; align-items: center; border: 2px solid #603813; background: #fff; height: 44px; overflow: hidden; box-sizing: border-box;">
+ <button type="button" id="minusDetail" style="width: 40px; height: 100%; border: none; background: transparent; font-family: PlusJaS-Bold, sans-serif; font-size: 18px; color: #603813; cursor: pointer; display: flex; align-items: center; justify-content: center; outline: none;">-</button>
+ <input type="text" id="popup-detail-quantity" class="txtQuantity" value="1" readonly style="width: 40px; height: 100%; border: none; border-left: 2px solid #603813; border-right: 2px solid #603813; text-align: center; font-family: PlusJaS-Bold, sans-serif; font-size: 16px; color: #603813; background: transparent; outline: none;" />
+ <button type="button" id="plusDetail" style="width: 40px; height: 100%; border: none; background: transparent; font-family: PlusJaS-Bold, sans-serif; font-size: 18px; color: #603813; cursor: pointer; display: flex; align-items: center; justify-content: center; outline: none;">+</button>
+ </div>
+
+ <!-- Add Cart Button -->
+ <button type="button" class="ready-call-add-to-card btn-add-detail-popup" style="background: #FFA827; border: 2px solid #603813; color: #603813; font-family: PlusJaS-Bold, sans-serif; font-size: 15px; height: 44px; padding: 0 25px; cursor: pointer; text-transform: uppercase; box-shadow: 3px 3px 0px #603813; transition: all 0.1s ease; display: inline-flex; align-items: center; justify-content: center; outline: none;">Thêm vào thực đơn</button>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
 
  <!-- Messenger Plugin chat Code -->
  <div id="fb-root"></div>
@@ -252,9 +304,9 @@
  if (rs.Success && rs.Data) {
  var data = rs.Data;
  var popup = $("#popup-detail-atc");
- popup.data("id", data.ProId);
- popup.data("name", data.ProName);
- popup.data("price", data.ProOriginPrice);
+ popup.data("id", data.ProId).attr("data-id", data.ProId);
+ popup.data("name", data.ProName).attr("data-name", data.ProName);
+ popup.data("price", data.ProOriginPrice).attr("data-price", data.ProOriginPrice);
  
  $('#popup-detail-product-name').html(data.ProName);
  $("#popup-detail-quantity").val(1);
@@ -272,14 +324,24 @@
  }
 
  // Gallery
+ var galleryContainer = popup.find('.swiper-gallery');
  var galleryWrapper = popup.find('.swiper-gallery .swiper-wrapper');
+
+ // Clean up any remaining Swiper inline styles or classes from previous runs
+ if (galleryContainer.length > 0) {
+ galleryContainer.removeClass().addClass('swiper-gallery swiper-container').removeAttr('style').attr('style', 'height: 100%;');
+ }
+ if (galleryWrapper.length > 0) {
+ galleryWrapper.removeAttr('style').attr('style', '');
+ }
+
  if (galleryWrapper.length > 0 && data.LstImage && data.LstImage.length > 0) {
  var galleryHtml = '';
  data.LstImage.forEach(function(img) {
  galleryHtml += `
  <div class="swiper-slide">
- <div class="images-food">
- <i class="img-background" style="background-image: url('${img.SrcOrigin}'); background-size: cover; background-position: center; padding-top: 100%; display: block;"></i>
+ <div class="images-food" style="width: 100%; height: 100%;">
+ <i class="img-background" style="background-image: url('${img.SrcOrigin}'); background-size: cover; background-position: center; height: 100%; width: 100%; display: block;"></i>
  </div>
  </div>`;
  });
@@ -294,6 +356,9 @@
  protect: true,
  animationDuration: 500,
  touch: false,
+ autoFocus: false,
+ backFocus: false,
+ hash: false,
  beforeShow: function () {
  $('body').addClass('popup-active');
  },
@@ -311,9 +376,12 @@
  },
  afterClose: function() {
  $('body').removeClass('popup-active');
- $("#popup-detail-atc").data("id", 0);
+ $("#popup-detail-atc").data("id", 0).attr("data-id", 0);
  if (window.popupSwiperGallery) {
- window.popupSwiperGallery.destroy();
+ if (typeof window.popupSwiperGallery.destroy === 'function') {
+ window.popupSwiperGallery.destroy(true, true);
+ }
+ window.popupSwiperGallery = null;
  }
  }
  }
@@ -321,6 +389,23 @@
  }
  }
  });
+ });
+
+ // === Bind click for quantity selector buttons in product detail popup ===
+ $(document).on('click', '#minusDetail', function(e) {
+ e.preventDefault();
+ var $input = $(this).parent().find('input');
+ var count = parseInt($input.val()) - 1;
+ count = count < 1 ? 1 : count;
+ $input.val(count);
+ $input.change();
+ });
+ $(document).on('click', '#plusDetail', function(e) {
+ e.preventDefault();
+ var $input = $(this).parent().find('input');
+ var count = parseInt($input.val()) + 1;
+ $input.val(count);
+ $input.change();
  });
 
  // === Zalo Booking Integration ===

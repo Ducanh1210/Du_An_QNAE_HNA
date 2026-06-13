@@ -69,6 +69,20 @@
                     @endif
                 </div>
                 <div class="mb-3">
+                    <label class="form-label">Ảnh tách nền (Hiện ở trang chủ)</label>
+                    <input type="file" name="img_transparent" class="form-control" accept="image/*" id="imgTransparentInput">
+                    @if($product && $product->img_transparent)
+                        <div class="mt-2">
+                            <img src="{{ BASE_URL }}{{ $product->img_transparent }}" id="imgTransparentPreview" 
+                                 style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid var(--border-color); background: #e9e9e9;">
+                        </div>
+                    @else
+                        <div class="mt-2">
+                            <img src="" id="imgTransparentPreview" style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid var(--border-color); background: #e9e9e9; display: none;">
+                        </div>
+                    @endif
+                </div>
+                <div class="mb-3">
                     <label class="form-label">Thứ tự hiển thị</label>
                     <input type="number" name="sort_order" class="form-control" placeholder="0" min="0"
                            value="{{ $product ? $product->sort_order : 0 }}">
@@ -97,6 +111,18 @@
 <script>
     document.getElementById('imgInput').addEventListener('change', function(e) {
         var preview = document.getElementById('imgPreview');
+        if (e.target.files && e.target.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(ev) {
+                preview.src = ev.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    });
+
+    document.getElementById('imgTransparentInput').addEventListener('change', function(e) {
+        var preview = document.getElementById('imgTransparentPreview');
         if (e.target.files && e.target.files[0]) {
             var reader = new FileReader();
             reader.onload = function(ev) {

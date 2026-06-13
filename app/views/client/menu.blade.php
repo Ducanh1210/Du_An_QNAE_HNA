@@ -655,11 +655,11 @@
                                 @else
                                 <span class="product-badge">Hot</span>
                                 @endif
-                                <img src="{{ $imgUrl }}" alt="{{ $p->name }}" class="product-image">
+                                <img src="{{ $imgUrl }}" alt="{{ $p->name }}" class="product-image" loading="eager">
                             </div>
                             <div class="product-info">
                                 <div class="product-name popupFood" data-id="{{ $p->id }}">{{ $p->name }}</div>
-                                <div class="product-desc">{{ $p->description ? $p->description : 'Món ăn ngon, bổ dưỡng từ Quán Nhậu Anh Em' }}</div>
+                                <div class="product-desc">{{ !empty($p->overview) ? $p->overview : 'Món ăn ngon, bổ dưỡng từ Quán Nhậu Anh Em' }}</div>
                                 <div class="product-footer">
                                     <div class="product-price">{{ number_format($p->price, 0, ',', '.') }}đ</div>
                                     <div class="btn-add ready-call-add-to-card">

@@ -71,7 +71,13 @@ class AdminNewsController extends BaseController {
         $is_active = isset($_POST['is_active']) ? 1 : 0;
 
         if (!empty($_FILES['img_thumbnail']['name'])) {
+            $existing = $this->newsModel->getById($id);
             $img_thumbnail = uploadFile($_FILES['img_thumbnail'], 'news');
+            if ($img_thumbnail && $existing && !empty($existing->img_thumbnail)) {
+                if (file_exists($existing->img_thumbnail)) {
+                    unlink($existing->img_thumbnail);
+                }
+            }
         } else {
             $existing = $this->newsModel->getById($id);
             $img_thumbnail = $existing ? $existing->img_thumbnail : '';
@@ -94,6 +100,12 @@ class AdminNewsController extends BaseController {
     }
 
     public function delete($id) {
+        $news = $this->newsModel->getById($id);
+        if ($news && !empty($news->img_thumbnail)) {
+            if (file_exists($news->img_thumbnail)) {
+                unlink($news->img_thumbnail);
+            }
+        }
         $this->newsModel->delete($id);
         flash('success', 'Xóa tin tức thành công', 'news');
     }

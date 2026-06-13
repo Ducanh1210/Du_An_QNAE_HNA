@@ -321,10 +321,10 @@
         <div class="ls-deco-circle ls-deco-circle--2"></div>
         <div class="ls-deco-circle ls-deco-circle--3"></div>
         <div class="loading-center" id="loadingCenter">
-            <img src="{{ BASE_URL }}images/Logo_PNG.webp" class="loading-logo" alt="Quán Nhậu Anh Em">
+            <img src="{{ BASE_URL }}images/Logo_PNG.webp" class="loading-logo" alt="Quán Nhậu Anh Em" loading="eager">
             <div class="progress-track">
                 <div class="progress-fill" id="progressFill">
-                    <img src="{{ BASE_URL }}images/loading.webp" class="loading-runner" alt="">
+                    <img src="{{ BASE_URL }}images/loading.webp" class="loading-runner" alt="" loading="eager">
                 </div>
             </div>
             <div class="loading-percent" id="loadingPercent">0%</div>
@@ -375,20 +375,20 @@
             <div class="slogan-container">
                 <picture>
                     <source media="(max-width: 920px)" srcset="{{ BASE_URL }}images/bg_md.webp">
-                    <img src="{{ BASE_URL }}images/Background.webp" alt="Slogan" class="slogan-img" />
+                    <img src="{{ BASE_URL }}images/Background.webp" alt="Slogan" class="slogan-img" loading="eager" />
                 </picture>
-                <img src="{{ BASE_URL }}images/slogan_layer_3.webp" alt="Slogan Decor Right" class="slogan-decor-right-img" />
-                <img src="{{ BASE_URL }}images/slogan_layer_10.webp" alt="Slogan Decor Left" class="slogan-decor-left-img" />
+                <img src="{{ BASE_URL }}images/slogan_layer_3.webp" alt="Slogan Decor Right" class="slogan-decor-right-img" loading="eager" />
+                <img src="{{ BASE_URL }}images/slogan_layer_10.webp" alt="Slogan Decor Left" class="slogan-decor-left-img" loading="eager" />
                 <div class="slogan-parallax-mouse" id="sceneSloganPrl">
                     <div data-depth="0.15" class="slogan-logo-wrap">
-                        <img src="{{ BASE_URL }}images/slogan_ae_2.webp" alt="Slogan Logo" class="slogan-logo-img" />
+                        <img src="{{ BASE_URL }}images/slogan_ae_2.webp" alt="Slogan Logo" class="slogan-logo-img" loading="eager" />
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="banner-full-screen">
-            <img src="{{ BASE_URL }}images/3.webp" alt="Banner" class="banner-fs-img" />
+            <img src="{{ BASE_URL }}images/3.webp" alt="Banner" class="banner-fs-img" loading="eager" />
             <h2 class="banner-title">Không gian bếp</h2>
             <div class="banner-quote-box">
                 <p class="quote-text">
@@ -402,7 +402,7 @@
                     <span class="author-name">Đầu bếp......</span>
                 </div>
             </div>
-            <img src="{{ BASE_URL }}images/Group_19.webp" alt="Kitchen Mascot" class="kitchen-mascot" />
+            <img src="{{ BASE_URL }}images/Group_19.webp" alt="Kitchen Mascot" class="kitchen-mascot" loading="eager" />
         </div>
 
         <div class="td-home__bigText-middle">
@@ -413,8 +413,8 @@
                         <div class="swiper-wrapper list-food-menu combo-menu">
                             @foreach($products as $p)
                             @if($p->is_active == 1)
-                            @php
-                                $imgUrl = $p->img_thumbnail;
+                             @php
+                                $imgUrl = !empty($p->img_transparent) ? $p->img_transparent : $p->img_thumbnail;
                                 if ($imgUrl) {
                                     if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
                                         $imgUrl = BASE_URL . 'storage/uploads/products/' . basename($imgUrl);
@@ -428,7 +428,7 @@
                             <div class="swiper-slide parent-class" data-id="{{ $p->id }}" data-name="{{ $p->name }}" data-price="{{ $p->price }}">
                                 <div class="food-menu">
                                     <a href="javascript:;" class="popupFood thumb" data-id="{{ $p->id }}">
-                                        <img src="{{ $imgUrl }}" alt="{{ $p->name }}" data-id="{{ $p->id }}">
+                                        <img src="{{ $imgUrl }}" alt="{{ $p->name }}" data-id="{{ $p->id }}" loading="eager">
                                     </a>
                                     <div class="info-box">
                                         <a href="javascript:;" class="popupFood title-food" title="{{ $p->name }}" data-id="{{ $p->id }}">{{ $p->name }}</a>
@@ -440,18 +440,18 @@
                                                     <span class="icn-plus">
                                                         <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <g clip-path="url(#clip0_176_2322)">
-                                                                <path d="M9.375 4.875H5.625V1.125C5.625 0.75 5.375 0.5 5 0.5C4.625 0.5 4.375 0.75 4.375 1.125V4.875H0.625C0.25 4.875 0 5.125 0 5.5C0 5.875 0.25 6.125 0.625 6.125H4.375V9.875C4.375 10.25 4.625 10.5 5 10.5C5.375 10.5 5.625 10.25 5.625 9.875V6.125H9.375C9.75 6.125 10 5.875 10 5.5C10 5.125 9.75 4.875 9.375 4.875Z" fill="#999999"></path>
+                                                                 <path d="M9.375 4.875H5.625V1.125C5.625 0.75 5.375 0.5 5 0.5C4.625 0.5 4.375 0.75 4.375 1.125V4.875H0.625C0.25 4.875 0 5.125 0 5.5C0 5.875 0.25 6.125 0.625 6.125H4.375V9.875C4.375 10.25 4.625 10.5 5 10.5C5.375 10.5 5.625 10.25 5.625 9.875V6.125H9.375C9.75 6.125 10 5.875 10 5.5C10 5.125 9.75 4.875 9.375 4.875Z" fill="#999999"></path>
                                                             </g>
                                                             <defs>
-                                                                <clipPath id="clip0_176_2322">
-                                                                    <rect width="10" height="10" fill="white" transform="translate(0 0.5)"></rect>
-                                                                </clipPath>
+                                                                 <clipPath id="clip0_176_2322">
+                                                                     <rect width="10" height="10" fill="white" transform="translate(0 0.5)"></rect>
+                                                                 </clipPath>
                                                             </defs>
                                                         </svg>
                                                     </span>
                                                     <span class="icn-check">
                                                         <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M9.20177 2.88069L8.39931 2.07824C8.29499 1.97392 8.12541 1.97392 8.02109 2.07824L3.66268 6.43664L1.97967 4.75363C1.87535 4.64931 1.70576 4.64931 1.60144 4.75363L0.798454 5.55555C0.694135 5.65986 0.694135 5.82945 0.798454 5.93377L3.47331 8.60862C3.52573 8.66105 3.59421 8.68673 3.66268 8.68673C3.73116 8.68673 3.79964 8.66051 3.85206 8.60862L9.20177 3.25945C9.30609 3.15513 9.30609 2.98555 9.20177 2.88123V2.88069Z" fill="#222222"></path>
+                                                             <path d="M9.20177 2.88069L8.39931 2.07824C8.29499 1.97392 8.12541 1.97392 8.02109 2.07824L3.66268 6.43664L1.97967 4.75363C1.87535 4.64931 1.70576 4.64931 1.60144 4.75363L0.798454 5.55555C0.694135 5.65986 0.694135 5.82945 0.798454 5.93377L3.47331 8.60862C3.52573 8.66105 3.59421 8.68673 3.66268 8.68673C3.73116 8.68673 3.79964 8.66051 3.85206 8.60862L9.20177 3.25945C9.30609 3.15513 9.30609 2.98555 9.20177 2.88123V2.88069Z" fill="#222222"></path>
                                                         </svg>
                                                     </span>
                                                 </span>
@@ -481,24 +481,24 @@
 
             <a href="{{ route('thuc-don') }}" class="view-menu">
                 XEM THỰC ĐƠN
-                <img src="{{ BASE_URL }}images/Untitled-3.webp" alt="Mascot" class="view-menu-mascot" />
+                <img src="{{ BASE_URL }}images/Untitled-3.webp" alt="Mascot" class="view-menu-mascot" loading="eager" />
             </a>
         </div>
 
         <div class="staff-banner-section">
             <div class="staff-banner-label">Nhân viên</div>
-            <img src="{{ BASE_URL }}images/nhan_vien_group_2.webp" alt="Nhân viên thân thiện Quán Nhậu Anh Em" class="staff-banner-bg">
+            <img src="{{ BASE_URL }}images/nhan_vien_group_2.webp" alt="Nhân viên thân thiện Quán Nhậu Anh Em" class="staff-banner-bg" loading="eager">
             <div class="staff-banner-content staff-banner-left">
-                <img src="{{ BASE_URL }}images/MascotAnh Em.webp" alt="Giới thiệu nhân viên" class="staff-banner-overlay">
+                <img src="{{ BASE_URL }}images/MascotAnh Em.webp" alt="Giới thiệu nhân viên" class="staff-banner-overlay" loading="eager">
                 <div class="staff-banner-description">
                     Xin chào anh em! Cảm ơn đã lựa chọn quán là điểm hẹn cho những cuộc vui. Chúc anh em có những giây phút ăn ngon, uống vui và thật nhiều tiếng cười bên bạn bè, người thân. Quán luôn sẵn sàng phục vụ bằng sự nhiệt tình và tận tâm nhất!
                 </div>
             </div>
             <div class="staff-banner-content staff-banner-right">
-                <img src="{{ BASE_URL }}images/nlai.webp" alt="Nhân viên Anh Em" class="staff-banner-overlay">
+                <img src="{{ BASE_URL }}images/nlai.webp" alt="Nhân viên Anh Em" class="staff-banner-overlay" loading="eager">
             </div>
             <div class="staff-banner-content staff-banner-bottom-right">
-                <img src="{{ BASE_URL }}images/Layer_81.webp" alt="Slogan nhân viên" class="staff-banner-overlay">
+                <img src="{{ BASE_URL }}images/Layer_81.webp" alt="Slogan nhân viên" class="staff-banner-overlay" loading="eager">
             </div>
             <div class="staff-banner-slogan">
                 <div class="slogan-line">
@@ -578,7 +578,7 @@
                                             </svg>
                                         </span>
                                         <span class="txt">NHẬN NGAY</span>
-                                        <img src="{{ BASE_URL }}images/Untitled-3.webp" alt="Mascot" class="get-dsc-mascot">
+                                        <img src="{{ BASE_URL }}images/Untitled-3.webp" alt="Mascot" class="get-dsc-mascot" loading="eager">
                                     </a>
                                 </div>
                             </div>
@@ -593,28 +593,28 @@
         </div>
 
         <div class="video-banner-section">
-            <img src="{{ BASE_URL }}images/video_3.webp" alt="Video banner Quán Nhậu Anh Em" class="video-banner-bg">
+            <img src="{{ BASE_URL }}images/video_3.webp" alt="Video banner Quán Nhậu Anh Em" class="video-banner-bg" loading="eager">
             <div class="video-banner-content video-banner-center">
-                <img src="{{ BASE_URL }}images/video_group_16.webp" alt="Play Video" class="video-banner-overlay">
+                <img src="{{ BASE_URL }}images/video_group_16.webp" alt="Play Video" class="video-banner-overlay" loading="eager">
             </div>
             <div class="video-banner-content video-banner-top-left">
-                <img src="{{ BASE_URL }}images/video_4.webp" alt="Video Element" class="video-banner-overlay">
+                <img src="{{ BASE_URL }}images/video_4.webp" alt="Video Element" class="video-banner-overlay" loading="eager">
             </div>
             <div class="video-banner-content video-banner-top-right scroll-speech-bubble">
-                <img src="{{ BASE_URL }}images/video_rectangle_10.webp" alt="Video Element Right Top" class="video-banner-overlay">
+                <img src="{{ BASE_URL }}images/video_rectangle_10.webp" alt="Video Element Right Top" class="video-banner-overlay" loading="eager">
                 <div class="video-banner-speech-text">
                     ĐIỀU GÌ<br>TẠO NÊN<br>MỘT<br>ĐIỂM HẸN<br>THẬT SỰ?
                 </div>
             </div>
             <div class="video-banner-content video-banner-center-right">
-                <img src="{{ BASE_URL }}images/Layer_80.webp" alt="Video Element Right" class="video-banner-overlay">
+                <img src="{{ BASE_URL }}images/Layer_80.webp" alt="Video Element Right" class="video-banner-overlay" loading="eager">
             </div>
-            <img src="{{ BASE_URL }}images/Group_20.webp" alt="Video Mascot" class="video-mascot">
+            <img src="{{ BASE_URL }}images/Group_20.webp" alt="Video Mascot" class="video-mascot" loading="eager">
         </div>
 
         <div class="td-home__tdclub">
             <h3 class="text-club">
-                <img src="{{ BASE_URL }}images/Untitled-1.webp" alt="Quán Nhậu Anh Em" class="text-club-logo" />
+                <img src="{{ BASE_URL }}images/Untitled-1.webp" alt="Quán Nhậu Anh Em" class="text-club-logo" loading="eager" />
             </h3>
             <h2 class="heading fade-inup">anh em gặp nhau
                 <br>
@@ -766,6 +766,24 @@
             App.initHelpers(['header', 'home', 'listBranch']);
             Home.init();
             fixPositionStickyMenu();
+
+            // Detect wide product images and adjust layout
+            $('.swiper-newfood .thumb img').each(function() {
+                var img = $(this);
+                var checkAspect = function(w, h) {
+                    if (w / h > 1.2) {
+                        img.addClass('wide-img');
+                        img.parent().addClass('wide-thumb');
+                    }
+                };
+                if (this.complete && this.naturalWidth) {
+                    checkAspect(this.naturalWidth, this.naturalHeight);
+                } else {
+                    img.on('load', function() {
+                        checkAspect(this.naturalWidth, this.naturalHeight);
+                    });
+                }
+            });
 
             loadingCover('loading-cover', function () {
                 loadBigTextHomeWeb();

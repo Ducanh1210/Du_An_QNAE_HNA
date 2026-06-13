@@ -147,80 +147,7 @@ let App = {
 
         let me = this;
 
-        if (me.windowW > 800) {
-            // Fancy Box Popup Detail
-            $('.popupFood').off('click').click(function () {
-
-
-                $.fancybox.open({
-                    src: '#popup-detail-atc',
-                    type: 'inline',
-                    opts: {
-                        protect: true,
-                        animationDuration: 500,
-                        // animationEffect: 'fade-in',
-                        touch: false,
-                        beforeShow: function () {
-                            $('body').addClass('popup-active');
-                        },
-                        afterShow: function () {
-                            swiperGallery = new Swiper(".swiper-gallery", {
-                                slidesPerView: 1,
-                                spaceBetween: 0,
-                                pagination: {
-                                    el: ".galleryBox .swiper-pagination",
-                                    type: "fraction",
-                                },
-                                initialSlide: 0,
-                            });
-
-
-                        },
-                        afterClose: function () {
-                            $('body').removeClass('popup-active');
-                            swiperGallery.destroy();
-                        }
-                    },
-                });
-            });
-        } else {
-
-            // Fancy Box Popup Detail
-            $('.popupFood').off('click').click(function () {
-
-
-                $.fancybox.open({
-                    src: '#popup-detail-atc',
-                    type: 'inline',
-                    opts: {
-                        protect: true,
-                        animationDuration: 500,
-                        animationEffect: 'slide-in-out',
-                        touch: false,
-                        beforeShow: function () {
-                            $('body').addClass('popup-active');
-                        },
-                        afterShow: function () {
-                            swiperGallery = new Swiper(".swiper-gallery", {
-                                slidesPerView: 1,
-                                spaceBetween: 0,
-                                pagination: {
-                                    el: ".galleryBox .swiper-pagination",
-                                    type: "fraction",
-                                },
-                                initialSlide: 0,
-                            });
-
-
-                        },
-                        afterClose: function () {
-                            $('body').removeClass('popup-active');
-                            swiperGallery.destroy();
-                        }
-                    },
-                });
-            });
-        }
+        // Popup detail click events are now handled via event delegation in layout/client.blade.php
     },
     bookingPopup: function () {
 
@@ -985,39 +912,6 @@ let App = {
 
             parallaxHoz();
 
-            let swiperNewFood = new Swiper('.swiper-newfood', {
-                slidesPerView: 4,
-                slidesPerGroup: 4,
-                spaceBetween: 25,
-                pagination: {
-                    el: ".swiper-pagination",
-                    dynamicBullets: true,
-                    dynamicMainBullets: 2
-                },
-                navigation: {
-                    nextEl: '.new-food .swiper-button-next',
-                    prevEl: '.new-food .swiper-button-prev',
-                },
-                pagination: {
-                    el: '.swiper-newfood .swiper-pagination',
-                    clickable: true,
-                },
-            })
-
-            let swiperDscHome = new Swiper('.swiper-dscHome', {
-                slidesPerView: 3,
-                slidesPerGroup: 3,
-                spaceBetween: 24,
-                navigation: {
-                    nextEl: '.discount-box .swiper-button-next',
-                    prevEl: '.discount-box .swiper-button-prev',
-                },
-                pagination: {
-                    el: '.swiper-dscHome .swiper-pagination',
-                    clickable: true,
-                },
-            })
-
             let windowHeight = window.innerHeight;
 
             const tl = gsap.timeline().fromTo('.box-2', { y: windowHeight }, { y: 0 })
@@ -1127,6 +1021,64 @@ let App = {
             // }
 
         }
+
+        let swiperNewFood = null;
+        let swiperDscHome = null;
+
+        function initOrDestroySwipers() {
+            let currentWidth = window.innerWidth;
+            if (currentWidth > 800) {
+                if (!swiperNewFood && $('.swiper-newfood').length > 0) {
+                    swiperNewFood = new Swiper('.swiper-newfood', {
+                        slidesPerView: 4,
+                        slidesPerGroup: 4,
+                        spaceBetween: 25,
+                        pagination: {
+                            el: '.swiper-newfood .swiper-pagination',
+                            clickable: true,
+                        },
+                        navigation: {
+                            nextEl: '.new-food .swiper-button-next',
+                            prevEl: '.new-food .swiper-button-prev',
+                        }
+                    });
+                }
+                if (!swiperDscHome && $('.swiper-dscHome').length > 0) {
+                    swiperDscHome = new Swiper('.swiper-dscHome', {
+                        slidesPerView: 3,
+                        slidesPerGroup: 3,
+                        spaceBetween: 24,
+                        pagination: {
+                            el: '.swiper-dscHome .swiper-pagination',
+                            clickable: true,
+                        },
+                        navigation: {
+                            nextEl: '.discount-box .swiper-button-next',
+                            prevEl: '.discount-box .swiper-button-prev',
+                        }
+                    });
+                }
+            } else {
+                if (swiperNewFood) {
+                    swiperNewFood.destroy(true, true);
+                    swiperNewFood = null;
+                }
+                $('.swiper-newfood .swiper-wrapper').removeAttr('style');
+                $('.swiper-newfood .swiper-slide').removeAttr('style');
+
+                if (swiperDscHome) {
+                    swiperDscHome.destroy(true, true);
+                    swiperDscHome = null;
+                }
+                $('.swiper-dscHome .swiper-wrapper').removeAttr('style');
+                $('.swiper-dscHome .swiper-slide').removeAttr('style');
+            }
+        }
+
+        initOrDestroySwipers();
+        $(window).resize(function () {
+            initOrDestroySwipers();
+        });
     },
 
 
@@ -2752,89 +2704,8 @@ var ProductDetail = {
     },
     getPopupDetail: function () {
         var me = this;
-        // Fancy Box Popup Detail
-        $(`.readyActionPopup`).each(function (i, v) {
-            $(this).off('click').on("click", function (e) {
-                e.preventDefault();
-                let proId = $(this).data("id");
-                $.ajax({
-                    url: apiDomain + "/get-product-home.htm",
-                    data: {
-                        m: 'get-detail-product',
-                        pSize: 1000,
-                        proId: proId
-                    },
-                    crossDomain: true,
-                    dataType: 'jsonp',
-                    type: "POST",
-                    beforeSend: function () {
-                    },
-                    success: function (rs) {
-                        if (rs.Success) {
-                            //console.log(rs);
-                            BindPopupDetail(rs.Data);
-                        }
-                    }
-                });
-                me.formatPopupDetail();
-            });
-            $(this).removeClass('readyActionPopup');
-        });
-
-        function BindPopupDetail(data) {
-            $("#popup-detail-atc").data("id", data.ProId);
-            $("#popup-detail-atc").data("name", data.ProName);
-            $("#popup-detail-atc").data("price", data.ProOriginPrice);
-            $('#popup-detail-product-name').html(data.ProName);
-            $("#popup-detail-quantity").val(1);
-            let htmlSapo = "";
-            htmlSapo += `${nl2br(data.ProSapo)}`;
-            $('#popup-detail-product-sapo').html(htmlSapo);
-            //console.log(data);
-            $('#popup-detail-product-current-price').html(data.ProOriginPrice + "đ");
-            //if (data.ProDiscountPrice != data.ProOriginPrice) {
-            //    $('#popup-detail-product-current-price').html(data.ProDiscountPrice + "đ");
-            //    $('#popup-detail-product-original-price').html(data.ProOriginPrice + "đ");
-            //} else {
-            //    $('#popup-detail-product-current-price').html(data.ProOriginPrice + "đ");
-            //}
-
-            //Gallery
-            let htmlListGallery = "";
-            let arr = [];
-            if (data.ProGallery.length > 0) {
-                try {
-                    arr = JSON.parse(data.ProGallery);
-                }
-                catch (e) {
-                    arr = [];
-                }
-            }
-            //console.log(arr);
-            for (let i = 0; i < arr.length; i++) {
-                let v = { SrcOrigin: storageDomain + "/data/images/" + arr[i].origin, SrcThumbSmall: storageDomain + "/data/images/" + arr[i].thumb }
-                htmlListGallery += `<div class ="swiper-slide">
-                                        <div class ="images-food">
-                                            <i class ="img-background" style = "background-image: url('${v.SrcOrigin}')" ></i>
-                                        </div>
-                                    </div>`;
-            }
-            $('#lstGalleryPopupDetail').html(htmlListGallery);
-            FormatHtml.init();
-            me.actionPopupDetail();
-            function nl2br(str) {
-                if (str != undefined) {
-                    if (str.length > 0) {
-                        return str.replace(/(?:\r\n|\r|\n)/g, '<br>');
-                    } else {
-                        return '';
-                    }
-                } else {
-                    return '';
-                }
-
-            };
-        }
+        // Click events are now handled via delegation in layout/client.blade.php
+        $(`.readyActionPopup`).removeClass('readyActionPopup');
     },
     actionPopupDetail: function () {
         $('#minusDetail').off('click').click(function () {

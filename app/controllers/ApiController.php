@@ -191,8 +191,8 @@ class ApiController extends BaseController {
         // Map fields to match what frontend expects
         $imgUrl = $p->img_thumbnail;
         if ($imgUrl) {
-            if (!preg_match('/^images\//', $imgUrl) && !preg_match('/^https?:\/\//', $imgUrl)) {
-                $imgUrl = '../MVC/' . $imgUrl;
+            if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
+                $imgUrl = 'storage/uploads/products/' . basename($imgUrl);
             }
         } else {
             $imgUrl = 'images/produc.webp';

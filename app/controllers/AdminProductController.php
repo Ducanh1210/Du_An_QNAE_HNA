@@ -39,6 +39,11 @@ class AdminProductController extends BaseController {
             $img_thumbnail = uploadFile($_FILES['img_thumbnail'], 'products');
         }
 
+        $img_transparent = '';
+        if (!empty($_FILES['img_transparent']['name'])) {
+            $img_transparent = uploadFile($_FILES['img_transparent'], 'products');
+        }
+
         $errors = [];
         if (empty($name)) $errors[] = "Tên sản phẩm không được để trống";
         if (empty($category_id)) $errors[] = "Vui lòng chọn danh mục";
@@ -47,7 +52,7 @@ class AdminProductController extends BaseController {
             flash('errors', $errors, 'products/create');
         }
 
-        $check = $this->productModel->create($category_id, $name, $slug, $price, $img_thumbnail, $overview, $content, $is_active, $sort_order);
+        $check = $this->productModel->create($category_id, $name, $slug, $price, $img_thumbnail, $img_transparent, $overview, $content, $is_active, $sort_order);
         if ($check) {
             flash('success', 'Thêm sản phẩm thành công', 'products');
         } else {
@@ -74,11 +79,28 @@ class AdminProductController extends BaseController {
         $is_active = isset($_POST['is_active']) ? 1 : 0;
         $sort_order = intval($_POST['sort_order'] ?? 0);
 
+        $existing = $this->productModel->getById($id);
+
         if (!empty($_FILES['img_thumbnail']['name'])) {
             $img_thumbnail = uploadFile($_FILES['img_thumbnail'], 'products');
+            if ($img_thumbnail && $existing && !empty($existing->img_thumbnail)) {
+                if (file_exists($existing->img_thumbnail)) {
+                    unlink($existing->img_thumbnail);
+                }
+            }
         } else {
-            $existing = $this->productModel->getById($id);
             $img_thumbnail = $existing ? $existing->img_thumbnail : '';
+        }
+
+        if (!empty($_FILES['img_transparent']['name'])) {
+            $img_transparent = uploadFile($_FILES['img_transparent'], 'products');
+            if ($img_transparent && $existing && !empty($existing->img_transparent)) {
+                if (file_exists($existing->img_transparent)) {
+                    unlink($existing->img_transparent);
+                }
+            }
+        } else {
+            $img_transparent = $existing ? $existing->img_transparent : '';
         }
 
         $errors = [];
@@ -89,7 +111,7 @@ class AdminProductController extends BaseController {
             flash('errors', $errors, 'products/' . $id . '/edit');
         }
 
-        $check = $this->productModel->update($id, $category_id, $name, $slug, $price, $img_thumbnail, $overview, $content, $is_active, $sort_order);
+        $check = $this->productModel->update($id, $category_id, $name, $slug, $price, $img_thumbnail, $img_transparent, $overview, $content, $is_active, $sort_order);
         if ($check) {
             flash('success', 'Cập nhật sản phẩm thành công', 'products');
         } else {
@@ -98,6 +120,15 @@ class AdminProductController extends BaseController {
     }
 
     public function delete($id) {
+        $product = $this->productModel->getById($id);
+        if ($product) {
+            if (!empty($product->img_thumbnail) && file_exists($product->img_thumbnail)) {
+                unlink($product->img_thumbnail);
+            }
+            if (!empty($product->img_transparent) && file_exists($product->img_transparent)) {
+                unlink($product->img_transparent);
+            }
+        }
         $this->productModel->delete($id);
         flash('success', 'Xóa sản phẩm thành công', 'products');
     }

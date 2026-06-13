@@ -1210,6 +1210,18 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
     z-index: 0;
 }
 
+/* Outer Full-Width Background for left/right stripes */
+.ph-fn-outer-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
 /* Base Slant Transform */
 .ph-fn-slant {
     position: absolute;
@@ -1560,6 +1572,10 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
 
     .ph-fn-bg-wrapper {
         display: none !important; /* Hide center slanted divider on mobile/tablet */
+    }
+
+    .ph-fn-outer-bg {
+        display: none !important; /* Hide outer background stripes on mobile/tablet */
     }
 
     .ph-fn-left-stripe-1,

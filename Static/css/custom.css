@@ -2549,7 +2549,7 @@ body .list-food-menu .food-menu .funcsBox .add-to-card {
     }
 }
 
-/* Product Detail Popup Styles */
+/* Commented out to prevent conflict with updated clean wide product popup design
 #popup-detail-atc {
     max-width: 650px;
     width: 92%;
@@ -2581,7 +2581,6 @@ body .list-food-menu .food-menu .funcsBox .add-to-card {
     background: #f0ebd9 !important;
 }
 
-/* Swiper Gallery Style in Popup */
 #popup-detail-atc .swiper-gallery .swiper-slide {
     display: flex;
     align-items: center;
@@ -2614,6 +2613,7 @@ body .list-food-menu .food-menu .funcsBox .add-to-card {
         justify-content: space-between !important;
     }
 }
+*/
 
 /* Prevent scroll position reset when popup is active */
 body.popup-active {

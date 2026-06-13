@@ -14,7 +14,7 @@ class AdminCategoryController extends BaseController {
     public function index() {
         $type = $_GET['type'] ?? 'product';
         $allData = $this->categoryModel->getAll();
-        $data = array_filter($allData, function($item) use ($type) { return $item->type == $type; });
+        $data = array_values(array_filter($allData, function($item) use ($type) { return $item->type == $type; }));
         $this->render('admin.categories.list', compact('data', 'type'));
     }
 

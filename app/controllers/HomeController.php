@@ -45,6 +45,25 @@ class HomeController extends BaseController
         $this->render('client.news', compact('categories', 'news'));
     }
 
+    public function newsDetail($slug)
+    {
+        $newsModel = new NewsModel();
+        $detail = $newsModel->getBySlug($slug);
+        
+        if (!$detail) {
+            header('Location: ' . BASE_URL . 'tin-tuc');
+            exit;
+        }
+
+        // Get related news (latest 3 active news excluding current)
+        $allNews = $newsModel->getActive();
+        $relatedNews = array_slice(array_filter($allNews, function($item) use ($detail) {
+            return $item->id != $detail->id;
+        }), 0, 3);
+        
+        $this->render('client.news-detail', compact('detail', 'relatedNews'));
+    }
+
     public function contact()
     {
         $this->render('client.contact');

@@ -466,11 +466,11 @@
                         }
                     @endphp
                     <div class="main-featured-post">
-                        <a href="javascript:;" class="post-thumb">
+                        <a href="{{ BASE_URL }}tin-tuc/{{ $mainPost->slug }}" class="post-thumb">
                             <img src="{{ $imgUrl }}" alt="{{ $mainPost->title }}" loading="eager">
                         </a>
                         <div class="post-meta">{{ $mainPost->category_name ?? 'SỰ KIỆN NỔI BẬT' }} <span class="date">{{ date('d/m/Y', strtotime($mainPost->created_at)) }}</span></div>
-                        <h3 class="post-title"><a href="javascript:;">{{ $mainPost->title }}</a></h3>
+                        <h3 class="post-title"><a href="{{ BASE_URL }}tin-tuc/{{ $mainPost->slug }}">{{ $mainPost->title }}</a></h3>
                         <p class="post-excerpt">{{ $mainPost->overview }}</p>
                     </div>
                     @endif
@@ -490,13 +490,13 @@
                                 }
                             @endphp
                             <div class="small-post">
-                                <a href="javascript:;" class="post-thumb">
+                                <a href="{{ BASE_URL }}tin-tuc/{{ $subPost->slug }}" class="post-thumb">
                                     <img src="{{ $imgUrl }}" alt="{{ $subPost->title }}">
                                 </a>
                                 <div class="post-info">
                                     <div class="post-meta">{{ $subPost->category_name ?? 'TIN TỨC' }} <span
                                             class="date">{{ date('d/m', strtotime($subPost->created_at)) }}</span></div>
-                                    <h4 class="post-title"><a href="javascript:;">{{ $subPost->title }}</a></h4>
+                                    <h4 class="post-title"><a href="{{ BASE_URL }}tin-tuc/{{ $subPost->slug }}">{{ $subPost->title }}</a></h4>
                                 </div>
                             </div>
                         @endfor
@@ -522,11 +522,11 @@
                         }
                     @endphp
                     <div class="offer-post">
-                        <a href="javascript:;" class="post-thumb">
+                        <a href="{{ BASE_URL }}tin-tuc/{{ $offer->slug }}" class="post-thumb">
                             <img src="{{ $imgUrl }}" alt="{{ $offer->title }}" loading="eager">
                         </a>
                         <div class="post-meta">{{ $offer->category_name ?? 'ƯU ĐÃI' }} <span class="date">{{ date('d/m', strtotime($offer->created_at)) }}</span></div>
-                        <h4 class="post-title"><a href="javascript:;">{{ $offer->title }}</a></h4>
+                        <h4 class="post-title"><a href="{{ BASE_URL }}tin-tuc/{{ $offer->slug }}">{{ $offer->title }}</a></h4>
                     </div>
                     @endfor
                     @else

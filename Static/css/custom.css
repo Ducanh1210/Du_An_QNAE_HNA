@@ -674,7 +674,28 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
 
 @media (max-width: 576px) {
     .banner-full-screen .banner-quote-box {
-        display: none !important;
+        display: block !important;
+        right: 5%;
+        top: 25%;
+        width: 90%;
+        background: rgba(255, 255, 255, 0.85);
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .banner-full-screen .banner-quote-box .quote-text {
+        font-size: 3.8vw;
+        line-height: 1.5;
+        border-bottom-color: rgba(94, 55, 19, 0.2);
+    }
+
+    .banner-full-screen .banner-quote-box .quote-author .author-title {
+        font-size: 4vw;
+    }
+
+    .banner-full-screen .banner-quote-box .quote-author .author-name {
+        font-size: 3.5vw;
     }
 }
 
@@ -813,7 +834,29 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12) !important;
     border-radius: 10px !important;
     background-color: #f4ebd8 !important;
-    margin: 12px !important;
+    margin: 12px 12px 24px 12px !important; /* Add bottom margin so shadow is not cut off */
+}
+
+@media (max-width: 768px) {
+    .td-home__wrapper .swiper-dscHome .swiper-slide {
+        width: 250px !important;
+    }
+    
+    .td-home__wrapper .dscBox {
+        margin: 5px !important;
+    }
+    
+    .td-home__wrapper .dscBox .get-dsc {
+        margin-top: 10px !important;
+        margin-right: 15px !important;
+        padding: 6px 16px !important;
+    }
+    
+    .get-dsc-mascot {
+        height: 55px !important;
+        right: -15px !important;
+        bottom: -2px !important;
+    }
 }
 
 /* Swiper Pagination Dots Customization */
@@ -2424,14 +2467,21 @@ body .list-food-menu .food-menu .funcsBox .add-to-card {
 /* Video Mascot Overlay */
 .video-banner-section .video-mascot {
     position: absolute;
-    bottom: -15px;
-    /* Slight overlap or flush */
-    left: 0%;
+    bottom: -5px;
+    left: -5%;
     height: auto;
-    width: 35%;
+    width: 28%;
     /* Scales with screen width */
     z-index: 15;
     pointer-events: none;
+}
+
+/* Fix header-page banner overlap on mobile */
+@media screen and (max-width: 768px) {
+    .header-page {
+        padding-top: 100px !important;
+        padding-bottom: 30px !important;
+    }
 }
 
 /* Contact Page Layout Overrides */

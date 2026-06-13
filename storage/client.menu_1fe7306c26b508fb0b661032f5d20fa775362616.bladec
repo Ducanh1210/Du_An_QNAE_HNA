@@ -475,11 +475,12 @@
  top: 79px;
  padding: 10px 0;
  border-radius: 0;
- background: #fff;
- box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
- z-index: 99;
+ background: #ffffff;
+ box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+ z-index: 999;
  margin: 0 -20px;
  width: calc(100% + 40px);
+ border-bottom: 1px solid #eaeaea;
  }
 
  .menu-sidebar-title {
@@ -613,6 +614,11 @@
  top: 59px !important;
  }
  }
+
+ /* Dynamic header-aware sticky */
+ .menu-sidebar.is-sticky {
+ box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+ }
  </style>
 
  <div class="menu-container">
@@ -691,6 +697,42 @@
  cateId: 0
  });
  fixPositionStickyMenu();
+
+ // Dynamically adjust menu-sidebar sticky top based on actual header height
+ function adjustMenuSidebarSticky() {
+ var $header = $('.td-wrapper .td-header');
+ var $sidebar = $('.menu-sidebar');
+ if ($header.length && $sidebar.length) {
+ var headerHeight = $header.outerHeight();
+ $sidebar.css('top', headerHeight + 'px');
+ }
+ }
+
+ // Run on load (with small delay for header to fully render)
+ setTimeout(adjustMenuSidebarSticky, 100);
+ setTimeout(adjustMenuSidebarSticky, 300);
+ setTimeout(adjustMenuSidebarSticky, 500);
+
+ // Run on scroll to handle header height changes
+ $(window).on('scroll', function() {
+ adjustMenuSidebarSticky();
+ // Add visual feedback when sidebar is stuck
+ var $sidebar = $('.menu-sidebar');
+ if ($sidebar.length) {
+ var rect = $sidebar[0].getBoundingClientRect();
+ var headerHeight = $('.td-wrapper .td-header').outerHeight() || 70;
+ if (Math.abs(rect.top - headerHeight) < 5) {
+ $sidebar.addClass('is-sticky');
+ } else {
+ $sidebar.removeClass('is-sticky');
+ }
+ }
+ });
+
+ // Run on resize
+ $(window).on('resize', function() {
+ adjustMenuSidebarSticky();
+ });
  });
 
  // Tab behavior for sidebar

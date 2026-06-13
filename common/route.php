@@ -14,6 +14,7 @@ try{
     $router->get('/gioi-thieu', [App\Controllers\HomeController::class, 'about']);
     $router->get('/thuc-don', [App\Controllers\HomeController::class, 'menu']);
     $router->get('/tin-tuc', [App\Controllers\HomeController::class, 'news']);
+    $router->get('/tin-tuc/{slug}', [App\Controllers\HomeController::class, 'newsDetail']);
     $router->get('/lien-he', [App\Controllers\HomeController::class, 'contact']);
 
     // ========== AUTHENTICATION ==========

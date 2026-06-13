@@ -98,11 +98,11 @@
 
         .sidebar-label {
             padding: 10px 20px 6px;
-            font-size: 10px;
+            font-size: 10.5px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.2px;
-            color: rgba(255, 255, 255, 0.35);
+            color: rgba(255, 255, 255, 0.6);
         }
 
         .sidebar-link {
@@ -110,7 +110,7 @@
             align-items: center;
             gap: 12px;
             padding: 10px 20px;
-            color: rgba(255, 255, 255, 0.7);
+            color: #ffffff;
             text-decoration: none;
             font-size: 13.5px;
             font-weight: 500;
@@ -154,7 +154,7 @@
         .sidebar-submenu .sidebar-link {
             padding-left: 20px;
             font-size: 13px;
-            opacity: 0.85;
+            opacity: 0.95;
             margin: 0;
             border-left: none;
             border-radius: 0;
@@ -565,8 +565,8 @@
             </a>
 
             <div class="sidebar-label">Tài khoản</div>
-            <a href="{{ BASE_URL }}logout" class="sidebar-link text-danger" style="border-left-color: transparent !important;">
-                <i class="fas fa-sign-out-alt text-danger"></i> <span class="text-danger">Đăng xuất</span>
+            <a href="{{ BASE_URL }}logout" class="sidebar-link" style="border-left-color: transparent !important; color: #ff4d4d !important;">
+                <i class="fas fa-sign-out-alt" style="color: #ff4d4d;"></i> <span style="color: #ff4d4d;">Đăng xuất</span>
             </a>
         </nav>
     </aside>

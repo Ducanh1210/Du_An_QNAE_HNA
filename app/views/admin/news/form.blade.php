@@ -71,9 +71,36 @@
     </form>
 </div>
 @endsection
+@section('styles')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<style>
+    .note-editor .note-editing-area { background: #fff; }
+    .note-editor.note-frame .note-statusbar { background: #f8f9fa; }
+</style>
+@endsection
 
 @section('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script>
+$(document).ready(function() {
+    $('textarea[name="content"]').summernote({
+        height: 500,
+        placeholder: 'Nhập nội dung chi tiết (hỗ trợ dán ảnh trực tiếp, căn lề, chỉnh cỡ chữ...)',
+        tabsize: 2,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'italic', 'underline', 'clear']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+    });
+});
+
 document.getElementById('imgInput').addEventListener('change', function(e) {
     var p = document.getElementById('imgPreview');
     if (e.target.files && e.target.files[0]) {

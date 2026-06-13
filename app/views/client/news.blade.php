@@ -17,7 +17,8 @@
                     khách hàng và thông tin thương hiệu.
                 </div>
                 <div class="funcsRight">
-                    <a href="javascript:;" class="join-club" title="tham gia Anh Em Club" target="_blank">tham gia Anh Em Club</a>
+                    <a href="javascript:;" class="join-club" title="tham gia Anh Em Club" target="_blank">tham gia Anh Em
+                        Club</a>
                 </div>
             </div>
         </div>
@@ -28,9 +29,11 @@
         <div class="news-category-bar">
             <div class="cat-container">
                 <a href="javascript:;" class="cat-link active" data-filter="all">Tất cả</a>
-                <a href="javascript:;" class="cat-link" data-filter="uu-dai">Ưu đãi</a>
-                <a href="javascript:;" class="cat-link" data-filter="su-kien">Sự kiện</a>
-                <a href="javascript:;" class="cat-link" data-filter="van-hoa">Văn hoá</a>
+                @if(isset($categories) && count($categories) > 0)
+                    @foreach($categories as $category)
+                        <a href="javascript:;" class="cat-link" data-filter="{{ $category->slug }}">{{ $category->name }}</a>
+                    @endforeach
+                @endif
             </div>
         </div>
         <div class="custom-news-page">
@@ -43,9 +46,10 @@
                     z-index: 10;
                     padding: 15px 0;
                     border-bottom: 1px solid #eaeaea;
-                    box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+                    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
                     margin-bottom: 10px;
                 }
+
                 .news-category-bar .cat-container {
                     max-width: 1360px;
                     margin: 0 auto;
@@ -56,9 +60,11 @@
                     overflow-x: auto;
                     scrollbar-width: none;
                 }
+
                 .news-category-bar .cat-container::-webkit-scrollbar {
                     display: none;
                 }
+
                 .news-category-bar .cat-link {
                     display: inline-flex;
                     align-items: center;
@@ -74,19 +80,23 @@
                     white-space: nowrap;
                     transition: all 0.3s ease;
                 }
+
                 .news-category-bar .cat-link:hover {
                     background-color: #e0e0e0;
                     color: #333;
                 }
+
                 .news-category-bar .cat-link.active {
                     background-color: #ffa827;
                     color: #ffffff;
                 }
+
                 @media (max-width: 768px) {
                     .news-category-bar .cat-container {
                         padding: 0 20px;
                         gap: 10px;
                     }
+
                     .news-category-bar .cat-link {
                         font-size: 13px;
                         padding: 8px 16px;
@@ -100,11 +110,14 @@
                     color: #222;
                     max-width: 1360px;
                     width: 100%;
+                    box-sizing: border-box;
                     margin: 0 auto;
                 }
+
                 .editorial-section {
                     margin-bottom: 60px;
                 }
+
                 .editorial-title {
                     font-family: 'PlusJaS-Bold', sans-serif;
                     font-size: 28px;
@@ -117,6 +130,7 @@
                     display: flex;
                     align-items: center;
                 }
+
                 .editorial-title::before {
                     content: '';
                     display: inline-block;
@@ -125,18 +139,19 @@
                     background: #ffa827;
                     margin-right: 15px;
                 }
-                
+
                 /* FEATURED NEWS (2/3 + 1/3) */
                 .featured-news-grid {
                     display: grid;
                     grid-template-columns: 2fr 1fr;
                     gap: 40px;
                 }
-                
+
                 /* Main Featured Post */
                 .main-featured-post {
                     position: relative;
                 }
+
                 .main-featured-post .post-thumb {
                     display: block;
                     width: 100%;
@@ -145,15 +160,18 @@
                     margin-bottom: 20px;
                     background: #f4f4f4;
                 }
+
                 .main-featured-post .post-thumb img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
                     transition: transform 0.6s ease;
                 }
+
                 .main-featured-post:hover .post-thumb img {
                     transform: scale(1.03);
                 }
+
                 .post-meta {
                     font-size: 13px;
                     color: #d32f2f;
@@ -165,10 +183,12 @@
                     align-items: center;
                     gap: 15px;
                 }
+
                 .post-meta .date {
                     color: #777;
                     font-weight: 500;
                 }
+
                 .main-featured-post .post-title {
                     font-family: 'PlusJaS-Bold', sans-serif;
                     font-size: 34px;
@@ -176,14 +196,17 @@
                     margin-bottom: 16px;
                     color: #111;
                 }
+
                 .main-featured-post .post-title a {
                     color: inherit;
                     text-decoration: none;
                     transition: color 0.2s;
                 }
+
                 .main-featured-post .post-title a:hover {
                     color: #ffa827;
                 }
+
                 .main-featured-post .post-excerpt {
                     font-size: 16px;
                     line-height: 1.6;
@@ -200,16 +223,19 @@
                     flex-direction: column;
                     gap: 25px;
                 }
+
                 .small-post {
                     display: flex;
                     gap: 20px;
                     border-bottom: 1px solid #eaeaea;
                     padding-bottom: 25px;
                 }
+
                 .small-post:last-child {
                     border-bottom: none;
                     padding-bottom: 0;
                 }
+
                 .small-post .post-thumb {
                     display: block;
                     width: 140px;
@@ -218,18 +244,22 @@
                     overflow: hidden;
                     background: #f4f4f4;
                 }
+
                 .small-post .post-thumb img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
                     transition: transform 0.5s;
                 }
+
                 .small-post:hover .post-thumb img {
                     transform: scale(1.05);
                 }
+
                 .small-post .post-info {
                     flex-grow: 1;
                 }
+
                 .small-post .post-title {
                     font-family: 'PlusJaS-Bold', sans-serif;
                     font-size: 17px;
@@ -240,11 +270,13 @@
                     -webkit-box-orient: vertical;
                     overflow: hidden;
                 }
+
                 .small-post .post-title a {
                     color: #111;
                     text-decoration: none;
                     transition: color 0.2s;
                 }
+
                 .small-post .post-title a:hover {
                     color: #ffa827;
                 }
@@ -255,9 +287,11 @@
                     grid-template-columns: repeat(4, 1fr);
                     gap: 25px;
                 }
+
                 .offer-post {
                     position: relative;
                 }
+
                 .offer-post .post-thumb {
                     display: block;
                     aspect-ratio: 4 / 3;
@@ -265,29 +299,35 @@
                     margin-bottom: 16px;
                     background: #f4f4f4;
                 }
+
                 .offer-post .post-thumb img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
                     transition: transform 0.5s;
                 }
+
                 .offer-post:hover .post-thumb img {
                     transform: scale(1.05);
                 }
+
                 .offer-post .post-meta {
                     color: #ffa827;
                 }
+
                 .offer-post .post-title {
                     font-family: 'PlusJaS-Bold', sans-serif;
                     font-size: 18px;
                     line-height: 1.4;
                     margin-bottom: 10px;
                 }
+
                 .offer-post .post-title a {
                     color: #111;
                     text-decoration: none;
                     transition: color 0.2s;
                 }
+
                 .offer-post .post-title a:hover {
                     color: #ffa827;
                 }
@@ -297,6 +337,7 @@
                         grid-template-columns: 1fr;
                         gap: 30px;
                     }
+
                     .offers-grid {
                         grid-template-columns: repeat(2, 1fr);
                         gap: 20px;
@@ -305,58 +346,104 @@
                         font-size: 28px;
                     }
                 }
+
                 @media (max-width: 768px) {
                     .custom-news-page {
-                        padding: 25px 20px 50px 20px;
+                        padding: 20px 15px 50px 15px;
                     }
+
                     .editorial-title {
                         font-size: 20px;
                         margin-bottom: 20px;
-                        padding-bottom: 8px;
                     }
+
                     .editorial-title::before {
-                        width: 8px;
+                        width: 10px;
                         height: 20px;
                         margin-right: 10px;
                     }
+
+                    /* Mobile-only Card styles */
+                    .main-featured-post {
+                        background: #ffffff;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+                        overflow: hidden;
+                        margin-bottom: 25px;
+                    }
+
+                    .main-featured-post .post-thumb {
+                        margin-bottom: 12px;
+                    }
+
+                    .main-featured-post .post-meta,
+                    .main-featured-post .post-title,
+                    .main-featured-post .post-excerpt {
+                        padding-left: 16px;
+                        padding-right: 16px;
+                    }
+
+                    .main-featured-post .post-excerpt {
+                        padding-bottom: 16px;
+                    }
+
                     .main-featured-post .post-title {
                         font-size: 20px;
                         line-height: 1.4;
                         margin-bottom: 10px;
+                        word-break: break-word;
                     }
+
                     .main-featured-post .post-excerpt {
                         font-size: 14px;
                     }
-                    .stacked-posts {
-                        gap: 20px;
-                    }
+
                     .small-post {
-                        gap: 15px;
-                        padding-bottom: 20px;
+                        flex-direction: column;
+                        background: #ffffff;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+                        overflow: hidden;
                     }
+
+                    .small-post:hover {
+                        transform: translateY(-5px);
+                    }
+
                     .small-post .post-thumb {
-                        width: 100px;
-                        height: 70px;
+                        width: 100%;
+                        height: auto;
+                        min-height: auto;
+                        aspect-ratio: 16 / 9;
                     }
-                    .small-post .post-title {
-                        font-size: 14px;
-                        margin-top: 0;
-                        line-height: 1.4;
+
+                    .small-post .post-info {
+                        padding: 16px;
                     }
-                    .small-post .post-meta {
-                        font-size: 11px;
-                        margin-bottom: 4px;
+
+                    .offer-post {
+                        background: #ffffff;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+                        overflow: hidden;
                     }
+
+                    .offer-post .post-thumb {
+                        margin-bottom: 12px;
+                    }
+
+                    .offer-post .post-meta,
+                    .offer-post .post-title {
+                        padding-left: 16px;
+                        padding-right: 16px;
+                    }
+
+                    .offer-post .post-title {
+                        padding-bottom: 16px;
+                    }
+
                     .offers-grid {
                         grid-template-columns: 1fr;
-                        gap: 20px;
-                    }
-                    .offer-post .post-thumb {
-                        margin-bottom: 10px;
-                    }
-                    .offer-post .post-title {
-                        font-size: 16px;
-                        line-height: 1.4;
                     }
                 }
             </style>
@@ -379,11 +466,11 @@
                         }
                     @endphp
                     <div class="main-featured-post">
-                        <a href="javascript:;" class="post-thumb">
+                        <a href="{{ BASE_URL }}tin-tuc/{{ $mainPost->slug }}" class="post-thumb">
                             <img src="{{ $imgUrl }}" alt="{{ $mainPost->title }}" loading="eager">
                         </a>
                         <div class="post-meta">{{ $mainPost->category_name ?? 'SỰ KIỆN NỔI BẬT' }} <span class="date">{{ date('d/m/Y', strtotime($mainPost->created_at)) }}</span></div>
-                        <h3 class="post-title"><a href="javascript:;">{{ $mainPost->title }}</a></h3>
+                        <h3 class="post-title"><a href="{{ BASE_URL }}tin-tuc/{{ $mainPost->slug }}">{{ $mainPost->title }}</a></h3>
                         <p class="post-excerpt">{{ $mainPost->overview }}</p>
                     </div>
                     @endif
@@ -391,26 +478,27 @@
                     <!-- Right: Stacked Small Posts -->
                     <div class="stacked-posts">
                         @for($i = 1; $i < min(4, count($news)); $i++)
-                        @php
-                            $subPost = $news[$i];
-                            $imgUrl = $subPost->img_thumbnail;
-                            if ($imgUrl) {
-                                if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
-                                    $imgUrl = 'storage/uploads/news/' . basename($imgUrl);
+                            @php
+                                $subPost = $news[$i];
+                                $imgUrl = $subPost->img_thumbnail;
+                                if ($imgUrl) {
+                                    if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
+                                        $imgUrl = 'storage/uploads/news/' . basename($imgUrl);
+                                    }
+                                } else {
+                                    $imgUrl = 'images/Untitled-3.webp';
                                 }
-                            } else {
-                                $imgUrl = 'images/Untitled-3.webp';
-                            }
-                        @endphp
-                        <div class="small-post">
-                            <a href="javascript:;" class="post-thumb">
-                                <img src="{{ $imgUrl }}" alt="{{ $subPost->title }}" loading="eager">
-                            </a>
-                            <div class="post-info">
-                                <div class="post-meta">{{ $subPost->category_name ?? 'TIN TỨC' }} <span class="date">{{ date('d/m', strtotime($subPost->created_at)) }}</span></div>
-                                <h4 class="post-title"><a href="javascript:;">{{ $subPost->title }}</a></h4>
+                            @endphp
+                            <div class="small-post">
+                                <a href="{{ BASE_URL }}tin-tuc/{{ $subPost->slug }}" class="post-thumb">
+                                    <img src="{{ $imgUrl }}" alt="{{ $subPost->title }}">
+                                </a>
+                                <div class="post-info">
+                                    <div class="post-meta">{{ $subPost->category_name ?? 'TIN TỨC' }} <span
+                                            class="date">{{ date('d/m', strtotime($subPost->created_at)) }}</span></div>
+                                    <h4 class="post-title"><a href="{{ BASE_URL }}tin-tuc/{{ $subPost->slug }}">{{ $subPost->title }}</a></h4>
+                                </div>
                             </div>
-                        </div>
                         @endfor
                     </div>
                 </div>
@@ -434,17 +522,18 @@
                         }
                     @endphp
                     <div class="offer-post">
-                        <a href="javascript:;" class="post-thumb">
+                        <a href="{{ BASE_URL }}tin-tuc/{{ $offer->slug }}" class="post-thumb">
                             <img src="{{ $imgUrl }}" alt="{{ $offer->title }}" loading="eager">
                         </a>
                         <div class="post-meta">{{ $offer->category_name ?? 'ƯU ĐÃI' }} <span class="date">{{ date('d/m', strtotime($offer->created_at)) }}</span></div>
-                        <h4 class="post-title"><a href="javascript:;">{{ $offer->title }}</a></h4>
+                        <h4 class="post-title"><a href="{{ BASE_URL }}tin-tuc/{{ $offer->slug }}">{{ $offer->title }}</a></h4>
                     </div>
                     @endfor
                     @else
-                    <div class="no-offers" style="grid-column: 1/-1; text-align: center; color: #666; padding: 40px 0; font-style: italic;">
-                        Hiện tại chưa có chương trình ưu đãi nào khác. Xin vui lòng quay lại sau!
-                    </div>
+                        <div class="no-offers"
+                            style="grid-column: 1/-1; text-align: center; color: #666; padding: 40px 0; font-style: italic;">
+                            Hiện tại chưa có chương trình ưu đãi nào khác. Xin vui lòng quay lại sau!
+                        </div>
                     @endif
                 </div>
             </div>
@@ -462,7 +551,7 @@
             fixPositionStickyMenu();
 
             // Handle category click for active state
-            $('.news-category-bar .cat-link').on('click', function(e) {
+            $('.news-category-bar .cat-link').on('click', function (e) {
                 $('.news-category-bar .cat-link').removeClass('active');
                 $(this).addClass('active');
             });

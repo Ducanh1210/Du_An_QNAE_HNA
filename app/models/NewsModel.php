@@ -31,6 +31,15 @@ class NewsModel extends BaseModel {
         return $this->loadRow([$id]);
     }
 
+    public function getBySlug($slug) {
+        $sql = "SELECT n.*, c.name as category_name 
+                FROM news n 
+                LEFT JOIN categories c ON n.category_id = c.id 
+                WHERE n.slug = ? AND n.is_active = 1";
+        $this->setQuery($sql);
+        return $this->loadRow([$slug]);
+    }
+
     public function create($category_id, $title, $slug, $img_thumbnail, $overview, $content, $is_active = 1) {
         $sql = "INSERT INTO news (category_id, title, slug, img_thumbnail, overview, content, is_active) 
                 VALUES (?, ?, ?, ?, ?, ?, ?)";

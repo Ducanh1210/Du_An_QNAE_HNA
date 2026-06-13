@@ -19,5 +19,6 @@ function flash($key,$msg,$route)  {
             unset($_SESSION['success']);
             break;
     }
-    header('location:'.BASE_URL.$route.'?msg='.$key);die;
+    $separator = strpos($route, '?') !== false ? '&' : '?';
+    header('location:'.BASE_URL.$route.$separator.'msg='.$key);die;
 }

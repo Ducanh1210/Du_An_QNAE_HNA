@@ -4,13 +4,13 @@ namespace App\Models;
 class CategoryModel extends BaseModel {
     
     public function getAll() {
-        $sql = "SELECT * FROM categories ORDER BY type, sort_order ASC";
+        $sql = "SELECT * FROM categories ORDER BY type, sort_order DESC, id DESC";
         $this->setQuery($sql);
         return $this->loadAllRows();
     }
 
     public function getByType($type) {
-        $sql = "SELECT * FROM categories WHERE type = ? AND is_active = 1 ORDER BY sort_order ASC";
+        $sql = "SELECT * FROM categories WHERE type = ? AND is_active = 1 ORDER BY sort_order DESC, id DESC";
         $this->setQuery($sql);
         return $this->loadAllRows([$type]);
     }

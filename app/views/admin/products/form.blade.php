@@ -124,7 +124,12 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
 <script>
+    CKEDITOR.replace('content', {
+        height: 400
+    });
+
     document.getElementById('imgInput').addEventListener('change', function(e) {
         var preview = document.getElementById('imgPreview');
         if (e.target.files && e.target.files[0]) {

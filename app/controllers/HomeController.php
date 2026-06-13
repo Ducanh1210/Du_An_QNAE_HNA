@@ -37,9 +37,12 @@ class HomeController extends BaseController
     public function news()
     {
         $newsModel = new NewsModel();
+        $categoryModel = new CategoryModel();
+
+        $categories = $categoryModel->getByType('news');
         $news = $newsModel->getActive();
 
-        $this->render('client.news', compact('news'));
+        $this->render('client.news', compact('categories', 'news'));
     }
 
     public function contact()

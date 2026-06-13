@@ -29,9 +29,11 @@
         <div class="news-category-bar">
             <div class="cat-container">
                 <a href="javascript:;" class="cat-link active" data-filter="all">Tất cả</a>
-                <a href="javascript:;" class="cat-link" data-filter="uu-dai">Ưu đãi</a>
-                <a href="javascript:;" class="cat-link" data-filter="su-kien">Sự kiện</a>
-                <a href="javascript:;" class="cat-link" data-filter="van-hoa">Văn hoá</a>
+                @if(isset($categories) && count($categories) > 0)
+                    @foreach($categories as $category)
+                        <a href="javascript:;" class="cat-link" data-filter="{{ $category->slug }}">{{ $category->name }}</a>
+                    @endforeach
+                @endif
             </div>
         </div>
         <div class="custom-news-page">

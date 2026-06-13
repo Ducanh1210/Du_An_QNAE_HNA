@@ -83,6 +83,22 @@
                     @endif
                 </div>
                 <div class="mb-3">
+                    <label class="form-label">Video sản phẩm (Chạy ở popup chi tiết)</label>
+                    <input type="file" name="video_url" class="form-control" accept="video/*" id="videoInput">
+                    @if($product && $product->video_url)
+                        <div class="mt-2">
+                            <video src="{{ BASE_URL }}{{ $product->video_url }}" id="videoPreview" 
+                                   controls muted autoplay loop
+                                   style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid var(--border-color); display: block;">
+                            </video>
+                        </div>
+                    @else
+                        <div class="mt-2">
+                            <video src="" id="videoPreview" controls muted autoplay loop style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid var(--border-color); display: none;"></video>
+                        </div>
+                    @endif
+                </div>
+                <div class="mb-3">
                     <label class="form-label">Thứ tự hiển thị</label>
                     <input type="number" name="sort_order" class="form-control" placeholder="0" min="0"
                            value="{{ $product ? $product->sort_order : 0 }}">
@@ -123,6 +139,18 @@
 
     document.getElementById('imgTransparentInput').addEventListener('change', function(e) {
         var preview = document.getElementById('imgTransparentPreview');
+        if (e.target.files && e.target.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(ev) {
+                preview.src = ev.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    });
+
+    document.getElementById('videoInput').addEventListener('change', function(e) {
+        var preview = document.getElementById('videoPreview');
         if (e.target.files && e.target.files[0]) {
             var reader = new FileReader();
             reader.onload = function(ev) {

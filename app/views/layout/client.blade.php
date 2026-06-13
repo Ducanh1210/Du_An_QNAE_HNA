@@ -173,10 +173,106 @@
     @include('partials.cart_popup')
 
     <!-- Product Detail Popup -->
-    <div class="PopUp-menu parent-class" id="popup-detail-atc" style="display: none; max-width: 650px; width: 100%; padding: 0; background: #faf6ee; border: 3px solid #603813; box-shadow: 8px 8px 0px #FFA827;">
-        <div class="popup-detail-content" style="position: relative;">
+    <div class="PopUp-menu parent-class" id="popup-detail-atc" style="display: none; max-width: 850px; width: 100%; padding: 0; background: #faf6ee; border: 3px solid #603813; box-shadow: 8px 8px 0px #FFA827; overflow: hidden; border-radius: 0;">
+        <style>
+            #popup-detail-atc .detail-grid {
+                display: flex;
+                flex-direction: column;
+            }
+            @media (min-width: 768px) {
+                #popup-detail-atc .detail-grid {
+                    flex-direction: row;
+                }
+                #popup-detail-atc .galleryBox {
+                    width: 50% !important;
+                    height: 450px !important;
+                    border-bottom: none !important;
+                    border-right: 3px solid #603813;
+                }
+                #popup-detail-atc .info-section {
+                    width: 50% !important;
+                    padding: 35px 30px !important;
+                    justify-content: space-between;
+                }
+            }
+            #popup-detail-atc .detail-media-wrapper {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                width: 100%;
+            }
+            #popup-detail-atc .detail-video-container {
+                height: 55%;
+                width: 100%;
+                background: #000;
+                border-bottom: 3px solid #603813;
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            #popup-detail-atc .detail-image-container {
+                height: 45%;
+                width: 100%;
+                background: #fff;
+                position: relative;
+                overflow: hidden;
+            }
+            #popup-detail-atc .media-badge {
+                position: absolute;
+                top: 12px;
+                left: 12px;
+                background: #603813;
+                color: #fff;
+                padding: 3px 8px;
+                font-family: PlusJaS-Bold, sans-serif;
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                border: 1.5px solid #603813;
+                z-index: 10;
+                box-shadow: 2px 2px 0px #FFA827;
+            }
+            #popup-detail-atc .info-header {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+            #popup-detail-atc .product-tag {
+                align-self: flex-start;
+                background: #FFA827;
+                color: #603813;
+                font-family: PlusJaS-Bold, sans-serif;
+                font-size: 11px;
+                padding: 3px 8px;
+                text-transform: uppercase;
+                border: 1.5px solid #603813;
+                letter-spacing: 0.5px;
+            }
+            #popup-detail-atc .product-desc {
+                font-family: PlusJaS-Regular, sans-serif;
+                font-size: 14px;
+                color: #7a5028;
+                line-height: 1.6;
+                overflow-y: auto;
+                max-height: 180px;
+                margin-top: 10px;
+                padding-right: 5px;
+            }
+            #popup-detail-atc .product-desc::-webkit-scrollbar {
+                width: 6px;
+            }
+            #popup-detail-atc .product-desc::-webkit-scrollbar-track {
+                background: #faf6ee;
+            }
+            #popup-detail-atc .product-desc::-webkit-scrollbar-thumb {
+                background: #603813;
+            }
+        </style>
+        <div class="popup-detail-content" style="position: relative; height: 100%;">
             <!-- Close Button -->
-            <div class="close-popup" data-fancybox-close style="position: absolute; right: 15px; top: 15px; cursor: pointer; z-index: 10;">
+            <div class="close-popup" data-fancybox-close style="position: absolute; right: 15px; top: 15px; cursor: pointer; z-index: 15;">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="16" cy="16" r="15.1" fill="white" stroke="#603813" stroke-width="1.8" />
                     <path d="M20.6666 11.3335L11.3333 20.6668" stroke="#603813" stroke-width="1.8" stroke-miterlimit="10" stroke-linecap="square" />
@@ -184,38 +280,38 @@
                 </svg>
             </div>
 
-            <div class="detail-grid" style="display: flex; flex-direction: column;">
+            <div class="detail-grid">
                 <!-- Gallery Section -->
-                <div class="galleryBox" style="width: 100%; position: relative; background: #fff; border-bottom: 2px solid #603813; height: 320px; overflow: hidden;">
-                    <div class="swiper-gallery swiper-container" style="height: 100%;">
-                        <div class="swiper-wrapper" id="lstGalleryPopupDetail">
-                            <!-- slides dynamic -->
-                        </div>
-                        <div class="swiper-pagination" style="bottom: 10px; font-family: PlusJaS-Bold, sans-serif; color: #603813; font-size: 14px;"></div>
-                    </div>
+                <div class="galleryBox" id="popupDetailMediaBox" style="width: 100%; position: relative; background: #fff; border-bottom: 3px solid #603813; height: 350px; overflow: hidden;">
+                    <!-- media elements dynamically populated here -->
                 </div>
 
                 <!-- Info Section -->
-                <div class="info-section" style="padding: 25px; display: flex; flex-direction: column; gap: 15px; text-align: left;">
-                    <h2 id="popup-detail-product-name" style="font-family: PlusJaS-Bold, sans-serif; font-size: 24px; color: #603813; margin: 0; text-transform: uppercase;"></h2>
+                <div class="info-section" style="padding: 25px; display: flex; flex-direction: column; gap: 20px; text-align: left; background: #faf6ee;">
+                    <div class="info-header">
+                        <div class="product-tag">Món Ăn</div>
+                        <h2 id="popup-detail-product-name" style="font-family: PlusJaS-Bold, sans-serif; font-size: 26px; color: #603813; margin: 0; text-transform: uppercase; line-height: 1.2;"></h2>
+                        <div id="popup-detail-product-sapo" class="product-desc"></div>
+                    </div>
                     
-                    <div id="popup-detail-product-sapo" style="font-family: PlusJaS-Regular, sans-serif; font-size: 14px; color: #7a5028; line-height: 1.6; max-height: 100px; overflow-y: auto;"></div>
-                    
-                    <div class="price-and-action" style="display: flex; align-items: center; justify-content: space-between; margin-top: 10px; flex-wrap: wrap; gap: 15px;">
-                        <div class="price-box">
-                            <span id="popup-detail-product-current-price" style="font-family: PlusJaS-Bold, sans-serif; font-size: 26px; color: #FE2C55;"></span>
-                        </div>
-
-                        <div class="action-box" style="display: flex; align-items: center; gap: 15px;">
-                            <!-- Quantity selector -->
-                            <div class="qty-select-wrapper" style="display: flex; align-items: center; border: 2px solid #603813; background: #fff; height: 44px; overflow: hidden; box-sizing: border-box;">
-                                <button type="button" id="minusDetail" style="width: 40px; height: 100%; border: none; background: transparent; font-family: PlusJaS-Bold, sans-serif; font-size: 18px; color: #603813; cursor: pointer; display: flex; align-items: center; justify-content: center; outline: none;">-</button>
-                                <input type="text" id="popup-detail-quantity" class="txtQuantity" value="1" readonly style="width: 40px; height: 100%; border: none; border-left: 2px solid #603813; border-right: 2px solid #603813; text-align: center; font-family: PlusJaS-Bold, sans-serif; font-size: 16px; color: #603813; background: transparent; outline: none;" />
-                                <button type="button" id="plusDetail" style="width: 40px; height: 100%; border: none; background: transparent; font-family: PlusJaS-Bold, sans-serif; font-size: 18px; color: #603813; cursor: pointer; display: flex; align-items: center; justify-content: center; outline: none;">+</button>
+                    <div class="price-and-action" style="display: flex; flex-direction: column; gap: 20px; margin-top: auto;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; border-top: 1.5px dashed rgba(96, 56, 19, 0.2); padding-top: 15px;">
+                            <div class="price-box">
+                                <span style="font-family: PlusJaS-Regular, sans-serif; font-size: 13px; color: #7a5028; display: block; margin-bottom: 2px;">Giá bán</span>
+                                <span id="popup-detail-product-current-price" style="font-family: PlusJaS-Bold, sans-serif; font-size: 28px; color: #FE2C55; line-height: 1;"></span>
                             </div>
 
-                            <!-- Add Cart Button -->
-                            <button type="button" class="ready-call-add-to-card btn-add-detail-popup" style="background: #FFA827; border: 2px solid #603813; color: #603813; font-family: PlusJaS-Bold, sans-serif; font-size: 15px; height: 44px; padding: 0 25px; cursor: pointer; text-transform: uppercase; box-shadow: 3px 3px 0px #603813; transition: all 0.1s ease; display: inline-flex; align-items: center; justify-content: center; outline: none;">Thêm vào thực đơn</button>
+                            <div class="action-box" style="display: flex; align-items: center; gap: 15px;">
+                                <!-- Quantity selector -->
+                                <div class="qty-select-wrapper" style="display: flex; align-items: center; border: 2px solid #603813; background: #fff; height: 44px; overflow: hidden; box-sizing: border-box; box-shadow: 2px 2px 0 #603813;">
+                                    <button type="button" id="minusDetail" style="width: 40px; height: 100%; border: none; background: transparent; font-family: PlusJaS-Bold, sans-serif; font-size: 18px; color: #603813; cursor: pointer; display: flex; align-items: center; justify-content: center; outline: none;">-</button>
+                                    <input type="text" id="popup-detail-quantity" class="txtQuantity" value="1" readonly style="width: 40px; height: 100%; border: none; border-left: 2px solid #603813; border-right: 2px solid #603813; text-align: center; font-family: PlusJaS-Bold, sans-serif; font-size: 16px; color: #603813; background: transparent; outline: none;" />
+                                    <button type="button" id="plusDetail" style="width: 40px; height: 100%; border: none; background: transparent; font-family: PlusJaS-Bold, sans-serif; font-size: 18px; color: #603813; cursor: pointer; display: flex; align-items: center; justify-content: center; outline: none;">+</button>
+                                </div>
+
+                                <!-- Add Cart Button -->
+                                <button type="button" class="ready-call-add-to-card btn-add-detail-popup" style="background: #FFA827; border: 2px solid #603813; color: #603813; font-family: PlusJaS-Bold, sans-serif; font-size: 15px; height: 44px; padding: 0 25px; cursor: pointer; text-transform: uppercase; box-shadow: 4px 4px 0px #603813; transition: all 0.1s ease; display: inline-flex; align-items: center; justify-content: center; outline: none;">Thêm vào thực đơn</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -323,30 +419,28 @@
                             });
                         }
 
-                        // Gallery
-                        var galleryContainer = popup.find('.swiper-gallery');
-                        var galleryWrapper = popup.find('.swiper-gallery .swiper-wrapper');
+                        // Media Section (Stacked layout if both exist, otherwise just image)
+                        var mediaBox = popup.find('#popupDetailMediaBox');
+                        var mediaHtml = '';
+                        var imgUrl = (data.LstImage && data.LstImage.length > 0) ? data.LstImage[0].SrcOrigin : 'images/produc.webp';
 
-                        // Clean up any remaining Swiper inline styles or classes from previous runs
-                        if (galleryContainer.length > 0) {
-                            galleryContainer.removeClass().addClass('swiper-gallery swiper-container').removeAttr('style').attr('style', 'height: 100%;');
+                        if (data.ProVideo) {
+                            mediaHtml = `
+                            <div class="detail-media-wrapper">
+                                <div class="detail-video-container">
+                                    <span class="media-badge">Video</span>
+                                    <video src="${data.ProVideo}" autoplay muted loop playsinline controls style="width: 100%; height: 100%; object-fit: cover;"></video>
+                                </div>
+                                <div class="detail-image-container">
+                                    <span class="media-badge">Hình ảnh</span>
+                                    <div style="background-image: url('${imgUrl}'); background-size: cover; background-position: center; height: 100%; width: 100%;"></div>
+                                </div>
+                            </div>`;
+                        } else {
+                            mediaHtml = `
+                            <div style="background-image: url('${imgUrl}'); background-size: cover; background-position: center; height: 100%; width: 100%;"></div>`;
                         }
-                        if (galleryWrapper.length > 0) {
-                            galleryWrapper.removeAttr('style').attr('style', '');
-                        }
-
-                        if (galleryWrapper.length > 0 && data.LstImage && data.LstImage.length > 0) {
-                            var galleryHtml = '';
-                            data.LstImage.forEach(function(img) {
-                                galleryHtml += `
-                                <div class="swiper-slide">
-                                    <div class="images-food" style="width: 100%; height: 100%;">
-                                        <i class="img-background" style="background-image: url('${img.SrcOrigin}'); background-size: cover; background-position: center; height: 100%; width: 100%; display: block;"></i>
-                                    </div>
-                                </div>`;
-                            });
-                            galleryWrapper.html(galleryHtml);
-                        }
+                        mediaBox.html(mediaHtml);
 
                         // Open Fancybox
                         $.fancybox.open({
@@ -362,27 +456,11 @@
                                 beforeShow: function () {
                                     $('body').addClass('popup-active');
                                 },
-                                afterShow: function () {
-                                    if (window.Swiper) {
-                                        window.popupSwiperGallery = new Swiper(".swiper-gallery", {
-                                            slidesPerView: 1,
-                                            spaceBetween: 0,
-                                            pagination: {
-                                                el: ".galleryBox .swiper-pagination",
-                                                type: "fraction"
-                                            }
-                                        });
-                                    }
-                                },
                                 afterClose: function() {
                                     $('body').removeClass('popup-active');
                                     $("#popup-detail-atc").data("id", 0).attr("data-id", 0);
-                                    if (window.popupSwiperGallery) {
-                                        if (typeof window.popupSwiperGallery.destroy === 'function') {
-                                            window.popupSwiperGallery.destroy(true, true);
-                                        }
-                                        window.popupSwiperGallery = null;
-                                    }
+                                    // Completely clear media container on close to pause any video/audio
+                                    mediaBox.html('');
                                 }
                             }
                         });

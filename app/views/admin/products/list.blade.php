@@ -53,6 +53,9 @@
                     </td>
                     <td>
                         <strong>{{ $item->name }}</strong>
+                        @if(!empty($item->video_url))
+                            <span class="badge bg-success ms-1" style="font-size: 10px; padding: 2px 6px; background-color: #28a745 !important; border-radius: 4px;"><i class="fas fa-video me-1"></i>Video</span>
+                        @endif
                         @if($item->overview)
                             <br><small style="color: var(--text-muted);">{{ mb_substr($item->overview, 0, 60) }}...</small>
                         @endif

@@ -188,14 +188,22 @@ class ApiController extends BaseController {
             exit;
         }
 
-        // Map fields to match what frontend expects
         $imgUrl = $p->img_thumbnail;
         if ($imgUrl) {
-            if (!preg_match('/^images\//', $imgUrl) && !preg_match('/^https?:\/\//', $imgUrl)) {
-                $imgUrl = '../MVC/' . $imgUrl;
+            if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
+                $imgUrl = 'storage/uploads/products/' . basename($imgUrl);
             }
         } else {
             $imgUrl = 'images/produc.webp';
+        }
+
+        $videoUrl = $p->video_url;
+        if ($videoUrl) {
+            if (!preg_match('/^(images\/|https?:\/\/)/', $videoUrl)) {
+                $videoUrl = 'storage/uploads/products/' . basename($videoUrl);
+            }
+        } else {
+            $videoUrl = '';
         }
 
         $formattedData = [
@@ -205,6 +213,7 @@ class ApiController extends BaseController {
             'ProSapo' => $p->overview,
             'ProContent' => $p->content,
             'ProLinkDetail' => 'javascript:;',
+            'ProVideo' => $videoUrl,
             'LstImage' => [
                 ['SrcOrigin' => $imgUrl, 'thumb' => $imgUrl]
             ]

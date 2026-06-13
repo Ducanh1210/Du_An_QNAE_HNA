@@ -1009,6 +1009,24 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
         bottom: 5% !important;
         font-size: 6.6vw !important;
     }
+
+    /* Global Page Header Fix for Mobile */
+    .header-page {
+        padding: 95px 15px 30px 15px !important;
+    }
+    .header-page .hp-content {
+        align-items: center !important;
+        text-align: center !important;
+        gap: 15px !important;
+    }
+    .header-page .title-page {
+        font-size: 28px !important;
+        text-align: center !important;
+        margin-bottom: 0 !important;
+    }
+    .header-page .join-club {
+        display: none !important;
+    }
 }
 
 /* Video Banner Section */
@@ -2009,17 +2027,46 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
 
 .td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu .thumb img {
     object-fit: contain !important;
-    /* Keep the transparent plate perfectly scaled */
-    clip-path: inset(0 4px 0 4px) !important;
-    /* Crop stray pixels at the edge to prevent drop-shadow lines */
-    filter: drop-shadow(-5px 10px 0px #ffa827) !important;
-    /* Solid (non-blurred) orange shadow */
     transform: scale(1.4) !important;
     /* Enlarge the product image significantly */
-    top: -50px !important;
+    top: -70px !important;
     /* Shift up slightly */
-    left: 10px !important;
-    /* Shift right slightly */
+    left: 0 !important;
+    /* Center horizontally */
+    position: absolute !important;
+    transition: transform 0.3s ease, top 0.3s ease !important;
+    z-index: 2 !important;
+}
+
+/* Override for wide product images (e.g., combos) */
+.td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu .thumb img.wide-img {
+    transform: scale(1.1) !important;
+    top: -40px !important;
+}
+
+/* Soft blurred shadow under the product plate */
+.td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu .thumb::after {
+    content: '' !important;
+    position: absolute !important;
+    width: 116px !important;
+    height: 40px !important;
+    background-color: rgba(90, 50, 15, 0.16) !important;
+    border-radius: 50% !important;
+    top: 98px !important;
+    left: calc(50% - 58px) !important;
+    z-index: 1 !important;
+    filter: blur(6px) !important;
+    pointer-events: none !important;
+    display: block !important;
+}
+
+/* Adjust shadow for wide combo plates */
+.td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu .thumb.wide-thumb::after {
+    width: 126px !important;
+    height: 34px !important;
+    top: 75px !important;
+    left: calc(50% - 63px) !important;
+    filter: blur(5.5px) !important;
 }
 
 .td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu .info-box {
@@ -2500,4 +2547,75 @@ body .list-food-menu .food-menu .funcsBox .add-to-card {
     .contact-content .cc-wrapper .cc-right .formInput .custom-input #contact-chk-detail {
         grid-column: span 1;
     }
+}
+
+/* Product Detail Popup Styles */
+#popup-detail-atc {
+    max-width: 650px;
+    width: 92%;
+    padding: 0 !important;
+    background: #faf6ee !important;
+    border: 3px solid #603813 !important;
+    box-shadow: 8px 8px 0px #FFA827 !important;
+}
+
+#popup-detail-atc .close-popup:hover circle {
+    fill: #603813 !important;
+    stroke: #603813 !important;
+}
+#popup-detail-atc .close-popup:hover path {
+    stroke: #faf6ee !important;
+}
+
+#popup-detail-atc .btn-add-detail-popup:hover {
+    background: #e59720 !important;
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0px #603813 !important;
+}
+#popup-detail-atc .btn-add-detail-popup:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px 0px #603813 !important;
+}
+
+#popup-detail-atc .qty-select-wrapper button:hover {
+    background: #f0ebd9 !important;
+}
+
+/* Swiper Gallery Style in Popup */
+#popup-detail-atc .swiper-gallery .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+}
+
+#popup-detail-atc .swiper-gallery .images-food {
+    width: 100%;
+    height: 100%;
+}
+
+#popup-detail-atc .swiper-gallery .img-background {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-top: 0;
+}
+
+@media screen and (max-width: 600px) {
+    #popup-detail-atc .price-and-action {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+    #popup-detail-atc .action-box {
+        width: 100% !important;
+        justify-content: space-between !important;
+    }
+}
+
+/* Prevent scroll position reset when popup is active */
+body.popup-active {
+    height: auto !important;
 }

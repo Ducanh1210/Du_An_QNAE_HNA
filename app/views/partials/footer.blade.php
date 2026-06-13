@@ -12,7 +12,7 @@
             <div class="ph-fn-slant ph-fn-left-stripe-1"></div>
             <div class="ph-fn-slant ph-fn-left-stripe-2"></div>
             <a href="{{ route('') }}" class="ph-logo" title="Quán Nhậu Anh Em">
-                <img src="{{ BASE_URL }}images/logo1.webp" alt="Quán Nhậu Anh Em" class="ph-logo-img">
+                <img src="{{ BASE_URL }}images/logo1.webp" alt="Quán Nhậu Anh Em" class="ph-logo-img" loading="eager">
                 <div class="ph-logo-text">
                     <span class="ph-logo-text-top"><span>Q</span><span>U</span><span>Á</span><span>N</span><span>&nbsp;</span><span>N</span><span>H</span><span>Ậ</span><span>U</span></span>
                     <span class="ph-logo-text-bottom">ANH EM</span>
@@ -86,7 +86,7 @@
         <div class="ph-drawer-content">
             <!-- Brand Logo Mascot & Text -->
             <div class="ph-drawer-logo">
-                <img src="{{ BASE_URL }}images/logo1.webp" alt="Quán Nhậu Anh Em" class="ph-d-logo-img">
+                <img src="{{ BASE_URL }}images/logo1.webp" alt="Quán Nhậu Anh Em" class="ph-d-logo-img" loading="eager">
                 <div class="ph-d-logo-text">
                     <span class="ph-d-logo-text-top"><span>Q</span><span>U</span><span>Á</span><span>N</span><span>&nbsp;</span><span>N</span><span>H</span><span>Ậ</span><span>U</span></span>
                     <span class="ph-d-logo-text-bottom">ANH EM</span>

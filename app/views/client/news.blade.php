@@ -94,6 +94,7 @@
                 }
 
                 .custom-news-page {
+                    box-sizing: border-box;
                     padding: 40px 30px 80px 30px;
                     font-family: 'PlusJaS-Regular', sans-serif;
                     color: #222;
@@ -294,22 +295,68 @@
                 @media (max-width: 991px) {
                     .featured-news-grid {
                         grid-template-columns: 1fr;
+                        gap: 30px;
                     }
                     .offers-grid {
                         grid-template-columns: repeat(2, 1fr);
+                        gap: 20px;
+                    }
+                    .main-featured-post .post-title {
+                        font-size: 28px;
                     }
                 }
                 @media (max-width: 768px) {
-                    .offers-grid {
-                        grid-template-columns: 1fr;
+                    .custom-news-page {
+                        padding: 25px 20px 50px 20px;
+                    }
+                    .editorial-title {
+                        font-size: 20px;
+                        margin-bottom: 20px;
+                        padding-bottom: 8px;
+                    }
+                    .editorial-title::before {
+                        width: 8px;
+                        height: 20px;
+                        margin-right: 10px;
+                    }
+                    .main-featured-post .post-title {
+                        font-size: 20px;
+                        line-height: 1.4;
+                        margin-bottom: 10px;
+                    }
+                    .main-featured-post .post-excerpt {
+                        font-size: 14px;
+                    }
+                    .stacked-posts {
+                        gap: 20px;
                     }
                     .small-post {
-                        flex-direction: column;
+                        gap: 15px;
+                        padding-bottom: 20px;
                     }
                     .small-post .post-thumb {
-                        width: 100%;
-                        height: auto;
-                        aspect-ratio: 16 / 9;
+                        width: 100px;
+                        height: 70px;
+                    }
+                    .small-post .post-title {
+                        font-size: 14px;
+                        margin-top: 0;
+                        line-height: 1.4;
+                    }
+                    .small-post .post-meta {
+                        font-size: 11px;
+                        margin-bottom: 4px;
+                    }
+                    .offers-grid {
+                        grid-template-columns: 1fr;
+                        gap: 20px;
+                    }
+                    .offer-post .post-thumb {
+                        margin-bottom: 10px;
+                    }
+                    .offer-post .post-title {
+                        font-size: 16px;
+                        line-height: 1.4;
                     }
                 }
             </style>
@@ -333,7 +380,7 @@
                     @endphp
                     <div class="main-featured-post">
                         <a href="javascript:;" class="post-thumb">
-                            <img src="{{ $imgUrl }}" alt="{{ $mainPost->title }}">
+                            <img src="{{ $imgUrl }}" alt="{{ $mainPost->title }}" loading="eager">
                         </a>
                         <div class="post-meta">{{ $mainPost->category_name ?? 'SỰ KIỆN NỔI BẬT' }} <span class="date">{{ date('d/m/Y', strtotime($mainPost->created_at)) }}</span></div>
                         <h3 class="post-title"><a href="javascript:;">{{ $mainPost->title }}</a></h3>
@@ -357,7 +404,7 @@
                         @endphp
                         <div class="small-post">
                             <a href="javascript:;" class="post-thumb">
-                                <img src="{{ $imgUrl }}" alt="{{ $subPost->title }}">
+                                <img src="{{ $imgUrl }}" alt="{{ $subPost->title }}" loading="eager">
                             </a>
                             <div class="post-info">
                                 <div class="post-meta">{{ $subPost->category_name ?? 'TIN TỨC' }} <span class="date">{{ date('d/m', strtotime($subPost->created_at)) }}</span></div>
@@ -388,7 +435,7 @@
                     @endphp
                     <div class="offer-post">
                         <a href="javascript:;" class="post-thumb">
-                            <img src="{{ $imgUrl }}" alt="{{ $offer->title }}">
+                            <img src="{{ $imgUrl }}" alt="{{ $offer->title }}" loading="eager">
                         </a>
                         <div class="post-meta">{{ $offer->category_name ?? 'ƯU ĐÃI' }} <span class="date">{{ date('d/m', strtotime($offer->created_at)) }}</span></div>
                         <h4 class="post-title"><a href="javascript:;">{{ $offer->title }}</a></h4>

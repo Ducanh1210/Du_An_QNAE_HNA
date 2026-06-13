@@ -1054,6 +1054,14 @@ body .slogan-container .slogan-decor-right-img {
         margin-top: -60px !important;
     }
 
+    /* Move product shadow up a bit on mobile */
+    body .td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu .thumb::after {
+        top: 72px !important;
+    }
+    body .td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu .thumb.wide-thumb::after {
+        top: 52px !important;
+    }
+
     body .td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu {
         padding-top: 60px !important;
         margin-top: -60px !important;

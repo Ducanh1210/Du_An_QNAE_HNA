@@ -30,16 +30,32 @@
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>
-                        @if($item->img_thumbnail)
-                            <img src="{{ BASE_URL }}{{ $item->img_thumbnail }}" class="thumb-img" alt="{{ $item->name }}">
-                        @else
-                            <div class="thumb-img d-flex align-items-center justify-content-center" style="background: var(--bg-hover);">
-                                <i class="fas fa-image" style="color: var(--text-muted);"></i>
+                        <div class="d-flex gap-1 align-items-center">
+                            <div>
+                                @if($item->img_thumbnail)
+                                    <img src="{{ BASE_URL }}{{ $item->img_thumbnail }}" class="thumb-img" alt="{{ $item->name }}" title="Ảnh đại diện" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border-color);">
+                                @else
+                                    <div class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: var(--bg-hover); border-radius: 4px; border: 1px solid var(--border-color);" title="Không có ảnh đại diện">
+                                        <i class="fas fa-image" style="color: var(--text-muted); font-size: 12px;"></i>
+                                    </div>
+                                @endif
                             </div>
-                        @endif
+                            <div>
+                                @if($item->img_transparent)
+                                    <img src="{{ BASE_URL }}{{ $item->img_transparent }}" class="thumb-img" alt="{{ $item->name }}" title="Ảnh tách nền" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border-color); background: #e9e9e9;">
+                                @else
+                                    <div class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: var(--bg-hover); border-radius: 4px; border: 1px solid var(--border-color);" title="Không có ảnh tách nền">
+                                        <i class="fas fa-image" style="color: var(--text-muted); font-size: 12px; opacity: 0.5;"></i>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
                     </td>
                     <td>
                         <strong>{{ $item->name }}</strong>
+                        @if(!empty($item->video_url))
+                            <span class="badge bg-success ms-1" style="font-size: 10px; padding: 2px 6px; background-color: #28a745 !important; border-radius: 4px;"><i class="fas fa-video me-1"></i>Video</span>
+                        @endif
                         @if($item->overview)
                             <br><small style="color: var(--text-muted);">{{ mb_substr($item->overview, 0, 60) }}...</small>
                         @endif

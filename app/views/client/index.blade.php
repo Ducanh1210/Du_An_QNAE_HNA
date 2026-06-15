@@ -9,6 +9,11 @@
     <link rel="preload" as="image" href="{{ BASE_URL }}images/bg-pattern.webp" />
     <link rel="preload" as="image" href="{{ BASE_URL }}images/Logo_PNG.webp" />
     <link rel="preload" as="image" href="{{ BASE_URL }}images/loading.webp" />
+    <!-- Preload Slogan Section assets to prevent pop-in on scroll -->
+    <link rel="preload" as="image" href="{{ BASE_URL }}images/Background.webp" />
+    <link rel="preload" as="image" href="{{ BASE_URL }}images/slogan_layer_3.webp" />
+    <link rel="preload" as="image" href="{{ BASE_URL }}images/slogan_layer_10.webp" />
+    <link rel="preload" as="image" href="{{ BASE_URL }}images/slogan_ae_2.webp" />
 @endsection
 
 @section('styles')

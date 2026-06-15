@@ -1142,6 +1142,7 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
     right: 11.2%;
     width: 18.6%;
     /* Guessing a size */
+    container-type: inline-size;
 }
 
 .video-banner-center-right {
@@ -1189,7 +1190,7 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
     justify-content: center;
     text-align: center;
     font-family: PlusJaS-Bold, sans-serif;
-    font-size: 1.95vw;
+    font-size: 10.5cqw;
     line-height: 1.35;
     letter-spacing: 1px;
     color: #5c2a18;
@@ -1207,7 +1208,29 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
 
 /* Removed mobile font-size scaling for speech bubble text to match scaled-down container */
 
-/* Removed media queries that scaled up video banner elements on mobile to prevent overlap */
+/* Mobile responsive zoom for video banner section */
+@media screen and (max-width: 768px) {
+    body .video-banner-section {
+        max-width: none !important;
+        left: 50% !important;
+        transform: translateX(-61%) !important;
+    }
+    .video-banner-section .video-mascot {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    body .video-banner-section {
+        width: 165% !important;
+    }
+}
+
+@media screen and (min-width: 577px) and (max-width: 768px) {
+    body .video-banner-section {
+        width: 135% !important;
+    }
+}
 
 /* =========================================
    NEW SLANTED FOOTER STYLES
@@ -2494,9 +2517,9 @@ body .list-food-menu .food-menu .funcsBox .add-to-card {
 .video-banner-section .video-mascot {
     position: absolute;
     bottom: -5px;
-    left: -5%;
+    left: 0%;
     height: auto;
-    width: 28%;
+    width: 32%;
     /* Scales with screen width */
     z-index: 15;
     pointer-events: none;

@@ -209,3 +209,14 @@
     }
 </style>
 @endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+            App.initHelpers([""]);
+            if (typeof fixPositionStickyMenu === 'function') {
+                fixPositionStickyMenu();
+            }
+        });
+    </script>
+@endsection

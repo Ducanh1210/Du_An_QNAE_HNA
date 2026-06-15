@@ -21,7 +21,6 @@
                     <th>Danh mục</th>
                     <th>Giá</th>
                     <th>Trạng thái</th>
-                    <th>Thứ tự</th>
                     <th style="text-align: right;">Thao tác</th>
                 </tr>
             </thead>
@@ -69,7 +68,6 @@
                             <span class="badge-status badge-inactive">Ẩn</span>
                         @endif
                     </td>
-                    <td>{{ $item->sort_order }}</td>
                     <td style="text-align: right; white-space: nowrap;">
                         <a href="{{ BASE_URL }}products/{{ $item->id }}/edit" class="btn btn-sm-action" title="Sửa">
                             <i class="fas fa-pen"></i>

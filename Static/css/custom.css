@@ -1209,29 +1209,26 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
 /* Removed mobile font-size scaling for speech bubble text to match scaled-down container */
 
 /* Mobile responsive zoom for video banner section */
-@media screen and (max-width: 920px) {
+@media screen and (max-width: 768px) {
     body .video-banner-section {
         max-width: none !important;
         left: 50% !important;
-        transform: translateX(-50%) !important;
+        transform: translateX(-61%) !important;
+    }
+    .video-banner-section .video-mascot {
+        display: none !important;
     }
 }
 
 @media screen and (max-width: 576px) {
     body .video-banner-section {
-        width: 180% !important;
+        width: 165% !important;
     }
 }
 
 @media screen and (min-width: 577px) and (max-width: 768px) {
     body .video-banner-section {
-        width: 145% !important;
-    }
-}
-
-@media screen and (min-width: 769px) and (max-width: 920px) {
-    body .video-banner-section {
-        width: 120% !important;
+        width: 135% !important;
     }
 }
 
@@ -2520,9 +2517,9 @@ body .list-food-menu .food-menu .funcsBox .add-to-card {
 .video-banner-section .video-mascot {
     position: absolute;
     bottom: -5px;
-    left: -5%;
+    left: 0%;
     height: auto;
-    width: 28%;
+    width: 32%;
     /* Scales with screen width */
     z-index: 15;
     pointer-events: none;

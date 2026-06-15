@@ -215,4 +215,15 @@
 </style>
 <?php $this->stopSection(); ?>
 
+<?php $this->startSection('scripts'); ?>
+ <script>
+ $(document).ready(function () {
+ App.initHelpers([""]);
+ if (typeof fixPositionStickyMenu === 'function') {
+ fixPositionStickyMenu();
+ }
+ });
+ </script>
+<?php $this->stopSection(); ?>
+
 <?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.client'); } ?>

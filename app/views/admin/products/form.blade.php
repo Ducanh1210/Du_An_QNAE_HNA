@@ -99,11 +99,6 @@
                     @endif
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Thứ tự hiển thị</label>
-                    <input type="number" name="sort_order" class="form-control" placeholder="0" min="0"
-                           value="{{ $product ? $product->sort_order : 0 }}">
-                </div>
-                <div class="mb-3">
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" name="is_active" id="isActive" 
                                {{ (!$product || $product->is_active) ? 'checked' : '' }}

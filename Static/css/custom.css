@@ -527,8 +527,8 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
     height: auto;
     display: block;
     object-fit: cover;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 2%, rgba(0, 0, 0, 0.5) 7%, black 15%);
-    mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 2%, rgba(0, 0, 0, 0.5) 7%, black 15%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 2%, rgba(0, 0, 0, 0.5) 7%, black 15%, black 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 2%, rgba(0, 0, 0, 0.5) 7%, black 15%, black 100%);
 }
 
 @media (max-width: 768px) {
@@ -550,7 +550,7 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
     z-index: 10;
     pointer-events: none;
     margin: 0;
-    letter-spacing: 0.04em;
+    letter-spacing: -0.02em;
     -webkit-text-stroke: 0px;
 }
 
@@ -559,6 +559,7 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
         font-size: 5.2vw;
         left: 6%;
         top: 6%;
+        letter-spacing: -0.02em !important;
     }
 }
 
@@ -568,6 +569,7 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
         left: 5%;
         top: 5%;
         -webkit-text-stroke: 0px;
+        letter-spacing: -0.02em !important;
     }
 }
 
@@ -577,6 +579,7 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
         left: 5%;
         top: 4%;
         -webkit-text-stroke: 0px;
+        letter-spacing: -0.02em !important;
     }
 }
 
@@ -648,54 +651,100 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
         font-size: 1.2vw;
     }
 }
-
-@media (max-width: 860px) {
-    .banner-full-screen .banner-quote-box {
-        right: 8%;
-        top: 10%;
-        width: 41%;
-    }
-
-    .banner-full-screen .banner-quote-box .quote-text {
-        font-size: 1.5vw;
-        line-height: 1.35;
-        margin-bottom: 0.6vw;
-        padding-bottom: 0.6vw;
-    }
-
-    .banner-full-screen .banner-quote-box .quote-author .author-title {
-        font-size: 1.7vw;
-    }
-
-    .banner-full-screen .banner-quote-box .quote-author .author-name {
-        font-size: 1.4vw;
-    }
+.banner-mobile-row {
+    display: contents;
 }
 
-@media (max-width: 576px) {
-    .banner-full-screen .banner-quote-box {
+@media (max-width: 768px) {
+    .banner-full-screen {
+        position: relative !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: visible !important;
+    }
+
+    .banner-full-screen picture {
         display: block !important;
-        right: 5%;
-        top: 25%;
-        width: 90%;
-        background: rgba(255, 255, 255, 0.85);
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        width: 190% !important;
+        position: relative !important;
+        left: -59% !important;
+        transform: none !important;
+        overflow: hidden !important;
+    }
+
+    .banner-full-screen .banner-fs-img {
+        transform: scale(1.28) !important;
+        transform-origin: left bottom !important;
+    }
+
+    .banner-mobile-row {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: flex-end !important;
+        justify-content: space-between !important;
+        box-sizing: border-box !important;
+        padding: 5vw 4vw !important;
+        margin-top: -5vw !important;
+        z-index: 10 !important;
+    }
+
+    .banner-full-screen .banner-quote-box {
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        width:45vw !important;
+        max-width:45vw !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        z-index: 5 !important;
     }
 
     .banner-full-screen .banner-quote-box .quote-text {
-        font-size: 3.8vw;
-        line-height: 1.5;
-        border-bottom-color: rgba(94, 55, 19, 0.2);
+        font-size: 2.6vw !important;
+        line-height: 1.5 !important;
+        margin-bottom: 1.8vw !important;
+        padding-bottom: 1.8vw !important;
+        border-bottom: 0.15vw solid rgba(94, 55, 19, 0.2) !important;
+        text-align: justify !important;
+    }
+
+    .banner-full-screen .banner-quote-box .quote-author {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
     }
 
     .banner-full-screen .banner-quote-box .quote-author .author-title {
-        font-size: 4vw;
+        display: none !important;
     }
 
     .banner-full-screen .banner-quote-box .quote-author .author-name {
-        font-size: 3.5vw;
+        font-size: 2.6vw !important;
+    }
+
+    html body .banner-full-screen .banner-mobile-row .kitchen-mascot {
+        display: block !important;
+        position: absolute !important;
+        right: -15vw !important;
+        bottom: 0 !important;
+        width: 70vw !important;
+        max-width: 70vw !important;
+        height: auto !important;
+        z-index: 2 !important;
+        pointer-events: none !important;
+        transform: translateY(-5vw) !important;
+        -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%) !important;
+        mask-image: linear-gradient(to bottom, black 75%, transparent 100%) !important;
     }
 }
 
@@ -2733,4 +2782,13 @@ body .list-food-menu .food-menu .funcsBox .add-to-card {
 /* Prevent scroll position reset when popup is active */
 body.popup-active {
     height: auto !important;
+}
+
+/* Product detail popup background pattern */
+.PopUp-detail {
+    background: #faf6ee url('../images/bg-pattern.webp') repeat center center !important;
+    background-size: 300px auto !important;
+}
+.PopUp-detail .popup-detailfood-content {
+    background: transparent !important;
 }

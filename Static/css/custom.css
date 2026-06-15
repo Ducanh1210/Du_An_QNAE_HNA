@@ -1654,6 +1654,32 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
         flex-wrap: wrap !important;
     }
 
+    .ph-fn-left::before {
+        content: '' !important;
+        position: absolute !important;
+        top: -10px !important;
+        bottom: -10px !important;
+        left: -30px !important;
+        width: 100px !important;
+        background: linear-gradient(to right, #ffa827 0px, #ffa827 65px, transparent 65px, transparent 73px, #ffa827 73px, #ffa827 77px, transparent 77px) !important;
+        transform: skewX(-25deg) !important;
+        z-index: 1 !important;
+        pointer-events: none !important;
+    }
+
+    .ph-fn-left::after {
+        content: '' !important;
+        position: absolute !important;
+        top: -10px !important;
+        bottom: -10px !important;
+        right: -30px !important;
+        width: 100px !important;
+        background: linear-gradient(to left, #ffa827 0px, #ffa827 65px, transparent 65px, transparent 73px, #ffa827 73px, #ffa827 77px, transparent 77px) !important;
+        transform: skewX(-25deg) !important;
+        z-index: 1 !important;
+        pointer-events: none !important;
+    }
+
     /* Reset logo sizes for stacked header banner */
     .ph-fn-left .ph-logo-img {
         height: 38px !important;

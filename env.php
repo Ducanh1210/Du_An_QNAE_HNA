@@ -4,7 +4,7 @@ const DBCHARSET = "utf8mb4";
 const DBUSER = "if0_42192573";
 const DBPASS = "MhAswqtZYBmk4kC";
 const DBHOST = "sql113.infinityfree.com";
-const BASE_URL = "http://quanae.xo.je/";
+const BASE_URL = "https://quanae.xo.je/";
 function route($url) {
     return BASE_URL.$url;
 }

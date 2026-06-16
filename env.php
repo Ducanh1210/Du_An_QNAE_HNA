@@ -1,10 +1,10 @@
 <?php
-const DBNAME = "quannhau";
+const DBNAME = "if0_42192573_quanae";
 const DBCHARSET = "utf8mb4";
-const DBUSER = "root";
-const DBPASS = "";
-const DBHOST = "localhost";
-const BASE_URL = "http://localhost/Du_An_QNAE_HNA/";
+const DBUSER = "if0_42192573";
+const DBPASS = "MhAswqtZYBmk4kC";
+const DBHOST = "sql113.infinityfree.com";
+const BASE_URL = "http://quanae.xo.je/";
 function route($url) {
     return BASE_URL.$url;
 }

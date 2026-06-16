@@ -525,19 +525,14 @@
 
         <div class="marquee">
             <div class="marquee-content">
-                @for ($i = 0; $i < 15; $i++)
+                @for ($i = 0; $i < 8; $i++)
                 <div class="marquee-item">
-                    <h2 class="text">ưu đãi <span>KHAI TRƯƠNG</span></h2>
+                    <h2 class="text" style="color: #222222 !important;">ưu đãi <span style="color: #5e3713 !important;">KHAI TRƯƠNG</span></h2>
                     <div class="icn">
                         <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_725_2347)">
+                            <g>
                                 <path d="M54.3285 25.8799L48.125 19.6763V9.16675C48.125 7.90175 47.0983 6.87509 45.8333 6.87509H35.3237L29.1202 0.671543C28.2241 -0.224499 26.7758 -0.224499 25.8798 0.671543L19.6762 6.87509H9.16663C7.90163 6.87509 6.87496 7.90175 6.87496 9.16675V19.6763L0.671421 25.8799C-0.224621 26.7759 -0.224621 28.2243 0.671421 29.1203L6.87496 35.3238V45.8334C6.87496 47.0984 7.90163 48.1251 9.16663 48.1251H19.6762L25.8798 54.3286C26.3266 54.7755 26.9133 55.0001 27.5 55.0001C28.0866 55.0001 28.6733 54.7755 29.1202 54.3286L35.3237 48.1251H45.8333C47.0983 48.1251 48.125 47.0984 48.125 45.8334V35.3238L54.3285 29.1203C55.2245 28.2243 55.2245 26.7759 54.3285 25.8799ZM19.4791 16.0418C21.3766 16.0418 22.9166 17.5818 22.9166 19.4793C22.9166 21.3768 21.3766 22.9168 19.4791 22.9168C17.5816 22.9168 16.0416 21.3768 16.0416 19.4793C16.0416 17.5818 17.5816 16.0418 19.4791 16.0418ZM35.5208 38.9584C33.6233 38.9584 32.0833 37.4184 32.0833 35.5209C32.0833 33.6234 33.6233 32.0834 35.5208 32.0834C37.4183 32.0834 38.9583 33.6234 38.9583 35.5209C38.9583 37.4184 37.4183 38.9584 35.5208 38.9584ZM18.3333 39.9072L15.0929 36.6668L36.6666 15.093L39.907 18.3334L18.3333 39.9072Z" fill="#F1F1F1" />
                             </g>
-                            <defs>
-                                <clipPath id="clip0_725_2347">
-                                    <rect width="55" height="55" fill="white" />
-                                </clipPath>
-                            </defs>
                         </svg>
                     </div>
                 </div>
@@ -635,7 +630,7 @@
                 <br class="br-home-cover-footer-mob">
                 hàng loạt các các chương trình, sự kiện hấp dẫn dành riêng cho khách hàng thân thiết.
             </div>
-            <a href="javascript:;" class="join-club" title="tham gia Quán Nhậu Anh Em" target="_blank">THAM GIA NGAY</a>
+            <a href="javascript:;" class="join-club" style="white-space: nowrap !important;" title="tham gia Quán Nhậu Anh Em" target="_blank">THAM GIA NGAY</a>
             <div class="pin-icn big-left">
                 <img src="{{ BASE_URL }}images/iconTM.webp" alt="">
             </div>

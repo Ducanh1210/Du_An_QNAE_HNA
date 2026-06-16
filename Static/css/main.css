@@ -13737,8 +13737,8 @@ html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-animation: running scrolling 75s linear infinite;
-  animation: running scrolling 75s linear infinite;
+  -webkit-animation: scrolling 75s linear infinite;
+  animation: scrolling 75s linear infinite;
   -webkit-box-flex: 0;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;

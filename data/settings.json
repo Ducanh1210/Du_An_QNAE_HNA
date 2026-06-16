@@ -6,5 +6,7 @@
     "youtube_link": "",
     "phone_datban": "0812282282",
     "phone_datship": "0835129999",
-    "zalo_oa_id": ""
+    "booking_destination": "zalo",
+    "zalo_oa_id_datban": "0812282282",
+    "zalo_oa_id_datship": "0835129999"
 }

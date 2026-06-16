@@ -31,17 +31,17 @@ class ProductModel extends BaseModel {
         return $this->loadRow([$id]);
     }
 
-    public function create($category_id, $name, $slug, $price, $img_thumbnail, $img_transparent, $video_url, $overview, $content, $is_active = 1, $sort_order = 0) {
-        $sql = "INSERT INTO products (category_id, name, slug, price, img_thumbnail, img_transparent, video_url, overview, content, is_active, sort_order) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public function create($category_id, $name, $slug, $price, $img_thumbnail, $img_transparent, $video_url, $images, $overview, $content, $is_active = 1, $sort_order = 0) {
+        $sql = "INSERT INTO products (category_id, name, slug, price, img_thumbnail, img_transparent, video_url, images, overview, content, is_active, sort_order) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $this->setQuery($sql);
-        return $this->execute([$category_id, $name, $slug, $price, $img_thumbnail, $img_transparent, $video_url, $overview, $content, $is_active, $sort_order]);
+        return $this->execute([$category_id, $name, $slug, $price, $img_thumbnail, $img_transparent, $video_url, $images, $overview, $content, $is_active, $sort_order]);
     }
 
-    public function update($id, $category_id, $name, $slug, $price, $img_thumbnail, $img_transparent, $video_url, $overview, $content, $is_active = 1, $sort_order = 0) {
-        $sql = "UPDATE products SET category_id = ?, name = ?, slug = ?, price = ?, img_thumbnail = ?, img_transparent = ?, video_url = ?, overview = ?, content = ?, is_active = ?, sort_order = ? WHERE id = ?";
+    public function update($id, $category_id, $name, $slug, $price, $img_thumbnail, $img_transparent, $video_url, $images, $overview, $content, $is_active = 1, $sort_order = 0) {
+        $sql = "UPDATE products SET category_id = ?, name = ?, slug = ?, price = ?, img_thumbnail = ?, img_transparent = ?, video_url = ?, images = ?, overview = ?, content = ?, is_active = ?, sort_order = ? WHERE id = ?";
         $this->setQuery($sql);
-        return $this->execute([$category_id, $name, $slug, $price, $img_thumbnail, $img_transparent, $video_url, $overview, $content, $is_active, $sort_order, $id]);
+        return $this->execute([$category_id, $name, $slug, $price, $img_thumbnail, $img_transparent, $video_url, $images, $overview, $content, $is_active, $sort_order, $id]);
     }
 
     public function delete($id) {

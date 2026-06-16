@@ -49,6 +49,25 @@ class AdminProductController extends BaseController {
             $video_url = uploadFile($_FILES['video_url'], 'products');
         }
 
+        $uploaded_images = [];
+        if (!empty($_FILES['product_images']['name'][0])) {
+            $filesCount = count($_FILES['product_images']['name']);
+            for ($i = 0; $i < $filesCount; $i++) {
+                $file = [
+                    'name' => $_FILES['product_images']['name'][$i],
+                    'type' => $_FILES['product_images']['type'][$i],
+                    'tmp_name' => $_FILES['product_images']['tmp_name'][$i],
+                    'error' => $_FILES['product_images']['error'][$i],
+                    'size' => $_FILES['product_images']['size'][$i]
+                ];
+                $path = uploadFile($file, 'products');
+                if ($path) {
+                    $uploaded_images[] = $path;
+                }
+            }
+        }
+        $images = json_encode($uploaded_images);
+
         $errors = [];
         if (empty($name)) $errors[] = "Tên sản phẩm không được để trống";
         if (empty($category_id)) $errors[] = "Vui lòng chọn danh mục";
@@ -57,7 +76,7 @@ class AdminProductController extends BaseController {
             flash('errors', $errors, 'products/create');
         }
 
-        $check = $this->productModel->create($category_id, $name, $slug, $price, $img_thumbnail, $img_transparent, $video_url, $overview, $content, $is_active, $sort_order);
+        $check = $this->productModel->create($category_id, $name, $slug, $price, $img_thumbnail, $img_transparent, $video_url, $images, $overview, $content, $is_active, $sort_order);
         if ($check) {
             flash('success', 'Thêm sản phẩm thành công', 'products');
         } else {
@@ -120,6 +139,43 @@ class AdminProductController extends BaseController {
             $video_url = $existing ? $existing->video_url : '';
         }
 
+        // Handle existing gallery images remaining
+        $existing_images = $_POST['existing_images'] ?? [];
+        if ($existing && !empty($existing->images)) {
+            $old_album = json_decode($existing->images, true);
+            if (is_array($old_album)) {
+                foreach ($old_album as $old_img) {
+                    if (!in_array($old_img, $existing_images)) {
+                        if (file_exists($old_img)) {
+                            unlink($old_img);
+                        }
+                    }
+                }
+            }
+        }
+
+        // Upload new gallery images
+        $new_uploaded = [];
+        if (!empty($_FILES['product_images']['name'][0])) {
+            $filesCount = count($_FILES['product_images']['name']);
+            for ($i = 0; $i < $filesCount; $i++) {
+                $file = [
+                    'name' => $_FILES['product_images']['name'][$i],
+                    'type' => $_FILES['product_images']['type'][$i],
+                    'tmp_name' => $_FILES['product_images']['tmp_name'][$i],
+                    'error' => $_FILES['product_images']['error'][$i],
+                    'size' => $_FILES['product_images']['size'][$i]
+                ];
+                $path = uploadFile($file, 'products');
+                if ($path) {
+                    $new_uploaded[] = $path;
+                }
+            }
+        }
+
+        $combined_images = array_merge($existing_images, $new_uploaded);
+        $images = json_encode($combined_images);
+
         $errors = [];
         if (empty($name)) $errors[] = "Tên sản phẩm không được để trống";
         if (empty($category_id)) $errors[] = "Vui lòng chọn danh mục";
@@ -128,7 +184,7 @@ class AdminProductController extends BaseController {
             flash('errors', $errors, 'products/' . $id . '/edit');
         }
 
-        $check = $this->productModel->update($id, $category_id, $name, $slug, $price, $img_thumbnail, $img_transparent, $video_url, $overview, $content, $is_active, $sort_order);
+        $check = $this->productModel->update($id, $category_id, $name, $slug, $price, $img_thumbnail, $img_transparent, $video_url, $images, $overview, $content, $is_active, $sort_order);
         if ($check) {
             flash('success', 'Cập nhật sản phẩm thành công', 'products');
         } else {
@@ -147,6 +203,16 @@ class AdminProductController extends BaseController {
             }
             if (!empty($product->video_url) && file_exists($product->video_url)) {
                 unlink($product->video_url);
+            }
+            if (!empty($product->images)) {
+                $album = json_decode($product->images, true);
+                if (is_array($album)) {
+                    foreach ($album as $img) {
+                        if (file_exists($img)) {
+                            unlink($img);
+                        }
+                    }
+                }
             }
         }
         $this->productModel->delete($id);

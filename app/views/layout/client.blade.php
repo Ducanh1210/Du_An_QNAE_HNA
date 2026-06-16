@@ -1013,8 +1013,8 @@
         // === Zalo Booking Integration ===
         // Override the booking submit to redirect to Zalo OA with message
         document.addEventListener('click', function(e) {
-            var bookBtn = e.target.closest('.jsSubmitBooking');
-            var shipBtn = e.target.closest('.jsSubmitShipping');
+            var bookBtn = e.target.closest('.jsSubmitBookingZalo');
+            var shipBtn = e.target.closest('.jsSubmitShippingZalo');
             
             if (bookBtn) {
                 e.preventDefault();
@@ -1029,6 +1029,10 @@
             }
         });
 
+        function validatePhone(phone) {
+            return /^0\d{9}$/.test(phone);
+        }
+
         function handleZaloBooking() {
             var name = document.getElementById('txtFullname');
             var phone = document.getElementById('txtPhone');
@@ -1039,9 +1043,30 @@
 
             var nameVal = name ? name.value.trim() : '';
             var phoneVal = phone ? phone.value.trim() : '';
+            var dateVal = date ? date.value.trim() : '';
+            var timeVal = time ? time.value.trim() : '';
             
-            if (!nameVal || !phoneVal) {
-                alert('Vui lòng nhập tên và số điện thoại!');
+            if (!nameVal) {
+                alert('Vui lòng nhập tên của bạn!');
+                if (name) name.focus();
+                return;
+            }
+            if (!phoneVal) {
+                alert('Vui lòng nhập số điện thoại!');
+                if (phone) phone.focus();
+                return;
+            }
+            if (!validatePhone(phoneVal)) {
+                alert('Vui lòng nhập đúng số điện thoại (10 chữ số, bắt đầu bằng 0)!');
+                if (phone) phone.focus();
+                return;
+            }
+            if (!dateVal) {
+                alert('Vui lòng chọn ngày đặt bàn!');
+                return;
+            }
+            if (!timeVal || timeVal === 'outtime') {
+                alert('Vui lòng chọn giờ đến!');
                 return;
             }
 
@@ -1049,8 +1074,8 @@
             msg += 'Tên: ' + nameVal + '\n';
             msg += 'SĐT: ' + phoneVal + '\n';
             if (guests) msg += 'Số khách: ' + guests.value + '\n';
-            if (date && date.value) msg += 'Ngày: ' + date.value + '\n';
-            if (time && time.value) msg += 'Giờ: ' + time.value + '\n';
+            if (dateVal) msg += 'Ngày: ' + dateVal + '\n';
+            if (timeVal) msg += 'Giờ: ' + timeVal + '\n';
             if (note && note.value.trim()) msg += 'Ghi chú: ' + note.value.trim();
 
             openZaloChat(msg, 'booking');
@@ -1064,16 +1089,33 @@
 
             var nameVal = name ? name.value.trim() : '';
             var phoneVal = phone ? phone.value.trim() : '';
+            var addressVal = address ? address.value.trim() : '';
 
-            if (!nameVal || !phoneVal) {
-                alert('Vui lòng nhập tên và số điện thoại!');
+            if (!nameVal) {
+                alert('Vui lòng nhập tên của bạn!');
+                if (name) name.focus();
+                return;
+            }
+            if (!phoneVal) {
+                alert('Vui lòng nhập số điện thoại!');
+                if (phone) phone.focus();
+                return;
+            }
+            if (!validatePhone(phoneVal)) {
+                alert('Vui lòng nhập đúng số điện thoại (10 chữ số, bắt đầu bằng 0)!');
+                if (phone) phone.focus();
+                return;
+            }
+            if (!addressVal) {
+                alert('Vui lòng nhập vị trí / địa chỉ nhận hàng!');
+                if (address) address.focus();
                 return;
             }
 
             var msg = 'ĐẶT SHIP\n';
             msg += 'Tên: ' + nameVal + '\n';
             msg += 'SĐT: ' + phoneVal + '\n';
-            if (address && address.value.trim()) msg += 'Địa chỉ: ' + address.value.trim() + '\n';
+            msg += 'Địa chỉ: ' + addressVal + '\n';
             if (note && note.value.trim()) msg += 'Ghi chú: ' + note.value.trim();
 
             openZaloChat(msg, 'shipping');

@@ -423,24 +423,59 @@
         .badge-product { background: rgba(255, 168, 39, 0.12); color: #c47f00; }
         .badge-news { background: rgba(59, 130, 246, 0.1); color: var(--info); }
 
-        /* ===== ALERT ===== */
+        /* ===== ALERT (TOAST NOTIFICATION) ===== */
         .alert-admin {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 9999;
+            min-width: 320px;
+            max-width: 450px;
             border-radius: 10px;
-            padding: 14px 18px;
-            font-size: 13px;
+            padding: 16px 20px;
+            font-size: 13.5px;
             border: none;
+            box-shadow: 0 10px 30px rgba(74, 43, 18, 0.12), 0 1px 8px rgba(74, 43, 18, 0.06);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transform: translateX(120%);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+        }
+
+        .alert-admin.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .alert-admin.hide {
+            transform: translateX(120%);
+            opacity: 0;
         }
 
         .alert-admin.success {
-            background: rgba(34, 197, 94, 0.08);
-            color: #16a34a;
-            border-left: 4px solid var(--success);
+            background: #ffffff;
+            color: var(--text-primary);
+            border-left: 5px solid var(--success);
+        }
+        
+        .alert-admin.success i {
+            color: var(--success);
+            font-size: 18px;
+            margin-top: 2px;
         }
 
         .alert-admin.error {
-            background: rgba(239, 68, 68, 0.08);
-            color: #dc2626;
-            border-left: 4px solid var(--danger);
+            background: #ffffff;
+            color: var(--text-primary);
+            border-left: 5px solid var(--danger);
+        }
+
+        .alert-admin.error i {
+            color: var(--danger);
+            font-size: 18px;
+            margin-top: 2px;
         }
 
         /* ===== PRICE FORMAT ===== */
@@ -630,6 +665,26 @@
             document.getElementById('adminSidebar').classList.toggle('show');
             document.getElementById('sidebarOverlay').classList.toggle('show');
         }
+
+        // Automatic premium toast animations
+        document.addEventListener("DOMContentLoaded", function() {
+            var alerts = document.querySelectorAll('.alert-admin');
+            alerts.forEach(function(alert) {
+                // Slide in
+                setTimeout(function() {
+                    alert.classList.add('show');
+                }, 150);
+
+                // Slide out and remove after 4.5 seconds
+                setTimeout(function() {
+                    alert.classList.remove('show');
+                    alert.classList.add('hide');
+                    setTimeout(function() {
+                        alert.remove();
+                    }, 400);
+                }, 4500);
+            });
+        });
     </script>
     @yield('scripts')
 </body>

@@ -4,7 +4,7 @@ namespace App\Models;
 class CategoryModel extends BaseModel {
     
     public function getAll() {
-        $sql = "SELECT * FROM categories ORDER BY type, sort_order DESC, id ASC";
+        $sql = "SELECT * FROM categories ORDER BY type, id ASC";
         $this->setQuery($sql);
         return $this->loadAllRows();
     }

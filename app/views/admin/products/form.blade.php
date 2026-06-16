@@ -34,6 +34,29 @@
                     <label class="form-label">Nội dung chi tiết</label>
                     <textarea name="content" class="form-control" rows="6" placeholder="Nội dung chi tiết sản phẩm">{{ $product ? $product->content : '' }}</textarea>
                 </div>
+                <div class="mb-3">
+                    <label class="form-label">Thư viện ảnh sản phẩm (Nhiều ảnh)</label>
+                    <input type="file" name="product_images[]" class="form-control mb-2" accept="image/*" multiple id="albumInput">
+                    <small class="text-muted d-block mb-2">Chọn một hoặc nhiều hình ảnh cùng lúc.</small>
+                    <div class="row g-2 mt-2" id="albumPreviewContainer">
+                        @if($product && !empty($product->images))
+                            @php
+                                $album = json_decode($product->images, true);
+                            @endphp
+                            @if(is_array($album) && count($album) > 0)
+                                @foreach($album as $imgPath)
+                                    <div class="col-3 position-relative album-item mb-2">
+                                        <img src="{{ BASE_URL }}{{ $imgPath }}" class="img-thumbnail" style="width: 100%; height: 110px; object-fit: cover; border-radius: 6px;">
+                                        <input type="hidden" name="existing_images[]" value="{{ $imgPath }}">
+                                        <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1 remove-album-btn" style="padding: 2px 6px; font-size: 10px; border-radius: 4px; border: none;">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                @endforeach
+                            @endif
+                        @endif
+                    </div>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="mb-3">
@@ -153,6 +176,43 @@
                 preview.style.display = 'block';
             };
             reader.readAsDataURL(e.target.files[0]);
+        }
+    });
+
+    // Handle new album images preview
+    document.getElementById('albumInput').addEventListener('change', function(e) {
+        var container = document.getElementById('albumPreviewContainer');
+        
+        // Remove previous temp previews
+        var tempPreviews = container.querySelectorAll('.temp-preview');
+        tempPreviews.forEach(el => el.remove());
+        
+        if (e.target.files) {
+            Array.from(e.target.files).forEach(file => {
+                var reader = new FileReader();
+                reader.onload = function(ev) {
+                    var col = document.createElement('div');
+                    col.className = 'col-3 position-relative temp-preview mb-2';
+                    col.innerHTML = `
+                        <img src="${ev.target.result}" class="img-thumbnail" style="width: 100%; height: 110px; object-fit: cover; border-radius: 6px; border: 2px dashed #FFA827;">
+                        <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-1" style="font-size: 9px; padding: 2px 4px;">Mới</span>
+                    `;
+                    container.appendChild(col);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+    });
+
+    // Delete existing images handler
+    document.getElementById('albumPreviewContainer').addEventListener('click', function(e) {
+        var btn = e.target.closest('.remove-album-btn');
+        if (btn) {
+            e.preventDefault();
+            var item = btn.closest('.album-item');
+            if (item) {
+                item.remove();
+            }
         }
     });
 </script>

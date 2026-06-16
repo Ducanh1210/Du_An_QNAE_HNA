@@ -206,6 +206,29 @@ class ApiController extends BaseController {
             $videoUrl = '';
         }
 
+        $lstImage = [];
+        if ($imgUrl && $imgUrl !== 'images/produc.webp') {
+            $lstImage[] = ['SrcOrigin' => $imgUrl, 'thumb' => $imgUrl];
+        }
+
+        if (!empty($p->images)) {
+            $album = json_decode($p->images, true);
+            if (is_array($album)) {
+                foreach ($album as $path) {
+                    if ($path) {
+                        if (!preg_match('/^(images\/|https?:\/\/|storage\/)/', $path)) {
+                            $path = 'storage/uploads/products/' . basename($path);
+                        }
+                        $lstImage[] = ['SrcOrigin' => $path, 'thumb' => $path];
+                    }
+                }
+            }
+        }
+
+        if (empty($lstImage)) {
+            $lstImage[] = ['SrcOrigin' => 'images/produc.webp', 'thumb' => 'images/produc.webp'];
+        }
+
         $formattedData = [
             'ProId' => $p->id,
             'ProName' => $p->name,
@@ -214,9 +237,7 @@ class ApiController extends BaseController {
             'ProContent' => $p->content,
             'ProLinkDetail' => 'javascript:;',
             'ProVideo' => $videoUrl,
-            'LstImage' => [
-                ['SrcOrigin' => $imgUrl, 'thumb' => $imgUrl]
-            ]
+            'LstImage' => $lstImage
         ];
 
         echo json_encode(['Success' => true, 'Data' => $formattedData], JSON_UNESCAPED_UNICODE);

@@ -19,12 +19,7 @@
                     <label class="form-label">Tên danh mục</label>
                     <input type="text" name="name" class="form-control" placeholder="Nhập tên" required>
                 </div>
-                <div class="mb-4 form-check">
-                    <input type="checkbox" name="sort_order" value="1" class="form-check-input" id="checkHomeAdd">
-                    <label class="form-check-label" for="checkHomeAdd" style="cursor:pointer;">
-                        <i class="fas fa-star text-warning me-1"></i> Hiển thị ở trang chủ
-                    </label>
-                </div>
+
                 <button type="submit" class="btn btn-accent w-100"><i class="fas fa-plus me-2"></i>Thêm</button>
             </form>
         </div>

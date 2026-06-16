@@ -26,7 +26,7 @@ class AdminSettingController extends BaseController {
         $keys = [
             'zalo_link', 'facebook_link', 'tiktok_link', 
             'instagram_link', 'youtube_link',
-            'phone_datban', 'phone_datship', 'zalo_oa_id'
+            'phone_datban', 'phone_datship', 'zalo_oa_id_datban', 'zalo_oa_id_datship'
         ];
 
         $updateData = [];
@@ -40,6 +40,10 @@ class AdminSettingController extends BaseController {
         $basePath = dirname(dirname(dirname(__DIR__)));
         $jsonPath = $basePath . '/gdquannhau/data/settings.json';
         $this->settingModel->exportToJson($jsonPath);
+
+        // Export local settings.json for localhost
+        $localJsonPath = $basePath . '/Du_An_QNAE_HNA/data/settings.json';
+        $this->settingModel->exportToJson($localJsonPath);
 
         flash('success', 'Cập nhật cài đặt thành công', 'settings');
     }

@@ -38,7 +38,10 @@ class ApiController extends BaseController {
 
         // Build Zalo deep link message
         $settingModel = new SettingModel();
-        $zaloOaId = $settingModel->getValue('zalo_oa_id');
+        $zaloOaId = $settingModel->getValue('zalo_oa_id_datban');
+        if (empty($zaloOaId)) {
+            $zaloOaId = $settingModel->getValue('zalo_oa_id'); // fallback
+        }
 
         $message = "ĐẶT BÀN\n";
         $message .= "Tên: $fullname\n";
@@ -50,7 +53,13 @@ class ApiController extends BaseController {
 
         $zaloLink = '';
         if (!empty($zaloOaId)) {
-            $zaloLink = 'https://zalo.me/' . $zaloOaId;
+            $zaloOaId = trim($zaloOaId);
+            $cleanValue = $zaloOaId;
+            if (preg_match('/(?:zalo\.me|http[s]?:\/\/[^\/]+)\/([a-zA-Z0-9_.-]+)/i', $zaloOaId, $matches)) {
+                $cleanValue = $matches[1];
+            }
+            $cleanValue = preg_replace('/[^a-zA-Z0-9_.-]/', '', $cleanValue);
+            $zaloLink = 'https://zalo.me/' . $cleanValue;
         }
 
         echo json_encode([
@@ -85,7 +94,10 @@ class ApiController extends BaseController {
         }
 
         $settingModel = new SettingModel();
-        $zaloOaId = $settingModel->getValue('zalo_oa_id');
+        $zaloOaId = $settingModel->getValue('zalo_oa_id_datship');
+        if (empty($zaloOaId)) {
+            $zaloOaId = $settingModel->getValue('zalo_oa_id'); // fallback
+        }
 
         $message = "ĐẶT SHIP\n";
         $message .= "Tên: $fullname\n";
@@ -95,7 +107,13 @@ class ApiController extends BaseController {
 
         $zaloLink = '';
         if (!empty($zaloOaId)) {
-            $zaloLink = 'https://zalo.me/' . $zaloOaId;
+            $zaloOaId = trim($zaloOaId);
+            $cleanValue = $zaloOaId;
+            if (preg_match('/(?:zalo\.me|http[s]?:\/\/[^\/]+)\/([a-zA-Z0-9_.-]+)/i', $zaloOaId, $matches)) {
+                $cleanValue = $matches[1];
+            }
+            $cleanValue = preg_replace('/[^a-zA-Z0-9_.-]/', '', $cleanValue);
+            $zaloLink = 'https://zalo.me/' . $cleanValue;
         }
 
         echo json_encode([

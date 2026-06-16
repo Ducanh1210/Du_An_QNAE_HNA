@@ -1895,6 +1895,7 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
     letter-spacing: 1px;
     margin-bottom: 0 !important;
     /* remove bottom margin since marquee is gone */
+    white-space: nowrap !important;
 }
 
 .td-home__tdclub .join-club:hover {

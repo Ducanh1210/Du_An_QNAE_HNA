@@ -11,30 +11,30 @@ class ComposerStaticInitd166e12bfccc3a78910379e073d87554
     );
 
     public static $prefixLengthsPsr4 = array (
-        'e' => 
+        'e' =>
         array (
             'eftec\\bladeone\\' => 15,
         ),
-        'P' => 
+        'P' =>
         array (
             'Phroute\\Phroute\\' => 16,
         ),
-        'A' => 
+        'A' =>
         array (
             'App\\' => 4,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'eftec\\bladeone\\' => 
+        'eftec\\bladeone\\' =>
         array (
             0 => __DIR__ . '/..' . '/eftec/bladeone/lib',
         ),
-        'Phroute\\Phroute\\' => 
+        'Phroute\\Phroute\\' =>
         array (
             0 => __DIR__ . '/..' . '/phroute/phroute/src/Phroute',
         ),
-        'App\\' => 
+        'App\\' =>
         array (
             0 => __DIR__ . '/../..' . '/app',
         ),

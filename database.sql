@@ -67,7 +67,8 @@ INSERT INTO `settings` (`setting_key`, `setting_value`, `setting_label`) VALUES
 ('youtube_link', '', 'Link YouTube'),
 ('phone_datban', '0812282282', 'SĐT Đặt bàn'),
 ('phone_datship', '0835129999', 'SĐT Đặt ship'),
-('zalo_oa_id', '', 'Zalo OA ID (để gửi form đặt bàn/ship)')
+('zalo_oa_id_datban', '', 'Zalo OA ID hoặc SĐT Đặt bàn'),
+('zalo_oa_id_datship', '', 'Zalo OA ID hoặc SĐT Đặt ship')
 ON DUPLICATE KEY UPDATE `setting_label` = VALUES(`setting_label`);
 
 -- Insert sample categories

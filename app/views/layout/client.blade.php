@@ -1053,7 +1053,7 @@
             if (time && time.value) msg += 'Giờ: ' + time.value + '\n';
             if (note && note.value.trim()) msg += 'Ghi chú: ' + note.value.trim();
 
-            openZaloChat(msg);
+            openZaloChat(msg, 'booking');
         }
 
         function handleZaloShipping() {
@@ -1076,28 +1076,68 @@
             if (address && address.value.trim()) msg += 'Địa chỉ: ' + address.value.trim() + '\n';
             if (note && note.value.trim()) msg += 'Ghi chú: ' + note.value.trim();
 
-            openZaloChat(msg);
+            openZaloChat(msg, 'shipping');
         }
 
-        function openZaloChat(message) {
+        function openZaloChat(message, type) {
             var s = window._adminSettings || {};
-            var oaId = s.zalo_oa_id || '';
-            
-            if (oaId) {
-                var zaloUrl = 'https://zalo.me/' + oaId;
-                window.open(zaloUrl, '_blank');
-                
-                // Show success feedback
-                alert('Đơn đặt hàng đã được gửi! Cửa sổ Zalo sẽ mở để bạn gửi thông tin đơn hàng.');
+            var value = '';
+
+            if (type === 'booking') {
+                value = s.zalo_oa_id_datban || s.zalo_oa_id || s.zalo_link || '';
+            } else if (type === 'shipping') {
+                value = s.zalo_oa_id_datship || s.zalo_oa_id || s.zalo_link || '';
             } else {
-                // Fallback to Zalo link from settings
-                var zaloLink = s.zalo_link || '';
-                if (zaloLink) {
-                    window.open(zaloLink, '_blank');
-                    alert('Vui lòng gửi thông tin đặt hàng qua Zalo!');
-                } else {
-                    alert('Đặt hàng thành công! Chúng tôi sẽ liên hệ lại với bạn sớm nhất.');
+                value = s.zalo_oa_id || s.zalo_link || '';
+            }
+
+            var zaloUrl = '';
+            if (value) {
+                value = value.trim();
+                var cleanValue = value;
+                var match = value.match(/(?:zalo\.me|http[s]?:\/\/[^\/]+)\/([a-zA-Z0-9_.-]+)/i);
+                if (match) {
+                    cleanValue = match[1];
                 }
+                cleanValue = cleanValue.replace(/[^a-zA-Z0-9_.-]/g, '');
+                zaloUrl = 'https://zalo.me/' + cleanValue;
+            }
+
+            // Copy to clipboard function
+            function copyTextToClipboard(text) {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    return navigator.clipboard.writeText(text);
+                } else {
+                    var textArea = document.createElement("textarea");
+                    textArea.value = text;
+                    textArea.style.top = "0";
+                    textArea.style.left = "0";
+                    textArea.style.position = "fixed";
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    var successful = false;
+                    try {
+                        successful = document.execCommand('copy');
+                    } catch (err) {
+                        console.error('Fallback copy failed', err);
+                    }
+                    document.body.removeChild(textArea);
+                    return successful ? Promise.resolve() : Promise.reject();
+                }
+            }
+
+            if (zaloUrl) {
+                copyTextToClipboard(message).then(function() {
+                    alert('Thông tin đặt của bạn đã được tự động SAO CHÉP!\n\nCửa sổ Zalo sẽ mở ra ngay bây giờ. Bạn chỉ cần nhấn DÁN (Ctrl + V hoặc Nhấn giữ màn hình rồi chọn Dán) vào ô nhắn tin Zalo để gửi cho nhà hàng.');
+                    window.open(zaloUrl, '_blank');
+                }).catch(function() {
+                    // Fallback if copy fails
+                    alert('Cửa sổ Zalo sẽ mở ra ngay bây giờ. Vui lòng gửi thông tin đặt hàng qua Zalo!');
+                    window.open(zaloUrl, '_blank');
+                });
+            } else {
+                alert('Đặt hàng thành công! Chúng tôi sẽ liên hệ lại với bạn sớm nhất.');
             }
         }
     })();

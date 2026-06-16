@@ -1,20 +1,17 @@
 <?php
-if (file_exists(__DIR__ . '/env.local.php')) {
-    include __DIR__ . '/env.local.php';
-    return;
-}
-
-const DBNAME = "if0_42192573_quanae";
+const DBNAME = "quannhau";
 const DBCHARSET = "utf8mb4";
-const DBUSER = "if0_42192573";
-const DBPASS = "MhAswqtZYBmk4kC";
-const DBHOST = "sql113.infinityfree.com";
-const BASE_URL = "https://quanae.xo.je/";
+const DBUSER = "root";
+const DBPASS = "";
+const DBHOST = "localhost";
+const BASE_URL = "http://localhost/Du_An_QNAE_HNA/";
+
 if (!function_exists('route')) {
     function route($url) {
         return BASE_URL.$url;
     }
 }
+
 // key co the truyen success hoac errors
 if (!function_exists('flash')) {
     function flash($key,$msg,$route)  {
@@ -31,3 +28,4 @@ if (!function_exists('flash')) {
         header('location:'.BASE_URL.$route.$separator.'msg='.$key);die;
     }
 }
+

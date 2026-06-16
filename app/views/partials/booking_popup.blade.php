@@ -73,7 +73,7 @@
                         </div>
                         <div class="funcsBox">
                             <a href="javascript:;" class="open-popup-close open-fancy-warning" id="close-popup" style="display: none;">Đóng</a>
-                            <a href="javascript:;" class="book-now jsSubmitBooking">ĐẶT BÀN NGAY</a>
+                            <a href="javascript:;" class="book-now jsSubmitBookingZalo">ĐẶT BÀN NGAY</a>
                             <a href="javascript:;" class="btn-book-now-loading btn-loading" style="display: none;">ĐẶT BÀN NGAY</a>
                         </div>
                     </div> <!-- End tab-book -->
@@ -97,7 +97,7 @@
                         </div>
                         <div class="funcsBox popup">
                             <a href="javascript:;" class="open-popup-close open-fancy-warning" style="display: block;">Đóng</a>
-                            <a href="javascript:;" class="book-now jsSubmitShipping">ĐẶT SHIP NGAY</a>
+                            <a href="javascript:;" class="book-now jsSubmitShippingZalo">ĐẶT SHIP NGAY</a>
                         </div>
                     </div> <!-- End tab-ship -->
                     

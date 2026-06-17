@@ -1201,6 +1201,33 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
     display: block;
 }
 
+.video-banner-center .video-banner-overlay {
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.video-banner-player {
+    position: absolute;
+    top: 15%;
+    left: 11%;
+    width: 78%;
+    height: 78%;
+    object-fit: cover;
+    z-index: -1;
+    border-radius: 16px;
+}
+
+@media screen and (max-width: 768px) {
+    .video-banner-player {
+        top: 15%;
+        left: 11%;
+        width: 78%;
+        height: 78%;
+        border-radius: 8px;
+    }
+}
+
 /* Speech bubble scroll-reveal animation */
 .scroll-speech-bubble {
     opacity: 0;

@@ -2177,19 +2177,32 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
 
 /* Food card background for Best Seller section */
 .td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu {
-    background-image: url('../../images/card.webp') !important;
-    background-size: 120% 130% !important;
-    /* Scaled up to make the paper background larger */
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    background-color: transparent !important;
+    position: relative !important;
+    background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     padding: 16px 20px 20px 20px !important;
     height: 100% !important;
     box-sizing: border-box !important;
+}
+
+.td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background-image: url('../../images/card.webp') !important;
+    background-size: 120% 130% !important;
+    /* Scaled up to make the paper background larger */
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    z-index: -1 !important;
     filter: drop-shadow(6px 10px 12px rgba(156, 112, 47, 0.521)) !important;
     /* Real 3D shadow for the torn paper shape */
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
 }
 
 /* Ensure child elements do not have solid background colors, and reduce spacing */

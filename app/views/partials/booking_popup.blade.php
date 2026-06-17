@@ -94,6 +94,15 @@
                                 <input type="text" class="input-booking" id="txtShipAddress" placeholder="Vị trí / Địa chỉ nhận hàng" />
                             </div>
                             <textarea id="txtShipNote" class="note-book" placeholder="Ghi chú"></textarea>
+
+                            <div class="delivery-fee-note" style="margin-top: 10px; font-size: 13px;">
+                                <div style="color: #b78a2e; font-style: italic; margin-bottom: 5px;">* Phí ship dự kiến:</div>
+                                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                    <span style="background: #e8f5e9; color: #2e7d32; padding: 3px 8px; border-radius: 4px; border: 1px solid #c8e6c9;"><strong>0-3km:</strong> Free</span>
+                                    <span style="background: #fff8e1; color: #f57f17; padding: 3px 8px; border-radius: 4px; border: 1px solid #ffecb3;"><strong>3-5km:</strong> 0-30k</span>
+                                    <span style="background: #ffebee; color: #c62828; padding: 3px 8px; border-radius: 4px; border: 1px solid #ffcdd2;"><strong>7-10km:</strong> 30-50k</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="funcsBox popup">
                             <a href="javascript:;" class="open-popup-close open-fancy-warning" style="display: block;">Đóng</a>

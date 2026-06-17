@@ -1185,6 +1185,43 @@
  })();
  </script>
 
+ <!-- Security UI Protection -->
+ <style>
+ body {
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+ }
+ input, textarea, select {
+ -webkit-user-select: auto;
+ -moz-user-select: auto;
+ -ms-user-select: auto;
+ user-select: auto;
+ }
+ </style>
+ <!-- <script>
+ // Disable Right Click
+ document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+ 
+ // Disable keyboard shortcuts
+ document.addEventListener('keydown', function(e) {
+ // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S, Ctrl+P, Ctrl+C
+ if (e.keyCode === 123 || 
+ (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || 
+ (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83 || e.keyCode === 80))) {
+ e.preventDefault();
+ }
+ });
+ 
+ // Prevent image dragging
+ document.addEventListener('dragstart', function(e) {
+ if (e.target.nodeName.toUpperCase() === "IMG") {
+ e.preventDefault();
+ }
+ });
+ </script> -->
+
  <?php echo $this->yieldContent('scripts'); ?>
 </body>
 </html>

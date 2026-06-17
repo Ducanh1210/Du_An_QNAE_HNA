@@ -448,6 +448,10 @@
                 }
             </style>
 
+            <div class="no-news-message" style="display: none; text-align: center; color: #666; padding: 80px 0; font-style: italic; font-size: 16px;">
+                Hiện tại chưa có tin tức hoặc ưu đãi nào thuộc danh mục này. Xin vui lòng quay lại sau!
+            </div>
+
             <!-- HOT NEWS: EDITORIAL LAYOUT -->
             <div class="editorial-section">
                 <h2 class="editorial-title">Tin Tức Mới Nhất</h2>
@@ -465,7 +469,7 @@
                             $imgUrl = 'images/Untitled-3.webp';
                         }
                     @endphp
-                    <div class="main-featured-post">
+                    <div class="main-featured-post" data-category="{{ $mainPost->category_slug ?? '' }}">
                         <a href="{{ BASE_URL }}tin-tuc/{{ $mainPost->slug }}" class="post-thumb">
                             <img src="{{ $imgUrl }}" alt="{{ $mainPost->title }}" loading="eager">
                         </a>
@@ -489,7 +493,7 @@
                                     $imgUrl = 'images/Untitled-3.webp';
                                 }
                             @endphp
-                            <div class="small-post">
+                            <div class="small-post" data-category="{{ $subPost->category_slug ?? '' }}">
                                 <a href="{{ BASE_URL }}tin-tuc/{{ $subPost->slug }}" class="post-thumb">
                                     <img src="{{ $imgUrl }}" alt="{{ $subPost->title }}">
                                 </a>
@@ -521,7 +525,7 @@
                             $imgUrl = 'images/Untitled-3.webp';
                         }
                     @endphp
-                    <div class="offer-post">
+                    <div class="offer-post" data-category="{{ $offer->category_slug ?? '' }}">
                         <a href="{{ BASE_URL }}tin-tuc/{{ $offer->slug }}" class="post-thumb">
                             <img src="{{ $imgUrl }}" alt="{{ $offer->title }}" loading="eager">
                         </a>
@@ -550,10 +554,54 @@
             });
             fixPositionStickyMenu();
 
-            // Handle category click for active state
+            // Handle category click for filtering
             $('.news-category-bar .cat-link').on('click', function (e) {
+                e.preventDefault();
                 $('.news-category-bar .cat-link').removeClass('active');
                 $(this).addClass('active');
+
+                var filter = $(this).attr('data-filter');
+
+                if (filter === 'all') {
+                    $('.main-featured-post, .small-post, .offer-post').show();
+                    $('.featured-news-grid').removeClass('no-main');
+                } else {
+                    $('.main-featured-post, .small-post, .offer-post').each(function() {
+                        if ($(this).attr('data-category') === filter) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                    
+                    // Adjust grid if main featured post is hidden
+                    if ($('.main-featured-post').css('display') === 'none') {
+                        $('.featured-news-grid').addClass('no-main');
+                    } else {
+                        $('.featured-news-grid').removeClass('no-main');
+                    }
+                }
+
+                // Show/hide editorial sections if they become empty
+                var totalVisible = 0;
+                $('.editorial-section').each(function() {
+                    var visiblePosts = $(this).find('.main-featured-post, .small-post, .offer-post').filter(function() {
+                        return $(this).css('display') !== 'none';
+                    }).length;
+                    
+                    if (visiblePosts > 0) {
+                        $(this).show();
+                        totalVisible += visiblePosts;
+                    } else {
+                        $(this).hide();
+                    }
+                });
+
+                if (totalVisible === 0) {
+                    $('.no-news-message').show();
+                } else {
+                    $('.no-news-message').hide();
+                }
             });
         });
     </script>

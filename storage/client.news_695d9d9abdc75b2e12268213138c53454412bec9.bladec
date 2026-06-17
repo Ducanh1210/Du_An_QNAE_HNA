@@ -449,6 +449,10 @@
  }
  </style>
 
+ <div class="no-news-message" style="display: none; text-align: center; color: #666; padding: 80px 0; font-style: italic; font-size: 16px;">
+ Hiện tại chưa có tin tức hoặc ưu đãi nào thuộc danh mục này. Xin vui lòng quay lại sau!
+ </div>
+
  <!-- HOT NEWS: EDITORIAL LAYOUT -->
  <div class="editorial-section">
  <h2 class="editorial-title">Tin Tức Mới Nhất</h2>
@@ -466,7 +470,7 @@
  $imgUrl = 'images/Untitled-3.webp';
  }
  ?>
- <div class="main-featured-post">
+ <div class="main-featured-post" data-category="<?php echo \htmlentities($mainPost->category_slug ?? ''??'', ENT_QUOTES, 'UTF-8', false); ?>">
  <a href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>tin-tuc/<?php echo \htmlentities($mainPost->slug??'', ENT_QUOTES, 'UTF-8', false); ?>" class="post-thumb">
  <img src="<?php echo \htmlentities($imgUrl??'', ENT_QUOTES, 'UTF-8', false); ?>" alt="<?php echo \htmlentities($mainPost->title??'', ENT_QUOTES, 'UTF-8', false); ?>" loading="eager">
  </a>
@@ -490,7 +494,7 @@
  $imgUrl = 'images/Untitled-3.webp';
  }
  ?>
- <div class="small-post">
+ <div class="small-post" data-category="<?php echo \htmlentities($subPost->category_slug ?? ''??'', ENT_QUOTES, 'UTF-8', false); ?>">
  <a href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>tin-tuc/<?php echo \htmlentities($subPost->slug??'', ENT_QUOTES, 'UTF-8', false); ?>" class="post-thumb">
  <img src="<?php echo \htmlentities($imgUrl??'', ENT_QUOTES, 'UTF-8', false); ?>" alt="<?php echo \htmlentities($subPost->title??'', ENT_QUOTES, 'UTF-8', false); ?>">
  </a>
@@ -522,7 +526,7 @@
  $imgUrl = 'images/Untitled-3.webp';
  }
  ?>
- <div class="offer-post">
+ <div class="offer-post" data-category="<?php echo \htmlentities($offer->category_slug ?? ''??'', ENT_QUOTES, 'UTF-8', false); ?>">
  <a href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>tin-tuc/<?php echo \htmlentities($offer->slug??'', ENT_QUOTES, 'UTF-8', false); ?>" class="post-thumb">
  <img src="<?php echo \htmlentities($imgUrl??'', ENT_QUOTES, 'UTF-8', false); ?>" alt="<?php echo \htmlentities($offer->title??'', ENT_QUOTES, 'UTF-8', false); ?>" loading="eager">
  </a>
@@ -551,10 +555,54 @@
  });
  fixPositionStickyMenu();
 
- // Handle category click for active state
+ // Handle category click for filtering
  $('.news-category-bar .cat-link').on('click', function (e) {
+ e.preventDefault();
  $('.news-category-bar .cat-link').removeClass('active');
  $(this).addClass('active');
+
+ var filter = $(this).attr('data-filter');
+
+ if (filter === 'all') {
+ $('.main-featured-post, .small-post, .offer-post').show();
+ $('.featured-news-grid').removeClass('no-main');
+ } else {
+ $('.main-featured-post, .small-post, .offer-post').each(function() {
+ if ($(this).attr('data-category') === filter) {
+ $(this).show();
+ } else {
+ $(this).hide();
+ }
+ });
+ 
+ // Adjust grid if main featured post is hidden
+ if ($('.main-featured-post').css('display') === 'none') {
+ $('.featured-news-grid').addClass('no-main');
+ } else {
+ $('.featured-news-grid').removeClass('no-main');
+ }
+ }
+
+ // Show/hide editorial sections if they become empty
+ var totalVisible = 0;
+ $('.editorial-section').each(function() {
+ var visiblePosts = $(this).find('.main-featured-post, .small-post, .offer-post').filter(function() {
+ return $(this).css('display') !== 'none';
+ }).length;
+ 
+ if (visiblePosts > 0) {
+ $(this).show();
+ totalVisible += visiblePosts;
+ } else {
+ $(this).hide();
+ }
+ });
+
+ if (totalVisible === 0) {
+ $('.no-news-message').show();
+ } else {
+ $('.no-news-message').hide();
+ }
  });
  });
  </script>

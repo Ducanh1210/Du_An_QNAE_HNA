@@ -85,7 +85,7 @@ class NewsModel extends BaseModel {
     }
 
     public function getActive() {
-        $sql = "SELECT n.*, c.name as category_name 
+        $sql = "SELECT n.*, c.name as category_name, c.slug as category_slug 
                 FROM news n 
                 LEFT JOIN categories c ON n.category_id = c.id 
                 WHERE n.is_active = 1 

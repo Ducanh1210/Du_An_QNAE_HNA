@@ -43,36 +43,61 @@
             position: relative;
         }
 
-        /* Ambient animated circles in the background */
-        .ambient-circle {
-            position: absolute;
+        /* Ambient border-traveling circles */
+        .ambient-orbit-circle {
+            position: fixed;
             border-radius: 50%;
-            filter: blur(80px);
+            filter: blur(100px);
+            opacity: 0.7;
+            pointer-events: none;
             z-index: 1;
-            opacity: 0.5;
+            transform: translate(-50%, -50%);
         }
 
-        .circle-1 {
-            width: 300px;
-            height: 300px;
-            background: rgba(255, 168, 39, 0.6);
-            top: -100px;
-            left: -100px;
-            animation: float-slow 15s infinite alternate;
+        .orbit-1 {
+            width: 350px;
+            height: 350px;
+            background: rgba(255, 168, 39, 0.75);
+            animation: border-travel-1 20s linear infinite;
         }
 
-        .circle-2 {
+        .orbit-2 {
             width: 400px;
             height: 400px;
-            background: rgba(96, 56, 19, 0.2);
-            bottom: -150px;
-            right: -100px;
-            animation: float-slow 20s infinite alternate-reverse;
+            background: rgba(255, 168, 39, 0.65);
+            animation: border-travel-2 20s linear infinite;
         }
 
-        @keyframes float-slow {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(40px, 30px) scale(1.1); }
+        @keyframes border-travel-1 {
+            0% { top: 0%; left: 0%; }
+            25% { top: 0%; left: 100%; }
+            50% { top: 100%; left: 100%; }
+            75% { top: 100%; left: 0%; }
+            100% { top: 0%; left: 0%; }
+        }
+
+        @keyframes border-travel-2 {
+            0% { top: 100%; left: 100%; }
+            25% { top: 100%; left: 0%; }
+            50% { top: 0%; left: 0%; }
+            75% { top: 0%; left: 100%; }
+            100% { top: 100%; left: 100%; }
+        }
+
+        .mouse-glow {
+            position: fixed;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 168, 39, 0.35) 0%, rgba(255, 168, 39, 0) 70%);
+            filter: blur(45px);
+            z-index: 2;
+            pointer-events: none;
+            opacity: 0;
+            top: 0;
+            left: 0;
+            transform: translate3d(-50%, -50%, 0);
+            transition: opacity 0.5s ease;
         }
 
         .login-wrapper {
@@ -346,9 +371,12 @@
     </style>
 </head>
 <body>
-    <!-- Background Circles -->
-    <div class="ambient-circle circle-1"></div>
-    <div class="ambient-circle circle-2"></div>
+    <!-- Mouse trailing glow effect -->
+    <div class="mouse-glow" id="mouseGlow"></div>
+
+    <!-- Ambient border-traveling background circles -->
+    <div class="ambient-orbit-circle orbit-1"></div>
+    <div class="ambient-orbit-circle orbit-2"></div>
 
     <div class="login-wrapper">
         <div class="login-card">
@@ -429,6 +457,33 @@
                 toggleIcon.classList.remove("fa-eye-slash");
                 toggleIcon.classList.add("fa-eye");
             }
+        }
+
+        // Mouse trailing glow effect (instant, zero delay)
+        const glow = document.getElementById('mouseGlow');
+        const card = document.querySelector('.login-card');
+        let isHoveringCard = false;
+
+        document.addEventListener('mousemove', function(e) {
+            if (!isHoveringCard) {
+                glow.style.opacity = '1';
+            }
+            glow.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`;
+        });
+
+        document.addEventListener('mouseleave', function() {
+            glow.style.opacity = '0';
+        });
+
+        if (card) {
+            card.addEventListener('mouseenter', function() {
+                isHoveringCard = true;
+                glow.style.opacity = '0';
+            });
+            card.addEventListener('mouseleave', function() {
+                isHoveringCard = false;
+                glow.style.opacity = '1';
+            });
         }
     </script>
 </body>

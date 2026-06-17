@@ -4,7 +4,11 @@ namespace App\Models;
 class CategoryModel extends BaseModel {
     
     public function getAll() {
-        $sql = "SELECT * FROM categories ORDER BY type, id ASC";
+        $sql = "SELECT c.*, 
+                       (SELECT COUNT(*) FROM products WHERE category_id = c.id) as product_count,
+                       (SELECT COUNT(*) FROM news WHERE category_id = c.id) as news_count
+                FROM categories c 
+                ORDER BY c.type, c.id ASC";
         $this->setQuery($sql);
         return $this->loadAllRows();
     }

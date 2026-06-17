@@ -43,6 +43,7 @@
                             <th width="5%">#</th>
                             <th>Tên danh mục</th>
                             <th>Slug</th>
+                            <th style="text-align:center;">Số lượng</th>
                             <th style="text-align:center;">Trang chủ</th>
                             <th style="text-align:right;">Thao tác</th>
                         </tr>
@@ -60,6 +61,13 @@
                                 </form>
                             </td>
                             <td style="font-size:12px;color:var(--text-muted);">{{ $item->slug }}</td>
+                            <td style="text-align:center;font-weight:600;">
+                                @if($type == 'product')
+                                    {{ $item->product_count ?? 0 }}
+                                @else
+                                    {{ $item->news_count ?? 0 }}
+                                @endif
+                            </td>
                             <td style="text-align:center;">
                                 <form method="POST" action="{{ BASE_URL }}categories/{{ $item->id }}/update" class="d-inline-block m-0">
                                     <input type="hidden" name="name" value="{{ $item->name }}">

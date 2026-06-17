@@ -3,13 +3,32 @@ namespace App\Models;
 
 class NewsModel extends BaseModel {
     
-    public function getAll() {
+    public function getAll($search = '', $categoryId = null) {
         $sql = "SELECT n.*, c.name as category_name 
                 FROM news n 
-                LEFT JOIN categories c ON n.category_id = c.id 
-                ORDER BY n.created_at DESC";
+                LEFT JOIN categories c ON n.category_id = c.id";
+        
+        $where = [];
+        $params = [];
+
+        if (!empty($search)) {
+            $where[] = "REPLACE(REPLACE(n.title, 'đ', 'd'), 'Đ', 'D') LIKE ?";
+            $params[] = "%" . str_replace(['đ', 'Đ'], ['d', 'd'], $search) . "%";
+        }
+
+        if (!empty($categoryId)) {
+            $where[] = "n.category_id = ?";
+            $params[] = $categoryId;
+        }
+
+        if (count($where) > 0) {
+            $sql .= " WHERE " . implode(" AND ", $where);
+        }
+
+        $sql .= " ORDER BY n.created_at DESC";
+        
         $this->setQuery($sql);
-        return $this->loadAllRows();
+        return $this->loadAllRows($params);
     }
 
     public function getByCategory($categoryId) {

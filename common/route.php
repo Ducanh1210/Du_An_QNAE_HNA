@@ -60,6 +60,10 @@ try{
         // ========== SETTINGS ==========
         $router->get('/settings', [App\Controllers\AdminSettingController::class, 'index']);
         $router->post('/settings/update', [App\Controllers\AdminSettingController::class, 'update']);
+
+        // ========== CHANGE PASSWORD ==========
+        $router->get('/change-password', [App\Controllers\AuthController::class, 'changePassword']);
+        $router->post('/change-password', [App\Controllers\AuthController::class, 'postChangePassword']);
     });
 
     // ========== API (for frontend) ==========

@@ -3,13 +3,32 @@ namespace App\Models;
 
 class ProductModel extends BaseModel {
     
-    public function getAll() {
+    public function getAll($search = '', $categoryId = null) {
         $sql = "SELECT p.*, c.name as category_name 
                 FROM products p 
-                LEFT JOIN categories c ON p.category_id = c.id 
-                ORDER BY p.sort_order ASC, p.created_at DESC";
+                LEFT JOIN categories c ON p.category_id = c.id";
+        
+        $where = [];
+        $params = [];
+
+        if (!empty($search)) {
+            $where[] = "REPLACE(REPLACE(p.name, 'đ', 'd'), 'Đ', 'D') LIKE ?";
+            $params[] = "%" . str_replace(['đ', 'Đ'], ['d', 'd'], $search) . "%";
+        }
+
+        if (!empty($categoryId)) {
+            $where[] = "p.category_id = ?";
+            $params[] = $categoryId;
+        }
+
+        if (count($where) > 0) {
+            $sql .= " WHERE " . implode(" AND ", $where);
+        }
+
+        $sql .= " ORDER BY p.sort_order ASC, p.created_at DESC";
+        
         $this->setQuery($sql);
-        return $this->loadAllRows();
+        return $this->loadAllRows($params);
     }
 
     public function getByCategory($categoryId) {

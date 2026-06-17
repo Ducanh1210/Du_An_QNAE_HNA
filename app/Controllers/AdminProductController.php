@@ -15,8 +15,11 @@ class AdminProductController extends BaseController {
     }
 
     public function index() {
-        $data = $this->productModel->getAll();
-        $this->render('admin.products.list', compact('data'));
+        $search = isset($_GET['q']) ? trim($_GET['q']) : '';
+        $category_id = isset($_GET['category_id']) ? $_GET['category_id'] : '';
+        $data = $this->productModel->getAll($search, $category_id);
+        $categories = $this->categoryModel->getByType('product');
+        $this->render('admin.products.list', compact('data', 'categories', 'search', 'category_id'));
     }
 
     public function add() {

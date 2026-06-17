@@ -264,10 +264,9 @@
  color: var(--accent-orange);
  }
 
- /* Action elements */
  .btn-submit {
  width: 100%;
- background: var(--accent-gradient);
+ background: var(--accent-orange);
  border: none;
  color: #fff;
  padding: 14px;

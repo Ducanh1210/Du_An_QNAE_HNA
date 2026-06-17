@@ -56,7 +56,23 @@ class AdminCategoryController extends BaseController {
 
     public function delete($id) {
         $category = $this->categoryModel->getById($id);
-        $type = $category ? $category->type : 'product';
+        if (!$category) {
+            flash('errors', 'Danh mục không tồn tại', 'categories');
+        }
+        $type = $category->type;
+
+        if ($type === 'product') {
+            $count = $this->categoryModel->countProducts($id);
+            if ($count > 0) {
+                flash('errors', 'Không thể xóa danh mục này vì đang có sản phẩm thuộc danh mục!', 'categories?type=' . $type);
+            }
+        } elseif ($type === 'news') {
+            $count = $this->categoryModel->countNews($id);
+            if ($count > 0) {
+                flash('errors', 'Không thể xóa danh mục này vì đang có tin tức thuộc danh mục!', 'categories?type=' . $type);
+            }
+        }
+
         $this->categoryModel->delete($id);
         flash('success', 'Xóa danh mục thành công', 'categories?type=' . $type);
     }

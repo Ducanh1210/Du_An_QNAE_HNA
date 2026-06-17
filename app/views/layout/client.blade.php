@@ -1010,6 +1010,36 @@
             $input.change();
         });
 
+        // === Populate provisional menu into booking / shipping notes ===
+        $(document).on('click', '.btnInCart', function() {
+            var arr = [];
+            if (typeof Ultis !== 'undefined' && typeof Ultis.getCart === 'function') {
+                arr = Ultis.getCart();
+            } else {
+                var key = typeof localArrCart !== 'undefined' ? localArrCart : 'arrCartTD_1';
+                var arrCartCookie = localStorage.getItem(key);
+                if (arrCartCookie) {
+                    try {
+                        arr = JSON.parse(arrCartCookie);
+                    } catch (e) {
+                        arr = [];
+                    }
+                }
+            }
+            if (arr && arr.length > 0) {
+                var noteParts = [];
+                arr.forEach(function(item) {
+                    noteParts.push('- ' + item.quantity + ' x ' + item.proname);
+                });
+                var noteText = 'Thực đơn:\n' + noteParts.join('\n');
+                $('#txtNote').val(noteText);
+                $('#txtShipNote').val(noteText);
+            } else {
+                $('#txtNote').val('');
+                $('#txtShipNote').val('');
+            }
+        });
+
         // === Zalo Booking Integration ===
         // Override the booking submit to redirect to Zalo OA with message
         document.addEventListener('click', function(e) {

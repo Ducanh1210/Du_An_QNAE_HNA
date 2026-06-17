@@ -15,8 +15,11 @@ class AdminNewsController extends BaseController {
     }
 
     public function index() {
-        $data = $this->newsModel->getAll();
-        $this->render('admin.news.list', compact('data'));
+        $search = isset($_GET['q']) ? trim($_GET['q']) : '';
+        $category_id = isset($_GET['category_id']) ? $_GET['category_id'] : '';
+        $data = $this->newsModel->getAll($search, $category_id);
+        $categories = $this->categoryModel->getByType('news');
+        $this->render('admin.news.list', compact('data', 'categories', 'search', 'category_id'));
     }
 
     public function add() {

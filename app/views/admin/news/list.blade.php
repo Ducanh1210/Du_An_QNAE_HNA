@@ -4,10 +4,72 @@
 @section('breadcrumb', 'Tin tức')
 
 @section('content')
+<style>
+.search-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: #ffffff;
+    height: 34px;
+    width: 180px;
+    transition: all 0.2s;
+}
+.search-group:focus-within {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px var(--accent-glow) !important;
+}
+.search-group .search-icon {
+    padding: 0 10px;
+    color: var(--text-muted);
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-group .search-input {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 12px 0 0 !important;
+    height: 100% !important;
+    font-size: 13.5px !important;
+    border-radius: 0px !important;
+    box-shadow: none !important;
+    outline: none !important;
+    width: 100%;
+    color: var(--text-primary) !important;
+}
+.search-group .search-input::placeholder {
+    color: var(--text-muted) !important;
+}
+</style>
+
 <div class="admin-card">
-    <div class="admin-card-header">
-        <h5 class="admin-card-title"><i class="fas fa-newspaper me-2" style="color: var(--info);"></i>Danh sách tin tức</h5>
-        <a href="{{ BASE_URL }}news/create" class="btn btn-accent"><i class="fas fa-plus me-2"></i>Thêm mới</a>
+    <div class="admin-card-header mb-3 d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <h5 class="admin-card-title m-0"><i class="fas fa-newspaper me-2" style="color: var(--info);"></i>Danh sách tin tức</h5>
+        
+        <div class="d-flex align-items-center flex-wrap gap-2">
+            <form method="GET" action="{{ BASE_URL }}news" class="d-flex align-items-center gap-2 m-0">
+                <div class="search-group">
+                    <span class="search-icon"><i class="fas fa-search"></i></span>
+                    <input type="text" name="q" value="{{ $search }}" class="search-input" placeholder="Tìm tiêu đề...">
+                </div>
+                
+                <select name="category_id" class="form-select" style="border-color: var(--border-color); width: 185px; padding: 0 30px 0 12px !important; height: 34px !important; font-size: 13.5px !important; border-radius: 8px !important;" onchange="this.form.submit()">
+                    <option value="">-- Tất cả danh mục --</option>
+                    @foreach($categories as $cat)
+                        <option value="{{ $cat->id }}" {{ $category_id == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
+                    @endforeach
+                </select>
+                
+                <button type="submit" class="btn btn-accent px-2" style="height: 34px !important; font-size: 13px !important; border-radius: 8px !important; padding: 0 12px !important; display: inline-flex; align-items: center; justify-content: center;"><i class="fas fa-filter"></i></button>
+                @if(!empty($search) || !empty($category_id))
+                    <a href="{{ BASE_URL }}news" class="btn btn-outline-secondary px-2" style="border-color: var(--border-color); color: var(--text-secondary); height: 34px !important; font-size: 13px !important; border-radius: 8px !important; padding: 0 12px !important; display: inline-flex; align-items: center; justify-content: center;"><i class="fas fa-sync-alt"></i></a>
+                @endif
+            </form>
+            
+            <a href="{{ BASE_URL }}news/create" class="btn btn-accent ms-2" style="height: 34px !important; font-size: 13px !important; border-radius: 8px !important; padding: 0 12px !important; display: inline-flex; align-items: center; justify-content: center;"><i class="fas fa-plus me-1"></i>Thêm mới</a>
+        </div>
     </div>
 
     @if($data && count($data) > 0)
@@ -66,10 +128,15 @@
         </table>
     </div>
     @else
-    <div class="empty-state">
-        <i class="fas fa-newspaper d-block"></i>
-        <p>Chưa có tin tức nào</p>
-        <a href="{{ BASE_URL }}news/create" class="btn btn-accent">Thêm tin tức đầu tiên</a>
+    <div class="empty-state py-5">
+        <i class="fas fa-search d-block mb-3" style="font-size: 40px; opacity: 0.3;"></i>
+        @if(!empty($search) || !empty($category_id))
+            <p>Không tìm thấy tin tức nào phù hợp với bộ lọc tìm kiếm.</p>
+            <a href="{{ BASE_URL }}news" class="btn btn-accent btn-sm mt-2"><i class="fas fa-sync-alt me-2"></i>Xem tất cả tin tức</a>
+        @else
+            <p>Chưa có tin tức nào</p>
+            <a href="{{ BASE_URL }}news/create" class="btn btn-accent btn-sm mt-2">Thêm tin tức đầu tiên</a>
+        @endif
     </div>
     @endif
 </div>

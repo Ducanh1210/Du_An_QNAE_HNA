@@ -41,4 +41,38 @@ class AuthController extends BaseController {
         unset($_SESSION['user']);
         flash('success', 'Đăng xuất thành công!', 'login');
     }
+
+    public function changePassword() {
+        $this->render('admin.change_password');
+    }
+
+    public function postChangePassword() {
+        $oldPassword = isset($_POST['old_password']) ? trim($_POST['old_password']) : '';
+        $newPassword = isset($_POST['new_password']) ? trim($_POST['new_password']) : '';
+        $confirmPassword = isset($_POST['confirm_password']) ? trim($_POST['confirm_password']) : '';
+
+        if (empty($oldPassword) || empty($newPassword) || empty($confirmPassword)) {
+            flash('errors', 'Vui lòng điền đầy đủ tất cả các trường.', 'change-password');
+        }
+
+        if ($newPassword !== $confirmPassword) {
+            flash('errors', 'Mật khẩu mới và xác nhận mật khẩu không khớp.', 'change-password');
+        }
+
+        if (strlen($newPassword) < 6) {
+            flash('errors', 'Mật khẩu mới phải có ít nhất 6 ký tự.', 'change-password');
+        }
+
+        $userId = $_SESSION['user']['id'];
+        $userModel = new UserModel();
+        $user = $userModel->getById($userId);
+
+        if ($user && md5($oldPassword) === $user->password) {
+            $newPasswordHash = md5($newPassword);
+            $userModel->updatePassword($userId, $newPasswordHash);
+            flash('success', 'Đổi mật khẩu thành công!', 'admin');
+        } else {
+            flash('errors', 'Mật khẩu cũ không chính xác.', 'change-password');
+        }
+    }
 }

@@ -600,6 +600,9 @@
             </a>
 
             <div class="sidebar-label">Tài khoản</div>
+            <a href="{{ BASE_URL }}change-password" class="sidebar-link {{ str_contains(request_uri(), 'change-password') ? 'active' : '' }}">
+                <i class="fas fa-key"></i> Đổi mật khẩu
+            </a>
             <a href="{{ BASE_URL }}logout" class="sidebar-link" style="border-left-color: transparent !important; color: #ff4d4d !important;">
                 <i class="fas fa-sign-out-alt" style="color: #ff4d4d;"></i> <span style="color: #ff4d4d;">Đăng xuất</span>
             </a>

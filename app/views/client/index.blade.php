@@ -600,6 +600,9 @@
         <div class="video-banner-section">
             <img src="{{ BASE_URL }}images/video_3.webp" alt="Video banner Quán Nhậu Anh Em" class="video-banner-bg" loading="eager">
             <div class="video-banner-content video-banner-center">
+                <video class="video-banner-player" autoplay loop muted playsinline>
+                    <source src="{{ BASE_URL }}images/7944766915658.mp4" type="video/mp4">
+                </video>
                 <img src="{{ BASE_URL }}images/video_group_16.webp" alt="Play Video" class="video-banner-overlay" loading="eager">
             </div>
             <div class="video-banner-content video-banner-top-left">

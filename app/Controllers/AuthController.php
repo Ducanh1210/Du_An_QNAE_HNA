@@ -25,7 +25,7 @@ class AuthController extends BaseController {
         $userModel = new UserModel();
         $user = $userModel->getByUsername($username);
 
-        if ($user && password_verify($password, $user->password)) {
+        if ($user && md5($password) === $user->password) {
             $_SESSION['user'] = [
                 'id' => $user->id,
                 'username' => $user->username,

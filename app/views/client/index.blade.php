@@ -392,29 +392,6 @@
             </div>
         </div>
 
-        <div class="banner-full-screen">
-            <picture>
-                <source media="(max-width: 768px)" srcset="{{ BASE_URL }}images/6.webp">
-                <img src="{{ BASE_URL }}images/3.webp" alt="Banner" class="banner-fs-img" loading="eager" />
-            </picture>
-            <h2 class="banner-title">Không gian bếp</h2>
-            <div class="banner-mobile-row">
-                <div class="banner-quote-box">
-                    <p class="quote-text">
-                        Ngon từ tâm – chất từ bếp! Đó là điều mà đội ngũ đầu bếp của Quán Nhậu Anh Em luôn hướng
-                        tới. Mỗi món ăn là sự kết hợp của tâm huyết, kinh nghiệm và niềm vui được phục vụ anh em
-                        thực khách. Chỉ mong rằng mỗi lần nâng ly, anh em đều cảm thấy hài lòng và muốn quay lại
-                        cùng bạn bè.
-                    </p>
-                    <div class="quote-author">
-                        <span class="author-title">Ông</span>
-                        <span class="author-name">Đầu bếp......</span>
-                    </div>
-                </div>
-                <img src="{{ BASE_URL }}images/Group_19.webp" alt="Kitchen Mascot" class="kitchen-mascot" loading="eager" />
-            </div>
-        </div>
-
         <div class="td-home__bigText-middle">
             <div class="widthCT">
                 <div class="new-food">
@@ -520,6 +497,29 @@
                 <div class="slogan-line">
                     <span>H</span><span>Ế</span><span>T</span><span>&nbsp;&nbsp;</span><span>M</span><span>Ì</span><span>N</span><span>H</span>
                 </div>
+            </div>
+        </div>
+
+        <div class="banner-full-screen">
+            <picture>
+                <source media="(max-width: 768px)" srcset="{{ BASE_URL }}images/6.webp">
+                <img src="{{ BASE_URL }}images/3.webp" alt="Banner" class="banner-fs-img" loading="eager" />
+            </picture>
+            <h2 class="banner-title">Không gian bếp</h2>
+            <div class="banner-mobile-row">
+                <div class="banner-quote-box">
+                    <p class="quote-text">
+                        Ngon từ tâm – chất từ bếp! Đó là điều mà đội ngũ đầu bếp của Quán Nhậu Anh Em luôn hướng
+                        tới. Mỗi món ăn là sự kết hợp của tâm huyết, kinh nghiệm và niềm vui được phục vụ anh em
+                        thực khách. Chỉ mong rằng mỗi lần nâng ly, anh em đều cảm thấy hài lòng và muốn quay lại
+                        cùng bạn bè.
+                    </p>
+                    <div class="quote-author">
+                        <span class="author-title">Ông</span>
+                        <span class="author-name">Đầu bếp......</span>
+                    </div>
+                </div>
+                <img src="{{ BASE_URL }}images/Group_19.webp" alt="Kitchen Mascot" class="kitchen-mascot" loading="eager" />
             </div>
         </div>
 

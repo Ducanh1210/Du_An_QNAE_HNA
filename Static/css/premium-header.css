@@ -1029,28 +1029,32 @@ body .slogan-container .slogan-decor-right-img {
     /* Flat media queries for different viewport zoom factors */
     @media screen and (max-width: 576px) {
         body .td-home__coverWeb .coverBox {
-            width: 230% !important;
+            width: 185% !important;
         }
     }
 
     @media screen and (min-width: 577px) and (max-width: 768px) {
         body .td-home__coverWeb .coverBox {
-            width: 170% !important;
+            width: 185% !important;
         }
     }
 
     @media screen and (min-width: 769px) and (max-width: 920px) {
         body .td-home__coverWeb .coverBox {
-            width: 130% !important;
+            width: 185% !important;
         }
     }
 }
 
 @media screen and (max-width: 920px) {
 
-    /* Revert to original card styles and fix vertical clipping on mobile without breaking native scroll */
+    body .td-home__wrapper .new-food .heading {
+        margin-top: 40px !important;
+        margin-bottom: 10px !important;
+    }
+
     body .swiper-newfood {
-        padding-top: 120px !important;
+        padding-top: 90px !important;
         margin-top: -60px !important;
     }
 
@@ -1063,8 +1067,8 @@ body .slogan-container .slogan-decor-right-img {
     }
 
     body .td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu {
-        padding-top: 60px !important;
-        margin-top: -60px !important;
+        padding-top: 20px !important;
+        margin-top: -20px !important;
         padding-bottom: 45px !important;
         margin-bottom: -45px !important;
         overflow-y: hidden !important;
@@ -1119,6 +1123,11 @@ body .slogan-container .slogan-decor-right-img {
         animation: swayRight 6s infinite ease-in-out !important;
     }
 
+    body .td-home__coverWeb .layer-firework-left i {
+        background-position: 26% 35% !important;
+        transform-origin: 26% 35% !important;
+    }
+
     .td-home__coverWeb .tvBox {
         transform: translateX(-50%) scale(0.65) !important;
         left: 50% !important;
@@ -1155,6 +1164,10 @@ body .slogan-container .slogan-decor-right-img {
         line-height: 1.4 !important;
         margin-top: 30px !important;
         margin-bottom: 20px !important;
+    }
+
+    body .td-home__bigText-middle .view-menu {
+        margin-top: -5px !important;
     }
 
     /* Fix Swiper Uu i squished cards */

@@ -40,9 +40,10 @@ class HomeController extends BaseController
         $categoryModel = new CategoryModel();
 
         $categories = $categoryModel->getByType('news');
-        $news = $newsModel->getActive();
+        $search = isset($_GET['q']) ? trim($_GET['q']) : '';
+        $news = $newsModel->getActive($search);
 
-        $this->render('client.news', compact('categories', 'news'));
+        $this->render('client.news', compact('categories', 'news', 'search'));
     }
 
     public function newsDetail($slug)

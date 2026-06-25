@@ -220,6 +220,7 @@
                         <a href="javascript:;" class="cat-link" data-filter="{{ $category->slug }}">{{ $category->name }}</a>
                     @endforeach
                 @endif
+                <div class="category-indicator"></div>
             </div>
             <span class="category-arrow next">&rsaquo;</span>
         </div>
@@ -311,19 +312,15 @@
                     letter-spacing: 0.5px;
                 }
 
-                .news-category-bar .cat-link::after {
-                    content: '';
+                .category-indicator {
                     position: absolute;
                     bottom: 0;
                     left: 0;
-                    width: 0;
                     height: 3px;
                     background-color: #5e3612;
-                    transition: width 0.3s ease;
-                }
-
-                .news-category-bar .cat-link.active::after {
-                    width: 100%;
+                    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+                    z-index: 2;
+                    pointer-events: none;
                 }
 
                 .news-category-bar .cat-link:hover,
@@ -835,11 +832,31 @@
             });
             fixPositionStickyMenu();
 
+            var catList = document.querySelector('.cat-container');
+            var indicator = document.querySelector('.category-indicator');
+            
+            function updateNewsIndicator(activeElement) {
+                if (!indicator || !activeElement || !catList) return;
+                const activeRect = activeElement.getBoundingClientRect();
+                const containerRect = catList.getBoundingClientRect();
+                const offsetLeft = (activeRect.left - containerRect.left) + catList.scrollLeft;
+                indicator.style.width = activeRect.width + 'px';
+                indicator.style.transform = `translateX(${offsetLeft}px)`;
+            }
+
+            // Init indicator
+            setTimeout(function() {
+                var initActive = document.querySelector('.news-category-bar .cat-link.active');
+                if (initActive) updateNewsIndicator(initActive);
+            }, 100);
+
             // Handle category click for filtering
             $('.news-category-bar .cat-link').on('click', function (e) {
                 e.preventDefault();
                 $('.news-category-bar .cat-link').removeClass('active');
                 $(this).addClass('active');
+                
+                updateNewsIndicator(this);
 
                 var filter = $(this).attr('data-filter');
 
@@ -914,7 +931,6 @@
             });
 
             // Handle horizontal scroll arrows for the category bar
-            var catList = document.querySelector('.cat-container');
             var prevArrow = document.querySelector('.category-arrow.prev');
             var nextArrow = document.querySelector('.category-arrow.next');
 
@@ -942,8 +958,19 @@
 
             // Run arrows check
             setTimeout(updateCategoryArrows, 100);
-            window.addEventListener('resize', updateCategoryArrows);
-        });
+            
+            if (catList) {
+                catList.addEventListener('scroll', function() {
+                    var currentActive = document.querySelector('.news-category-bar .cat-link.active');
+                    if (currentActive) updateNewsIndicator(currentActive);
+                });
+            }
+            
+            window.addEventListener('resize', function() {
+                updateCategoryArrows();
+                var currentActive = document.querySelector('.news-category-bar .cat-link.active');
+                if (currentActive) updateNewsIndicator(currentActive);
             });
+        });
     </script>
 @endsection

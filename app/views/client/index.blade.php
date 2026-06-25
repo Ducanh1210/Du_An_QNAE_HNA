@@ -383,7 +383,7 @@
                     <img src="{{ BASE_URL }}images/Background.webp" alt="Slogan" class="slogan-img" loading="eager" />
                 </picture>
                 <img src="{{ BASE_URL }}images/slogan_layer_3.webp" alt="Slogan Decor Right" class="slogan-decor-right-img" loading="eager" />
-                <img src="{{ BASE_URL }}images/slogan_layer_10.webp" alt="Slogan Decor Left" class="slogan-decor-left-img" loading="eager" />
+                <img src="{{ BASE_URL }}images/thungbia.webp" alt="Slogan Decor Left" class="slogan-decor-left-img" loading="eager" />
                 <div class="slogan-parallax-mouse" id="sceneSloganPrl">
                     <div data-depth="0.15" class="slogan-logo-wrap">
                         <img src="{{ BASE_URL }}images/slogan_ae_2.webp" alt="Slogan Logo" class="slogan-logo-img" loading="eager" />

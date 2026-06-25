@@ -39,6 +39,7 @@
                 @foreach($categories as $c)
                 <li class="menu-category-item"><a href="#cat-{{ $c->id }}" class="menu-category-link">{{ $c->name }}</a></li>
                 @endforeach
+                <div class="category-indicator"></div>
             </ul>
             <span class="category-arrow next">&rsaquo;</span>
         </div>
@@ -266,19 +267,15 @@
                 position: relative;
             }
 
-            .menu-category-link::after {
-                content: '';
+            .category-indicator {
                 position: absolute;
                 bottom: 0;
                 left: 0;
-                width: 0;
                 height: 3px;
                 background-color: #5e3612;
-                transition: width 0.3s ease;
-            }
-
-            .menu-category-link.active::after {
-                width: 100%;
+                transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+                z-index: 2;
+                pointer-events: none;
             }
 
             .menu-category-link:hover,
@@ -812,6 +809,16 @@
             const links = document.querySelectorAll('.menu-category-link');
             const sections = document.querySelectorAll('.menu-section');
             const catList = document.querySelector('.menu-category-list');
+            const indicator = document.querySelector('.category-indicator');
+
+            function updateIndicator(activeElement) {
+                if (!indicator || !activeElement || !catList) return;
+                const activeRect = activeElement.getBoundingClientRect();
+                const containerRect = catList.getBoundingClientRect();
+                const offsetLeft = (activeRect.left - containerRect.left) + catList.scrollLeft;
+                indicator.style.width = activeRect.width + 'px';
+                indicator.style.transform = `translateX(${offsetLeft}px)`;
+            }
 
             // Hide all sections except the initially active one
             sections.forEach(sec => sec.style.display = 'none');
@@ -824,7 +831,19 @@
                     const activeSec = document.getElementById(targetId);
                     if (activeSec) activeSec.style.display = 'block';
                 }
+                setTimeout(() => updateIndicator(activeLink), 100);
             }
+
+            if (catList) {
+                catList.addEventListener('scroll', () => {
+                    const currentActive = document.querySelector('.menu-category-link.active');
+                    if (currentActive) updateIndicator(currentActive);
+                });
+            }
+            window.addEventListener('resize', () => {
+                const currentActive = document.querySelector('.menu-category-link.active');
+                if (currentActive) updateIndicator(currentActive);
+            });
 
             // Client-side search logic
             const searchInput = document.querySelector('.about-search-input');
@@ -901,6 +920,7 @@
 
                         links.forEach(l => l.classList.remove('active'));
                         this.classList.add('active');
+                        updateIndicator(this);
 
                         const targetId = href.substring(1);
                         if (targetId === 'cat-all') {

@@ -137,10 +137,10 @@
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .news-search-form:focus-within ~ .news-mascot,
-        .news-search-form:hover ~ .news-mascot {
+        .news-search-form:focus-within~.news-mascot,
+        .news-search-form:hover~.news-mascot {
             transform: scale(1.15) translateY(-8px) rotate(4deg);
-            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.25));
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25));
         }
 
         @media (max-width: 992px) {
@@ -188,13 +188,16 @@
             <div class="news-banner-left">
                 <h1 class="news-banner-title">TIN TỨC</h1>
                 <p class="news-banner-desc">
-                    Nơi cập nhật nhanh nhất những sự kiện nóng hổi, chương trình khuyến mại, khách hàng và thông tin thương hiệu.
+                    Nơi cập nhật nhanh nhất những sự kiện nóng hổi, chương trình khuyến mại, khách hàng và thông tin thương
+                    hiệu.
                 </p>
             </div>
             <div class="news-banner-right">
                 <div class="news-search-form">
-                    <input type="text" name="q" class="news-search-input" placeholder="Tìm kiếm" required onkeypress="if(event.key === 'Enter'){ event.preventDefault(); window.location.href = '{{ BASE_URL }}tin-tuc?q=' + encodeURIComponent(this.value); }">
-                    <button type="button" class="news-search-btn" onclick="var val = this.previousElementSibling.value; if(val){ window.location.href = '{{ BASE_URL }}tin-tuc?q=' + encodeURIComponent(val); }">
+                    <input type="text" name="q" class="news-search-input" placeholder="Tìm kiếm" required
+                        onkeypress="if(event.key === 'Enter'){ event.preventDefault(); window.location.href = '{{ BASE_URL }}tin-tuc?q=' + encodeURIComponent(this.value); }">
+                    <button type="button" class="news-search-btn"
+                        onclick="var val = this.previousElementSibling.value; if(val){ window.location.href = '{{ BASE_URL }}tin-tuc?q=' + encodeURIComponent(val); }">
                         <svg viewBox="0 0 24 24">
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -207,8 +210,9 @@
     </div>
     <div id="trigger-header-border"></div>
 
-    <div class="td-content__wrapper news-wrapper">
-        <div class="news-category-bar">
+    <div class="news-category-bar">
+        <div class="news-category-inner">
+            <span class="category-arrow prev">&lsaquo;</span>
             <div class="cat-container">
                 <a href="javascript:;" class="cat-link active" data-filter="all">Tất cả</a>
                 @if(isset($categories) && count($categories) > 0)
@@ -217,30 +221,73 @@
                     @endforeach
                 @endif
             </div>
+            <span class="category-arrow next">&rsaquo;</span>
         </div>
+    </div>
+
+    <div class="td-content__wrapper news-wrapper">
         <div class="custom-news-page">
             <style>
+                html,
+                body {
+                    overflow-x: clip !important;
+                }
+
                 /* NEWS CATEGORY BAR */
                 .news-category-bar {
-                    background-color: #ffffff;
+                    background-color: #FFA827;
                     width: 100%;
+                    position: sticky;
+                    top: 70px;
+                    z-index: 99;
+                    padding: 0;
+                    margin-bottom: 30px;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                    box-sizing: border-box;
+                    overflow: hidden;
+                }
+
+                .news-category-bar.is-sticky {
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                }
+
+                .news-category-bar::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    pointer-events: none;
+                    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+                    opacity: 0.12;
+                    z-index: 1;
+                    mix-blend-mode: multiply;
+                }
+
+                .news-category-inner {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    display: flex;
+                    align-items: center;
                     position: relative;
-                    z-index: 10;
-                    padding: 15px 0;
-                    border-bottom: 1px solid #eaeaea;
-                    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
-                    margin-bottom: 10px;
+                    padding: 0 15px;
+                    box-sizing: border-box;
+                    z-index: 2; /* Keep above noise */
                 }
 
                 .news-category-bar .cat-container {
-                    max-width: 1360px;
-                    margin: 0 auto;
-                    padding: 0 30px;
                     display: flex;
-                    align-items: center;
-                    gap: 12px;
+                    margin: 0;
+                    padding: 0;
                     overflow-x: auto;
+                    scroll-behavior: smooth;
+                    -ms-overflow-style: none;
                     scrollbar-width: none;
+                    width: 100%;
+                    justify-content: flex-start;
+                    gap: 40px;
+                    position: relative;
                 }
 
                 .news-category-bar .cat-container::-webkit-scrollbar {
@@ -248,49 +295,94 @@
                 }
 
                 .news-category-bar .cat-link {
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 10px 20px;
-                    background-color: #f5f5f5;
-                    color: #555;
+                    display: block;
+                    flex-shrink: 0;
+                    padding: 10px 0;
+                    background-color: transparent;
+                    color: #5e3612;
                     font-family: 'PlusJaS-Bold', sans-serif;
                     font-size: 14px;
-                    font-weight: 700;
+                    font-weight: bold;
+                    text-transform: uppercase;
                     text-decoration: none;
-                    border-radius: 6px;
                     white-space: nowrap;
-                    transition: all 0.3s ease;
+                    transition: all 0.2s ease;
+                    position: relative;
+                    letter-spacing: 0.5px;
                 }
 
-                .news-category-bar .cat-link:hover {
-                    background-color: #e0e0e0;
-                    color: #333;
+                .news-category-bar .cat-link::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 0;
+                    height: 3px;
+                    background-color: #5e3612;
+                    transition: width 0.3s ease;
                 }
 
+                .news-category-bar .cat-link.active::after {
+                    width: 100%;
+                }
+
+                .news-category-bar .cat-link:hover,
                 .news-category-bar .cat-link.active {
-                    background-color: #ffa827;
+                    color: #5e3612;
+                }
+
+                .category-arrow {
+                    font-size: 20px;
+                    color: #5e3612;
+                    cursor: pointer;
+                    user-select: none;
+                    padding: 10px 15px;
+                    display: none;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: 700;
+                    transition: color 0.2s;
+                }
+
+                .category-arrow:hover {
                     color: #ffffff;
                 }
 
-                @media (max-width: 768px) {
+                @media (max-width: 991px) {
                     .news-category-bar .cat-container {
-                        padding: 0 20px;
-                        gap: 10px;
+                        justify-content: flex-start;
+                        gap: 15px;
                     }
-
                     .news-category-bar .cat-link {
+                        padding: 8px 8px;
                         font-size: 13px;
-                        padding: 8px 16px;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    .news-category-bar {
+                        margin-bottom: 20px;
+                    }
+                }
+
+                @media (max-width: 920px) {
+                    .news-category-bar {
+                        top: 69px !important;
+                    }
+                }
+
+                @media (max-width: 750px) {
+                    .news-category-bar {
+                        top: 59px !important;
                     }
                 }
 
                 .custom-news-page {
                     box-sizing: border-box;
-                    padding: 40px 30px 80px 30px;
+                    padding: 40px 15px 80px 15px;
                     font-family: 'PlusJaS-Regular', sans-serif;
                     color: #222;
-                    max-width: 1360px;
+                    max-width: 1200px;
                     width: 100%;
                     box-sizing: border-box;
                     margin: 0 auto;
@@ -524,6 +616,7 @@
                         grid-template-columns: repeat(2, 1fr);
                         gap: 20px;
                     }
+
                     .main-featured-post .post-title {
                         font-size: 28px;
                     }
@@ -630,7 +723,8 @@
                 }
             </style>
 
-            <div class="no-news-message" style="display: none; text-align: center; color: #666; padding: 80px 0; font-style: italic; font-size: 16px;">
+            <div class="no-news-message"
+                style="display: none; text-align: center; color: #666; padding: 80px 0; font-style: italic; font-size: 16px;">
                 Hiện tại chưa có tin tức hoặc ưu đãi nào thuộc danh mục này. Xin vui lòng quay lại sau!
             </div>
 
@@ -640,25 +734,27 @@
                 <div class="featured-news-grid">
                     <!-- Left: Main Featured -->
                     @if(count($news) > 0)
-                    @php
-                        $mainPost = $news[0];
-                        $imgUrl = $mainPost->img_thumbnail;
-                        if ($imgUrl) {
-                            if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
-                                $imgUrl = 'storage/uploads/news/' . basename($imgUrl);
+                        @php
+                            $mainPost = $news[0];
+                            $imgUrl = $mainPost->img_thumbnail;
+                            if ($imgUrl) {
+                                if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
+                                    $imgUrl = 'storage/uploads/news/' . basename($imgUrl);
+                                }
+                            } else {
+                                $imgUrl = 'images/Untitled-3.webp';
                             }
-                        } else {
-                            $imgUrl = 'images/Untitled-3.webp';
-                        }
-                    @endphp
-                    <div class="main-featured-post" data-category="{{ $mainPost->category_slug ?? '' }}">
-                        <a href="{{ BASE_URL }}tin-tuc/{{ $mainPost->slug }}" class="post-thumb">
-                            <img src="{{ $imgUrl }}" alt="{{ $mainPost->title }}" loading="eager">
-                        </a>
-                        <div class="post-meta">{{ $mainPost->category_name ?? 'SỰ KIỆN NỔI BẬT' }} <span class="date">{{ date('d/m/Y', strtotime($mainPost->created_at)) }}</span></div>
-                        <h3 class="post-title"><a href="{{ BASE_URL }}tin-tuc/{{ $mainPost->slug }}">{{ $mainPost->title }}</a></h3>
-                        <p class="post-excerpt">{{ $mainPost->overview }}</p>
-                    </div>
+                        @endphp
+                        <div class="main-featured-post" data-category="{{ $mainPost->category_slug ?? '' }}">
+                            <a href="{{ BASE_URL }}tin-tuc/{{ $mainPost->slug }}" class="post-thumb">
+                                <img src="{{ $imgUrl }}" alt="{{ $mainPost->title }}" loading="eager">
+                            </a>
+                            <div class="post-meta">{{ $mainPost->category_name ?? 'SỰ KIỆN NỔI BẬT' }} <span
+                                    class="date">{{ date('d/m/Y', strtotime($mainPost->created_at)) }}</span></div>
+                            <h3 class="post-title"><a
+                                    href="{{ BASE_URL }}tin-tuc/{{ $mainPost->slug }}">{{ $mainPost->title }}</a></h3>
+                            <p class="post-excerpt">{{ $mainPost->overview }}</p>
+                        </div>
                     @endif
 
                     <!-- Right: Stacked Small Posts -->
@@ -682,7 +778,8 @@
                                 <div class="post-info">
                                     <div class="post-meta">{{ $subPost->category_name ?? 'TIN TỨC' }} <span
                                             class="date">{{ date('d/m', strtotime($subPost->created_at)) }}</span></div>
-                                    <h4 class="post-title"><a href="{{ BASE_URL }}tin-tuc/{{ $subPost->slug }}">{{ $subPost->title }}</a></h4>
+                                    <h4 class="post-title"><a
+                                            href="{{ BASE_URL }}tin-tuc/{{ $subPost->slug }}">{{ $subPost->title }}</a></h4>
                                 </div>
                             </div>
                         @endfor
@@ -695,26 +792,28 @@
                 <h2 class="editorial-title">Chương Trình Ưu Đãi</h2>
                 <div class="offers-grid">
                     @if(count($news) > 4)
-                    @for($i = 4; $i < count($news); $i++)
-                    @php
-                        $offer = $news[$i];
-                        $imgUrl = $offer->img_thumbnail;
-                        if ($imgUrl) {
-                            if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
-                                $imgUrl = 'storage/uploads/news/' . basename($imgUrl);
-                            }
-                        } else {
-                            $imgUrl = 'images/Untitled-3.webp';
-                        }
-                    @endphp
-                    <div class="offer-post" data-category="{{ $offer->category_slug ?? '' }}">
-                        <a href="{{ BASE_URL }}tin-tuc/{{ $offer->slug }}" class="post-thumb">
-                            <img src="{{ $imgUrl }}" alt="{{ $offer->title }}" loading="eager">
-                        </a>
-                        <div class="post-meta">{{ $offer->category_name ?? 'ƯU ĐÃI' }} <span class="date">{{ date('d/m', strtotime($offer->created_at)) }}</span></div>
-                        <h4 class="post-title"><a href="{{ BASE_URL }}tin-tuc/{{ $offer->slug }}">{{ $offer->title }}</a></h4>
-                    </div>
-                    @endfor
+                        @for($i = 4; $i < count($news); $i++)
+                            @php
+                                $offer = $news[$i];
+                                $imgUrl = $offer->img_thumbnail;
+                                if ($imgUrl) {
+                                    if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
+                                        $imgUrl = 'storage/uploads/news/' . basename($imgUrl);
+                                    }
+                                } else {
+                                    $imgUrl = 'images/Untitled-3.webp';
+                                }
+                            @endphp
+                            <div class="offer-post" data-category="{{ $offer->category_slug ?? '' }}">
+                                <a href="{{ BASE_URL }}tin-tuc/{{ $offer->slug }}" class="post-thumb">
+                                    <img src="{{ $imgUrl }}" alt="{{ $offer->title }}" loading="eager">
+                                </a>
+                                <div class="post-meta">{{ $offer->category_name ?? 'ƯU ĐÃI' }} <span
+                                        class="date">{{ date('d/m', strtotime($offer->created_at)) }}</span></div>
+                                <h4 class="post-title"><a href="{{ BASE_URL }}tin-tuc/{{ $offer->slug }}">{{ $offer->title }}</a>
+                                </h4>
+                            </div>
+                        @endfor
                     @else
                         <div class="no-offers"
                             style="grid-column: 1/-1; text-align: center; color: #666; padding: 40px 0; font-style: italic;">
@@ -748,14 +847,14 @@
                     $('.main-featured-post, .small-post, .offer-post').show();
                     $('.featured-news-grid').removeClass('no-main');
                 } else {
-                    $('.main-featured-post, .small-post, .offer-post').each(function() {
+                    $('.main-featured-post, .small-post, .offer-post').each(function () {
                         if ($(this).attr('data-category') === filter) {
                             $(this).show();
                         } else {
                             $(this).hide();
                         }
                     });
-                    
+
                     // Adjust grid if main featured post is hidden
                     if ($('.main-featured-post').css('display') === 'none') {
                         $('.featured-news-grid').addClass('no-main');
@@ -766,11 +865,11 @@
 
                 // Show/hide editorial sections if they become empty
                 var totalVisible = 0;
-                $('.editorial-section').each(function() {
-                    var visiblePosts = $(this).find('.main-featured-post, .small-post, .offer-post').filter(function() {
+                $('.editorial-section').each(function () {
+                    var visiblePosts = $(this).find('.main-featured-post, .small-post, .offer-post').filter(function () {
                         return $(this).css('display') !== 'none';
                     }).length;
-                    
+
                     if (visiblePosts > 0) {
                         $(this).show();
                         totalVisible += visiblePosts;
@@ -785,6 +884,66 @@
                     $('.no-news-message').hide();
                 }
             });
+
+            // Dynamic sticky handling
+            function adjustCategoryBarSticky() {
+                var $header = $('.premium-header-wrapper');
+                var $bar = $('.news-category-bar');
+                if ($header.length && $bar.length) {
+                    var headerHeight = $header.outerHeight();
+                    $bar.css('top', headerHeight + 'px');
+                }
+            }
+
+            setTimeout(adjustCategoryBarSticky, 100);
+            setTimeout(adjustCategoryBarSticky, 300);
+            setTimeout(adjustCategoryBarSticky, 500);
+
+            $(window).on('scroll', function() {
+                adjustCategoryBarSticky();
+                var $bar = $('.news-category-bar');
+                if ($bar.length) {
+                    var rect = $bar[0].getBoundingClientRect();
+                    var headerHeight = $('.premium-header-wrapper').outerHeight() || 70;
+                    if (Math.abs(rect.top - headerHeight) < 5) {
+                        $bar.addClass('is-sticky');
+                    } else {
+                        $bar.removeClass('is-sticky');
+                    }
+                }
+            });
+
+            // Handle horizontal scroll arrows for the category bar
+            var catList = document.querySelector('.cat-container');
+            var prevArrow = document.querySelector('.category-arrow.prev');
+            var nextArrow = document.querySelector('.category-arrow.next');
+
+            function updateCategoryArrows() {
+                if (catList && prevArrow && nextArrow) {
+                    var hasOverflow = catList.scrollWidth > catList.clientWidth;
+                    if (hasOverflow) {
+                        prevArrow.style.display = 'flex';
+                        nextArrow.style.display = 'flex';
+                    } else {
+                        prevArrow.style.display = 'none';
+                        nextArrow.style.display = 'none';
+                    }
+                }
+            }
+
+            if (prevArrow && nextArrow && catList) {
+                prevArrow.addEventListener('click', function() {
+                    catList.scrollBy({ left: -180, behavior: 'smooth' });
+                });
+                nextArrow.addEventListener('click', function() {
+                    catList.scrollBy({ left: 180, behavior: 'smooth' });
+                });
+            }
+
+            // Run arrows check
+            setTimeout(updateCategoryArrows, 100);
+            window.addEventListener('resize', updateCategoryArrows);
         });
+            });
     </script>
 @endsection

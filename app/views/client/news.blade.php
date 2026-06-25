@@ -248,7 +248,6 @@
                     top: 70px;
                     z-index: 99;
                     padding: 0;
-                    margin-bottom: 30px;
                     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
                     box-sizing: border-box;
                     overflow: hidden;
@@ -362,11 +361,6 @@
                     }
                 }
 
-                @media (max-width: 768px) {
-                    .news-category-bar {
-                        margin-bottom: 20px;
-                    }
-                }
 
                 @media (max-width: 920px) {
                     .news-category-bar {

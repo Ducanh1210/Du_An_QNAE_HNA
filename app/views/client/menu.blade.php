@@ -551,7 +551,7 @@
 
             @media (max-width: 991px) {
                 .menu-wrapper {
-                    padding-top: 0;
+                    padding-top: 25px;
                 }
 
                 .menu-container {

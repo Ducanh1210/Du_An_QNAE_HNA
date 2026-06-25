@@ -7,18 +7,181 @@
 @section('canonical', route('gioi-thieu'))
 
 @section('content')
-    <div class="header-page">
-        <div class="hp-content">
-            <h1 class="title-page">Giới thiệu</h1>
-            <div class="info-page">
-                <div class="des">
-                    Hành trình mang hương vị mộc mạc, đậm đà đến với mọi thực khách.
-                    <br>
-                    Nơi gắn kết những tâm hồn đồng điệu qua từng ly bia, món nhậu.
-                </div>
-                <div class="funcsRight">
-                    <a href="javascript:;" class="join-club" title="tham gia nhóm" target="_blank">THAM GIA NHÓM ZALO</a>
-                </div>
+    <style>
+        .about-banner-custom {
+            background-color: #5e3612;
+            padding: 110px 0 40px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: visible;
+        }
+
+        .about-banner-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 15px;
+            margin: 0 auto;
+        }
+
+        .about-banner-left {
+            max-width: 60%;
+            z-index: 2;
+            position: relative;
+        }
+
+        .about-banner-title {
+            font-family: 'PiklabJemore', sans-serif;
+            font-weight: normal;
+            font-size: 70px;
+            color: #FFA827;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin: 0 0 10px 0;
+            letter-spacing: 2px;
+        }
+
+        .about-banner-desc {
+            font-family: PlusJaS-Medium, sans-serif;
+            color: #e3dcd2;
+            font-size: 16px;
+            line-height: 1.4;
+            max-width: 595px;
+            margin: 0;
+        }
+
+        .about-banner-right {
+            position: relative;
+            display: flex;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .about-search-form {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background-color: #d69522;
+            border-radius: 30px;
+            width: 300px;
+            height: 46px;
+            padding: 0 45px 0 20px;
+        }
+
+        .about-search-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            font-size: 15px;
+            font-family: PlusJaS-Medium, sans-serif;
+        }
+
+        .about-search-input::placeholder {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .about-search-btn {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: #f3e8d5;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .about-search-btn svg {
+            width: 18px;
+            height: 18px;
+            opacity: 0.8;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .about-mascot {
+            position: absolute;
+            right: -45px;
+            bottom: -20px;
+            height: 100px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        @media (max-width: 992px) {
+            .about-banner-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 30px;
+            }
+
+            .about-banner-left {
+                max-width: 100%;
+            }
+
+            .about-banner-title {
+                font-size: 55px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-banner-custom {
+                padding: 90px 0 35px 0;
+            }
+
+            .about-banner-title {
+                font-size: 40px;
+            }
+
+            .about-search-form {
+                width: 260px;
+            }
+
+            .about-mascot {
+                right: -25px;
+                height: 80px;
+                bottom: -15px;
+            }
+
+            .about-banner-desc {
+                font-size: 14px;
+            }
+        }
+    </style>
+
+    <div class="about-banner-custom">
+        <div class="about-banner-inner">
+            <div class="about-banner-left">
+                <h1 class="about-banner-title">GIỚI THIỆU</h1>
+                <p class="about-banner-desc">
+                    Quán Nhậu Anh Em – Nơi anh em gặp gỡ, nâng ly và sẻ chia những khoảnh khắc đáng nhớ. Từ tiệc sinh nhật,
+                    liên hoan đến những đêm xem bóng đá cuồng nhiệt, mọi cuộc vui đều bắt đầu tại đây.
+                </p>
+            </div>
+            <div class="about-banner-right">
+                <form action="{{ BASE_URL }}tin-tuc" method="GET" class="about-search-form">
+                    <input type="text" name="q" class="about-search-input" placeholder="Tìm kiếm" required>
+                    <button type="submit" class="about-search-btn">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </form>
+                <img src="{{ BASE_URL }}images/Untitled-3.webp" alt="Mascot" class="about-mascot" loading="eager">
             </div>
         </div>
     </div>
@@ -31,6 +194,7 @@
                 font-family: 'PlusJaS-Regular', sans-serif;
                 background: #fff;
             }
+
             .about-story-grid {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
@@ -38,12 +202,14 @@
                 align-items: center;
                 margin-bottom: 80px;
             }
+
             .about-image {
                 position: relative;
                 border-radius: 12px;
                 overflow: hidden;
                 box-shadow: 0 20px 50px rgba(74, 44, 17, 0.15);
             }
+
             .about-image img {
                 width: 100%;
                 height: 100%;
@@ -51,12 +217,15 @@
                 display: block;
                 transition: transform 0.6s ease;
             }
+
             .about-image:hover img {
                 transform: scale(1.05);
             }
+
             .about-content {
                 padding-right: 30px;
             }
+
             .about-subtitle {
                 font-family: 'PlusJaS-Bold', sans-serif;
                 font-size: 14px;
@@ -66,6 +235,7 @@
                 margin-bottom: 15px;
                 display: block;
             }
+
             .about-title {
                 font-family: 'PlusJaS-Bold', sans-serif;
                 font-size: 42px;
@@ -73,18 +243,21 @@
                 line-height: 1.2;
                 margin-bottom: 25px;
             }
+
             .about-desc {
                 font-size: 16px;
                 color: #7a5a3a;
                 line-height: 1.8;
                 margin-bottom: 20px;
             }
+
             .about-features {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 gap: 30px;
                 margin-top: 50px;
             }
+
             .feature-box {
                 text-align: center;
                 padding: 40px 20px;
@@ -93,11 +266,13 @@
                 border: 1px solid #f3e8d5;
                 transition: all 0.3s ease;
             }
+
             .feature-box:hover {
                 transform: translateY(-10px);
                 box-shadow: 0 15px 30px rgba(74, 44, 17, 0.08);
                 border-color: #ff9c00;
             }
+
             .feature-icon {
                 width: 48px;
                 height: 48px;
@@ -109,66 +284,81 @@
                 margin: 0 auto 20px;
                 color: #fff;
             }
+
             .feature-icon svg {
                 width: 22px !important;
                 height: 22px !important;
             }
+
             .feature-title {
                 font-family: 'PlusJaS-Bold', sans-serif;
                 font-size: 18px;
                 color: #4a2c11;
                 margin-bottom: 10px;
             }
+
             .feature-desc {
                 font-size: 14px;
                 color: #7a5a3a;
                 line-height: 1.6;
             }
+
             @media (max-width: 992px) {
                 .about-story-grid {
                     grid-template-columns: 1fr;
                     gap: 40px;
                 }
+
                 .about-content {
                     padding-right: 0;
                 }
+
                 .about-features {
                     grid-template-columns: 1fr;
                     gap: 25px;
                 }
+
                 .about-premium-wrapper {
                     padding: 60px 20px 80px 20px;
                 }
+
                 .about-title {
                     font-size: 32px;
                 }
             }
+
             @media (max-width: 768px) {
                 .about-premium-wrapper {
                     padding: 40px 20px 50px 20px;
                 }
+
                 .about-title {
                     font-size: 26px;
                     margin-bottom: 15px;
                     line-height: 1.3;
                 }
+
                 .about-subtitle {
                     font-size: 12px;
                     margin-bottom: 10px;
                 }
+
                 .about-desc {
                     font-size: 14px;
                     line-height: 1.6;
                     margin-bottom: 15px;
                 }
+
                 .about-story-grid {
                     gap: 30px;
                     margin-bottom: 40px;
                 }
+
                 .about-features {
                     margin-top: 30px;
                     gap: 20px;
                 }
+
                 .feature-box {
                     padding: 30px 15px;
                 }
@@ -179,8 +369,12 @@
             <div class="about-content">
                 <span class="about-subtitle">Câu chuyện của chúng tôi</span>
                 <h2 class="about-title">Nơi Gắn Kết Những Người Anh Em</h2>
-                <p class="about-desc">Khởi nguồn từ niềm đam mê ẩm thực Việt và mong muốn tạo ra một không gian mộc mạc, gần gũi, <b>Quán Nhậu Anh Em</b> ra đời như một điểm hẹn lý tưởng cho những buổi tụ tập bạn bè, đồng nghiệp sau những giờ làm việc căng thẳng.</p>
-                <p class="about-desc">Chúng tôi không chỉ mang đến những món ăn ngon miệng, đậm đà hương vị đồng quê mà còn chú trọng vào trải nghiệm khách hàng. Sự nhiệt tình, hiếu khách là tôn chỉ hoạt động giúp Quán Nhậu Anh Em luôn giữ được vị trí đặc biệt trong lòng thực khách tại Ninh Bình.</p>
+                <p class="about-desc">Khởi nguồn từ niềm đam mê ẩm thực Việt và mong muốn tạo ra một không gian mộc mạc, gần
+                    gũi, <b>Quán Nhậu Anh Em</b> ra đời như một điểm hẹn lý tưởng cho những buổi tụ tập bạn bè, đồng nghiệp
+                    sau những giờ làm việc căng thẳng.</p>
+                <p class="about-desc">Chúng tôi không chỉ mang đến những món ăn ngon miệng, đậm đà hương vị đồng quê mà còn
+                    chú trọng vào trải nghiệm khách hàng. Sự nhiệt tình, hiếu khách là tôn chỉ hoạt động giúp Quán Nhậu Anh
+                    Em luôn giữ được vị trí đặc biệt trong lòng thực khách tại Ninh Bình.</p>
             </div>
             <div class="about-image">
                 <img src="{{ BASE_URL }}images/3.webp" alt="Không gian quán nhậu Anh Em">
@@ -190,24 +384,44 @@
         <div class="about-features">
             <div class="feature-box">
                 <div class="feature-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                        <line x1="6" y1="1" x2="6" y2="4"></line>
+                        <line x1="10" y1="1" x2="10" y2="4"></line>
+                        <line x1="14" y1="1" x2="14" y2="4"></line>
+                    </svg>
                 </div>
                 <h3 class="feature-title">Món Ngon Đậm Đà</h3>
-                <p class="feature-desc">Nguyên liệu tươi sống được tuyển chọn kỹ lưỡng mỗi ngày, chế biến qua bàn tay điêu luyện của các đầu bếp giàu kinh nghiệm.</p>
+                <p class="feature-desc">Nguyên liệu tươi sống được tuyển chọn kỹ lưỡng mỗi ngày, chế biến qua bàn tay điêu
+                    luyện của các đầu bếp giàu kinh nghiệm.</p>
             </div>
             <div class="feature-box">
                 <div class="feature-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
                 </div>
                 <h3 class="feature-title">Không Gian Thoáng Mát</h3>
-                <p class="feature-desc">Thiết kế không gian mở, bình dân nhưng vô cùng sạch sẽ và thoáng đãng, mang lại cảm giác thoải mái tuyệt đối cho thực khách.</p>
+                <p class="feature-desc">Thiết kế không gian mở, bình dân nhưng vô cùng sạch sẽ và thoáng đãng, mang lại cảm
+                    giác thoải mái tuyệt đối cho thực khách.</p>
             </div>
             <div class="feature-box">
                 <div class="feature-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
                 </div>
                 <h3 class="feature-title">Phục Vụ Tận Tâm</h3>
-                <p class="feature-desc">Đội ngũ nhân viên thân thiện, nhanh nhẹn, luôn sẵn sàng phục vụ với nụ cười trên môi, coi khách hàng như chính người thân.</p>
+                <p class="feature-desc">Đội ngũ nhân viên thân thiện, nhanh nhẹn, luôn sẵn sàng phục vụ với nụ cười trên
+                    môi, coi khách hàng như chính người thân.</p>
             </div>
         </div>
     </div>

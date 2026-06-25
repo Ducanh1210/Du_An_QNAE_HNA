@@ -120,6 +120,7 @@
         .about-search-btn svg {
             width: 18px;
             height: 18px;
+
             stroke: currentColor;
             stroke-width: 2.5;
             stroke-linecap: round;

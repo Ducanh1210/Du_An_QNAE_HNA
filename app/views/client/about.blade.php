@@ -65,11 +65,22 @@
             position: relative;
             display: flex;
             align-items: center;
-            background-color: #d69522;
+            background-color: #fcf5e8;
+            border: 2px solid #FFA827;
             border-radius: 30px;
-            width: 300px;
+            width: 300px !important;
+            max-width: 100% !important;
+            box-sizing: border-box;
             height: 46px;
             padding: 0 45px 0 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .about-search-form:hover,
+        .about-search-form:focus-within {
+            border-color: #ff8c00;
+            box-shadow: 0 4px 12px rgba(255, 168, 39, 0.25);
         }
 
         .about-search-input {
@@ -77,36 +88,40 @@
             background: transparent;
             border: none;
             outline: none;
-            color: #fff;
+            color: #603813;
             font-size: 15px;
             font-family: PlusJaS-Medium, sans-serif;
         }
 
         .about-search-input::placeholder {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(96, 56, 19, 0.6);
         }
 
         .about-search-btn {
             position: absolute;
-            right: 12px;
+            right: 20px;
             top: 50%;
             transform: translateY(-50%);
             background: transparent;
             border: none;
-            color: #f3e8d5;
+            color: #FFA827;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 0;
+            transition: color 0.2s ease;
+        }
+
+        .about-search-btn:hover {
+            color: #603813;
         }
 
         .about-search-btn svg {
             width: 18px;
             height: 18px;
-            opacity: 0.8;
             stroke: currentColor;
-            stroke-width: 2;
+            stroke-width: 2.5;
             stroke-linecap: round;
             stroke-linejoin: round;
             fill: none;
@@ -114,11 +129,18 @@
 
         .about-mascot {
             position: absolute;
-            right: -45px;
-            bottom: -20px;
+            right: -38px;
+            bottom: -5px;
             height: 100px;
             z-index: 10;
             pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .about-search-form:focus-within ~ .about-mascot,
+        .about-search-form:hover ~ .about-mascot {
+            transform: scale(1.15) translateY(-8px) rotate(4deg);
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.25));
         }
 
         @media (max-width: 992px) {
@@ -147,13 +169,13 @@
             }
 
             .about-search-form {
-                width: 260px;
+                width: 260px !important;
             }
 
             .about-mascot {
-                right: -25px;
+                right: -22px;
                 height: 80px;
-                bottom: -15px;
+                bottom: -5px;
             }
 
             .about-banner-desc {
@@ -172,15 +194,15 @@
                 </p>
             </div>
             <div class="about-banner-right">
-                <form action="{{ BASE_URL }}tin-tuc" method="GET" class="about-search-form">
-                    <input type="text" name="q" class="about-search-input" placeholder="Tìm kiếm" required>
-                    <button type="submit" class="about-search-btn">
+                <div class="about-search-form">
+                    <input type="text" name="q" class="about-search-input" placeholder="Tìm kiếm" required onkeypress="if(event.key === 'Enter'){ event.preventDefault(); window.location.href = '{{ BASE_URL }}tin-tuc?q=' + encodeURIComponent(this.value); }">
+                    <button type="button" class="about-search-btn" onclick="var val = this.previousElementSibling.value; if(val){ window.location.href = '{{ BASE_URL }}tin-tuc?q=' + encodeURIComponent(val); }">
                         <svg viewBox="0 0 24 24">
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
                     </button>
-                </form>
+                </div>
                 <img src="{{ BASE_URL }}images/Untitled-3.webp" alt="Mascot" class="about-mascot" loading="eager">
             </div>
         </div>

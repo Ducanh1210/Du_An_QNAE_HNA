@@ -39,6 +39,7 @@
                 @foreach($categories as $c)
                 <li class="menu-category-item"><a href="#cat-{{ $c->id }}" class="menu-category-link">{{ $c->name }}</a></li>
                 @endforeach
+                <div class="category-indicator no-transition"></div>
             </ul>
             <span class="category-arrow next">&rsaquo;</span>
         </div>
@@ -241,6 +242,7 @@
                 width: 100%;
                 justify-content: center;
                 gap: 25px;
+                position: relative;
             }
 
             .menu-category-list::-webkit-scrollbar {
@@ -270,14 +272,18 @@
                 color: #5e3612;
             }
 
-            .menu-category-link.active::after {
-                content: '';
+            .category-indicator {
                 position: absolute;
                 bottom: 0;
-                left: 0;
-                right: 0;
                 height: 3px;
                 background-color: #5e3612;
+                transition: left 0.3s cubic-bezier(0.25, 1, 0.5, 1), width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+                pointer-events: none;
+                z-index: 10;
+            }
+
+            .category-indicator.no-transition {
+                transition: none !important;
             }
 
             .category-arrow {
@@ -286,7 +292,7 @@
                 cursor: pointer;
                 user-select: none;
                 padding: 10px 15px;
-                display: flex;
+                display: none; /* Hide by default to prevent flashing on load */
                 align-items: center;
                 justify-content: center;
                 font-weight: 700;
@@ -805,6 +811,36 @@
         document.addEventListener('DOMContentLoaded', function () {
             const links = document.querySelectorAll('.menu-category-link');
             const sections = document.querySelectorAll('.menu-section');
+            const indicator = document.querySelector('.category-indicator');
+            const catList = document.querySelector('.menu-category-list');
+
+            function updateIndicatorPosition(isInitial = false) {
+                const activeLink = document.querySelector('.menu-category-link.active');
+                if (activeLink && indicator && catList) {
+                    if (isInitial) {
+                        indicator.classList.add('no-transition');
+                    }
+                    const linkRect = activeLink.getBoundingClientRect();
+                    const listRect = catList.getBoundingClientRect();
+                    const left = linkRect.left - listRect.left + catList.scrollLeft;
+                    const width = linkRect.width;
+                    indicator.style.left = left + 'px';
+                    indicator.style.width = width + 'px';
+
+                    if (isInitial) {
+                        // Force layout reflow
+                        indicator.offsetHeight;
+                        setTimeout(() => {
+                            indicator.classList.remove('no-transition');
+                        }, 50);
+                    }
+                }
+            }
+
+            // Run initial indicator setup
+            updateIndicatorPosition(true);
+            setTimeout(() => updateIndicatorPosition(true), 200);
+            setTimeout(() => updateIndicatorPosition(true), 500);
 
             // Hide all sections except the initially active one
             sections.forEach(sec => sec.style.display = 'none');
@@ -895,6 +931,9 @@
                         links.forEach(l => l.classList.remove('active'));
                         this.classList.add('active');
 
+                        // Update sliding underline position
+                        updateIndicatorPosition();
+
                         const targetId = href.substring(1);
                         if (targetId === 'cat-all') {
                             sections.forEach(sec => sec.style.display = 'block');
@@ -967,6 +1006,7 @@
             window.addEventListener('resize', () => {
                 clearTimeout(window.resizeTimer);
                 window.resizeTimer = setTimeout(updateLoadMore, 100);
+                updateIndicatorPosition();
             });
 
             // Active menu item on main header

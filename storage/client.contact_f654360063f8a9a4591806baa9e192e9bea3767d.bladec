@@ -324,6 +324,7 @@
  display: flex;
  align-items: center;
  z-index: 2;
+ transform: translateY(35px);
  }
 
  .contact-search-form {
@@ -419,6 +420,9 @@
  }
  .contact-banner-title {
  font-size: 55px;
+ }
+ .contact-banner-right {
+ transform: translateY(0);
  }
  }
  

@@ -109,6 +109,7 @@
                 display: flex;
                 align-items: center;
                 z-index: 2;
+                transform: translateY(35px);
             }
 
             .about-search-form {
@@ -517,6 +518,10 @@
 
                 .about-banner-title {
                     font-size: 55px;
+                }
+
+                .about-banner-right {
+                    transform: translateY(0);
                 }
             }
 

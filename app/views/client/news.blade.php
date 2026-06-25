@@ -59,6 +59,7 @@
             display: flex;
             align-items: center;
             z-index: 2;
+            transform: translateY(35px);
         }
 
         .news-search-form {
@@ -157,6 +158,10 @@
             .news-banner-title {
                 font-size: 55px;
             }
+
+            .news-banner-right {
+                transform: translateY(0);
+            }
         }
 
         @media (max-width: 768px) {
@@ -195,6 +200,7 @@
             <div class="news-banner-right">
                 <div class="news-search-form">
                     <input type="text" name="q" class="news-search-input" placeholder="Tìm kiếm" required
+                        value="{{ $search ?? '' }}"
                         onkeypress="if(event.key === 'Enter'){ event.preventDefault(); window.location.href = '{{ BASE_URL }}tin-tuc?q=' + encodeURIComponent(this.value); }">
                     <button type="button" class="news-search-btn"
                         onclick="var val = this.previousElementSibling.value; if(val){ window.location.href = '{{ BASE_URL }}tin-tuc?q=' + encodeURIComponent(val); }">
@@ -721,10 +727,15 @@
             </style>
 
             <div class="no-news-message"
-                style="display: none; text-align: center; color: #666; padding: 80px 0; font-style: italic; font-size: 16px;">
-                Hiện tại chưa có tin tức hoặc ưu đãi nào thuộc danh mục này. Xin vui lòng quay lại sau!
+                style="{{ count($news) == 0 ? 'display: block;' : 'display: none;' }} text-align: center; color: #666; padding: 80px 0; font-style: italic; font-size: 16px;">
+                @if(!empty($search))
+                    Không tìm thấy tin tức hoặc ưu đãi nào khớp với từ khóa "{{ htmlspecialchars($search) }}".
+                @else
+                    Hiện tại chưa có tin tức hoặc ưu đãi nào thuộc danh mục này. Xin vui lòng quay lại sau!
+                @endif
             </div>
 
+            @if(count($news) > 0)
             <!-- HOT NEWS: EDITORIAL LAYOUT -->
             <div class="editorial-section">
                 <h2 class="editorial-title">Tin Tức Mới Nhất</h2>
@@ -819,6 +830,7 @@
                     @endif
                 </div>
             </div>
+            @endif
         </div>
     </div>
 @endsection

@@ -84,14 +84,23 @@ class NewsModel extends BaseModel {
         return $this->loadRecord();
     }
 
-    public function getActive() {
+    public function getActive($search = '') {
         $sql = "SELECT n.*, c.name as category_name, c.slug as category_slug 
                 FROM news n 
                 LEFT JOIN categories c ON n.category_id = c.id 
-                WHERE n.is_active = 1 
-                ORDER BY n.created_at DESC";
+                WHERE n.is_active = 1";
+        
+        $params = [];
+        if (!empty($search)) {
+            $sql .= " AND (REPLACE(REPLACE(n.title, 'đ', 'd'), 'Đ', 'D') LIKE ? OR REPLACE(REPLACE(n.overview, 'đ', 'd'), 'Đ', 'D') LIKE ?)";
+            $cleanSearch = "%" . str_replace(['đ', 'Đ'], ['d', 'd'], $search) . "%";
+            $params[] = $cleanSearch;
+            $params[] = $cleanSearch;
+        }
+
+        $sql .= " ORDER BY n.created_at DESC";
         $this->setQuery($sql);
-        return $this->loadAllRows();
+        return $this->loadAllRows($params);
     }
 
     public function getForHome() {

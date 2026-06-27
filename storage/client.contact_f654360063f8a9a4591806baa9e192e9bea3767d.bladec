@@ -442,7 +442,7 @@
  bottom: -5px;
  }
  .contact-banner-desc {
- font-size: 14px;
+ display: none;
  }
  }
  </style>

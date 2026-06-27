@@ -20,7 +20,10 @@ class HomeController extends BaseController
 
     public function about()
     {
-        $this->render('client.about');
+        $productModel = new ProductModel();
+        $latestProducts = $productModel->getLatest(3);
+        
+        $this->render('client.about', compact('latestProducts'));
     }
 
     public function menu()

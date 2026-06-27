@@ -85,6 +85,17 @@ class ProductModel extends BaseModel {
         return $this->loadAllRows();
     }
 
+    public function getLatest($limit = 3) {
+        $sql = "SELECT p.*, c.name as category_name 
+                FROM products p 
+                LEFT JOIN categories c ON p.category_id = c.id 
+                WHERE p.is_active = 1 
+                AND c.id != 2 AND c.name NOT LIKE '%uống%'
+                ORDER BY p.updated_at DESC LIMIT $limit";
+        $this->setQuery($sql);
+        return $this->loadAllRows();
+    }
+
     public function getForHome() {
         $sql = "SELECT p.*, c.name as category_name 
                 FROM products p 

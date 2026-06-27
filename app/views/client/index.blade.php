@@ -213,6 +213,23 @@
             }
         }
 
+        /* Fix ảnh tách nền bị vỡ/to quá trong thẻ món Best Seller */
+        .list-food-menu.combo-menu .food-menu .thumb img.img-transparent-fix {
+            object-fit: contain !important;
+            padding: 15% !important;
+            box-sizing: border-box !important;
+            top: -40px !important; /* Đưa ảnh xuống thấp hơn để không bị bay cao */
+            transform: scale(1.3) !important; /* Giảm scale nhẹ */
+        }
+
+        /* Fix đổ bóng cho ảnh tách nền bị thu nhỏ để không bị bay quá cao */
+        .list-food-menu.combo-menu .food-menu .thumb.img-transparent-thumb::after {
+            top: 75px !important; /* Đưa đổ bóng lên sát đáy thố */
+            width: 90px !important;
+            height: 24px !important;
+            left: calc(50% - 45px) !important;
+        }
+
         </style>
 @endsection
 
@@ -402,7 +419,8 @@
                             @foreach($products as $p)
                                 @if($p->is_active == 1)
                                      @php
-                                        $imgUrl = !empty($p->img_transparent) ? $p->img_transparent : $p->img_thumbnail;
+                                        $isTransparent = !empty($p->img_transparent);
+                                        $imgUrl = $isTransparent ? $p->img_transparent : $p->img_thumbnail;
                                         if ($imgUrl) {
                                             if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
                                                 $imgUrl = BASE_URL . 'storage/uploads/products/' . basename($imgUrl);
@@ -416,7 +434,7 @@
                                     <div class="swiper-slide parent-class" data-id="{{ $p->id }}" data-name="{{ $p->name }}" data-price="{{ $p->price }}">
                                         <div class="food-menu">
                                             <a href="javascript:;" class="popupFood thumb" data-id="{{ $p->id }}">
-                                                <img src="{{ $imgUrl }}" alt="{{ $p->name }}" data-id="{{ $p->id }}" loading="eager">
+                                                <img src="{{ $imgUrl }}" alt="{{ $p->name }}" data-id="{{ $p->id }}" loading="eager" class="{{ $isTransparent ? 'is-transparent-img' : '' }}">
                                             </a>
                                             <div class="info-box">
                                                 <a href="javascript:;" class="popupFood title-food" title="{{ $p->name }}" data-id="{{ $p->id }}">{{ $p->name }}</a>
@@ -776,13 +794,19 @@
             Home.init();
             fixPositionStickyMenu();
 
-            // Detect wide product images and adjust layout
+            // Detect wide product images and adjust layout, and fix oversized square/portrait transparent images
             $('.swiper-newfood .thumb img').each(function() {
                 var img = $(this);
                 var checkAspect = function(w, h) {
                     if (w / h > 1.2) {
                         img.addClass('wide-img');
                         img.parent().addClass('wide-thumb');
+                    } else {
+                        // Chỉ thu nhỏ (apply padding) với ảnh tách nền dạng vuông hoặc dọc (w/h <= 1.2)
+                        if (img.hasClass('is-transparent-img')) {
+                            img.addClass('img-transparent-fix');
+                            img.parent().addClass('img-transparent-thumb');
+                        }
                     }
                 };
                 if (this.complete && this.naturalWidth) {

@@ -566,7 +566,7 @@
                 }
 
                 .about-banner-desc {
-                    font-size: 14px;
+                    display: none;
                 }
             }
 

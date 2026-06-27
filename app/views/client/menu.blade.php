@@ -37,7 +37,8 @@
             <ul class="menu-category-list">
                 <li class="menu-category-item"><a href="#cat-all" class="menu-category-link active">Tất cả</a></li>
                 @foreach($categories as $c)
-                <li class="menu-category-item"><a href="#cat-{{ $c->id }}" class="menu-category-link">{{ $c->name }}</a></li>
+                    <li class="menu-category-item"><a href="#cat-{{ $c->id }}" class="menu-category-link">{{ $c->name }}</a>
+                    </li>
                 @endforeach
                 <div class="category-indicator"></div>
             </ul>
@@ -188,10 +189,10 @@
                 transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             }
 
-            .about-search-form:focus-within ~ .about-mascot,
-            .about-search-form:hover ~ .about-mascot {
+            .about-search-form:focus-within~.about-mascot,
+            .about-search-form:hover~.about-mascot {
                 transform: scale(1.15) translateY(-8px) rotate(4deg);
-                filter: drop-shadow(0 8px 16px rgba(0,0,0,0.25));
+                filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25));
             }
 
             .menu-category-bar {
@@ -228,7 +229,8 @@
                 position: relative;
                 padding: 0 20px;
                 box-sizing: border-box;
-                z-index: 2; /* Keep above noise */
+                z-index: 2;
+                /* Keep above noise */
             }
 
             .menu-category-list {
@@ -290,7 +292,8 @@
                 cursor: pointer;
                 user-select: none;
                 padding: 10px 15px;
-                display: none; /* Hide by default to prevent flashing on load */
+                display: none;
+                /* Hide by default to prevent flashing on load */
                 align-items: center;
                 justify-content: center;
                 font-weight: 700;
@@ -302,7 +305,11 @@
             }
 
             .menu-wrapper {
-                background-color: #fdf9f2;
+                background-color: #faf6ee;
+                background-image: url('{{ BASE_URL }}images/bg-pattern.webp');
+                background-position: left top;
+                background-repeat: repeat-y;
+                background-size: 100% auto;
                 padding: 40px 0 80px 0;
             }
 
@@ -350,29 +357,28 @@
             }
 
             .product-card {
-                background: #fff;
-                border-radius: 4px;
-                overflow: hidden;
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+                background: rgb(246, 227, 195);
+                border-radius: 16px;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
                 display: flex;
                 flex-direction: column;
                 cursor: pointer;
-                border: 1px solid #f0f0f0;
+                border: none;
             }
 
             .product-card:hover {
                 transform: translateY(-5px);
-                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-                border-color: #FFA827;
+                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
             }
 
             .product-image-wrapper {
                 position: relative;
                 width: 100%;
                 padding-top: 75%;
-                background: #eee;
-                overflow: hidden;
+                background: transparent;
+                border-radius: 16px 16px 0 0;
+                z-index: 1;
             }
 
             .product-image {
@@ -382,11 +388,33 @@
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                border-radius: 16px 16px 0 0;
+                transition: filter 0.5s ease;
+                z-index: 1;
+            }
+
+            .product-image-trans {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                opacity: 0;
+                transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+                z-index: 2;
+                transform-origin: center center;
+                filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3));
+                pointer-events: none;
             }
 
             .product-card:hover .product-image {
-                transform: scale(1.08);
+                filter: grayscale(100%) brightness(0.6);
+            }
+
+            .product-card:hover .product-image-trans {
+                opacity: 1;
+                transform: scale(1.15) translateY(-10px);
             }
 
             .product-badge {
@@ -405,19 +433,23 @@
             }
 
             .product-info {
-                padding: 12px 14px;
+                padding: 12px 16px;
                 display: flex;
                 flex-direction: column;
+                justify-content: space-between;
+                gap: 6px;
                 flex: 1;
+                border: 1.5px solid #FFA827;
+                border-top: none;
+                border-radius: 0 0 16px 16px;
             }
 
             .product-name {
-                font-size: 15px;
-                font-weight: 700;
-                color: #222;
-                margin-bottom: 6px;
-                line-height: 1.4;
-                height: 42px;
+                font-size: 16px;
+                font-weight: 600;
+                color: #381c0d;
+                margin-bottom: 0;
+                line-height: 1.3;
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
@@ -429,54 +461,43 @@
                 color: #FFA827;
             }
 
-            .product-desc {
-                font-size: 12px;
-                color: #666;
-                margin-bottom: 12px;
-                flex: 1;
-                line-height: 1.4;
-                height: 34px;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-            }
-
-            .product-footer {
+            .product-bottom-row {
                 display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-top: auto;
-                padding-top: 15px;
-                border-top: 1px dashed #eee;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                width: 100%;
+                margin-top: 4px;
             }
 
             .product-price {
-                font-size: 17px;
-                font-weight: 800;
-                color: #d32f2f;
+                font-size: 15px;
+                font-weight: 500;
+                color: #381c0d;
             }
 
             .btn-add {
-                width: 32px;
-                height: 32px;
-                border-radius: 6px;
-                background: #f5f5f5;
-                color: #222;
+                align-self: flex-end;
+                margin-top: 10px;
+                flex-shrink: 0;
+                padding: 2px 8px;
+                border-radius: 8px;
+                background: transparent;
+                color: #4a2711;
+                border: 1.5px solid #4a2711;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                font-weight: 700;
+                font-size: 14px;
                 transition: all 0.3s ease;
-            }
-
-            .btn-add svg {
-                width: 16px;
-                height: 16px;
+                cursor: pointer;
+                white-space: nowrap;
             }
 
             .product-card:hover .btn-add {
-                background: #FFA827;
-                color: #fff;
+                background: #4a2711;
+                color: rgb(246, 227, 195);
             }
 
             .menu-section-footer {
@@ -580,17 +601,21 @@
                 }
 
                 .product-info {
-                    padding: 12px;
+                    padding: 10px 12px;
                 }
 
                 .product-name {
-                    font-size: 14px;
-                    height: 40px;
-                    margin-bottom: 6px;
+                    font-size: 15px;
+                    height: auto;
                 }
 
                 .product-price {
-                    font-size: 15px;
+                    font-size: 14px;
+                }
+
+                .btn-add {
+                    padding: 2px 8px;
+                    font-size: 13px;
                 }
 
                 .td-header {
@@ -631,31 +656,28 @@
 
                 .product-info {
                     padding: 10px;
+                    gap: 6px;
                 }
 
                 .product-name {
-                    font-size: 13px;
-                    height: 38px;
-                    margin-bottom: 4px;
+                    font-size: 14px;
+                    height: auto;
+                }
+
+                .product-bottom-row {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 8px;
                 }
 
                 .product-price {
                     font-size: 14px;
                 }
 
-                .product-desc {
-                    display: none;
-                }
-
                 .btn-add {
-                    width: 28px;
-                    height: 28px;
-                    border-radius: 4px;
-                }
-
-                .btn-add svg {
-                    width: 14px;
-                    height: 14px;
+                    padding: 2px 8px;
+                    border-radius: 6px;
+                    font-size: 13px;
                 }
             }
 
@@ -680,52 +702,61 @@
         <div class="menu-container">
             <main class="menu-main">
                 @foreach($categories as $c)
-                @php
-                    $catProducts = array_filter($products, function($p) use ($c) {
-                        return $p->category_id == $c->id;
-                    });
-                @endphp
-                @if(count($catProducts) > 0)
-                <div class="menu-section" id="cat-{{ $c->id }}">
-                    <div class="menu-section-title">{{ $c->name }}</div>
-                    <div class="products-grid">
-                        @foreach($catProducts as $p)
-                        @php
-                            $imgUrl = $p->img_thumbnail;
-                            if ($imgUrl) {
-                                if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
-                                    $imgUrl = 'storage/uploads/products/' . basename($imgUrl);
-                                }
-                            } else {
-                                $imgUrl = 'images/produc.webp';
-                            }
-                        @endphp
-                        <div class="product-card parent-class" data-id="{{ $p->id }}" data-name="{{ $p->name }}" data-price="{{ $p->price }}">
-                            <div class="product-image-wrapper popupFood" data-id="{{ $p->id }}">
-                                @if($p->price < 150000)
-                                <span class="product-badge">New</span>
-                                @else
-                                <span class="product-badge">Hot</span>
-                                @endif
-                                <img src="{{ $imgUrl }}" alt="{{ $p->name }}" class="product-image" loading="eager">
-                            </div>
-                            <div class="product-info">
-                                <div class="product-name popupFood" data-id="{{ $p->id }}">{{ $p->name }}</div>
-                                <div class="product-desc">{{ !empty($p->overview) ? $p->overview : 'Món ăn ngon, bổ dưỡng từ Quán Nhậu Anh Em' }}</div>
-                                <div class="product-footer">
-                                    <div class="product-price">{{ number_format($p->price, 0, ',', '.') }}đ</div>
-                                    <div class="btn-add ready-call-add-to-card">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 5v14M5 12h14" />
-                                        </svg>
+                    @php
+                        $catProducts = array_filter($products, function ($p) use ($c) {
+                            return $p->category_id == $c->id;
+                        });
+                    @endphp
+                    @if(count($catProducts) > 0)
+                        <div class="menu-section" id="cat-{{ $c->id }}">
+                            <div class="menu-section-title">{{ $c->name }}</div>
+                            <div class="products-grid">
+                                @foreach($catProducts as $p)
+                                    @php
+                                        $imgUrl = $p->img_thumbnail;
+                                        if ($imgUrl) {
+                                            if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
+                                                $imgUrl = 'storage/uploads/products/' . basename($imgUrl);
+                                            }
+                                        } else {
+                                            $imgUrl = 'images/produc.webp';
+                                        }
+
+                                        $imgTransUrl = '';
+                                        if (isset($p->img_transparent) && $p->img_transparent) {
+                                            $imgTransUrl = $p->img_transparent;
+                                            if (!preg_match('/^(images\/|https?:\/\/)/', $imgTransUrl)) {
+                                                $imgTransUrl = 'storage/uploads/products/' . basename($imgTransUrl);
+                                            }
+                                        }
+                                    @endphp
+                                    <div class="product-card parent-class" data-id="{{ $p->id }}" data-name="{{ $p->name }}"
+                                        data-price="{{ $p->price }}">
+                                        <div class="product-image-wrapper popupFood" data-id="{{ $p->id }}">
+                                            @if($p->price < 150000)
+                                                <span class="product-badge">New</span>
+                                            @else
+                                                <span class="product-badge">Hot</span>
+                                            @endif
+                                            <img src="{{ $imgUrl }}" alt="{{ $p->name }}" class="product-image" loading="eager">
+                                            @if($imgTransUrl)
+                                                <img src="{{ $imgTransUrl }}" alt="{{ $p->name }}" class="product-image-trans" loading="eager">
+                                            @endif
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="product-name popupFood" data-id="{{ $p->id }}">{{ $p->name }}</div>
+                                            <div class="product-bottom-row">
+                                                <div class="product-price">{{ number_format($p->price, 0, ',', '.') }} đ</div>
+                                                <div class="btn-add ready-call-add-to-card">
+                                                    + Đặt
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
-                        @endforeach
-                    </div>
-                </div>
-                @endif
+                    @endif
                 @endforeach
             </main>
         </div>
@@ -757,7 +788,7 @@
             setTimeout(adjustMenuCategoryBarSticky, 500);
 
             // Run on scroll to handle header height changes
-            $(window).on('scroll', function() {
+            $(window).on('scroll', function () {
                 adjustMenuCategoryBarSticky();
                 // Add visual feedback when bar is stuck
                 var $bar = $('.menu-category-bar');
@@ -791,10 +822,10 @@
             }
 
             if (prevArrow && nextArrow && catList) {
-                prevArrow.addEventListener('click', function() {
+                prevArrow.addEventListener('click', function () {
                     catList.scrollBy({ left: -180, behavior: 'smooth' });
                 });
-                nextArrow.addEventListener('click', function() {
+                nextArrow.addEventListener('click', function () {
                     catList.scrollBy({ left: 180, behavior: 'smooth' });
                 });
             }
@@ -803,7 +834,7 @@
             setTimeout(updateCategoryArrows, 200);
 
             // Run on resize
-            $(window).on('resize', function() {
+            $(window).on('resize', function () {
                 adjustMenuCategoryBarSticky();
                 updateCategoryArrows();
             });
@@ -906,7 +937,7 @@
 
             if (searchInput) {
                 searchInput.addEventListener('input', performMenuSearch);
-                searchInput.addEventListener('keypress', function(e) {
+                searchInput.addEventListener('keypress', function (e) {
                     if (e.key === 'Enter') {
                         e.preventDefault();
                         performMenuSearch();

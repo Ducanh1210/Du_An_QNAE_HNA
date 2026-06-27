@@ -212,7 +212,8 @@
                 max-width: 70vw;
             }
         }
-    </style>
+
+        </style>
 @endsection
 
 @section('schema')
@@ -399,56 +400,56 @@
                     <div class="swiper-container swiper-newfood">
                         <div class="swiper-wrapper list-food-menu combo-menu">
                             @foreach($products as $p)
-                            @if($p->is_active == 1)
-                             @php
-                                $imgUrl = !empty($p->img_transparent) ? $p->img_transparent : $p->img_thumbnail;
-                                if ($imgUrl) {
-                                    if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
-                                        $imgUrl = BASE_URL . 'storage/uploads/products/' . basename($imgUrl);
-                                    } else {
-                                        $imgUrl = BASE_URL . $imgUrl;
-                                    }
-                                } else {
-                                    $imgUrl = BASE_URL . 'images/produc.webp';
-                                }
-                            @endphp
-                            <div class="swiper-slide parent-class" data-id="{{ $p->id }}" data-name="{{ $p->name }}" data-price="{{ $p->price }}">
-                                <div class="food-menu">
-                                    <a href="javascript:;" class="popupFood thumb" data-id="{{ $p->id }}">
-                                        <img src="{{ $imgUrl }}" alt="{{ $p->name }}" data-id="{{ $p->id }}" loading="eager">
-                                    </a>
-                                    <div class="info-box">
-                                        <a href="javascript:;" class="popupFood title-food" title="{{ $p->name }}" data-id="{{ $p->id }}">{{ $p->name }}</a>
-                                        <div class="price-food" rel="currency">{{ $p->price }}</div>
-                                        <div class="funcsBox">
-                                            <input type="number" style="display: none;" class="txtQuantity" value="1" />
-                                            <a href="javascript:;" class="add-to-card ready-call-add-to-card">
-                                                <span class="icn">
-                                                    <span class="icn-plus">
-                                                        <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <g clip-path="url(#clip0_176_2322)">
-                                                                 <path d="M9.375 4.875H5.625V1.125C5.625 0.75 5.375 0.5 5 0.5C4.625 0.5 4.375 0.75 4.375 1.125V4.875H0.625C0.25 4.875 0 5.125 0 5.5C0 5.875 0.25 6.125 0.625 6.125H4.375V9.875C4.375 10.25 4.625 10.5 5 10.5C5.375 10.5 5.625 10.25 5.625 9.875V6.125H9.375C9.75 6.125 10 5.875 10 5.5C10 5.125 9.75 4.875 9.375 4.875Z" fill="#999999"></path>
-                                                            </g>
-                                                            <defs>
-                                                                 <clipPath id="clip0_176_2322">
-                                                                     <rect width="10" height="10" fill="white" transform="translate(0 0.5)"></rect>
-                                                                 </clipPath>
-                                                            </defs>
-                                                        </svg>
-                                                    </span>
-                                                    <span class="icn-check">
-                                                        <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                             <path d="M9.20177 2.88069L8.39931 2.07824C8.29499 1.97392 8.12541 1.97392 8.02109 2.07824L3.66268 6.43664L1.97967 4.75363C1.87535 4.64931 1.70576 4.64931 1.60144 4.75363L0.798454 5.55555C0.694135 5.65986 0.694135 5.82945 0.798454 5.93377L3.47331 8.60862C3.52573 8.66105 3.59421 8.68673 3.66268 8.68673C3.73116 8.68673 3.79964 8.66051 3.85206 8.60862L9.20177 3.25945C9.30609 3.15513 9.30609 2.98555 9.20177 2.88123V2.88069Z" fill="#222222"></path>
-                                                        </svg>
-                                                    </span>
-                                                </span>
-                                                <span class="txt">Đặt</span>
+                                @if($p->is_active == 1)
+                                     @php
+                                        $imgUrl = !empty($p->img_transparent) ? $p->img_transparent : $p->img_thumbnail;
+                                        if ($imgUrl) {
+                                            if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
+                                                $imgUrl = BASE_URL . 'storage/uploads/products/' . basename($imgUrl);
+                                            } else {
+                                                $imgUrl = BASE_URL . $imgUrl;
+                                            }
+                                        } else {
+                                            $imgUrl = BASE_URL . 'images/produc.webp';
+                                        }
+                                    @endphp
+                                    <div class="swiper-slide parent-class" data-id="{{ $p->id }}" data-name="{{ $p->name }}" data-price="{{ $p->price }}">
+                                        <div class="food-menu">
+                                            <a href="javascript:;" class="popupFood thumb" data-id="{{ $p->id }}">
+                                                <img src="{{ $imgUrl }}" alt="{{ $p->name }}" data-id="{{ $p->id }}" loading="eager">
                                             </a>
+                                            <div class="info-box">
+                                                <a href="javascript:;" class="popupFood title-food" title="{{ $p->name }}" data-id="{{ $p->id }}">{{ $p->name }}</a>
+                                                <div class="price-food" rel="currency">{{ $p->price }}</div>
+                                                <div class="funcsBox">
+                                                    <input type="number" style="display: none;" class="txtQuantity" value="1" />
+                                                    <a href="javascript:;" class="add-to-card ready-call-add-to-card">
+                                                        <span class="icn">
+                                                            <span class="icn-plus">
+                                                                <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <g clip-path="url(#clip0_176_2322)">
+                                                                         <path d="M9.375 4.875H5.625V1.125C5.625 0.75 5.375 0.5 5 0.5C4.625 0.5 4.375 0.75 4.375 1.125V4.875H0.625C0.25 4.875 0 5.125 0 5.5C0 5.875 0.25 6.125 0.625 6.125H4.375V9.875C4.375 10.25 4.625 10.5 5 10.5C5.375 10.5 5.625 10.25 5.625 9.875V6.125H9.375C9.75 6.125 10 5.875 10 5.5C10 5.125 9.75 4.875 9.375 4.875Z" fill="#999999"></path>
+                                                                    </g>
+                                                                    <defs>
+                                                                         <clipPath id="clip0_176_2322">
+                                                                             <rect width="10" height="10" fill="white" transform="translate(0 0.5)"></rect>
+                                                                         </clipPath>
+                                                                    </defs>
+                                                                </svg>
+                                                            </span>
+                                                            <span class="icn-check">
+                                                                <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                     <path d="M9.20177 2.88069L8.39931 2.07824C8.29499 1.97392 8.12541 1.97392 8.02109 2.07824L3.66268 6.43664L1.97967 4.75363C1.87535 4.64931 1.70576 4.64931 1.60144 4.75363L0.798454 5.55555C0.694135 5.65986 0.694135 5.82945 0.798454 5.93377L3.47331 8.60862C3.52573 8.66105 3.59421 8.68673 3.66268 8.68673C3.73116 8.68673 3.79964 8.66051 3.85206 8.60862L9.20177 3.25945C9.30609 3.15513 9.30609 2.98555 9.20177 2.88123V2.88069Z" fill="#222222"></path>
+                                                                </svg>
+                                                            </span>
+                                                        </span>
+                                                        <span class="txt">Đặt</span>
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            @endif
+                                @endif
                             @endforeach
                         </div>
                         <div class="swiper-pagination"></div>
@@ -526,16 +527,16 @@
         <div class="marquee">
             <div class="marquee-content">
                 @for ($i = 0; $i < 8; $i++)
-                <div class="marquee-item">
-                    <h2 class="text" style="color: #222222 !important;">ưu đãi <span style="color: #5e3713 !important;">KHAI TRƯƠNG</span></h2>
-                    <div class="icn">
-                        <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g>
-                                <path d="M54.3285 25.8799L48.125 19.6763V9.16675C48.125 7.90175 47.0983 6.87509 45.8333 6.87509H35.3237L29.1202 0.671543C28.2241 -0.224499 26.7758 -0.224499 25.8798 0.671543L19.6762 6.87509H9.16663C7.90163 6.87509 6.87496 7.90175 6.87496 9.16675V19.6763L0.671421 25.8799C-0.224621 26.7759 -0.224621 28.2243 0.671421 29.1203L6.87496 35.3238V45.8334C6.87496 47.0984 7.90163 48.1251 9.16663 48.1251H19.6762L25.8798 54.3286C26.3266 54.7755 26.9133 55.0001 27.5 55.0001C28.0866 55.0001 28.6733 54.7755 29.1202 54.3286L35.3237 48.1251H45.8333C47.0983 48.1251 48.125 47.0984 48.125 45.8334V35.3238L54.3285 29.1203C55.2245 28.2243 55.2245 26.7759 54.3285 25.8799ZM19.4791 16.0418C21.3766 16.0418 22.9166 17.5818 22.9166 19.4793C22.9166 21.3768 21.3766 22.9168 19.4791 22.9168C17.5816 22.9168 16.0416 21.3768 16.0416 19.4793C16.0416 17.5818 17.5816 16.0418 19.4791 16.0418ZM35.5208 38.9584C33.6233 38.9584 32.0833 37.4184 32.0833 35.5209C32.0833 33.6234 33.6233 32.0834 35.5208 32.0834C37.4183 32.0834 38.9583 33.6234 38.9583 35.5209C38.9583 37.4184 37.4183 38.9584 35.5208 38.9584ZM18.3333 39.9072L15.0929 36.6668L36.6666 15.093L39.907 18.3334L18.3333 39.9072Z" fill="#F1F1F1" />
-                            </g>
-                        </svg>
+                    <div class="marquee-item">
+                        <h2 class="text" style="color: #222222 !important;">ưu đãi <span style="color: #5e3713 !important;">KHAI TRƯƠNG</span></h2>
+                        <div class="icn">
+                            <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g>
+                                    <path d="M54.3285 25.8799L48.125 19.6763V9.16675C48.125 7.90175 47.0983 6.87509 45.8333 6.87509H35.3237L29.1202 0.671543C28.2241 -0.224499 26.7758 -0.224499 25.8798 0.671543L19.6762 6.87509H9.16663C7.90163 6.87509 6.87496 7.90175 6.87496 9.16675V19.6763L0.671421 25.8799C-0.224621 26.7759 -0.224621 28.2243 0.671421 29.1203L6.87496 35.3238V45.8334C6.87496 47.0984 7.90163 48.1251 9.16663 48.1251H19.6762L25.8798 54.3286C26.3266 54.7755 26.9133 55.0001 27.5 55.0001C28.0866 55.0001 28.6733 54.7755 29.1202 54.3286L35.3237 48.1251H45.8333C47.0983 48.1251 48.125 47.0984 48.125 45.8334V35.3238L54.3285 29.1203C55.2245 28.2243 55.2245 26.7759 54.3285 25.8799ZM19.4791 16.0418C21.3766 16.0418 22.9166 17.5818 22.9166 19.4793C22.9166 21.3768 21.3766 22.9168 19.4791 22.9168C17.5816 22.9168 16.0416 21.3768 16.0416 19.4793C16.0416 17.5818 17.5816 16.0418 19.4791 16.0418ZM35.5208 38.9584C33.6233 38.9584 32.0833 37.4184 32.0833 35.5209C32.0833 33.6234 33.6233 32.0834 35.5208 32.0834C37.4183 32.0834 38.9583 33.6234 38.9583 35.5209C38.9583 37.4184 37.4183 38.9584 35.5208 38.9584ZM18.3333 39.9072L15.0929 36.6668L36.6666 15.093L39.907 18.3334L18.3333 39.9072Z" fill="#F1F1F1" />
+                                </g>
+                            </svg>
+                        </div>
                     </div>
-                </div>
                 @endfor
             </div>
         </div>
@@ -555,40 +556,40 @@
                 <div class="swiper-container swiper-dscHome">
                     <div class="swiper-wrapper">
                         @foreach($news as $n)
-                        @if($n->is_active == 1)
-                        @php
-                            $imgUrl = $n->img_thumbnail;
-                            if ($imgUrl) {
-                                if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
-                                    $imgUrl = BASE_URL . 'storage/uploads/news/' . basename($imgUrl);
-                                } else {
-                                    $imgUrl = BASE_URL . $imgUrl;
-                                }
-                            } else {
-                                $imgUrl = BASE_URL . 'images/Untitled-3.webp';
-                            }
-                        @endphp
-                        <div class="swiper-slide">
-                            <div class="dscBox">
-                                <a href="{{ BASE_URL }}tin-tuc/{{ $n->slug }}" class="thumb">
-                                    <i style="background-image: url('{{ $imgUrl }}'); background-size: cover; background-position: center; background-color: #2b1408;"></i>
-                                </a>
-                                <div class="total-dcs">
-                                    <a href="{{ BASE_URL }}tin-tuc/{{ $n->slug }}" class="title">{{ $n->title }}</a>
-                                    <a href="{{ BASE_URL }}tin-tuc/{{ $n->slug }}" class="sapo">{{ $n->overview }}</a>
-                                    <a href="{{ BASE_URL }}tin-tuc/{{ $n->slug }}" class="get-dsc">
-                                        <span class="icn">
-                                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M26.25 13.125H22.5V12.1875C23.625 11.3438 24.375 10.0312 24.375 8.4375C24.375 5.625 21.9375 3.375 19.125 3.75C18.0938 1.40625 15.75 0 13.125 0C10.5 0 8.25 1.5 7.125 3.75C4.3125 3.375 1.875 5.625 1.875 8.4375C1.875 9.9375 2.625 11.3438 3.75 12.1875V26.25C3.75 28.3125 5.4375 30 7.5 30H18.75C20.8125 30 22.5 28.3125 22.5 26.25V22.5H24.375C25.9688 22.5 27.1875 21.2812 27.1875 19.6875V14.0625C27.1875 13.5 26.8125 13.125 26.25 13.125ZM5.0625 6.1875C5.90625 5.625 6.5625 5.4375 7.40625 5.8125C7.6875 5.90625 7.875 5.90625 8.15625 5.71875C8.4375 5.625 8.625 5.4375 8.625 5.15625C8.90625 4.21875 9.28125 3.375 10.0312 2.90625C13.125 0.84375 16.5938 2.34375 17.5313 5.25C17.7188 5.4375 17.8125 5.625 18.0938 5.71875C18.2812 5.8125 18.5625 5.8125 18.8438 5.8125C19.7812 5.53125 20.4375 5.625 21.1875 6.1875C21.9375 6.65625 22.5 7.5 22.5 8.4375C22.5 9.9375 21.1875 11.25 19.6875 11.25H13.125C12.5625 11.25 12.1875 11.625 12.1875 12.1875V18.2812C12.1875 19.0312 11.5312 19.6875 10.7812 19.6875C10.0312 19.6875 9.375 19.0312 9.375 18.2812V12.1875C9.375 11.625 9 11.25 8.4375 11.25H6.5625C5.0625 11.25 3.75 10.0312 3.75 8.4375C3.75 7.5 4.3125 6.65625 5.0625 6.1875ZM25.3125 19.6875C25.3125 20.25 24.9375 20.625 24.375 20.625H22.5V15H25.3125V19.6875Z" fill="#E79E32" />
-                                            </svg>
-                                        </span>
-                                        <span class="txt">NHẬN NGAY</span>
-                                        <img src="{{ BASE_URL }}images/Untitled-3.webp" alt="Mascot" class="get-dsc-mascot" loading="eager">
-                                    </a>
+                            @if($n->is_active == 1)
+                                @php
+                                    $imgUrl = $n->img_thumbnail;
+                                    if ($imgUrl) {
+                                        if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
+                                            $imgUrl = BASE_URL . 'storage/uploads/news/' . basename($imgUrl);
+                                        } else {
+                                            $imgUrl = BASE_URL . $imgUrl;
+                                        }
+                                    } else {
+                                        $imgUrl = BASE_URL . 'images/Untitled-3.webp';
+                                    }
+                                @endphp
+                                <div class="swiper-slide">
+                                    <div class="dscBox">
+                                        <a href="{{ BASE_URL }}tin-tuc/{{ $n->slug }}" class="thumb">
+                                            <i style="background-image: url('{{ $imgUrl }}'); background-size: cover; background-position: center; background-color: #2b1408;"></i>
+                                        </a>
+                                        <div class="total-dcs">
+                                            <a href="{{ BASE_URL }}tin-tuc/{{ $n->slug }}" class="title">{{ $n->title }}</a>
+                                            <a href="{{ BASE_URL }}tin-tuc/{{ $n->slug }}" class="sapo">{{ $n->overview }}</a>
+                                            <a href="{{ BASE_URL }}tin-tuc/{{ $n->slug }}" class="get-dsc">
+                                                <span class="icn">
+                                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M26.25 13.125H22.5V12.1875C23.625 11.3438 24.375 10.0312 24.375 8.4375C24.375 5.625 21.9375 3.375 19.125 3.75C18.0938 1.40625 15.75 0 13.125 0C10.5 0 8.25 1.5 7.125 3.75C4.3125 3.375 1.875 5.625 1.875 8.4375C1.875 9.9375 2.625 11.3438 3.75 12.1875V26.25C3.75 28.3125 5.4375 30 7.5 30H18.75C20.8125 30 22.5 28.3125 22.5 26.25V22.5H24.375C25.9688 22.5 27.1875 21.2812 27.1875 19.6875V14.0625C27.1875 13.5 26.8125 13.125 26.25 13.125ZM5.0625 6.1875C5.90625 5.625 6.5625 5.4375 7.40625 5.8125C7.6875 5.90625 7.875 5.90625 8.15625 5.71875C8.4375 5.625 8.625 5.4375 8.625 5.15625C8.90625 4.21875 9.28125 3.375 10.0312 2.90625C13.125 0.84375 16.5938 2.34375 17.5313 5.25C17.7188 5.4375 17.8125 5.625 18.0938 5.71875C18.2812 5.8125 18.5625 5.8125 18.8438 5.8125C19.7812 5.53125 20.4375 5.625 21.1875 6.1875C21.9375 6.65625 22.5 7.5 22.5 8.4375C22.5 9.9375 21.1875 11.25 19.6875 11.25H13.125C12.5625 11.25 12.1875 11.625 12.1875 12.1875V18.2812C12.1875 19.0312 11.5312 19.6875 10.7812 19.6875C10.0312 19.6875 9.375 19.0312 9.375 18.2812V12.1875C9.375 11.625 9 11.25 8.4375 11.25H6.5625C5.0625 11.25 3.75 10.0312 3.75 8.4375C3.75 7.5 4.3125 6.65625 5.0625 6.1875ZM25.3125 19.6875C25.3125 20.25 24.9375 20.625 24.375 20.625H22.5V15H25.3125V19.6875Z" fill="#E79E32" />
+                                                    </svg>
+                                                </span>
+                                                <span class="txt">NHẬN NGAY</span>
+                                                <img src="{{ BASE_URL }}images/Untitled-3.webp" alt="Mascot" class="get-dsc-mascot" loading="eager">
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        @endif
+                            @endif
                         @endforeach
                     </div>
                     <div class="swiper-pagination"></div>

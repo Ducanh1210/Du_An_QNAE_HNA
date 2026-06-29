@@ -430,8 +430,21 @@
             .contact-banner-custom {
                 padding: 90px 0 35px 0;
             }
+            .contact-banner-inner {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+            }
+            .contact-banner-left {
+                max-width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
             .contact-banner-title {
                 font-size: 40px;
+                text-align: center;
             }
             .contact-search-form {
                 width: 260px !important;

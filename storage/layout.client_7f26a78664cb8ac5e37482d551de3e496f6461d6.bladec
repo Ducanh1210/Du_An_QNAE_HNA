@@ -786,6 +786,20 @@
  if (tiktokItem && s.tiktok_link) tiktokItem.href = s.tiktok_link;
  }
 
+ // Update news detail page social links if present
+ var newsFb = document.querySelector('.s-btn.s-fb');
+ if (newsFb && s.facebook_link) {
+ newsFb.href = s.facebook_link;
+ }
+ var newsZalo = document.querySelector('.s-btn.s-zalo');
+ if (newsZalo && s.zalo_link) {
+ newsZalo.href = s.zalo_link;
+ }
+ var newsTikTok = document.querySelector('.s-btn.s-tiktok');
+ if (newsTikTok && s.tiktok_link) {
+ newsTikTok.href = s.tiktok_link;
+ }
+
  // Update drawer social links
  var drawerSocials = document.querySelectorAll('.ph-drawer-socials .ph-d-social-btn');
  if (drawerSocials.length >= 3) {

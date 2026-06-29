@@ -170,8 +170,23 @@
                 padding: 90px 0 35px 0;
             }
 
+            .about-banner-inner {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .about-banner-left {
+                max-width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
             .about-banner-title {
                 font-size: 40px;
+                text-align: center;
             }
 
             .about-search-form {

@@ -169,8 +169,23 @@
                 padding: 90px 0 35px 0;
             }
 
+            .news-banner-inner {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .news-banner-left {
+                max-width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
             .news-banner-title {
                 font-size: 40px;
+                text-align: center;
             }
 
             .news-search-form {

@@ -91,26 +91,13 @@
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>
-                        <div class="d-flex gap-1 align-items-center">
-                            <div>
-                                @if($item->img_thumbnail)
-                                    <img src="{{ BASE_URL }}{{ $item->img_thumbnail }}" class="thumb-img" alt="{{ $item->name }}" title="Ảnh đại diện" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border-color);">
-                                @else
-                                    <div class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: var(--bg-hover); border-radius: 4px; border: 1px solid var(--border-color);" title="Không có ảnh đại diện">
-                                        <i class="fas fa-image" style="color: var(--text-muted); font-size: 12px;"></i>
-                                    </div>
-                                @endif
+                        @if($item->img_transparent)
+                            <img src="{{ BASE_URL }}{{ $item->img_transparent }}" class="thumb-img" alt="{{ $item->name }}" title="Ảnh tách nền" style="width: 45px; height: 45px; object-fit: contain; border-radius: 6px; border: 1px solid var(--border-color); background: #fbf0d9;">
+                        @else
+                            <div class="d-flex align-items-center justify-content-center" style="width: 45px; height: 45px; background: var(--bg-hover); border-radius: 6px; border: 1px solid var(--border-color);" title="Không có ảnh tách nền">
+                                <i class="fas fa-image" style="color: var(--text-muted); font-size: 14px; opacity: 0.5;"></i>
                             </div>
-                            <div>
-                                @if($item->img_transparent)
-                                    <img src="{{ BASE_URL }}{{ $item->img_transparent }}" class="thumb-img" alt="{{ $item->name }}" title="Ảnh tách nền" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border-color); background: #e9e9e9;">
-                                @else
-                                    <div class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: var(--bg-hover); border-radius: 4px; border: 1px solid var(--border-color);" title="Không có ảnh tách nền">
-                                        <i class="fas fa-image" style="color: var(--text-muted); font-size: 12px; opacity: 0.5;"></i>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
+                        @endif
                     </td>
                     <td>
                         <strong>{{ $item->name }}</strong>

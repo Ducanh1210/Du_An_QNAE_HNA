@@ -248,7 +248,7 @@
                 position: relative;
                 width: 100%;
                 padding-top: 66.67%; /* 3:2 Aspect Ratio */
-                background: #fff;
+                background: url('{{ BASE_URL }}images/nenproduct.png') center center / cover no-repeat;
                 border-radius: 4px;
                 overflow: hidden;
                 border: 2px solid rgba(96, 56, 19, 0.2);
@@ -261,7 +261,12 @@
                 align-items: center;
                 justify-content: center;
             }
-            #popup-detail-atc .pd-main-view-content img,
+            #popup-detail-atc .pd-main-view-content img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                padding: 16px;
+            }
             #popup-detail-atc .pd-main-view-content video {
                 width: 100%;
                 height: 100%;
@@ -332,7 +337,7 @@
                 transition: all 0.2s ease;
                 position: relative;
                 flex-shrink: 0;
-                background: #fff;
+                background: url('{{ BASE_URL }}images/nenproduct.png') center center / cover no-repeat;
                 box-shadow: none;
             }
             #popup-detail-atc .pd-thumb-item:hover {
@@ -345,7 +350,8 @@
             #popup-detail-atc .pd-thumb-item img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: contain;
+                padding: 4px;
             }
             /* Video icon overlay on thumbnail */
             #popup-detail-atc .pd-thumb-item .video-play-overlay {
@@ -926,7 +932,7 @@
                                     '</div>'
                                 );
                             } else {
-                                mainView.html('<img src="' + item.src + '" alt="' + data.ProName + '" style="width: 100%; height: 100%; object-fit: cover;"/>');
+                                mainView.html('<img src="' + item.src + '" alt="' + data.ProName + '" style="width: 100%; height: 100%; object-fit: contain; padding: 16px; box-sizing: border-box;"/>');
                             }
                         }
 

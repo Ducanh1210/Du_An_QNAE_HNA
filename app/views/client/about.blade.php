@@ -331,11 +331,14 @@
                 border: none;
                 flex: 0 0 calc(33.333% - 16px);
                 scroll-snap-align: start;
+                position: relative;
+                z-index: 1;
             }
 
             .product-card:hover {
                 transform: translateY(-5px);
                 box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+                z-index: 10;
             }
 
             .product-image-wrapper {
@@ -361,17 +364,26 @@
 
             .product-image-trans {
                 position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
+                top: 5%;
+                left: 5%;
+                width: 90%;
+                height: 90%;
                 object-fit: contain;
-                opacity: 0;
+                opacity: 1;
                 transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
                 z-index: 2;
                 transform-origin: center center;
                 filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3));
                 pointer-events: none;
+            }
+
+            .product-card:has(.product-image-trans):hover .product-image {
+                filter: grayscale(100%) brightness(0.6);
+            }
+
+            .product-card:has(.product-image-trans):hover .product-image-trans {
+                opacity: 1;
+                transform: scale(1.28) translateY(-18px);
             }
 
             .product-badge {
@@ -574,7 +586,10 @@
                     <div class="product-card parent-class" data-id="{{ $p->id }}" data-name="{{ $p->name }}" data-price="{{ $p->price }}">
                         <div class="product-image-wrapper popupFood" data-id="{{ $p->id }}">
                             <span class="product-badge">New</span>
-                            <img src="{{ BASE_URL }}{{ $imgUrl }}" alt="{{ $p->name }}" class="product-image" loading="eager">
+                            <img src="{{ BASE_URL }}images/nenproduct.png" alt="{{ $p->name }}" class="product-image" loading="eager">
+                            @if($imgTransUrl)
+                                <img src="{{ BASE_URL }}{{ $imgTransUrl }}" alt="{{ $p->name }}" class="product-image-trans" loading="eager">
+                            @endif
                         </div>
                         <div class="product-info">
                             <div class="product-name popupFood" data-id="{{ $p->id }}">{{ $p->name }}</div>

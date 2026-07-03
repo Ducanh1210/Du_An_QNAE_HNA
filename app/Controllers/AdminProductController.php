@@ -108,6 +108,9 @@ class AdminProductController extends BaseController {
 
         $existing = $this->productModel->getById($id);
 
+        $delete_img_transparent = isset($_POST['delete_img_transparent']) && $_POST['delete_img_transparent'] == '1';
+        $delete_video_url = isset($_POST['delete_video_url']) && $_POST['delete_video_url'] == '1';
+
         if (!empty($_FILES['img_thumbnail']['name'])) {
             $img_thumbnail = uploadFile($_FILES['img_thumbnail'], 'products');
             if ($img_thumbnail && $existing && !empty($existing->img_thumbnail)) {
@@ -127,10 +130,16 @@ class AdminProductController extends BaseController {
                 }
             }
         } else {
-            $img_transparent = $existing ? $existing->img_transparent : '';
+            if ($delete_img_transparent) {
+                $img_transparent = '';
+                if ($existing && !empty($existing->img_transparent) && file_exists($existing->img_transparent)) {
+                    unlink($existing->img_transparent);
+                }
+            } else {
+                $img_transparent = $existing ? $existing->img_transparent : '';
+            }
         }
 
-        $video_url = '';
         if (!empty($_FILES['video_url']['name'])) {
             $video_url = uploadFile($_FILES['video_url'], 'products');
             if ($video_url && $existing && !empty($existing->video_url)) {
@@ -139,7 +148,14 @@ class AdminProductController extends BaseController {
                 }
             }
         } else {
-            $video_url = $existing ? $existing->video_url : '';
+            if ($delete_video_url) {
+                $video_url = '';
+                if ($existing && !empty($existing->video_url) && file_exists($existing->video_url)) {
+                    unlink($existing->video_url);
+                }
+            } else {
+                $video_url = $existing ? $existing->video_url : '';
+            }
         }
 
         // Handle existing gallery images remaining

@@ -389,6 +389,18 @@
             transition: border-color 0.2s !important;
         }
 
+        .input-group.has-clear > .form-control {
+            border-top-right-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+        }
+
+        .input-group > .btn {
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+            border-top-right-radius: 8px !important;
+            border-bottom-right-radius: 8px !important;
+        }
+
         .form-control:focus, .form-select:focus {
             border-color: var(--accent) !important;
             box-shadow: 0 0 0 3px var(--accent-glow) !important;

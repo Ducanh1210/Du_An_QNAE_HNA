@@ -4,18 +4,18 @@ if (file_exists(__DIR__ . '/env.local.php')) {
     return;
 }
 
-const DBNAME = "if0_42192573_quanae";
+const DBNAME = "if0_42324969_fanta";
 const DBCHARSET = "utf8mb4";
-const DBUSER = "if0_42192573";
-const DBPASS = "MhAswqtZYBmk4kC";
-const DBHOST = "sql113.infinityfree.com";
-const BASE_URL = "https://quanae.xo.je/";
+const DBUSER = "if0_42324969";
+const DBPASS = "EY4tiD9wMKCRD6";
+const DBHOST = "sql202.infinityfree.com";
+const BASE_URL = "https://quanaev2.free.je/";
 if (!function_exists('route')) {
     function route($url) {
         return BASE_URL.$url;
     }
 }
-// key co the truyen success hoac errors
+
 if (!function_exists('flash')) {
     function flash($key,$msg,$route)  {
         $_SESSION[$key] = $msg;

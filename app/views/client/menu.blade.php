@@ -408,11 +408,11 @@
                 pointer-events: none;
             }
 
-            .product-card:hover .product-image {
+            .product-card:has(.product-image-trans):hover .product-image {
                 filter: grayscale(100%) brightness(0.6);
             }
 
-            .product-card:hover .product-image-trans {
+            .product-card:has(.product-image-trans):hover .product-image-trans {
                 opacity: 1;
                 transform: scale(1.15) translateY(-10px);
             }
@@ -439,8 +439,6 @@
                 justify-content: space-between;
                 gap: 6px;
                 flex: 1;
-                border: 1.5px solid #FFA827;
-                border-top: none;
                 border-radius: 0 0 16px 16px;
             }
 
@@ -495,9 +493,10 @@
                 white-space: nowrap;
             }
 
-            .product-card:hover .btn-add {
-                background: #4a2711;
-                color: rgb(246, 227, 195);
+            .btn-add:hover {
+                background: #FFA827;
+                color: #ffffff;
+                border-color: #FFA827;
             }
 
             .menu-section-footer {

@@ -93,33 +93,33 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Ảnh tách nền (Hiện ở trang chủ)</label>
-                    <input type="file" name="img_transparent" class="form-control" accept="image/*" id="imgTransparentInput">
-                    @if($product && $product->img_transparent)
-                        <div class="mt-2">
-                            <img src="{{ BASE_URL }}{{ $product->img_transparent }}" id="imgTransparentPreview" 
-                                 style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid var(--border-color); background: #e9e9e9;">
-                        </div>
-                    @else
-                        <div class="mt-2">
-                            <img src="" id="imgTransparentPreview" style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid var(--border-color); background: #e9e9e9; display: none;">
-                        </div>
-                    @endif
+                    <div class="input-group {{ ($product && $product->img_transparent) ? 'has-clear' : '' }}">
+                        <input type="file" name="img_transparent" class="form-control" accept="image/*" id="imgTransparentInput">
+                        <button type="button" class="btn btn-outline-danger" id="clearImgTransparentBtn" style="{{ ($product && $product->img_transparent) ? '' : 'display: none;' }}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <input type="hidden" name="delete_img_transparent" id="deleteImgTransparent" value="0">
+                    <div class="mt-2" id="imgTransparentPreviewContainer" style="{{ ($product && $product->img_transparent) ? '' : 'display: none;' }}">
+                        <img src="{{ $product && $product->img_transparent ? BASE_URL . $product->img_transparent : '' }}" id="imgTransparentPreview" 
+                             style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid var(--border-color); background: #e9e9e9;">
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Video sản phẩm (Chạy ở popup chi tiết)</label>
-                    <input type="file" name="video_url" class="form-control" accept="video/*" id="videoInput">
-                    @if($product && $product->video_url)
-                        <div class="mt-2">
-                            <video src="{{ BASE_URL }}{{ $product->video_url }}" id="videoPreview" 
-                                   controls muted autoplay loop
-                                   style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid var(--border-color); display: block;">
-                            </video>
-                        </div>
-                    @else
-                        <div class="mt-2">
-                            <video src="" id="videoPreview" controls muted autoplay loop style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid var(--border-color); display: none;"></video>
-                        </div>
-                    @endif
+                    <div class="input-group {{ ($product && $product->video_url) ? 'has-clear' : '' }}">
+                        <input type="file" name="video_url" class="form-control" accept="video/*" id="videoInput">
+                        <button type="button" class="btn btn-outline-danger" id="clearVideoBtn" style="{{ ($product && $product->video_url) ? '' : 'display: none;' }}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <input type="hidden" name="delete_video_url" id="deleteVideoUrl" value="0">
+                    <div class="mt-2" id="videoPreviewContainer" style="{{ ($product && $product->video_url) ? '' : 'display: none;' }}">
+                        <video src="{{ $product && $product->video_url ? BASE_URL . $product->video_url : '' }}" id="videoPreview" 
+                               controls muted autoplay loop
+                               style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid var(--border-color); display: block;">
+                        </video>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <div class="form-check form-switch">
@@ -143,6 +143,44 @@
 
 @section('scripts')
 <script>
+    // Helper function to setup file input preview and delete action
+    function setupFileField(inputId, previewContainerId, previewId, clearBtnId, deleteHiddenId, isVideo = false) {
+        const input = document.getElementById(inputId);
+        const container = document.getElementById(previewContainerId);
+        const preview = document.getElementById(previewId);
+        const clearBtn = document.getElementById(clearBtnId);
+        const deleteHidden = document.getElementById(deleteHiddenId);
+        const inputGroup = input.closest('.input-group');
+
+        input.addEventListener('change', function(e) {
+            deleteHidden.value = '0';
+            if (e.target.files && e.target.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    preview.src = ev.target.result;
+                    container.style.display = 'block';
+                    preview.style.display = 'block';
+                    clearBtn.style.display = 'block';
+                    if (inputGroup) inputGroup.classList.add('has-clear');
+                };
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+
+        clearBtn.addEventListener('click', function() {
+            deleteHidden.value = '1';
+            input.value = '';
+            container.style.display = 'none';
+            preview.src = '';
+            if (isVideo) {
+                preview.removeAttribute('src');
+                preview.load();
+            }
+            clearBtn.style.display = 'none';
+            if (inputGroup) inputGroup.classList.remove('has-clear');
+        });
+    }
+
     document.getElementById('imgInput').addEventListener('change', function(e) {
         var preview = document.getElementById('imgPreview');
         if (e.target.files && e.target.files[0]) {
@@ -155,29 +193,8 @@
         }
     });
 
-    document.getElementById('imgTransparentInput').addEventListener('change', function(e) {
-        var preview = document.getElementById('imgTransparentPreview');
-        if (e.target.files && e.target.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(ev) {
-                preview.src = ev.target.result;
-                preview.style.display = 'block';
-            };
-            reader.readAsDataURL(e.target.files[0]);
-        }
-    });
-
-    document.getElementById('videoInput').addEventListener('change', function(e) {
-        var preview = document.getElementById('videoPreview');
-        if (e.target.files && e.target.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(ev) {
-                preview.src = ev.target.result;
-                preview.style.display = 'block';
-            };
-            reader.readAsDataURL(e.target.files[0]);
-        }
-    });
+    setupFileField('imgTransparentInput', 'imgTransparentPreviewContainer', 'imgTransparentPreview', 'clearImgTransparentBtn', 'deleteImgTransparent');
+    setupFileField('videoInput', 'videoPreviewContainer', 'videoPreview', 'clearVideoBtn', 'deleteVideoUrl', true);
 
     // Handle new album images preview
     document.getElementById('albumInput').addEventListener('change', function(e) {

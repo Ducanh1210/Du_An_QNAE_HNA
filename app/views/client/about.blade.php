@@ -396,8 +396,6 @@
                 justify-content: space-between;
                 gap: 6px;
                 flex: 1;
-                border: 1.5px solid #FFA827;
-                border-top: none;
                 border-radius: 0 0 16px 16px;
             }
 

@@ -230,6 +230,85 @@
             left: calc(50% - 45px) !important;
         }
 
+        /* Zoom to hơn khi hover sản phẩm trang chủ */
+        .td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu:hover .thumb img {
+            transform: scale(1.68) !important; /* Zoom mạnh từ 1.4 lên 1.68 cho ảnh vuông/dọc */
+            top: -95px !important; /* Dịch lên trên cao hẳn để tạo chiều sâu */
+        }
+        .td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu .swiper-slide .food-menu:hover .thumb img.wide-img {
+            transform: scale(1.35) !important; /* Zoom mạnh từ 1.1 lên 1.35 cho ảnh ngang */
+            top: -65px !important;
+        }
+
+        /* Tạo khoảng đệm ẩn bên rìa slider Best Seller để tránh cắt ảnh zoom, nhưng cho phép tràn viền trên dưới */
+        .swiper-newfood {
+            overflow: hidden !important;
+            
+            /* Đệm ẩn 2 bên trái/phải để ẩn các slide tiếp theo */
+            padding-left: 15px !important;
+            padding-right: 15px !important;
+            margin-left: -15px !important;
+            margin-right: -15px !important;
+            
+            /* Đệm trên/dưới rộng rãi để ảnh zoom thoải mái không bị mất đầu/đuôi */
+            padding-top: 110px !important;
+            margin-top: -110px !important;
+            padding-bottom: 80px !important;
+            margin-bottom: -80px !important;
+        }
+
+        /* Tối ưu hóa slider Ưu Đãi (padding khớp chính xác 12px margin của dscBox để không bị cắt góc bo tròn) */
+        .swiper-dscHome {
+            overflow: hidden !important;
+            
+            padding-left: 12px !important;
+            padding-right: 12px !important;
+            margin-left: -12px !important;
+            margin-right: -12px !important;
+            
+            padding-top: 15px !important;
+            margin-top: -15px !important;
+            padding-bottom: 30px !important;
+            margin-bottom: -30px !important;
+        }
+
+        /* Dịch nút Xem Thực Đơn xuống dưới để cân bằng khoảng cách */
+        body .td-home__bigText-middle .view-menu {
+            margin-top: 95px !important;
+        }
+
+        /* Đẩy hàng thẻ Best Seller cách xa tiêu đề chữ "Món Best Seller" */
+        body .td-home__wrapper .new-food .heading {
+            margin-bottom: 50px !important;
+        }
+
+        /* Dịch nút Xem Tất Cả dưới phần Ưu Đãi xuống dưới */
+        body .td-home__wrapper .view-all {
+            margin-top: 50px !important;
+        }
+
+        /* Đồng bộ khoảng đệm trên dưới cho Mobile để tránh cắt đầu/đuôi ảnh sản phẩm */
+        @media screen and (max-width: 920px) {
+            body .swiper-newfood {
+                padding-top: 110px !important;
+                margin-top: -110px !important;
+                padding-bottom: 80px !important;
+                margin-bottom: -80px !important;
+            }
+            body .td-home__wrapper .new-food .swiper-wrapper.list-food-menu.combo-menu {
+                padding-top: 100px !important;
+                margin-top: -100px !important;
+                padding-bottom: 60px !important;
+                margin-bottom: -60px !important;
+            }
+            body .td-home__wrapper .new-food .heading {
+                margin-bottom: 50px !important;
+            }
+            body .td-home__bigText-middle .view-menu {
+                margin-top: 45px !important;
+            }
+        }
+
         </style>
 @endsection
 

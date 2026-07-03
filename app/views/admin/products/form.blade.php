@@ -78,21 +78,7 @@
                            value="{{ $product ? $product->price : 0 }}">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Ảnh đại diện</label>
-                    <input type="file" name="img_thumbnail" class="form-control" accept="image/*" id="imgInput">
-                    @if($product && $product->img_thumbnail)
-                        <div class="mt-2">
-                            <img src="{{ BASE_URL }}{{ $product->img_thumbnail }}" id="imgPreview" 
-                                 style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid var(--border-color);">
-                        </div>
-                    @else
-                        <div class="mt-2">
-                            <img src="" id="imgPreview" style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid var(--border-color); display: none;">
-                        </div>
-                    @endif
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Ảnh tách nền (Hiện ở trang chủ)</label>
+                    <label class="form-label">Ảnh sản phẩm (Tách nền PNG)</label>
                     <div class="input-group {{ ($product && $product->img_transparent) ? 'has-clear' : '' }}">
                         <input type="file" name="img_transparent" class="form-control" accept="image/*" id="imgTransparentInput">
                         <button type="button" class="btn btn-outline-danger" id="clearImgTransparentBtn" style="{{ ($product && $product->img_transparent) ? '' : 'display: none;' }}">
@@ -102,7 +88,7 @@
                     <input type="hidden" name="delete_img_transparent" id="deleteImgTransparent" value="0">
                     <div class="mt-2" id="imgTransparentPreviewContainer" style="{{ ($product && $product->img_transparent) ? '' : 'display: none;' }}">
                         <img src="{{ $product && $product->img_transparent ? BASE_URL . $product->img_transparent : '' }}" id="imgTransparentPreview" 
-                             style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid var(--border-color); background: #e9e9e9;">
+                             style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid var(--border-color); background: #fbf0d9; object-fit: contain;">
                     </div>
                 </div>
                 <div class="mb-3">
@@ -181,17 +167,6 @@
         });
     }
 
-    document.getElementById('imgInput').addEventListener('change', function(e) {
-        var preview = document.getElementById('imgPreview');
-        if (e.target.files && e.target.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(ev) {
-                preview.src = ev.target.result;
-                preview.style.display = 'block';
-            };
-            reader.readAsDataURL(e.target.files[0]);
-        }
-    });
 
     setupFileField('imgTransparentInput', 'imgTransparentPreviewContainer', 'imgTransparentPreview', 'clearImgTransparentBtn', 'deleteImgTransparent');
     setupFileField('videoInput', 'videoPreviewContainer', 'videoPreview', 'clearVideoBtn', 'deleteVideoUrl', true);

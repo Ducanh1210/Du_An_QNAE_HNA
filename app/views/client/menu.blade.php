@@ -365,11 +365,14 @@
                 flex-direction: column;
                 cursor: pointer;
                 border: none;
+                position: relative;
+                z-index: 1;
             }
 
             .product-card:hover {
                 transform: translateY(-5px);
                 box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+                z-index: 10;
             }
 
             .product-image-wrapper {
@@ -395,12 +398,12 @@
 
             .product-image-trans {
                 position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
+                top: 5%;
+                left: 5%;
+                width: 90%;
+                height: 90%;
                 object-fit: contain;
-                opacity: 0;
+                opacity: 1;
                 transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
                 z-index: 2;
                 transform-origin: center center;
@@ -414,7 +417,7 @@
 
             .product-card:has(.product-image-trans):hover .product-image-trans {
                 opacity: 1;
-                transform: scale(1.15) translateY(-10px);
+                transform: scale(1.28) translateY(-18px);
             }
 
             .product-badge {
@@ -752,7 +755,7 @@
                                             @else
                                                 <span class="product-badge">Hot</span>
                                             @endif
-                                            <img src="{{ $imgUrl }}" alt="{{ $p->name }}" class="product-image" loading="eager">
+                                            <img src="images/nenproduct.png" alt="{{ $p->name }}" class="product-image" loading="eager">
                                             @if($imgTransUrl)
                                                 <img src="{{ $imgTransUrl }}" alt="{{ $p->name }}" class="product-image-trans" loading="eager">
                                             @endif

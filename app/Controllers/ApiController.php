@@ -206,13 +206,20 @@ class ApiController extends BaseController {
             exit;
         }
 
-        $imgUrl = $p->img_thumbnail;
+        $imgUrl = $p->img_transparent;
         if ($imgUrl) {
             if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
                 $imgUrl = 'storage/uploads/products/' . basename($imgUrl);
             }
         } else {
-            $imgUrl = 'images/produc.webp';
+            $imgUrl = $p->img_thumbnail;
+            if ($imgUrl) {
+                if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
+                    $imgUrl = 'storage/uploads/products/' . basename($imgUrl);
+                }
+            } else {
+                $imgUrl = '';
+            }
         }
 
         $videoUrl = $p->video_url;

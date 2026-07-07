@@ -28,6 +28,10 @@ class AdminCategoryController extends BaseController {
             flash('errors', 'Tên danh mục không được để trống', 'categories');
         }
 
+        if ($this->categoryModel->checkNameExists($name)) {
+            flash('errors', 'Tên danh mục đã tồn tại, vui lòng chọn tên khác', 'categories');
+        }
+
         $check = $this->categoryModel->create($name, $slug, $type, $sort_order);
         if ($check) {
             flash('success', 'Thêm danh mục thành công', 'categories?type=' . $type);
@@ -44,6 +48,10 @@ class AdminCategoryController extends BaseController {
 
         if (empty($name)) {
             flash('errors', 'Tên danh mục không được để trống', 'categories');
+        }
+
+        if ($this->categoryModel->checkNameExists($name, $id)) {
+            flash('errors', 'Tên danh mục đã tồn tại, vui lòng chọn tên khác', 'categories');
         }
 
         $check = $this->categoryModel->update($id, $name, $slug, $type, $sort_order);

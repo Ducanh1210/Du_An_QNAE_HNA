@@ -43,6 +43,17 @@ class CategoryModel extends BaseModel {
         return $this->execute([$id]);
     }
 
+    public function checkNameExists($name, $id = null) {
+        $sql = "SELECT COUNT(*) FROM categories WHERE name = ?";
+        $params = [$name];
+        if ($id) {
+            $sql .= " AND id != ?";
+            $params[] = $id;
+        }
+        $this->setQuery($sql);
+        return $this->loadRecord($params) > 0;
+    }
+
     public function countProducts($id) {
         $sql = "SELECT COUNT(*) FROM products WHERE category_id = ?";
         $this->setQuery($sql);

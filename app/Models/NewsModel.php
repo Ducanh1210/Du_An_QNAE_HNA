@@ -78,6 +78,17 @@ class NewsModel extends BaseModel {
         return $this->execute([$id]);
     }
 
+    public function checkTitleExists($title, $id = null) {
+        $sql = "SELECT COUNT(*) FROM news WHERE title = ?";
+        $params = [$title];
+        if ($id) {
+            $sql .= " AND id != ?";
+            $params[] = $id;
+        }
+        $this->setQuery($sql);
+        return $this->loadRecord($params) > 0;
+    }
+
     public function countAll() {
         $sql = "SELECT COUNT(*) FROM news";
         $this->setQuery($sql);

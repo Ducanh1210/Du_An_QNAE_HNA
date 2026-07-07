@@ -43,6 +43,10 @@ class AdminNewsController extends BaseController {
         $errors = [];
         if (empty($title)) $errors[] = "Tiêu đề không được để trống";
         if (empty($category_id)) $errors[] = "Vui lòng chọn danh mục";
+        
+        if ($this->newsModel->checkTitleExists($title)) {
+            $errors[] = "Tiêu đề tin tức đã tồn tại, vui lòng chọn tiêu đề khác";
+        }
 
         if (count($errors) > 0) {
             flash('errors', $errors, 'news/create');
@@ -89,6 +93,10 @@ class AdminNewsController extends BaseController {
         $errors = [];
         if (empty($title)) $errors[] = "Tiêu đề không được để trống";
         if (empty($category_id)) $errors[] = "Vui lòng chọn danh mục";
+
+        if ($this->newsModel->checkTitleExists($title, $id)) {
+            $errors[] = "Tiêu đề tin tức đã tồn tại, vui lòng chọn tiêu đề khác";
+        }
 
         if (count($errors) > 0) {
             flash('errors', $errors, 'news/' . $id . '/edit');

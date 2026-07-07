@@ -1,0 +1,147 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('title', 'Dashboard'); ?>
+<?php $this->startSection('breadcrumb', 'Tổng quan'); ?>
+
+<?php $this->startSection('content'); ?>
+<div class="row g-4 mb-4">
+ <div class="col-md-4">
+ <div class="stat-card">
+ <div class="stat-icon products">
+ <i class="fas fa-utensils"></i>
+ </div>
+ <div>
+ <div class="stat-value"><?php echo \htmlentities($totalProducts ?? 0??'', ENT_QUOTES, 'UTF-8', false); ?></div>
+ <div class="stat-label">Sản phẩm</div>
+ </div>
+ </div>
+ </div>
+ <div class="col-md-4">
+ <div class="stat-card">
+ <div class="stat-icon news">
+ <i class="fas fa-newspaper"></i>
+ </div>
+ <div>
+ <div class="stat-value"><?php echo \htmlentities($totalNews ?? 0??'', ENT_QUOTES, 'UTF-8', false); ?></div>
+ <div class="stat-label">Tin tức</div>
+ </div>
+ </div>
+ </div>
+ <div class="col-md-4">
+ <div class="stat-card">
+ <div class="stat-icon categories">
+ <i class="fas fa-folder-open"></i>
+ </div>
+ <div>
+ <div class="stat-value"><?php echo \htmlentities($totalCategories ?? 0??'', ENT_QUOTES, 'UTF-8', false); ?></div>
+ <div class="stat-label">Danh mục</div>
+ </div>
+ </div>
+ </div>
+</div>
+
+<div class="row g-4">
+ <!-- Recent Products -->
+ <div class="col-lg-6">
+ <div class="admin-card">
+ <div class="admin-card-header">
+ <h5 class="admin-card-title"><i class="fas fa-utensils me-2" style="color: var(--accent);"></i>Sản phẩm mới nhất</h5>
+ <a href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>products" class="btn btn-accent btn-sm">Xem tất cả</a>
+ </div>
+ <?php if($recentProducts && count($recentProducts) > 0): ?>
+ <table class="admin-table">
+ <thead>
+ <tr>
+ <th>Ảnh</th>
+ <th>Tên</th>
+ <th>Giá</th>
+ </tr>
+ </thead>
+ <tbody>
+ <?php $__currentLoopData = $recentProducts; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $p): $loop = $this->incrementLoopIndices();  ?>
+ <tr>
+ <td>
+ <?php if($p->img_thumbnail): ?>
+ <img src="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?><?php echo \htmlentities($p->img_thumbnail??'', ENT_QUOTES, 'UTF-8', false); ?>" class="thumb-img" alt="">
+ <?php else: ?>
+ <div class="thumb-img d-flex align-items-center justify-content-center" style="background: var(--bg-hover);">
+ <i class="fas fa-image" style="color: var(--text-muted);"></i>
+ </div>
+ <?php endif; ?>
+ </td>
+ <td><?php echo \htmlentities($p->name??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td class="price-text"><?php echo \htmlentities(number_format($p->price, 0, ',', '.')??'', ENT_QUOTES, 'UTF-8', false); ?>đ</td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </tbody>
+ </table>
+ <?php else: ?>
+ <div class="empty-state">
+ <i class="fas fa-utensils d-block"></i>
+ <p>Chưa có sản phẩm nào</p>
+ <a href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>products/create" class="btn btn-accent btn-sm">Thêm sản phẩm</a>
+ </div>
+ <?php endif; ?>
+ </div>
+ </div>
+
+ <!-- Recent News -->
+ <div class="col-lg-6">
+ <div class="admin-card">
+ <div class="admin-card-header">
+ <h5 class="admin-card-title"><i class="fas fa-newspaper me-2" style="color: var(--info);"></i>Tin tức mới nhất</h5>
+ <a href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>news" class="btn btn-accent btn-sm">Xem tất cả</a>
+ </div>
+ <?php if($recentNews && count($recentNews) > 0): ?>
+ <table class="admin-table">
+ <thead>
+ <tr>
+ <th>Ảnh</th>
+ <th>Tiêu đề</th>
+ <th>Ngày</th>
+ </tr>
+ </thead>
+ <tbody>
+ <?php $__currentLoopData = $recentNews; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $n): $loop = $this->incrementLoopIndices();  ?>
+ <tr>
+ <td>
+ <?php if($n->img_thumbnail): ?>
+ <img src="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?><?php echo \htmlentities($n->img_thumbnail??'', ENT_QUOTES, 'UTF-8', false); ?>" class="thumb-img" alt="">
+ <?php else: ?>
+ <div class="thumb-img d-flex align-items-center justify-content-center" style="background: var(--bg-hover);">
+ <i class="fas fa-image" style="color: var(--text-muted);"></i>
+ </div>
+ <?php endif; ?>
+ </td>
+ <td><?php echo \htmlentities(mb_substr($n->title, 0, 40)??'', ENT_QUOTES, 'UTF-8', false); ?>...</td>
+ <td style="font-size: 12px; color: var(--text-muted);"><?php echo \htmlentities(date('d/m/Y', strtotime($n->created_at))??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </tbody>
+ </table>
+ <?php else: ?>
+ <div class="empty-state">
+ <i class="fas fa-newspaper d-block"></i>
+ <p>Chưa có tin tức nào</p>
+ <a href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>news/create" class="btn btn-accent btn-sm">Thêm tin tức</a>
+ </div>
+ <?php endif; ?>
+ </div>
+ </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="admin-card mt-4">
+ <h5 class="admin-card-title mb-3"><i class="fas fa-bolt me-2" style="color: var(--warning);"></i>Thao tác nhanh</h5>
+ <div class="d-flex gap-2 flex-wrap">
+ <a href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>products/create" class="btn btn-accent"><i class="fas fa-plus me-2"></i>Thêm sản phẩm</a>
+ <a href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>news/create" class="btn btn-accent"><i class="fas fa-plus me-2"></i>Thêm tin tức</a>
+ <a href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>categories" class="btn btn-outline-light btn-sm" style="border-color: var(--border-color); color: var(--text-secondary);"><i class="fas fa-folder me-2"></i>Quản lý danh mục</a>
+ <a href="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>settings" class="btn btn-outline-light btn-sm" style="border-color: var(--border-color); color: var(--text-secondary);"><i class="fas fa-link me-2"></i>Cài đặt liên kết</a>
+ </div>
+</div>
+<?php $this->stopSection(); ?>
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.main'); } ?>

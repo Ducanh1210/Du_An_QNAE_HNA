@@ -1327,9 +1327,10 @@ var CartAction = {
                         arr = [];
                     }
                 }
-                let product = arr.splice(index, 1);
+                arr.splice(index, 1);
                 Ultis.setLocalStorage(localArrCart, JSON.stringify(arr), 365);
-                $this.closest('li').remove();
+                bindHtmlListProductCart(arr);
+                bindClickPopupCart();
                 me.updateCartInfo();
             });//xoa mon an trong gio hang
             $('#clear-all-cart').off('click').click(function () {
@@ -1360,9 +1361,12 @@ var CartAction = {
     calculateArrayCart: function (index) {
         var me = this;
         let arrCart = Ultis.getCart();
-        let quantity = $("#item-" + index).find(".popup-cart-quantity").val(); //lay so luong moi 
+        let quantityVal = $("#item-" + index).find(".popup-cart-quantity").val(); //lay so luong moi 
+        let quantity = parseInt(quantityVal) || 1;
+        if (quantity < 1) quantity = 1;
+        $("#item-" + index).find(".popup-cart-quantity").val(quantity);
         arrCart[index].quantity = quantity; // set so luong moi
-        let proPrice = arrCart[index].price;
+        let proPrice = parseFloat(arrCart[index].price) || 0;
         let totalPriceNew = quantity * proPrice; // gia tong cua mon an moi
         arrCart[index].totalprice = totalPriceNew; // set so luong moi
         $("#item-" + index).find(".price-after").html(totalPriceNew);
@@ -2793,62 +2797,66 @@ var ProductDetail = {
 var ProductAction = {
     actionAddCart: function () {
         var me = this;
-        $(`.ready-call-add-to-card`).each(function (i, v) {
-            $(this).off('click').on("click", function () {
-                let proid = $(this).closest(".parent-class").data("id");
-                let quantity = $(this).closest(".parent-class").find(".txtQuantity").val();
-                let proname = $(this).closest(".parent-class").data("name");
-                let proprice = $(this).closest(".parent-class").data("price");
-                let totalItemCartPrice = (proprice * quantity);
+        $(document).off("click", ".ready-call-add-to-card, .add-to-card").on("click", ".ready-call-add-to-card, .add-to-card", function () {
+            let proid = $(this).closest(".parent-class").data("id");
+            let quantityVal = $(this).closest(".parent-class").find(".txtQuantity").val();
+            let quantity = quantityVal ? parseInt(quantityVal) : 1;
+            if (isNaN(quantity) || quantity < 1) {
+                quantity = 1;
+            }
+            let proname = $(this).closest(".parent-class").data("name");
+            let propriceVal = $(this).closest(".parent-class").data("price");
+            let proprice = parseFloat(propriceVal) || 0;
+            let totalItemCartPrice = (proprice * quantity);
 
-
-                let arrCartCookie = Ultis.getLocalStorage(localArrCart);
-                let arr = [];
-                let maxIndex = 0;
-                if (arrCartCookie.length > 0) {
-                    try {
-                        arr = JSON.parse(arrCartCookie);
-                        let m = 0;
-                        for (let k = 0; k < arr.length; k++) {
-                            if (arr[k].i != undefined) {
-                                if (maxIndex < arr[k].i) {
-                                    maxIndex = arr[k].i;
-                                }
+            let arrCartCookie = Ultis.getLocalStorage(localArrCart);
+            let arr = [];
+            let maxIndex = 0;
+            if (arrCartCookie.length > 0) {
+                try {
+                    arr = JSON.parse(arrCartCookie);
+                    if (!Array.isArray(arr)) arr = [];
+                    for (let k = 0; k < arr.length; k++) {
+                        arr[k].price = parseFloat(arr[k].price) || 0;
+                        arr[k].quantity = parseInt(arr[k].quantity) || 1;
+                        arr[k].totalprice = parseFloat(arr[k].totalprice) || (arr[k].price * arr[k].quantity);
+                        if (arr[k].i != undefined) {
+                            if (maxIndex < arr[k].i) {
+                                maxIndex = arr[k].i;
                             }
                         }
-                        maxIndex++;
-                    } catch (e) {
-                        arr = [];
                     }
+                    maxIndex++;
+                } catch (e) {
+                    arr = [];
                 }
+            }
 
-                console.log(arr.length);
-                if (arr.length == 0) {
-                    Ultis.setCartExpired();
-                }
-                let chkCartIdentical = false;
-                for (var i = 0; i < arr.length; i++) {
-                    if (arr[i].proid == proid) {
-                        chkCartIdentical = true;
-                        let a = parseInt(arr[i].quantity);
-                        let b = parseInt(quantity);
-                        arr[i].quantity = a + b;
-                        let c = arr[i].totalprice;
-                        if (isNaN(c)) {
-                            c = 0;
-                        }
-                        arr[i].totalprice = c + totalItemCartPrice;
+            if (arr.length == 0) {
+                Ultis.setCartExpired();
+            }
+            let chkCartIdentical = false;
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].proid == proid) {
+                    chkCartIdentical = true;
+                    let a = parseInt(arr[i].quantity);
+                    if (isNaN(a)) a = 0;
+                    let b = parseInt(quantity);
+                    if (isNaN(b)) b = 0;
+                    arr[i].quantity = a + b;
+                    let c = parseFloat(arr[i].totalprice);
+                    if (isNaN(c)) {
+                        c = 0;
                     }
+                    arr[i].totalprice = c + totalItemCartPrice;
                 }
-                if (chkCartIdentical == false) {
-                    let product = { i: maxIndex, proid: proid, proname: proname, quantity: quantity, price: proprice, totalprice: totalItemCartPrice };
-                    arr.push(product);
-                }
-                Ultis.setLocalStorage(localArrCart, JSON.stringify(arr), 365);
-                CartAction.updateCartInfo();
-                //console.log("proId:" + proId + "-----" + "quantity:" + quantity);
-            });
-            $(this).removeClass('ready-call-add-to-card');
+            }
+            if (chkCartIdentical == false) {
+                let product = { i: maxIndex, proid: proid, proname: proname, quantity: quantity, price: proprice, totalprice: totalItemCartPrice };
+                arr.push(product);
+            }
+            Ultis.setLocalStorage(localArrCart, JSON.stringify(arr), 365);
+            CartAction.updateCartInfo();
         });
     },
 }

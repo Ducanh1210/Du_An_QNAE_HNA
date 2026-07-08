@@ -105,7 +105,7 @@
     <!-- END: Template JS-->
 
     <!-- BEGIN: Core JS-->
-    <script src="{{ BASE_URL }}Static/min/anhem.js?v=639156723241637552_fixed_v4"></script>
+    <script src="{{ BASE_URL }}Static/min/anhem.js?v=639156723241637552_fixed_v5"></script>
     <!-- END: Core JS-->
 
     @yield('schema')
@@ -771,6 +771,222 @@
     <!-- Admin Settings & Zalo Booking & Product Detail Integration -->
     <script>
     (function() {
+        // Define beautiful premium CustomAlert system
+        window.CustomAlert = {
+            init: function() {
+                if (document.getElementById('customAlertOverlay')) return;
+                
+                var css = `
+                    .custom-alert-overlay {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(38, 17, 2, 0.75);
+                        backdrop-filter: blur(8px);
+                        -webkit-backdrop-filter: blur(8px);
+                        z-index: 9999999;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        opacity: 0;
+                        pointer-events: none;
+                        transition: opacity 0.3s ease;
+                    }
+                    .custom-alert-overlay.show {
+                        opacity: 1;
+                        pointer-events: auto;
+                    }
+                    .custom-alert-box {
+                        background: #faf6ee url('{{ BASE_URL }}images/bg-pattern.webp') repeat;
+                        background-size: 280px auto;
+                        border: 3px solid #5e3612;
+                        border-radius: 20px;
+                        width: 90%;
+                        max-width: 440px;
+                        padding: 35px 24px 28px 24px;
+                        box-shadow: 0 20px 50px rgba(38, 17, 2, 0.5);
+                        transform: scale(0.8) translateY(-30px);
+                        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+                        position: relative;
+                        text-align: center;
+                        box-sizing: border-box;
+                    }
+                    .custom-alert-overlay.show .custom-alert-box {
+                        transform: scale(1) translateY(0);
+                    }
+                    .custom-alert-close {
+                        position: absolute;
+                        top: 15px;
+                        right: 15px;
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 50%;
+                        background: rgba(94, 54, 18, 0.08);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        color: #5e3612;
+                        font-size: 22px;
+                        line-height: 1;
+                        transition: all 0.2s ease;
+                        font-family: Arial, sans-serif;
+                    }
+                    .custom-alert-close:hover {
+                        background: #5e3612;
+                        color: #fff;
+                    }
+                    .custom-alert-header {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        margin-bottom: 20px;
+                    }
+                    .custom-alert-logo {
+                        height: 64px;
+                        width: auto;
+                        margin-bottom: 12px;
+                        object-fit: contain;
+                    }
+                    .custom-alert-title {
+                        font-family: 'PlusJaS-Bold', sans-serif;
+                        font-size: 18px;
+                        color: #5e3612;
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
+                        margin: 0;
+                        font-weight: 700;
+                    }
+                    .custom-alert-body {
+                        font-family: 'PlusJaS-Medium', sans-serif;
+                        font-size: 14.5px;
+                        line-height: 1.6;
+                        color: #381c0d;
+                        margin-bottom: 24px;
+                        word-wrap: break-word;
+                        text-align: center;
+                    }
+                    .custom-alert-body strong {
+                        color: #ff8c00;
+                        font-weight: 700;
+                    }
+                    .custom-alert-footer {
+                        display: flex;
+                        justify-content: center;
+                    }
+                    .custom-alert-btn {
+                        font-family: 'PlusJaS-Bold', sans-serif;
+                        font-size: 13.5px;
+                        font-weight: 700;
+                        text-transform: uppercase;
+                        padding: 10px 32px;
+                        border-radius: 25px;
+                        border: none;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                        box-shadow: 0 4px 10px rgba(94, 54, 18, 0.15);
+                        outline: none;
+                    }
+                    .custom-alert-btn-primary {
+                        background: linear-gradient(135deg, #FFA827 0%, #ff8c00 100%);
+                        color: #fff;
+                        border: 1px solid #ff8c00;
+                    }
+                    .custom-alert-btn-primary:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 6px 15px rgba(255, 168, 39, 0.35);
+                    }
+                    .custom-alert-btn-primary:active {
+                        transform: translateY(0);
+                    }
+                `;
+                
+                var style = document.createElement('style');
+                style.type = 'text/css';
+                style.appendChild(document.createTextNode(css));
+                document.head.appendChild(style);
+
+                var overlay = document.createElement('div');
+                overlay.id = 'customAlertOverlay';
+                overlay.className = 'custom-alert-overlay';
+
+                overlay.innerHTML = `
+                    <div class="custom-alert-box">
+                        <div class="custom-alert-close" id="customAlertCloseBtn">&times;</div>
+                        <div class="custom-alert-header">
+                            <img src="{{ BASE_URL }}images/Logo_PNG.webp" class="custom-alert-logo" alt="Logo">
+                            <h3 class="custom-alert-title" id="customAlertTitle">THÔNG BÁO</h3>
+                        </div>
+                        <div class="custom-alert-body" id="customAlertMessage"></div>
+                        <div class="custom-alert-footer">
+                            <button type="button" class="custom-alert-btn custom-alert-btn-primary" id="customAlertOkBtn">ĐỒNG Ý</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(overlay);
+
+                var me = this;
+                document.getElementById('customAlertCloseBtn').addEventListener('click', function() {
+                    me.hide();
+                });
+                document.getElementById('customAlertOkBtn').addEventListener('click', function() {
+                    me.confirm();
+                });
+                
+                document.addEventListener('keydown', function(e) {
+                    if (!overlay.classList.contains('show')) return;
+                    if (e.key === 'Escape') {
+                        me.hide();
+                    } else if (e.key === 'Enter') {
+                        me.confirm();
+                    }
+                });
+            },
+
+            callback: null,
+
+            show: function(title, message, callback) {
+                this.init();
+                
+                document.getElementById('customAlertTitle').innerHTML = title || 'THÔNG BÁO';
+                var formattedMessage = message ? message.replace(/\\n/g, '<br>') : '';
+                document.getElementById('customAlertMessage').innerHTML = formattedMessage;
+                
+                this.callback = callback || null;
+
+                var overlay = document.getElementById('customAlertOverlay');
+                overlay.classList.add('show');
+                
+                setTimeout(function() {
+                    var okBtn = document.getElementById('customAlertOkBtn');
+                    if (okBtn) okBtn.focus();
+                }, 100);
+            },
+
+            hide: function() {
+                var overlay = document.getElementById('customAlertOverlay');
+                if (overlay) {
+                    overlay.classList.remove('show');
+                }
+                this.callback = null;
+            },
+
+            confirm: function() {
+                var cb = this.callback;
+                this.hide();
+                if (typeof cb === 'function') {
+                    cb();
+                }
+            }
+        };
+
+        // Override default window.alert globally
+        window.alert = function(message) {
+            window.CustomAlert.show('LƯU Ý', message);
+        };
+
         // Load settings from admin-exported JSON
         var settingsUrl = '{{ BASE_URL }}data/settings.json?v=' + Date.now();
         var xhr = new XMLHttpRequest();
@@ -1221,17 +1437,74 @@
 
             if (zaloUrl) {
                 copyTextToClipboard(message).then(function() {
-                    alert('Thông tin đặt của bạn đã được tự động SAO CHÉP!\n\nCửa sổ Zalo sẽ mở ra ngay bây giờ. Bạn chỉ cần nhấn DÁN (Ctrl + V hoặc Nhấn giữ màn hình rồi chọn Dán) vào ô nhắn tin Zalo để gửi cho nhà hàng.');
-                    window.open(zaloUrl, '_blank');
+                    window.CustomAlert.show(
+                        'SAO CHÉP THÀNH CÔNG',
+                        'Thông tin đặt của bạn đã được tự động <strong>SAO CHÉP</strong>!<br><br>Cửa sổ Zalo sẽ mở ra ngay bây giờ. Bạn chỉ cần nhấn <strong>DÁN (Ctrl + V hoặc Nhấn giữ màn hình rồi chọn Dán)</strong> vào ô nhắn tin Zalo để gửi cho nhà hàng.',
+                        function() {
+                            window.open(zaloUrl, '_blank');
+                        }
+                    );
                 }).catch(function() {
                     // Fallback if copy fails
-                    alert('Cửa sổ Zalo sẽ mở ra ngay bây giờ. Vui lòng gửi thông tin đặt hàng qua Zalo!');
-                    window.open(zaloUrl, '_blank');
+                    window.CustomAlert.show(
+                        'ĐANG MỞ ZALO',
+                        'Cửa sổ Zalo sẽ mở ra ngay bây giờ. Vui lòng gửi thông tin đặt hàng qua Zalo!',
+                        function() {
+                            window.open(zaloUrl, '_blank');
+                        }
+                    );
                 });
             } else {
-                alert('Đặt hàng thành công! Chúng tôi sẽ liên hệ lại với bạn sớm nhất.');
+                window.CustomAlert.show(
+                    'ĐẶT HÀNG THÀNH CÔNG',
+                    'Đặt hàng thành công! Chúng tôi sẽ liên hệ lại với bạn sớm nhất.'
+                );
             }
         }
+
+        // === Persist booking & shipping form values to localStorage & sync them ===
+        $(function() {
+            var savedBookingName = localStorage.getItem('booking_fullname');
+            var savedBookingPhone = localStorage.getItem('booking_phone');
+            var savedShippingName = localStorage.getItem('shipping_name');
+            var savedShippingPhone = localStorage.getItem('shipping_phone');
+            var savedShippingAddress = localStorage.getItem('shipping_address');
+
+            if (savedBookingName) $('#txtFullname').val(savedBookingName);
+            if (savedBookingPhone) $('#txtPhone').val(savedBookingPhone);
+            if (savedShippingName) $('#txtShipName').val(savedShippingName);
+            if (savedShippingPhone) $('#txtShipPhone').val(savedShippingPhone);
+            if (savedShippingAddress) $('#txtShipAddress').val(savedShippingAddress);
+
+            // Sync and save on input/change
+            $(document).on('input change', '#txtFullname', function() {
+                var val = $(this).val();
+                localStorage.setItem('booking_fullname', val);
+                $('#txtShipName').val(val);
+                localStorage.setItem('shipping_name', val);
+            });
+            $(document).on('input change', '#txtPhone', function() {
+                var val = $(this).val();
+                localStorage.setItem('booking_phone', val);
+                $('#txtShipPhone').val(val);
+                localStorage.setItem('shipping_phone', val);
+            });
+            $(document).on('input change', '#txtShipName', function() {
+                var val = $(this).val();
+                localStorage.setItem('shipping_name', val);
+                $('#txtFullname').val(val);
+                localStorage.setItem('booking_fullname', val);
+            });
+            $(document).on('input change', '#txtShipPhone', function() {
+                var val = $(this).val();
+                localStorage.setItem('shipping_phone', val);
+                $('#txtPhone').val(val);
+                localStorage.setItem('booking_phone', val);
+            });
+            $(document).on('input change', '#txtShipAddress', function() {
+                localStorage.setItem('shipping_address', $(this).val());
+            });
+        });
     })();
     </script>
 

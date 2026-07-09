@@ -1,11 +1,11 @@
 <?php
 // --- VPS / PRODUCTION CONFIGURATION ---
 // Thay đổi các thông số này cho phù hợp với VPS của bạn
-const DBHOST = "sql202.infinityfree.com";
-const DBNAME = "if0_42324969_fanta";
-const DBUSER = "if0_42324969";
-const DBPASS = "EY4tiD9wMKCRD6";
-const BASE_URL = "https://quanaev2.free.je/"; 
+const DBHOST = "127.0.0.1";
+const DBNAME = "quannhau";
+const DBUSER = "webquannhau";
+const DBPASS = "quannhauanhem123@";
+const BASE_URL = "https://quannhauanhem.com/";
 const DBCHARSET = "utf8mb4";
 
 // =========================================================================

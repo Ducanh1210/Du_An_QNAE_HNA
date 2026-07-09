@@ -5,7 +5,14 @@ use Phroute\Phroute\RouteCollector;
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$url = !isset($_GET['url']) ? "/" : $_GET['url'];
+$url = "/";
+if (isset($_GET['url'])) {
+    $url = $_GET['url'];
+} else {
+    // Tự động lấy path trên Nginx (VPS) khi không dùng .htaccess
+    $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $url = $requestUri ? $requestUri : "/";
+}
 try{
     $router = new RouteCollector();
 

@@ -50,6 +50,7 @@
                 <div class="mb-3">
                     <label class="form-label">Ảnh đại diện</label>
                     <input type="file" name="img_thumbnail" class="form-control" accept="image/*" id="imgInput">
+                    <small class="text-muted d-block mt-1" style="font-size: 11px;">Dung lượng tối đa: 10MB.</small>
                     @if($news && $news->img_thumbnail)
                         <div class="mt-2"><img src="{{ BASE_URL }}{{ $news->img_thumbnail }}" id="imgPreview" style="max-width:100%;max-height:200px;border-radius:8px;border:2px solid var(--border-color);"></div>
                     @else
@@ -107,6 +108,19 @@ document.getElementById('imgInput').addEventListener('change', function(e) {
         var r = new FileReader();
         r.onload = function(ev) { p.src = ev.target.result; p.style.display = 'block'; };
         r.readAsDataURL(e.target.files[0]);
+    }
+});
+
+// Validate file sizes before form submission
+document.querySelector('form').addEventListener('submit', function(e) {
+    const maxImgSize = 10 * 1024 * 1024; // 10MB
+    const imgInput = document.getElementById('imgInput');
+    if (imgInput && imgInput.files && imgInput.files[0]) {
+        if (imgInput.files[0].size > maxImgSize) {
+            alert('Lỗi: Ảnh đại diện "' + imgInput.files[0].name + '" vượt quá giới hạn 10MB! Vui lòng chọn ảnh nhẹ hơn hoặc nén lại.');
+            e.preventDefault();
+            return false;
+        }
     }
 });
 </script>

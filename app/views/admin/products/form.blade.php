@@ -37,7 +37,7 @@
                 <div class="mb-3">
                     <label class="form-label">Thư viện ảnh sản phẩm (Nhiều ảnh)</label>
                     <input type="file" name="product_images[]" class="form-control mb-2" accept="image/*" multiple id="albumInput">
-                    <small class="text-muted d-block mb-2">Chọn một hoặc nhiều hình ảnh cùng lúc.</small>
+                    <small class="text-muted d-block mb-2">Chọn một hoặc nhiều hình ảnh cùng lúc (Dung lượng mỗi ảnh tối đa 10MB).</small>
                     <div class="row g-2 mt-2" id="albumPreviewContainer">
                         @if($product && !empty($product->images))
                             @php
@@ -85,6 +85,7 @@
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
+                    <small class="text-muted d-block mt-1" style="font-size: 11px;">Dung lượng tối đa: 10MB.</small>
                     <input type="hidden" name="delete_img_transparent" id="deleteImgTransparent" value="0">
                     <div class="mt-2" id="imgTransparentPreviewContainer" style="{{ ($product && $product->img_transparent) ? '' : 'display: none;' }}">
                         <img src="{{ $product && $product->img_transparent ? BASE_URL . $product->img_transparent : '' }}" id="imgTransparentPreview" 
@@ -99,6 +100,7 @@
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
+                    <small class="text-muted d-block mt-1" style="font-size: 11px;">Dung lượng tối đa: 50MB.</small>
                     <input type="hidden" name="delete_video_url" id="deleteVideoUrl" value="0">
                     <div class="mt-2" id="videoPreviewContainer" style="{{ ($product && $product->video_url) ? '' : 'display: none;' }}">
                         <video src="{{ $product && $product->video_url ? BASE_URL . $product->video_url : '' }}" id="videoPreview" 
@@ -204,6 +206,44 @@
             var item = btn.closest('.album-item');
             if (item) {
                 item.remove();
+            }
+        }
+    });
+
+    // Validate file sizes before form submission
+    document.querySelector('form').addEventListener('submit', function(e) {
+        const maxImgSize = 10 * 1024 * 1024; // 10MB
+        const maxVidSize = 50 * 1024 * 1024; // 50MB
+        
+        // 1. Check Album Images
+        const albumInput = document.getElementById('albumInput');
+        if (albumInput && albumInput.files) {
+            for (let i = 0; i < albumInput.files.length; i++) {
+                if (albumInput.files[i].size > maxImgSize) {
+                    alert('Lỗi: File ảnh trong thư viện "' + albumInput.files[i].name + '" vượt quá giới hạn 10MB! Vui lòng chọn ảnh nhẹ hơn hoặc nén lại.');
+                    e.preventDefault();
+                    return false;
+                }
+            }
+        }
+        
+        // 2. Check Transparent Image
+        const imgTransparentInput = document.getElementById('imgTransparentInput');
+        if (imgTransparentInput && imgTransparentInput.files && imgTransparentInput.files[0]) {
+            if (imgTransparentInput.files[0].size > maxImgSize) {
+                alert('Lỗi: Ảnh tách nền "' + imgTransparentInput.files[0].name + '" vượt quá giới hạn 10MB! Vui lòng chọn ảnh nhẹ hơn hoặc nén lại.');
+                e.preventDefault();
+                return false;
+            }
+        }
+        
+        // 3. Check Video
+        const videoInput = document.getElementById('videoInput');
+        if (videoInput && videoInput.files && videoInput.files[0]) {
+            if (videoInput.files[0].size > maxVidSize) {
+                alert('Lỗi: Video sản phẩm "' + videoInput.files[0].name + '" vượt quá giới hạn 50MB! Vui lòng giảm dung lượng video.');
+                e.preventDefault();
+                return false;
             }
         }
     });

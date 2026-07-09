@@ -8,7 +8,7 @@ const DBNAME = "if0_42324969_fanta";
 const DBCHARSET = "utf8mb4";
 const DBUSER = "if0_42324969";
 const DBPASS = "EY4tiD9wMKCRD6";
-const DBHOST = "sql202.infinityfree.com";
+const DBHOST = "127";
 const BASE_URL = "https://quanaev2.free.je/";
 if (!function_exists('route')) {
     function route($url) {

@@ -251,8 +251,9 @@
         <div class="custom-news-page">
             <style>
                 html,
-                body {
+                body, .td-content__wrapper.news-wrapper, .td-wrapper {
                     overflow-x: clip !important;
+                    background: #faf6ee url('{{ BASE_URL }}images/bg-pattern.webp') center/cover no-repeat !important;
                 }
 
                 /* NEWS CATEGORY BAR */

@@ -6,7 +6,7 @@
 @section('content')
 
 <!-- Breadcrumb Area -->
-<div class="breadcrumb-area" style="background: #fff; padding: 25px 0 15px; margin-top: 10px;">
+<div class="breadcrumb-area" style="background: transparent; padding: 25px 0 15px; margin-top: 10px;">
     <div class="container" style="max-width: 1140px; margin: 0 auto; padding: 0 15px;">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb m-0" style="background: none; padding: 0; font-size: 14px; display: flex; list-style: none; font-family: Arial, Helvetica, sans-serif;">
@@ -20,7 +20,7 @@
     </div>
 </div>
 
-<div class="news-page-container" style="background: #fff; padding: 15px 0 60px;">
+<div class="news-page-container" style="background: transparent; padding: 15px 0 60px;">
     <div class="container" style="max-width: 1140px; margin: 0 auto; padding: 0 15px;">
         
         <!-- Main Row -->
@@ -174,8 +174,8 @@
 
 <style>
     /* Reset & Fonts cho giao diện báo */
-    body {
-        background-color: #fff;
+    body, .td-content__wrapper, .td-wrapper {
+        background: #faf6ee url('{{ BASE_URL }}images/bg-pattern.webp') center/cover no-repeat !important;
     }
     
     .hover-red:hover {

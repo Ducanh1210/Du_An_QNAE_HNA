@@ -600,7 +600,7 @@
 
         <div class="banner-full-screen">
             <picture>
-                <source media="(max-width: 768px)" srcset="{{ BASE_URL }}images/6.webp">
+                <source media="(max-width: 768px)" srcset="{{ BASE_URL }}images/3.webp">
                 <img src="{{ BASE_URL }}images/3.webp" alt="Banner" class="banner-fs-img" loading="eager" />
             </picture>
             <h2 class="banner-title">Không gian bếp</h2>

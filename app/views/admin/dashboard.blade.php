@@ -61,8 +61,8 @@
                         @foreach($recentProducts as $p)
                         <tr>
                             <td>
-                                @if($p->img_thumbnail)
-                                    <img src="{{ BASE_URL }}{{ $p->img_thumbnail }}" class="thumb-img" alt="">
+                                @if($p->img_transparent)
+                                    <img src="{{ BASE_URL }}{{ $p->img_transparent }}" class="thumb-img" alt="">
                                 @else
                                     <div class="thumb-img d-flex align-items-center justify-content-center" style="background: var(--bg-hover);">
                                         <i class="fas fa-image" style="color: var(--text-muted);"></i>

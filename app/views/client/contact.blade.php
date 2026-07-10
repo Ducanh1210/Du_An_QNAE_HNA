@@ -6,6 +6,18 @@
 @section('og_url', route('lien-he'))
 @section('canonical', route('lien-he'))
 
+@section('schema')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Liên hệ - Quán Nhậu Anh Em",
+  "description": "Mọi ý kiến, đóng góp của quý khách hàng sẽ được Quán Nhậu Anh Em phản hồi trực tiếp và sớm nhất nhằm nâng cao chất lượng phục vụ.",
+  "url": "{{ BASE_URL }}lien-he"
+}
+</script>
+@endsection
+
 @section('styles')
     <style>
         body, .td-content__wrapper.contact-wrapper, .td-wrapper {

@@ -533,7 +533,7 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
 
 @media (max-width: 768px) {
     .banner-full-screen {
-        margin-top: 0px;
+        margin-top: 40px !important;
         margin-bottom: 0 !important;
     }
 }
@@ -567,7 +567,7 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
     .banner-full-screen .banner-title {
         font-size: 6vw;
         left: 5%;
-        top: 5%;
+        top: -1.5vw !important;
         -webkit-text-stroke: 0px;
         letter-spacing: -0.02em !important;
     }
@@ -577,7 +577,7 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
     .banner-full-screen .banner-title {
         font-size: 6.5vw;
         left: 5%;
-        top: 4%;
+        top: -2.5vw !important;
         -webkit-text-stroke: 0px;
         letter-spacing: -0.02em !important;
     }
@@ -648,6 +648,7 @@ body .td-home__bigText-middle .view-menu:hover .view-menu-mascot {
         left: -59% !important;
         transform: none !important;
         overflow: hidden !important;
+        padding-top: 10vw !important;
     }
 
     .banner-full-screen .banner-fs-img {

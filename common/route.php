@@ -23,6 +23,7 @@ try{
     $router->get('/tin-tuc', [App\Controllers\HomeController::class, 'news']);
     $router->get('/tin-tuc/{slug}', [App\Controllers\HomeController::class, 'newsDetail']);
     $router->get('/lien-he', [App\Controllers\HomeController::class, 'contact']);
+    $router->get('/sitemap.xml', [App\Controllers\HomeController::class, 'sitemap']);
 
     // ========== AUTHENTICATION ==========
     $router->get('/login', [App\Controllers\AuthController::class, 'login']);

@@ -37,11 +37,6 @@ class AdminProductController extends BaseController {
         $is_active = isset($_POST['is_active']) ? 1 : 0;
         $sort_order = intval($_POST['sort_order'] ?? 0);
 
-        $img_thumbnail = '';
-        if (!empty($_FILES['img_thumbnail']['name'])) {
-            $img_thumbnail = uploadFile($_FILES['img_thumbnail'], 'products');
-        }
-
         $img_transparent = '';
         if (!empty($_FILES['img_transparent']['name'])) {
             $img_transparent = uploadFile($_FILES['img_transparent'], 'products');
@@ -79,7 +74,7 @@ class AdminProductController extends BaseController {
             flash('errors', $errors, 'products/create');
         }
 
-        $check = $this->productModel->create($category_id, $name, $slug, $price, $img_thumbnail, $img_transparent, $video_url, $images, $overview, $content, $is_active, $sort_order);
+        $check = $this->productModel->create($category_id, $name, $slug, $price, $img_transparent, $video_url, $images, $overview, $content, $is_active, $sort_order);
         if ($check) {
             flash('success', 'Thêm sản phẩm thành công', 'products');
         } else {
@@ -110,17 +105,6 @@ class AdminProductController extends BaseController {
 
         $delete_img_transparent = isset($_POST['delete_img_transparent']) && $_POST['delete_img_transparent'] == '1';
         $delete_video_url = isset($_POST['delete_video_url']) && $_POST['delete_video_url'] == '1';
-
-        if (!empty($_FILES['img_thumbnail']['name'])) {
-            $img_thumbnail = uploadFile($_FILES['img_thumbnail'], 'products');
-            if ($img_thumbnail && $existing && !empty($existing->img_thumbnail)) {
-                if (file_exists($existing->img_thumbnail)) {
-                    unlink($existing->img_thumbnail);
-                }
-            }
-        } else {
-            $img_thumbnail = $existing ? $existing->img_thumbnail : '';
-        }
 
         if (!empty($_FILES['img_transparent']['name'])) {
             $img_transparent = uploadFile($_FILES['img_transparent'], 'products');
@@ -203,7 +187,7 @@ class AdminProductController extends BaseController {
             flash('errors', $errors, 'products/' . $id . '/edit');
         }
 
-        $check = $this->productModel->update($id, $category_id, $name, $slug, $price, $img_thumbnail, $img_transparent, $video_url, $images, $overview, $content, $is_active, $sort_order);
+        $check = $this->productModel->update($id, $category_id, $name, $slug, $price, $img_transparent, $video_url, $images, $overview, $content, $is_active, $sort_order);
         if ($check) {
             flash('success', 'Cập nhật sản phẩm thành công', 'products');
         } else {
@@ -214,9 +198,6 @@ class AdminProductController extends BaseController {
     public function delete($id) {
         $product = $this->productModel->getById($id);
         if ($product) {
-            if (!empty($product->img_thumbnail) && file_exists($product->img_thumbnail)) {
-                unlink($product->img_thumbnail);
-            }
             if (!empty($product->img_transparent) && file_exists($product->img_transparent)) {
                 unlink($product->img_transparent);
             }

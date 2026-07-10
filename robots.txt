@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /products/
+Disallow: /news/
+Disallow: /categories/
+Disallow: /settings/
+Disallow: /change-password/
+Disallow: /login/
+Disallow: /logout/
+Disallow: /api/
+
+Sitemap: https://quannhauanhem.com/sitemap.xml

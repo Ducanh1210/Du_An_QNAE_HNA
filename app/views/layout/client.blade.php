@@ -9,7 +9,7 @@
     <meta id="metaKeywords" name="keywords" content="@yield('meta_keywords', 'Quán Nhậu Anh Em, Quán nhậu Ninh Bình, quán nhậu gần đây, quán nhậu ngon, Quán nhậu view đẹp Ninh Bình, Quán nhậu chill Ninh Bình, quán nhậu nổi tiếng')" />
     <meta id="metaNewKeywords" name="news_keywords" content="@yield('meta_keywords', 'Quán Nhậu Anh Em, Quán nhậu Ninh Bình, quán nhậu gần đây, quán nhậu ngon, Quán nhậu view đẹp Ninh Bình, Quán nhậu chill Ninh Bình, quán nhậu nổi tiếng')" />
     
-    <meta id="fbUrl" property="og:url" content="@yield('og_url', 'javascript:;')" />
+    <meta id="fbUrl" property="og:url" content="@yield('og_url', BASE_URL)" />
     <meta id="fbSiteName" property="og:site_name" content="quannhauanhem.com" />
     <meta id="fbType" property="og:type" content="website" />
     <meta id="fbTitle" property="og:title" content="@yield('title', 'Quán Nhậu Anh Em - Anh em gắp bia lên')" />
@@ -23,11 +23,11 @@
     <meta name="author" content="Quán Nhậu Anh Em - Anh em gắp bia lên" />
     <meta name="copyright" content="Quán Nhậu Anh Em" />
     <meta name="GENERATOR" content="Quán Nhậu Anh Em" />
-    <meta http-equiv="content-language" content="vi" />
+    <meta name="content-language" content="vi" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta id="metaRobots" name="robots" content="index,follow" />
     <meta property="og:image:alt" content="Quán nhậu Ninh Bình - hệ thống quán nhậu anh em" />
-    <link id="metaCanonical" rel="canonical" href="@yield('canonical', 'javascript:;')" />
+    <link id="metaCanonical" rel="canonical" href="@yield('canonical', BASE_URL)" />
 
     @yield('preloads')
 
@@ -70,7 +70,7 @@
     <link href="{{ BASE_URL }}Static/css/default.css" rel="stylesheet" />
     <link href="{{ BASE_URL }}Static/css/default.date.css" rel="stylesheet" />
     <link href="{{ BASE_URL }}Static/css/main.css?v=639156723241637552" rel="stylesheet" />
-    <link href="{{ BASE_URL }}Static/css/custom.css?v=639156730100000090_fixed_v61" rel="stylesheet" />
+    <link href="{{ BASE_URL }}Static/css/custom.css?v=639156730100000090_fixed_v66" rel="stylesheet" />
     <link href="{{ BASE_URL }}Static/css/fonts.css" rel="stylesheet" />
     <link href="{{ BASE_URL }}Static/css/fix-notice-mob.css" rel="stylesheet" />
     <link href="{{ BASE_URL }}Static/css/editkhoisw.css" rel="stylesheet" />

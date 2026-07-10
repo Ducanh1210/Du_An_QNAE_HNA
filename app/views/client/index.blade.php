@@ -3,6 +3,51 @@
 @section('title', 'Quán Nhậu Anh Em - Anh em gắp bia lên')
 @section('meta_description', 'Không chỉ là quán nhậu, Anh Em còn là phong cách sống – điểm hẹn liên hoan, sinh nhật, xả stress, tụ tập bạn bè sau giờ làm việc căng thẳng.')
 @section('meta_keywords', 'Quán Nhậu Anh Em, Quán nhậu Ninh Bình, quán nhậu gần đây, quán nhậu ngon, Quán nhậu view đẹp Ninh Bình, Quán nhậu chill Ninh Bình, quán nhậu nổi tiếng')
+@section('og_url', BASE_URL)
+@section('canonical', BASE_URL)
+
+@section('schema')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Quán Nhậu Anh Em",
+  "image": "{{ BASE_URL }}images/Thumb-Facebook.jpg",
+  "@id": "{{ BASE_URL }}",
+  "url": "{{ BASE_URL }}",
+  "telephone": "0812.282.282",
+  "priceRange": "$$",
+  "menu": "{{ BASE_URL }}thuc-don",
+  "servesCuisine": "Món nhậu, Bia hơi, Street Food",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "86 khu đất TĐC, Hà Nam",
+    "addressLocality": "Ninh Bình",
+    "addressRegion": "Ninh Bình",
+    "addressCountry": "VN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 20.5540237,
+    "longitude": 105.9239809
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "opens": "10:00",
+    "closes": "23:30"
+  }
+}
+</script>
+@endsection
 
 @section('preloads')
     <!-- Preload key loading screen assets to prevent blank white flash -->
@@ -499,7 +544,7 @@
                                 @if($p->is_active == 1)
                                      @php
                                         $isTransparent = !empty($p->img_transparent);
-                                        $imgUrl = $isTransparent ? $p->img_transparent : $p->img_thumbnail;
+                                        $imgUrl = $p->img_transparent;
                                         if ($imgUrl) {
                                             if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
                                                 $imgUrl = BASE_URL . 'storage/uploads/products/' . basename($imgUrl);

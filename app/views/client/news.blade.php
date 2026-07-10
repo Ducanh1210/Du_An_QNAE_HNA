@@ -6,6 +6,18 @@
 @section('og_url', route('tin-tuc'))
 @section('canonical', route('tin-tuc'))
 
+@section('schema')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Tin tức & Sự kiện - Quán Nhậu Anh Em",
+  "description": "Nơi cập nhật nhanh nhất những sự kiện nóng hổi, chương trình khuyến mại, khách hàng và thông tin thương hiệu Quán Nhậu Anh Em.",
+  "url": "{{ BASE_URL }}tin-tuc"
+}
+</script>
+@endsection
+
 @section('content')
     <style>
         .news-banner-custom {

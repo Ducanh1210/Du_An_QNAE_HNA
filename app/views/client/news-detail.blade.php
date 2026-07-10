@@ -2,6 +2,36 @@
 
 @section('title', $detail->title . ' - Quán Nhậu Anh Em')
 @section('meta_description', $detail->overview)
+@section('og_url', BASE_URL . 'tin-tuc/' . $detail->slug)
+@section('canonical', BASE_URL . 'tin-tuc/' . $detail->slug)
+
+@section('schema')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "{{ htmlspecialchars($detail->title) }}",
+  "image": [
+    "{{ $detail->img_thumbnail ? (preg_match('/^(images\\/|https?:\\/\\/)/', $detail->img_thumbnail) ? BASE_URL . $detail->img_thumbnail : BASE_URL . 'storage/uploads/news/' . basename($detail->img_thumbnail)) : BASE_URL . 'images/Thumb-Facebook.jpg' }}"
+  ],
+  "datePublished": "{{ date('c', strtotime($detail->created_at)) }}",
+  "author": {
+    "@type": "Organization",
+    "name": "Quán Nhậu Anh Em",
+    "url": "{{ BASE_URL }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Quán Nhậu Anh Em",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ BASE_URL }}images/Logo_PNG22_square.webp"
+    }
+  },
+  "description": "{{ htmlspecialchars($detail->overview) }}"
+}
+</script>
+@endsection
 
 @section('content')
 

@@ -6,6 +6,19 @@
 @section('og_url', route('thuc-don'))
 @section('canonical', route('thuc-don'))
 
+@section('schema')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Menu",
+  "name": "Thực Đơn Quán Nhậu Anh Em",
+  "description": "Khám phá thực đơn đa dạng phong phú của Quán Nhậu Anh Em với các món ăn nhậu độc đáo, bia ngon và các ưu đãi đặc quyền hấp dẫn.",
+  "inLanguage": "vi",
+  "mainEntityOfPage": "{{ BASE_URL }}thuc-don"
+}
+</script>
+@endsection
+
 @section('content')
     <div class="about-banner-custom">
         <div class="about-banner-inner">
@@ -730,15 +743,6 @@
                             <div class="products-grid">
                                 @foreach($catProducts as $p)
                                     @php
-                                        $imgUrl = $p->img_thumbnail;
-                                        if ($imgUrl) {
-                                            if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
-                                                $imgUrl = 'storage/uploads/products/' . basename($imgUrl);
-                                            }
-                                        } else {
-                                            $imgUrl = 'images/produc.webp';
-                                        }
-
                                         $imgTransUrl = '';
                                         if (isset($p->img_transparent) && $p->img_transparent) {
                                             $imgTransUrl = $p->img_transparent;

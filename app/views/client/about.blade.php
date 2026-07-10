@@ -6,6 +6,22 @@
 @section('og_url', route('gioi-thieu'))
 @section('canonical', route('gioi-thieu'))
 
+@section('schema')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Giới thiệu - Quán Nhậu Anh Em",
+  "description": "Khởi nguồn từ niềm đam mê ẩm thực Việt và mong muốn tạo ra một không gian mộc mạc, gần gũi, Quán Nhậu Anh Em ra đời như một điểm hẹn lý tưởng.",
+  "publisher": {
+    "@type": "Restaurant",
+    "name": "Quán Nhậu Anh Em",
+    "url": "{{ BASE_URL }}"
+  }
+}
+</script>
+@endsection
+
 @section('content')
     <style>
         .about-banner-custom {
@@ -566,15 +582,6 @@
             @if(isset($latestProducts) && count($latestProducts) > 0)
                 @foreach($latestProducts as $p)
                     @php
-                        $imgUrl = $p->img_thumbnail;
-                        if ($imgUrl) {
-                            if (!preg_match('/^(images\/|https?:\/\/)/', $imgUrl)) {
-                                $imgUrl = 'storage/uploads/products/' . basename($imgUrl);
-                            }
-                        } else {
-                            $imgUrl = 'images/produc.webp';
-                        }
-
                         $imgTransUrl = '';
                         if (isset($p->img_transparent) && $p->img_transparent) {
                             $imgTransUrl = $p->img_transparent;

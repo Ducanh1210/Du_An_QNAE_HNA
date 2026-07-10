@@ -72,5 +72,47 @@ class HomeController extends BaseController
     {
         $this->render('client.contact');
     }
+
+    public function sitemap()
+    {
+        $newsModel = new NewsModel();
+        $newsList = $newsModel->getActive();
+
+        header("Content-Type: application/xml; charset=utf-8");
+        
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
+        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL;
+
+        // Static routes
+        $staticRoutes = [
+            '',
+            'gioi-thieu',
+            'thuc-don',
+            'tin-tuc',
+            'lien-he'
+        ];
+
+        foreach ($staticRoutes as $route) {
+            $xml .= '  <url>' . PHP_EOL;
+            $xml .= '    <loc>' . BASE_URL . $route . '</loc>' . PHP_EOL;
+            $xml .= '    <changefreq>daily</changefreq>' . PHP_EOL;
+            $xml .= '    <priority>' . ($route === '' ? '1.0' : '0.8') . '</priority>' . PHP_EOL;
+            $xml .= '  </url>' . PHP_EOL;
+        }
+
+        // Dynamic news detail routes
+        foreach ($newsList as $item) {
+            $xml .= '  <url>' . PHP_EOL;
+            $xml .= '    <loc>' . BASE_URL . 'tin-tuc/' . htmlspecialchars($item->slug) . '</loc>' . PHP_EOL;
+            $xml .= '    <lastmod>' . date('Y-m-d', strtotime($item->created_at)) . '</lastmod>' . PHP_EOL;
+            $xml .= '    <changefreq>weekly</changefreq>' . PHP_EOL;
+            $xml .= '    <priority>0.6</priority>' . PHP_EOL;
+            $xml .= '  </url>' . PHP_EOL;
+        }
+
+        $xml .= '</urlset>';
+        echo $xml;
+        exit;
+    }
 }
 ?>

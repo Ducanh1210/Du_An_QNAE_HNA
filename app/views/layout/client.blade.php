@@ -32,12 +32,12 @@
     @yield('preloads')
 
     <!-- Icons -->
-    <link rel="shortcut icon" href="{{ BASE_URL }}images/Logo_PNG22_square.webp" />
-    <link rel="icon" type="image/png" href="{{ BASE_URL }}images/Logo_PNG22_square.webp" sizes="16x16" />
-    <link rel="icon" type="image/png" href="{{ BASE_URL }}images/Logo_PNG22_square.webp" sizes="32x32" />
-    <link rel="icon" type="image/png" href="{{ BASE_URL }}images/Logo_PNG22_square.webp" sizes="96x96" />
-    <link rel="icon" type="image/png" href="{{ BASE_URL }}images/Logo_PNG22_square.webp" sizes="160x160" />
-    <link rel="icon" type="image/png" href="{{ BASE_URL }}images/Logo_PNG22_square.webp" sizes="192x192" />
+    <link rel="shortcut icon" href="{{ BASE_URL }}images/Logo_PNG22_square.png" />
+    <link rel="icon" type="image/png" href="{{ BASE_URL }}images/Logo_PNG22_square.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="{{ BASE_URL }}images/Logo_PNG22_square.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="{{ BASE_URL }}images/Logo_PNG22_square.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="{{ BASE_URL }}images/Logo_PNG22_square.png" sizes="160x160" />
+    <link rel="icon" type="image/png" href="{{ BASE_URL }}images/Logo_PNG22_square.png" sizes="192x192" />
     <!-- END Icons -->
 
     <script>

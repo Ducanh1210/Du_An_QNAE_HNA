@@ -129,6 +129,10 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
+            will-change: opacity;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         .loading-screen .ls-dots--tr {
@@ -154,6 +158,10 @@
             border-radius: 50%;
             z-index: 3;
             border: 2px solid #d79627;
+            will-change: opacity;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         .loading-screen .ls-deco-circle--1 {
@@ -185,6 +193,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            will-change: opacity;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         .loading-screen .loading-logo {
@@ -210,15 +222,22 @@
             width: 0%;
             background: #FFA827;
             border-radius: 6px;
+            will-change: width;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         .loading-screen .loading-runner {
             position: absolute;
             right: 0;
             bottom: 100%;
-            transform: translate(50%, 4px);
+            transform: translate(50%, 4px) translateZ(0);
             height: 90px;
             z-index: 10;
+            will-change: transform;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         .loading-screen .loading-percent {
@@ -235,6 +254,10 @@
             background: white;
             opacity: 0;
             pointer-events: none;
+            will-change: opacity;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         @media (max-width: 768px) {
@@ -808,63 +831,106 @@
         });
 
         // ===== GSAP Exit Animation for new loading screen =====
+        let exitAnimStarted = false;
         function playExitAnimation(callback) {
-            const tl = gsap.timeline();
+            if (exitAnimStarted) return;
+            exitAnimStarted = true;
 
-            // 1. Fade out center content, dots, circles
-            tl.to('#loadingCenter, .ls-dots, .ls-deco-circle', {
-                opacity: 0, duration: 0.5, ease: 'power2.in'
-            });
+            // Detect if mobile/Android device to apply rendering optimizations
+            const isAndroid = /Android/i.test(navigator.userAgent);
+            const isMobile = window.innerWidth <= 768 || isAndroid;
 
-            // 2. CLOSE IN (Nhận biết kích thước và vị trí thực tế từ DOM để tính toán điểm chạm tự động)
+            // PRE-CALCULATE all layout values BEFORE creating the timeline
+            // This prevents getBoundingClientRect from forcing a mid-animation reflow
             const cornerTL = document.getElementById('cornerTL');
             const cornerBR = document.getElementById('cornerBR');
 
-            // Lấy kích thước thực tế hiển thị trên trình duyệt (tránh sai số zoom/scrollbar)
-            let rectTL = cornerTL.getBoundingClientRect();
-            let rectBR = cornerBR.getBoundingClientRect();
-            let blockW = rectTL.width;
+            let rectTL = cornerTL ? cornerTL.getBoundingClientRect() : null;
+            let rectBR = cornerBR ? cornerBR.getBoundingClientRect() : null;
 
-            let W = window.innerWidth;
-            let H = window.innerHeight;
+            let W = window.innerWidth || 375;
+            let H = window.innerHeight || 812;
 
-            // Tính khoảng bù rìa (offset) thực tế của 2 khối chéo
-            let offsetTL = -rectTL.left - rectTL.top;
-            let offsetBR = (rectBR.right - W) + (rectBR.bottom - H);
+            let blockW = (rectTL && rectTL.width) ? rectTL.width : (W * 0.45);
+            if (blockW <= 0) blockW = W * 0.45;
+
+            let offsetTL = rectTL ? (-rectTL.left - rectTL.top) : 10;
+            let offsetBR = rectBR ? ((rectBR.right - W) + (rectBR.bottom - H)) : 10;
             let totalOffset = offsetTL + offsetBR;
+            if (isNaN(totalOffset)) totalOffset = 20;
 
-            // Để sọc số 2 (mép ngoài cùng 76%) bên này vừa chạm vào sọc số 1 (mép ngoài cùng 71%) bên kia:
-            // Tổng tỷ lệ sọc chạm nhau = 0.76 + 0.71 = 1.47
             let overlapFactor = 1.47;
             let perfectScale = (W + H + totalOffset) / (overlapFactor * blockW);
 
-            tl.to('#cornerTL', { scale: perfectScale, duration: 1.0, ease: 'power2.inOut' }, '-=0.1');
-            tl.to('#cornerBR', { scale: perfectScale, duration: 1.0, ease: 'power2.inOut' }, '<');
+            if (isNaN(perfectScale) || !isFinite(perfectScale) || perfectScale <= 0) {
+                perfectScale = 4.5;
+            } else if (isMobile && perfectScale > 5.0) {
+                perfectScale = 5.0;
+            }
 
-            // 3. Hide background
-            tl.set('#loadingBg', { opacity: 0 });
-
-            // 4. OPEN OUT with treasure glow (blinding white)
-            // Slide the corners at exactly a 45-degree angle (equal X and Y translation) 
-            // so the stripes remain parallel and aligned as they move apart.
             let moveDist = (blockW * perfectScale) + 100;
-            tl.to('#treasureGlow', { opacity: 1, duration: 0.2, ease: 'power1.in' });
-            tl.to('#cornerTL', { x: -moveDist, y: -moveDist, duration: 1.2, ease: 'power2.inOut' });
-            tl.to('#cornerBR', { x: moveDist, y: moveDist, duration: 1.2, ease: 'power2.inOut' }, '<');
-            tl.to('#treasureGlow', { opacity: 0, duration: 0.8, ease: 'power2.out' }, '-=0.6');
+            let flashOpacity = 1.0;
 
-            // 5. Done
-            tl.set('#loadingScreen', { display: 'none' });
-            tl.call(function () {
-                document.body.classList.remove('loading-active');
-                document.documentElement.style.removeProperty('--scrollbar-compensate');
-                if (typeof callback === 'function') callback();
+            // Dynamically promote corner blocks to GPU layers RIGHT BEFORE animation
+            // ONLY on mobile/Android to ensure performance.
+            // On desktop (PC), do not promote them to keep the SVG vector graphics 100% sharp and crisp.
+            if (isMobile) {
+                if (cornerTL) cornerTL.style.willChange = 'transform';
+                if (cornerBR) cornerBR.style.willChange = 'transform';
+            }
+
+            // Use shorter durations on mobile for smoother performance
+            let closeDuration = isMobile ? 0.6 : 1.0;
+            let openDuration = isMobile ? 0.8 : 1.2;
+
+            // Use requestAnimationFrame to sync animation start with browser paint cycle
+            requestAnimationFrame(function() {
+                const tl = gsap.timeline();
+
+                // 1. Fade out center content using fromTo (avoids GSAP reading computed opacity)
+                tl.fromTo('#loadingCenter',
+                    { opacity: 1 },
+                    { opacity: 0, duration: isMobile ? 0.3 : 0.5, ease: 'power2.in', force3D: true }
+                );
+
+                // Fade out decorative elements using simple to (preserving their CSS-defined initial opacities like 0.35 and 0.7)
+                tl.to('.ls-dots, .ls-deco-circle',
+                    { opacity: 0, duration: isMobile ? 0.3 : 0.5, ease: 'power2.in', force3D: true },
+                    '<'
+                );
+
+                // 2. CLOSE IN - all values pre-calculated, no layout reads here
+                tl.to('#cornerTL', { scale: perfectScale, duration: closeDuration, ease: 'power2.inOut', force3D: true }, '-=0.1');
+                tl.to('#cornerBR', { scale: perfectScale, duration: closeDuration, ease: 'power2.inOut', force3D: true }, '<');
+
+                // 3. Hide background
+                tl.set('#loadingBg', { opacity: 0 });
+
+                // 4. OPEN OUT
+                tl.to('#treasureGlow', { opacity: flashOpacity, duration: 0.2, ease: 'power1.in' });
+                tl.to('#cornerTL', { x: -moveDist, y: -moveDist, duration: openDuration, ease: 'power2.inOut', force3D: true });
+                tl.to('#cornerBR', { x: moveDist, y: moveDist, duration: openDuration, ease: 'power2.inOut', force3D: true }, '<');
+                tl.to('#treasureGlow', { opacity: 0, duration: 0.8, ease: 'power2.out' }, '-=0.6');
+
+                // 5. Done — clean up GPU layers
+                tl.set('#loadingScreen', { display: 'none' });
+                tl.call(function () {
+                    document.body.classList.remove('loading-active');
+                    document.documentElement.style.removeProperty('--scrollbar-compensate');
+                    // Release GPU memory on mobile
+                    if (isMobile) {
+                        if (cornerTL) cornerTL.style.willChange = 'auto';
+                        if (cornerBR) cornerBR.style.willChange = 'auto';
+                    }
+                    if (typeof callback === 'function') callback();
+                });
             });
         }
 
         function loadingCover(idWrapt, callbackDone) {
             let loader = { percent: 0 };
             let imagesDone = false;
+            let tweenStarted = false;
 
             // 1. Fake a smooth load to 90% minimum
             let fakeTween = gsap.to(loader, {
@@ -891,7 +957,8 @@
 
             function checkDone() {
                 // Only proceed to 100% if images are loaded AND fake load reached 90%
-                if (imagesDone && fakeTween.progress() === 1) {
+                if (imagesDone && fakeTween.progress() === 1 && !tweenStarted) {
+                    tweenStarted = true;
                     gsap.to(loader, {
                         percent: 100,
                         duration: 0.5,

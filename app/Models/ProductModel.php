@@ -100,7 +100,7 @@ class ProductModel extends BaseModel {
         $sql = "SELECT p.*, c.name as category_name 
                 FROM products p 
                 INNER JOIN categories c ON p.category_id = c.id 
-                WHERE p.is_active = 1 AND c.sort_order = 1 AND c.type = 'product'
+                WHERE p.is_active = 1 AND c.show_home = 1 AND c.type = 'product'
                 ORDER BY p.sort_order ASC";
         $this->setQuery($sql);
         return $this->loadAllRows();

@@ -59,10 +59,10 @@ try{
         $router->post('/news/{id}/update', [App\Controllers\AdminNewsController::class, 'update']);
         $router->get('/news/{id}/delete', [App\Controllers\AdminNewsController::class, 'delete']);
 
-        // ========== CATEGORIES ==========
         $router->get('/categories', [App\Controllers\AdminCategoryController::class, 'index']);
         $router->post('/categories/store', [App\Controllers\AdminCategoryController::class, 'store']);
         $router->post('/categories/{id}/update', [App\Controllers\AdminCategoryController::class, 'update']);
+        $router->post('/categories/reorder', [App\Controllers\AdminCategoryController::class, 'reorder']);
         $router->get('/categories/{id}/delete', [App\Controllers\AdminCategoryController::class, 'delete']);
 
         // ========== SETTINGS ==========

@@ -324,12 +324,12 @@
             /* --- MON AN NOI BAT --- */
             .products-grid {
                 display: flex;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
+                flex-wrap: wrap;
                 gap: 24px;
+                padding-top: 30px;
                 padding-bottom: 20px;
-                scrollbar-width: none;
-                -webkit-overflow-scrolling: touch;
+                margin-top: -30px;
+                margin-bottom: -20px;
             }
             
             .products-grid::-webkit-scrollbar {
@@ -514,7 +514,7 @@
                     gap: 12px;
                 }
                 .product-card {
-                    flex: 0 0 75%;
+                    flex: 0 0 100%;
                 }
                 .kkae-grid {
                     grid-template-columns: repeat(2, 1fr);

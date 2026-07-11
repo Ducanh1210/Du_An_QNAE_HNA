@@ -21,7 +21,6 @@ class AdminCategoryController extends BaseController {
     public function store() {
         $name = $_POST['name'] ?? '';
         $type = $_POST['type'] ?? 'product';
-        $sort_order = intval($_POST['sort_order'] ?? 0);
         $slug = $this->createSlug($name);
 
         if (empty($name)) {
@@ -32,7 +31,7 @@ class AdminCategoryController extends BaseController {
             flash('errors', 'Tên danh mục đã tồn tại, vui lòng chọn tên khác', 'categories');
         }
 
-        $check = $this->categoryModel->create($name, $slug, $type, $sort_order);
+        $check = $this->categoryModel->create($name, $slug, $type);
         if ($check) {
             flash('success', 'Thêm danh mục thành công', 'categories?type=' . $type);
         } else {
@@ -41,10 +40,22 @@ class AdminCategoryController extends BaseController {
     }
 
     public function update($id) {
-        $name = $_POST['name'] ?? '';
-        $type = $_POST['type'] ?? 'product';
-        $sort_order = intval($_POST['sort_order'] ?? 0);
+        $category = $this->categoryModel->getById($id);
+        if (!$category) {
+            flash('errors', 'Danh mục không tồn tại', 'categories');
+        }
+
+        $name = $_POST['name'] ?? $category->name;
+        $type = $_POST['type'] ?? $category->type;
         $slug = $this->createSlug($name);
+        
+        $sort_order = isset($_POST['sort_order']) ? intval($_POST['sort_order']) : $category->sort_order;
+        
+        if (isset($_POST['toggle_home'])) {
+            $show_home = isset($_POST['show_home']) ? 1 : 0;
+        } else {
+            $show_home = $category->show_home;
+        }
 
         if (empty($name)) {
             flash('errors', 'Tên danh mục không được để trống', 'categories');
@@ -54,12 +65,36 @@ class AdminCategoryController extends BaseController {
             flash('errors', 'Tên danh mục đã tồn tại, vui lòng chọn tên khác', 'categories');
         }
 
-        $check = $this->categoryModel->update($id, $name, $slug, $type, $sort_order);
+        $check = $this->categoryModel->update($id, $name, $slug, $type, $sort_order, $show_home);
         if ($check) {
             flash('success', 'Cập nhật danh mục thành công', 'categories?type=' . $type);
         } else {
             flash('errors', 'Cập nhật thất bại', 'categories?type=' . $type);
         }
+    }
+
+    public function reorder() {
+        $input = json_decode(file_get_contents('php://input'), true);
+        $order = $input['order'] ?? [];
+
+        if (empty($order)) {
+            header('Content-Type: application/json');
+            echo json_encode(['success' => false, 'message' => 'Dữ liệu sắp xếp không hợp lệ']);
+            exit;
+        }
+
+        foreach ($order as $index => $id) {
+            $id = intval($id);
+            $sort_order = $index + 1;
+            
+            $sql = "UPDATE categories SET sort_order = ? WHERE id = ?";
+            $this->categoryModel->setQuery($sql);
+            $this->categoryModel->execute([$sort_order, $id]);
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode(['success' => true, 'message' => 'Cập nhật thứ tự thành công']);
+        exit;
     }
 
     public function delete($id) {

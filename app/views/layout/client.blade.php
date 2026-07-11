@@ -2,8 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="vi">
 <head>
     <meta charset="UTF-8" />
+    <meta name="color-scheme" content="only light" />
+    <style>
+        :root {
+            color-scheme: only light !important;
+        }
+    </style>
     <meta id="viewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>@yield('title', 'Quán Nhậu Anh Em - Anh em gắp bia lên')</title>
+    <title>@yield('title', 'Quán Nhậu Anh Em - Anh Em Gắp Bia Lên')</title>
     
     <meta id="metaDescription" name="description" content="@yield('meta_description', 'Không chỉ là quán nhậu, Anh Em còn là phong cách sống – điểm hẹn liên hoan, sinh nhật, xả stress, tụ tập bạn bè sau giờ làm việc căng thẳng.')" />
     <meta id="metaKeywords" name="keywords" content="@yield('meta_keywords', 'Quán Nhậu Anh Em, Quán nhậu Ninh Bình, quán nhậu gần đây, quán nhậu ngon, Quán nhậu view đẹp Ninh Bình, Quán nhậu chill Ninh Bình, quán nhậu nổi tiếng')" />

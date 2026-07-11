@@ -48,10 +48,13 @@
                             <th style="text-align:right;">Thao tác</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="sortable-categories">
                         @foreach($data as $index => $item)
-                        <tr id="row-{{ $item->id }}">
-                            <td>{{ $index + 1 }}</td>
+                        <tr data-id="{{ $item->id }}">
+                            <td>
+                                <i class="fas fa-grip-vertical drag-handle me-2" style="cursor: grab; color: var(--text-muted); padding: 5px;"></i>
+                                <span class="row-number">{{ $index + 1 }}</span>
+                            </td>
                             <td>
                                 <form method="POST" action="{{ BASE_URL }}categories/{{ $item->id }}/update" class="d-inline-flex gap-2 align-items-center" style="width:100%;">
                                     <input type="text" name="name" value="{{ $item->name }}" class="form-control form-control-sm" style="max-width:200px;">
@@ -72,9 +75,10 @@
                                 <form method="POST" action="{{ BASE_URL }}categories/{{ $item->id }}/update" class="d-inline-block m-0">
                                     <input type="hidden" name="name" value="{{ $item->name }}">
                                     <input type="hidden" name="type" value="{{ $item->type }}">
+                                    <input type="hidden" name="toggle_home" value="1">
                                     <label style="cursor:pointer;" title="Click để thay đổi hiển thị trang chủ">
-                                        <input type="checkbox" name="sort_order" value="1" class="d-none" {{ $item->sort_order == 1 ? 'checked' : '' }} onchange="this.form.submit()">
-                                        <i class="fa-star {{ $item->sort_order == 1 ? 'fas text-warning' : 'far text-muted' }}" style="font-size:18px;"></i>
+                                        <input type="checkbox" name="show_home" value="1" class="d-none" {{ $item->show_home == 1 ? 'checked' : '' }} onchange="this.form.submit()">
+                                        <i class="fa-star {{ $item->show_home == 1 ? 'fas text-warning' : 'far text-muted' }}" style="font-size:18px;"></i>
                                     </label>
                                 </form>
                             </td>
@@ -96,4 +100,75 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const el = document.getElementById('sortable-categories');
+    if (el) {
+        Sortable.create(el, {
+            handle: '.drag-handle',
+            animation: 150,
+            ghostClass: 'bg-light',
+            onEnd: function() {
+                // Get all row IDs in their new order
+                const rows = el.querySelectorAll('tr');
+                const order = Array.from(rows).map(row => row.getAttribute('data-id'));
+                
+                // Update numbering in UI
+                rows.forEach((row, index) => {
+                    row.querySelector('.row-number').innerText = index + 1;
+                });
+                
+                // Send AJAX request to update sort_order in database
+                fetch('{{ BASE_URL }}categories/reorder', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ order: order })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showToast(data.message, 'success');
+                    } else {
+                        showToast(data.message || 'Có lỗi xảy ra', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showToast('Không thể kết nối đến máy chủ', 'error');
+                });
+            }
+        });
+    }
+
+    function showToast(message, type) {
+        const existingToast = document.querySelector('.alert-admin-toast');
+        if (existingToast) existingToast.remove();
+
+        const toast = document.createElement('div');
+        toast.className = `alert-admin alert-admin-toast ${type} show`;
+        toast.style.position = 'fixed';
+        toast.style.top = '24px';
+        toast.style.right = '24px';
+        toast.style.zIndex = '9999';
+        toast.style.opacity = '1';
+        toast.style.transform = 'translateX(0)';
+        
+        const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+        toast.innerHTML = `<i class="fas ${icon} me-2"></i><span>${message}</span>`;
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+            toast.classList.remove('show');
+            toast.classList.add('hide');
+            setTimeout(() => toast.remove(), 400);
+        }, 3000);
+    }
+});
+</script>
 @endsection

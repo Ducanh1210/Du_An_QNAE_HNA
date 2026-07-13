@@ -2,7 +2,7 @@
 
 @section('title', 'Giới thiệu - Quán Nhậu Anh Em')
 @section('meta_description', 'Khởi nguồn từ niềm đam mê ẩm thực Việt và mong muốn tạo ra một không gian mộc mạc, gần gũi, Quán Nhậu Anh Em ra đời như một điểm hẹn lý tưởng.')
-@section('meta_keywords', 'Giới thiệu Quán Nhậu Anh Em, Quán nhậu Ninh Bình')
+@section('meta_keywords', 'Giới thiệu Quán Nhậu Anh Em, Quán nhậu Hà Nam, quán nhậu Lam Hạ, quán nhậu Phủ Lý, Quán nhậu Ninh Bình')
 @section('og_url', route('gioi-thieu'))
 @section('canonical', route('gioi-thieu'))
 

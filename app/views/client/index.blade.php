@@ -2,7 +2,7 @@
 
 @section('title', 'Quán Nhậu Anh Em - Anh Em Gắp Bia Lên')
 @section('meta_description', 'Không chỉ là quán nhậu, Anh Em còn là phong cách sống – điểm hẹn liên hoan, sinh nhật, xả stress, tụ tập bạn bè sau giờ làm việc căng thẳng.')
-@section('meta_keywords', 'Quán Nhậu Anh Em, Quán nhậu Ninh Bình, quán nhậu gần đây, quán nhậu ngon, Quán nhậu view đẹp Ninh Bình, Quán nhậu chill Ninh Bình, quán nhậu nổi tiếng')
+@section('meta_keywords', 'Quán Nhậu Anh Em, Quán nhậu Hà Nam, quán nhậu ngon Hà Nam, quán nhậu Lam Hạ, quán nhậu Phủ Lý, quán nhậu Kim Bảng, Quán nhậu Ninh Bình, quán nhậu gần đây, quán nhậu ngon, Quán nhậu view đẹp Ninh Bình, Quán nhậu chill Ninh Bình, quán nhậu nổi tiếng')
 @section('og_url', BASE_URL)
 @section('canonical', BASE_URL)
 

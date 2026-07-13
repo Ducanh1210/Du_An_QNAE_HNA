@@ -12,8 +12,8 @@
     <title>@yield('title', 'Quán Nhậu Anh Em - Anh Em Gắp Bia Lên')</title>
     
     <meta id="metaDescription" name="description" content="@yield('meta_description', 'Không chỉ là quán nhậu, Anh Em còn là phong cách sống – điểm hẹn liên hoan, sinh nhật, xả stress, tụ tập bạn bè sau giờ làm việc căng thẳng.')" />
-    <meta id="metaKeywords" name="keywords" content="@yield('meta_keywords', 'Quán Nhậu Anh Em, Quán nhậu Ninh Bình, quán nhậu gần đây, quán nhậu ngon, Quán nhậu view đẹp Ninh Bình, Quán nhậu chill Ninh Bình, quán nhậu nổi tiếng')" />
-    <meta id="metaNewKeywords" name="news_keywords" content="@yield('meta_keywords', 'Quán Nhậu Anh Em, Quán nhậu Ninh Bình, quán nhậu gần đây, quán nhậu ngon, Quán nhậu view đẹp Ninh Bình, Quán nhậu chill Ninh Bình, quán nhậu nổi tiếng')" />
+    <meta id="metaKeywords" name="keywords" content="@yield('meta_keywords', 'Quán Nhậu Anh Em, Quán nhậu Hà Nam, quán nhậu ngon Hà Nam, quán nhậu Lam Hạ, quán nhậu Phủ Lý, quán nhậu Kim Bảng, Quán nhậu Ninh Bình, quán nhậu gần đây, quán nhậu ngon, Quán nhậu view đẹp Ninh Bình, Quán nhậu chill Ninh Bình, quán nhậu nổi tiếng')" />
+    <meta id="metaNewKeywords" name="news_keywords" content="@yield('meta_keywords', 'Quán Nhậu Anh Em, Quán nhậu Hà Nam, quán nhậu ngon Hà Nam, quán nhậu Lam Hạ, quán nhậu Phủ Lý, quán nhậu Kim Bảng, Quán nhậu Ninh Bình, quán nhậu gần đây, quán nhậu ngon, Quán nhậu view đẹp Ninh Bình, Quán nhậu chill Ninh Bình, quán nhậu nổi tiếng')" />
     
     <meta id="fbUrl" property="og:url" content="@yield('og_url', BASE_URL)" />
     <meta id="fbSiteName" property="og:site_name" content="quannhauanhem.com" />

@@ -90,7 +90,7 @@
         <i class="fas fa-eye me-2" style="color:var(--info);"></i>Xem trước icon contact trên website
     </h6>
     <p style="font-size:13px;color:var(--text-muted);">
-        Sau khi lưu cài đặt, các link sẽ được cập nhật vào file <code>gdquannhau/data/settings.json</code>. 
+        Sau khi lưu cài đặt, các link sẽ được cập nhật vào file <code>data/settings.json</code>. 
         Frontend sẽ tự động đọc file này để cập nhật đường dẫn các icon contact (Zalo, Facebook, TikTok...) 
         trên tất cả trang web.
     </p>

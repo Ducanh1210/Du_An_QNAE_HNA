@@ -115,7 +115,11 @@ if (!function_exists('autocropTransparentPng')) {
 
 if (!function_exists('request_uri')) {
     function request_uri() {
-        return isset($_GET['url']) ? '/' . $_GET['url'] : '/';
+        if (isset($_GET['url'])) {
+            return '/' . trim($_GET['url'], '/');
+        }
+        $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+        return '/' . trim($path, '/');
     }
 }
 ?>

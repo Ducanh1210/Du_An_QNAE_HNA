@@ -18,7 +18,7 @@
     <meta id="fbUrl" property="og:url" content="@yield('og_url', BASE_URL)" />
     <meta id="fbSiteName" property="og:site_name" content="quannhauanhem.com" />
     <meta id="fbType" property="og:type" content="website" />
-    <meta id="fbTitle" property="og:title" content="@yield('title', 'Quán Nhậu Anh Em - Anh em gắp bia lên')" />
+    <meta id="fbTitle" property="og:title" content="@yield('title', 'Quán Nhậu Anh Em - Anh Em Gắp Bia Lên')" />
     <meta id="fbDescription" property="og:description" content="@yield('meta_description', 'Không chỉ là quán nhậu, Anh Em còn là phong cách sống – điểm hẹn liên hoan, sinh nhật, xả stress, tụ tập bạn bè sau giờ làm việc căng thẳng.')" />
     <meta id="fbImage" property="og:image" content="{{ BASE_URL }}images/Thumb-Facebook.jpg" />
     
@@ -26,7 +26,7 @@
     <meta property="og:image:height" content="315" />
     <meta name="RATING" content="GENERAL" />
     <meta name="REVISIT-AFTER" content="1 DAYS" />
-    <meta name="author" content="Quán Nhậu Anh Em - Anh em gắp bia lên" />
+    <meta name="author" content="Quán Nhậu Anh Em - Anh Em Gắp Bia Lên" />
     <meta name="copyright" content="Quán Nhậu Anh Em" />
     <meta name="GENERATOR" content="Quán Nhậu Anh Em" />
     <meta name="content-language" content="vi" />

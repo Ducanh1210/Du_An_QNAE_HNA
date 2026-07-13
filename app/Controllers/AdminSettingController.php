@@ -37,14 +37,13 @@ class AdminSettingController extends BaseController {
         $this->settingModel->updateMultiple($updateData);
 
         // Export settings.json for frontend
-        $basePath = dirname(dirname(dirname(__DIR__)));
-        $jsonPath = $basePath . '/gdquannhau/data/settings.json';
-        $this->settingModel->exportToJson($jsonPath);
-
-        // Export local settings.json for localhost
-        $localJsonPath = $basePath . '/Du_An_QNAE_HNA/data/settings.json';
-        $this->settingModel->exportToJson($localJsonPath);
-
-        flash('success', 'Cập nhật cài đặt thành công', 'settings');
+        $jsonPath = dirname(dirname(__DIR__)) . '/data/settings.json';
+        $success = $this->settingModel->exportToJson($jsonPath);
+        
+        if (!$success) {
+            flash('error', 'Cập nhật database thành công nhưng không thể ghi file data/settings.json do lỗi phân quyền (Permission Denied). Vui lòng chmod 777 hoặc chown thư mục data/ trên VPS.', 'settings');
+        } else {
+            flash('success', 'Cập nhật cài đặt thành công', 'settings');
+        }
     }
 }

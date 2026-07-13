@@ -48,7 +48,7 @@ class SettingModel extends BaseModel {
         if (!is_dir($dir)) {
             mkdir($dir, 0755, true);
         }
-        file_put_contents($filePath, json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
-        return true;
+        $written = @file_put_contents($filePath, json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+        return $written !== false;
     }
 }

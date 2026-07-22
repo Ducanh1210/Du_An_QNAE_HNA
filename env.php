@@ -5,7 +5,7 @@ const DBHOST = "127.0.0.1";
 const DBNAME = "quannhau";
 const DBUSER = "webquannhau";
 const DBPASS = "quannhauanhem123@";
-const BASE_URL = "https://quannhauanhem.com/";
+const BASE_URL = "http://quannhauanhem.com/";
 const DBCHARSET = "utf8mb4";
 
 // =========================================================================
@@ -13,14 +13,16 @@ const DBCHARSET = "utf8mb4";
 // =========================================================================
 if (!function_exists('route')) {
     // Helper function to generate full URL path
-    function route($url) {
+    function route($url)
+    {
         return BASE_URL . $url;
     }
 }
 
 if (!function_exists('flash')) {
     // Helper function to set session flash messages and redirect
-    function flash($key, $msg, $route)  {
+    function flash($key, $msg, $route)
+    {
         $_SESSION[$key] = $msg;
         switch ($key) {
             case 'success':

@@ -13,7 +13,7 @@ if (isset($_GET['url'])) {
     $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $url = $requestUri ? $requestUri : "/";
 }
-try{
+try {
     $router = new RouteCollector();
 
     // ========== CLIENT FRONTEND ==========
@@ -31,7 +31,7 @@ try{
     $router->get('/logout', [App\Controllers\AuthController::class, 'logout']);
 
     // Bộ lọc kiểm tra quyền truy cập Admin
-    $router->filter('auth', function() {
+    $router->filter('auth', function () {
         if (!isset($_SESSION['user'])) {
             header('Location: ' . BASE_URL . 'login');
             exit;
@@ -39,7 +39,7 @@ try{
     });
 
     // ========== ADMIN MODULES (PROTECTED) ==========
-    $router->group(['before' => 'auth'], function($router) {
+    $router->group(['before' => 'auth'], function ($router) {
         // ========== DASHBOARD ==========
         $router->get('/admin', [App\Controllers\DashboardController::class, 'index']);
 
@@ -89,8 +89,9 @@ try{
 
     // Print out the value returned from the dispatched function
     echo $response;
-}catch(Exception $e){
-    var_dump($e->getMessage());die;
+} catch (Exception $e) {
+    var_dump($e->getMessage());
+    die;
 }
 
 ?>
